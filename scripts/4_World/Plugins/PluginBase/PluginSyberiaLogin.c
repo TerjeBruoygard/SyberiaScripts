@@ -1,6 +1,6 @@
 class PluginSyberiaLogin extends PluginBase
 {
-	autoptr ScreenRespawn screenRespawnMenu;
+	autoptr ScreenBase screenBase;
 	
 	void PluginSyberiaLogin()
 	{
@@ -22,12 +22,12 @@ class PluginSyberiaLogin extends PluginBase
 	{
 		super.OnUpdate(delta_time);
 		
-		if (screenRespawnMenu)
+		if (screenBase)
 		{
-			if (!screenRespawnMenu.m_visible)
+			if (!screenBase.m_visible)
 			{
 				GetGame().GetUIManager().CloseAll();
-				GetGame().GetUIManager().ShowScriptedMenu( screenRespawnMenu, NULL );
+				GetGame().GetUIManager().ShowScriptedMenu( screenBase, NULL );
 				SybLog("PluginSyberiaLogin force enable menu.");
 			}
 		}
@@ -40,8 +40,10 @@ class PluginSyberiaLogin extends PluginBase
 		Param3<string, int, int> clientData;
        	if ( !ctx.Read( clientData ) ) return;			
 		
-		screenRespawnMenu = new ScreenRespawn(clientData.param1, clientData.param2, clientData.param3);
-		screenRespawnMenu.Init();
+		if (screenBase) screenBase.Close();
+		
+		screenBase = new ScreenRespawn(clientData.param1, clientData.param2, clientData.param3);
+		screenBase.Init();
 	}
 	
 	void NewcharScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)
@@ -51,7 +53,9 @@ class PluginSyberiaLogin extends PluginBase
 		Param2<string, int> clientData;
        	if ( !ctx.Read( clientData ) ) return;			
 		
-		screenRespawnMenu = new ScreenNewchar(clientData.param1, clientData.param2);
-		screenRespawnMenu.Init();
+		if (screenBase) screenBase.Close();
+		
+		screenBase = new ScreenNewchar(clientData.param1, clientData.param2);
+		screenBase.Init();
 	}
 };

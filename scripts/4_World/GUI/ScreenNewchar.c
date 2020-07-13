@@ -1,8 +1,9 @@
-class ScreenNewchar extends UIScriptedMenu
+class ScreenNewchar extends ScreenBase
 {
-	bool m_visible;
 	string m_charName;
 	int m_totalPoints;
+	
+	const int m_maxNameLength = 32;
 	
 	ref EditBoxWidget m_charNameEdit;
 	ref ButtonWidget m_NextBtn;
@@ -11,7 +12,6 @@ class ScreenNewchar extends UIScriptedMenu
 	{
 		m_charName = charName;
 		m_totalPoints = points;
-		m_visible = false;
 	}
 	
 	void ~ScreenNewchar()
@@ -38,49 +38,50 @@ class ScreenNewchar extends UIScriptedMenu
 		super.Update(timeslice);
 	}
 
-	override void OnShow()
-	{
-		SybLog("ScreenNewchar OnShow");
-		super.OnShow();
-
-		GetGame().GetInput().ChangeGameFocus(1);
-		GetGame().GetUIManager().ShowCursor(true);
-		GetGame().GetMission().GetHud().Show(false);
-		GetGame().GetSoundScene().SetSoundVolume(0, 0);
-
-		SetFocus( layoutRoot );
-		
-		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-		if (player) player.GetInputController().SetDisabled(true);
-		
-		m_visible = true;
-	}
-
-	override void OnHide()
-	{
-		SybLog("ScreenNewchar OnHide");
-		super.OnHide();
-
-		GetGame().GetSoundScene().SetSoundVolume(1, 0);
-		GetGame().GetInput().ResetGameFocus();
-		
-		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-		if (player) player.GetInputController().SetDisabled(false);
-
-		super.Close();
-		m_visible = false;
-	}
-
 	override bool OnClick( Widget w, int x, int y, int button )
 	{
 		super.OnClick(w, x, y, button);	
 
+		if (button == MouseState.LEFT)
+		{
+			if (w == m_NextBtn)
+			{
+				m_NextBtn.Show(false);
+				
+				auto requestParams = new Param1<string>(m_charNameEdit.GetText()); 
+				GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_CREATENEWCHAR_REQUEST, requestParams);
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	
 	override bool OnChange( Widget w, int x, int y, bool finished )
 	{
 		super.OnChange(w, x, y, finished);
+		
+		string text;
+		if (w.GetName() == m_charNameEdit.GetName()) {
+			text = m_charNameEdit.GetText();
+			if (text.LengthUtf8() > m_maxNameLength) {
+				m_charNameEdit.SetText(text.Substring(0, m_maxNameLength));
+			}
+			return true;
+		}
+		
+		return false;
+	}
+	
+	override bool OnKeyPress(Widget w, int x, int y, int key) {
+		string text;
+		if (w.GetName() == m_charNameEdit.GetName()) {
+			text = m_charNameEdit.GetText();
+			if (text.LengthUtf8() >= m_maxNameLength) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 }
