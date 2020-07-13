@@ -44,7 +44,7 @@ FrameWidgetClass rootFrame {
      style rover_sim_colorable
      {
       EditBoxWidgetClass CharNameEdit {
-       ignorepointer 1
+       ignorepointer 0
        keepsafezone 0
        size 0.7 48
        valign bottom_ref
@@ -53,8 +53,9 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        scaled 1
-       style ServerBrowser
-       text " #syb_next"
+       style DefaultBorder
+       text " #syb_entername"
+       "limit visible" 0
        "Default text color" 0.6 0.6 0.6 1
        "Use default text" 1
        "exact text" 1

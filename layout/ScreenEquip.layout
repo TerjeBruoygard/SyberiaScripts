@@ -1,0 +1,189 @@
+FrameWidgetClass rootFrame {
+ position 0 0
+ size 1 1
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass Background {
+   ignorepointer 1
+   color 0 0 0 1
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    PanelWidgetClass LeftPanel {
+     ignorepointer 1
+     position -0.16 0
+     size 0.5 0.8
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      TextListboxWidgetClass SelectSpawn {
+       position 0 0
+       size 0.5 0.25
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style Default
+       "title visible" 1
+       colums " #syb_spawnselect"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/metronlight16"
+      }
+      TextListboxWidgetClass SelectSpecial {
+       size 0.5 0.25
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style Default
+       "title visible" 1
+       colums " #syb_special"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/metronlight16"
+      }
+      TextListboxWidgetClass SelectBody {
+       position 0 0.25
+       size 0.5 0.25
+       hexactpos 1
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Default
+       "title visible" 1
+       colums " #syb_bodyselect"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/metronlight16"
+      }
+      TextListboxWidgetClass SelectPants {
+       position 0 0.25
+       size 0.5 0.25
+       halign right_ref
+       hexactpos 1
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Default
+       "title visible" 1
+       colums " #syb_pantsselect"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/metronlight16"
+      }
+      TextListboxWidgetClass SelectHeadgear {
+       position 0 0.5
+       size 0.5 0.25
+       hexactpos 1
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Default
+       "title visible" 1
+       colums " #syb_headgearselect"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/metronlight16"
+      }
+      TextListboxWidgetClass SelectFootwear {
+       position 0 0.5
+       size 0.5 0.25
+       halign right_ref
+       hexactpos 1
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Default
+       "title visible" 1
+       colums " #syb_footwearselect"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/metronlight16"
+      }
+      TextListboxWidgetClass SelectItems {
+       size 0.5 0.25
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Default
+       "title visible" 1
+       colums " #syb_itemsselect"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/metronlight16"
+      }
+      TextListboxWidgetClass SelectWeapon {
+       size 0.5 0.25
+       halign right_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Default
+       "title visible" 1
+       colums " #syb_weaponselect"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/metronlight16"
+      }
+     }
+    }
+    PanelWidgetClass RightPanel {
+     ignorepointer 1
+     position 0.26 0
+     size 0.3 0.8
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      PlayerPreviewWidgetClass PlayerPreview {
+       ignorepointer 1
+       position 0 80
+       size 1 0.9
+       halign center_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+      }
+      ButtonWidgetClass StartBtn {
+       color 0.9529 0 0 1
+       position 0 10
+       size 0.6 60
+       halign center_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_start"
+       font "gui/fonts/metron28"
+      }
+     }
+    }
+   }
+  }
+ }
+}
