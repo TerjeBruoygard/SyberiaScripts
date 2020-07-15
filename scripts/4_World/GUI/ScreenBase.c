@@ -27,6 +27,9 @@ class ScreenBase extends UIScriptedMenu
 		GetGame().GetSoundScene().SetSoundVolume(1, 0);
 		GetGame().GetInput().ResetGameFocus();
 		
+		GetGame().GetUIManager().ShowCursor(false);
+		GetGame().GetMission().GetHud().Show(true);
+		
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if (player) player.GetInputController().SetDisabled(false);
 

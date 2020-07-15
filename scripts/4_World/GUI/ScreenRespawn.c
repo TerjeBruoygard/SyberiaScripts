@@ -36,7 +36,16 @@ class ScreenRespawn extends ScreenBase
 		
 		m_charNameText.SetText(m_charName);
 		m_soulsCounterText.SetText("" + m_totalSouls);
-		m_soulsPriceText.SetText("#syb_resp_price " + m_priceSouls);
+		
+		if (m_totalSouls <= 0)
+		{
+			m_soulsPriceText.SetText("#syb_nosoulsleft");
+			m_respawnBtn.Show(false);
+		}
+		else
+		{
+			m_soulsPriceText.SetText("#syb_resp_price " + m_priceSouls);
+		}
 
         return layoutRoot;
     }
@@ -50,6 +59,26 @@ class ScreenRespawn extends ScreenBase
 	{
 		super.OnClick(w, x, y, button);	
 
+		if (button == MouseState.LEFT)
+		{			
+			if (w == m_respawnBtn)
+			{
+				m_respawnBtn.Show(false);
+				m_removeCharBtn.Show(false);
+				
+				GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_RESPAWN_REQUEST, new Param1<int>(0));
+				return true;
+			}
+			if (w == m_removeCharBtn)
+			{
+				m_respawnBtn.Show(false);
+				m_removeCharBtn.Show(false);
+				
+				GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_DELETECHAR_REQUEST, new Param1<int>(0));
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	
