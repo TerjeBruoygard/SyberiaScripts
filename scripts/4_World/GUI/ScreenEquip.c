@@ -19,9 +19,8 @@ class ScreenEquip extends ScreenBase
 
 		m_playerPreview = PlayerPreviewWidget.Cast( layoutRoot.FindAnyWidget( "PlayerPreview" ) );
 		m_StartBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "StartBtn" ) );
-		
-		m_playerPreview.SetPlayer(GetGame().GetPlayer());
-		
+	
+		m_playerPreview.SetPlayer(GetGame().GetPlayer());		
         return layoutRoot;
     }
 	
