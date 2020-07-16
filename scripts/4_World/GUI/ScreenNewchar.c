@@ -11,6 +11,8 @@ class ScreenNewchar extends ScreenBase
 	ref EditBoxWidget m_charNameEdit;
 	ref ButtonWidget m_NextBtn;
 	
+	bool m_isRpcSended = false;
+	
 	void ScreenNewchar(ref RpcNewCharContainer metadata)
 	{
 		m_metadata = metadata;
@@ -84,6 +86,11 @@ class ScreenNewchar extends ScreenBase
 			UpdatePlayerPreview();
 		}
 		
+		if (m_isRpcSended)
+		{
+			m_NextBtn.Show(false);
+		}
+		
 		m_NextBtn.Show(m_charNameEdit.GetText().LengthUtf8() == 0 || (m_charNameEdit.GetText().LengthUtf8() >= 4 && m_charNameEdit.GetText().LengthUtf8() <= m_maxNameLength) );
 	}
 
@@ -95,7 +102,7 @@ class ScreenNewchar extends ScreenBase
 		{			
 			if (w == m_NextBtn)
 			{
-				m_NextBtn.Show(false);
+				m_isRpcSended = true;
 				
 				ref RpcCreateNewCharContainer requestParams = new RpcCreateNewCharContainer();
 				requestParams.m_name = m_charNameEdit.GetText();

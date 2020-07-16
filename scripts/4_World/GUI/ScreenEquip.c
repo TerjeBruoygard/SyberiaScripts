@@ -3,6 +3,8 @@ class ScreenEquip extends ScreenBase
 	ref PlayerPreviewWidget m_playerPreview;
 	ref ButtonWidget m_StartBtn;
 	
+	bool m_isRpcSended = false;
+	
 	void ScreenEquip()
 	{
 
@@ -27,6 +29,11 @@ class ScreenEquip extends ScreenBase
 	override void Update(float timeslice)
 	{
 		super.Update(timeslice);
+		
+		if (m_isRpcSended)
+		{
+			m_StartBtn.Show(false);
+		}
 	}
 
 	override bool OnClick( Widget w, int x, int y, int button )
@@ -37,7 +44,7 @@ class ScreenEquip extends ScreenBase
 		{
 			if (w == m_StartBtn)
 			{
-				m_StartBtn.Show(false);
+				m_isRpcSended = true;
 				
 				auto requestParams = new Param1<int>(0); 
 				GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_STARTGAME_REQUEST, requestParams);

@@ -8,8 +8,6 @@ class ScreenBase extends UIScriptedMenu
 		super.OnShow();
 
 		GetGame().GetInput().ChangeGameFocus(1);
-		GetGame().GetUIManager().ShowCursor(true);
-		GetGame().GetMission().GetHud().Show(false);
 		GetGame().GetSoundScene().SetSoundVolume(0, 0);
 
 		SetFocus( layoutRoot );
@@ -17,7 +15,12 @@ class ScreenBase extends UIScriptedMenu
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if (player) player.GetInputController().SetDisabled(true);
 		
+		GetGame().GetMission().GetHud().Show(false);
+		GetGame().GetUIManager().ShowCursor(true);
+		
 		m_isShown = true;
+		
+		SybLog("Show " + this);
 	}
 
 	override void OnHide()
@@ -28,12 +31,17 @@ class ScreenBase extends UIScriptedMenu
 		GetGame().GetInput().ResetGameFocus();
 		
 		GetGame().GetUIManager().ShowCursor(false);
-		GetGame().GetMission().GetHud().Show(true);
+		if (GetGame().GetMission() && GetGame().GetMission().GetHud())
+		{
+			GetGame().GetMission().GetHud().Show(true);
+		}
 		
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if (player) player.GetInputController().SetDisabled(false);
 
 		super.Close();
 		m_isClosed = true;
+		
+		SybLog("Hide " + this);
 	}
 }

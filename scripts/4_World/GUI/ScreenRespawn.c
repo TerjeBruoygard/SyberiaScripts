@@ -10,6 +10,8 @@ class ScreenRespawn extends ScreenBase
 	ref ButtonWidget m_respawnBtn;
 	ref ButtonWidget m_removeCharBtn;
 	
+	bool m_isRpcSended = false;
+	
 	void ScreenRespawn(string charName, int totalSouls, int priceSouls)
 	{
 		m_charName = charName;
@@ -53,6 +55,12 @@ class ScreenRespawn extends ScreenBase
 	override void Update(float timeslice)
 	{
 		super.Update(timeslice);
+		
+		if (m_isRpcSended)
+		{
+			m_respawnBtn.Show(false);
+			m_removeCharBtn.Show(false);
+		}
 	}
 
 	override bool OnClick( Widget w, int x, int y, int button )
@@ -63,16 +71,14 @@ class ScreenRespawn extends ScreenBase
 		{			
 			if (w == m_respawnBtn)
 			{
-				m_respawnBtn.Show(false);
-				m_removeCharBtn.Show(false);
+				m_isRpcSended = true;
 				
 				GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_RESPAWN_REQUEST, new Param1<int>(0));
 				return true;
 			}
 			if (w == m_removeCharBtn)
 			{
-				m_respawnBtn.Show(false);
-				m_removeCharBtn.Show(false);
+				m_isRpcSended = true;
 				
 				GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_DELETECHAR_REQUEST, new Param1<int>(0));
 				return true;
