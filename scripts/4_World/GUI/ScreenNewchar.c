@@ -26,6 +26,10 @@ class ScreenNewchar extends ScreenBase
 	ref array<ref PerkDescription> m_allPerksDesc;
 	ref array<int> m_usedPerks;
 	
+	int m_lastSelectedSkill = -1;
+	int m_lastSelectedPerk = -1;
+	int m_lastSelectedUsedPerk = -1;
+	
 	void ScreenNewchar(ref RpcNewCharContainer metadata)
 	{
 		m_metadata = metadata;
@@ -134,7 +138,7 @@ class ScreenNewchar extends ScreenBase
 		{
 			ref PerkDescription usedPerkData = m_allPerksDesc.Get(perkId);
 
-			rowId = m_perksUsed.AddItem(usedPerkData.m_name, usedPerkData, 0);
+			rowId = m_perksUsed.AddItem("#syb_perk_" + usedPerkData.m_name, usedPerkData, 0);
 			if (usedPerkData.m_cost > 0) m_perksUsed.SetItemColor(rowId, 0, ARGBF(1, 0, 0.639, 0));
 			if (usedPerkData.m_cost < 0) m_perksUsed.SetItemColor(rowId, 0, ARGBF(1, 0.933, 0.067, 0.067));			
 			m_currentScore = m_currentScore - usedPerkData.m_cost;
@@ -149,7 +153,7 @@ class ScreenNewchar extends ScreenBase
 			fperkId = GetPerkIdByName(m_allPerksDesc, perkInfo.m_antiperk);
 			if (m_usedPerks.Find(fperkId) != -1) continue;
 			
-			rowId = m_perksTotal.AddItem(perkInfo.m_name, perkInfo, 0);
+			rowId = m_perksTotal.AddItem("#syb_perk_" + perkInfo.m_name, perkInfo, 0);
 			m_perksTotal.SetItem(rowId, "" + perkInfo.m_cost, perkInfo, 1);
 			if (perkInfo.m_cost > 0)
 			{
@@ -162,6 +166,8 @@ class ScreenNewchar extends ScreenBase
 		}
 		
 		m_totalScore.SetText("#syb_totalpoints " + m_currentScore);
+		if (m_currentScore >= 0) m_totalScore.SetColor(ARGBF(1, 1, 1, 1));
+		else m_totalScore.SetColor(ARGBF(1, 0.933, 0.067, 0.067));
 		
 		delete sortedPerks;
 		
@@ -170,6 +176,7 @@ class ScreenNewchar extends ScreenBase
 	
 	void UpdateSkills()
 	{
+		int lastSelection = m_skillsResult.GetSelectedRow();
 		m_skillsResult.ClearItems();
 		
 		foreach (ref SkillContainer skillData : m_metadata.m_skillsContainer.m_skills)
@@ -186,14 +193,73 @@ class ScreenNewchar extends ScreenBase
 			}
 			
 			string skillStr = "" + (int)skillData.m_value;			
-			if (addValue > 0) skillStr = (int)(skillData.m_value + addValue) + " (" + skillStr + "+" + (int)addValue + ")"; 
-			if (addValue < 0) skillStr = (int)(skillData.m_value + addValue) + " (" + skillStr + "-" + (int)(addValue * -1) + ")"; 
+			if (addValue > 0) skillStr = "" + ((int)(skillData.m_value + addValue)) + " (" + skillStr + "+" + (int)addValue + ")"; 
+			if (addValue < 0) skillStr = "" + ((int)(skillData.m_value + addValue)) + " (" + skillStr + "-" + (int)(addValue * -1) + ")"; 
 			
-			int rowId = m_skillsResult.AddItem(skillData.m_name, null, 0);
+			int rowId = m_skillsResult.AddItem("#syb_skill_" + skillData.m_name, null, 0);
 			m_skillsResult.SetItem(rowId, skillStr, null, 1);
 			
 			if (addValue > 0) m_skillsResult.SetItemColor(rowId, 1, ARGBF(1, 0, 0.639, 0));
 			if (addValue < 0) m_skillsResult.SetItemColor(rowId, 1, ARGBF(1, 0.933, 0.067, 0.067));
+		}
+		
+		m_skillsResult.SelectRow(lastSelection);
+	}
+	
+	private void UpdateHint()
+	{
+		string text = "";
+		int current = m_skillsResult.GetSelectedRow();
+		if (current != m_lastSelectedSkill)
+		{
+			m_lastSelectedSkill = current;
+			
+			if (current >= 0)
+			{
+				m_perkDesc.SetText("#syb_skill_desc_" + m_metadata.m_skillsContainer.m_skills[current].m_name);
+			}
+		}
+		
+		current = m_perksTotal.GetSelectedRow();
+		if (current != m_lastSelectedPerk)
+		{
+			m_lastSelectedPerk = current;
+			
+			if (current >= 0)
+			{
+				ref PerkDescription perkDescTotal;
+				m_perksTotal.GetItemData(current, 0, perkDescTotal);
+				
+				text = "#syb_perk_desc_" + perkDescTotal.m_name + "\n";
+				
+				foreach (string fname1, float fvalue1 : perkDescTotal.m_effects)
+				{
+					text = text + "\n" + "#syb_skill_" + fname1 + ": " + (int)fvalue1;
+				}
+				
+				m_perkDesc.SetText(text);
+			}
+		}
+		
+		current = m_perksUsed.GetSelectedRow();
+		if (current != m_lastSelectedUsedPerk)
+		{
+			m_lastSelectedUsedPerk = current;
+			
+			if (current >= 0)
+			{
+				ref PerkDescription perkDescUsed;
+				m_perksUsed.GetItemData(current, 0, perkDescUsed);
+
+				text = "#syb_perk_desc_" + perkDescUsed.m_name + "\n";
+				
+				foreach (string fname2, float fvalue2 : perkDescTotal.m_effects)
+				{
+					text = text + "\n" + "#syb_skill_" + fname2 + ": " + (int)fvalue2;
+				}
+				
+				m_perkDesc.SetText(text);
+			}
 		}
 	}
 	
@@ -218,7 +284,9 @@ class ScreenNewchar extends ScreenBase
 			m_NextBtn.Show(false);
 		}
 		
-		m_NextBtn.Show(m_currentScore < 0 || m_charNameEdit.GetText().LengthUtf8() == 0 || (m_charNameEdit.GetText().LengthUtf8() >= 4 && m_charNameEdit.GetText().LengthUtf8() <= m_maxNameLength) );
+		UpdateHint();
+		
+		m_NextBtn.Show(m_currentScore >= 0 && (m_charNameEdit.GetText().LengthUtf8() == 0 || (m_charNameEdit.GetText().LengthUtf8() >= 4 && m_charNameEdit.GetText().LengthUtf8() <= m_maxNameLength)) );
 	}
 
 	override bool OnClick( Widget w, int x, int y, int button )

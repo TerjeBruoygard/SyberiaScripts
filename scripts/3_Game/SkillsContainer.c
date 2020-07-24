@@ -75,7 +75,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("immunity", 5);
 	perks.Insert(perk);	
 	// prone to illness
-	perk = new PerkDescription("illness", "resilient", -6);
+	perk = new PerkDescription("illness", "resilient", -4);
 	perk.m_effects.Insert("immunity", -10);
 	perks.Insert(perk);
 	
@@ -86,7 +86,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("athletics", 5);
 	perks.Insert(perk);
 	// smoker
-	perk = new PerkDescription("smoker", "athlete", -8);
+	perk = new PerkDescription("smoker", "athlete", -5);
 	perk.m_effects.Insert("athletics", -10);
 	perks.Insert(perk);
 	
@@ -97,7 +97,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("strength", 5);
 	perks.Insert(perk);
 	// weak
-	perk = new PerkDescription("weak", "weightlifter", -8);
+	perk = new PerkDescription("weak", "weightlifter", -5);
 	perk.m_effects.Insert("strength", -10);
 	perks.Insert(perk);
 	
@@ -108,7 +108,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("medicine", 5);
 	perks.Insert(perk);
 	// hemophobic
-	perk = new PerkDescription("hemophobic", "paramedic", -8);
+	perk = new PerkDescription("hemophobic", "paramedic", -6);
 	perk.m_effects.Insert("medicine", -10);
 	perks.Insert(perk);
 	
@@ -119,7 +119,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("stealth", 5);
 	perks.Insert(perk);
 	// clumsy
-	perk = new PerkDescription("clumsy", "inconspicuous", -6);
+	perk = new PerkDescription("clumsy", "inconspicuous", -4);
 	perk.m_effects.Insert("stealth", -10);
 	perks.Insert(perk);
 	
@@ -130,7 +130,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("survival", 5);
 	perks.Insert(perk);
 	// nerd
-	perk = new PerkDescription("nerd", "outdoorsman", -8);
+	perk = new PerkDescription("nerd", "outdoorsman", -6);
 	perk.m_effects.Insert("survival", -10);
 	perks.Insert(perk);
 	
@@ -141,7 +141,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("driving", 5);
 	perks.Insert(perk);
 	// baddriver
-	perk = new PerkDescription("baddriver", "gooddriver", -6);
+	perk = new PerkDescription("baddriver", "gooddriver", -4);
 	perk.m_effects.Insert("driving", -10);
 	perks.Insert(perk);
 	
@@ -153,7 +153,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("weapon", 5);
 	perks.Insert(perk);
 	// pacifist
-	perk = new PerkDescription("pacifist", "hunter", -12);
+	perk = new PerkDescription("pacifist", "hunter", -6);
 	perk.m_effects.Insert("hunting", -10);
 	perk.m_effects.Insert("weapon", -10);
 	perks.Insert(perk);
@@ -166,7 +166,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	perk.m_effects.Insert("building", 3);
 	perks.Insert(perk);
 	// stupid
-	perk = new PerkDescription("stupid", "engineer", -6);
+	perk = new PerkDescription("stupid", "engineer", -4);
 	perk.m_effects.Insert("mechanics", -10);
 	perk.m_effects.Insert("building", -5);
 	perks.Insert(perk);
@@ -198,7 +198,7 @@ void GetPerkDescriptions(ref array<ref PerkDescription> perks)
 	
 	
 	// myopic
-	perk = new PerkDescription("myopic", "", -8);
+	perk = new PerkDescription("myopic", "", -10);
 	perks.Insert(perk);
 	
 	// hypochondriac
