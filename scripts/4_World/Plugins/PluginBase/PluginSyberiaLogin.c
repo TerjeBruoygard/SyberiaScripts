@@ -67,12 +67,11 @@ class PluginSyberiaLogin extends PluginBase
 	void RespawnScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)
     {   
 		SybLog("PluginSyberiaLogin SYBRPC_RESPAWN_SCREEN_OPEN RPC Received.");
+				
+		if (m_screenBase) m_screenBase.Close();
 		
 		Param3<string, int, int> clientData;
        	if ( !ctx.Read( clientData ) ) return;			
-		
-		if (m_screenBase) m_screenBase.Close();
-		
 		m_screenBase = new ScreenRespawn(clientData.param1, clientData.param2, clientData.param3);
 	}
 	
@@ -94,6 +93,8 @@ class PluginSyberiaLogin extends PluginBase
 		
 		if (m_screenBase) m_screenBase.Close();
 		
-		m_screenBase = new ScreenEquip();
+		Param1<ref array<ref array<string>>> clientData;
+		if ( !ctx.Read( clientData ) ) return;			
+		m_screenBase = new ScreenEquip(clientData.param1);
 	}
 };
