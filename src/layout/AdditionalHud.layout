@@ -135,179 +135,369 @@ FrameWidgetClass rootFrame {
     }
    }
   }
-  PanelWidgetClass Sleeping {
-   clipchildren 1
-   inheritalpha 0
-   position 0 0
-   size 35 81
+  PanelWidgetClass Notifications {
+   ignorepointer 1
+   size 38 100
    halign right_ref
-   valign center_ref
+   valign bottom_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
-   fixaspect fixwidth
-   style blank
    {
-    ImageWidgetClass IconSleeping {
-     disabled 0
+    PanelWidgetClass Sleeping {
      clipchildren 1
      inheritalpha 0
-     ignorepointer 0
-     keepsafezone 0
-     color 0.8627 0.8627 0.8627 1
-     position 0.16539 0
-     size 35 35
-     halign center_ref
+     position 0 0
+     size 35 81
+     halign right_ref
      valign center_ref
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
      fixaspect fixwidth
-     image0 "SyberiaScripts/data/gui/sleeping/icon0.paa"
+     style blank
+     {
+      ImageWidgetClass IconSleeping {
+       disabled 0
+       clipchildren 1
+       inheritalpha 0
+       ignorepointer 0
+       keepsafezone 0
+       color 0.8627 0.8627 0.8627 1
+       position 0.16539 0
+       size 35 35
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       fixaspect fixwidth
+       image0 "SyberiaScripts/data/gui/sleeping/icon0.paa"
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+       "flip u" 0
+       "flip v" 0
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass SleepingArrowUp3 {
+       visible 0
+       clipchildren 1
+       color 0.8627 0.8627 0.8627 1
+       position 0 -27
+       size 22 17
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp3"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 1
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass SleepingArrowUp2 {
+       visible 0
+       clipchildren 1
+       inheritalpha 0
+       color 0.8627 0.8627 0.8627 1
+       position 0 -25
+       size 22 12
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp2"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 1
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass SleepingArrowUp1 {
+       visible 0
+       clipchildren 1
+       inheritalpha 0
+       color 0.8627 0.8627 0.8627 1
+       position 0 -22
+       size 22 7
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp1"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 1
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass SleepingArrowDown1 {
+       visible 0
+       clipchildren 1
+       color 0.8627 0.8627 0.8627 1
+       position 0 22
+       size 22 7
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp1"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 0
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass SleepingArrowDown2 {
+       visible 0
+       clipchildren 1
+       inheritalpha 0
+       color 0.8627 0.8627 0.8627 1
+       position 0 25
+       size 22 12
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp2"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 0
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass SleepingArrowDown3 {
+       visible 0
+       clipchildren 1
+       inheritalpha 0
+       color 0.8627 0.8627 0.8627 1
+       position 0 27
+       size 22 17
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp3"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 0
+       filter 1
+       nocache 0
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass Badgets {
+   ignorepointer 1
+   position 50 30
+   size 200 38
+   halign right_ref
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   {
+    ImageWidgetClass BulletHit {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 0 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/bullethit.paa"
      mode blend
      "src alpha" 1
-     "no wrap" 0
+     "no wrap" 1
      stretch 1
-     "flip u" 0
-     "flip v" 0
      filter 1
      nocache 0
+     {
+      TextWidgetClass BulletHitCount {
+       visible 1
+       color 0.8627 0.8627 0.8627 1
+       position -2 -2
+       size 17 15
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "10"
+       font "gui/fonts/sdf_MetronLight24"
+       "text halign" center
+      }
+     }
     }
-    ImageWidgetClass SleepingArrowUp3 {
-     visible 0
-     clipchildren 1
+    ImageWidgetClass KnifeHit {
+     visible 1
+     clipchildren 0
      color 0.8627 0.8627 0.8627 1
-     position 0 -27
-     size 22 17
-     halign center_ref
-     valign center_ref
+     position 39.6957 -0.30432
+     size 35 35
+     halign right_ref
+     valign bottom_ref
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     priority 999
-     image0 "set:dayz_gui image:iconArrowUp3"
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/knifehit.paa"
      mode blend
      "src alpha" 1
      "no wrap" 1
-     stretch 0
-     "flip v" 1
+     stretch 1
      filter 1
      nocache 0
+     {
+      TextWidgetClass KnifeHitCount {
+       visible 1
+       color 0.8627 0.8627 0.8627 1
+       position -2 -2
+       size 17 15
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "10"
+       font "gui/fonts/sdf_MetronLight24"
+       "text halign" center
+      }
+     }
     }
-    ImageWidgetClass SleepingArrowUp2 {
-     visible 0
-     clipchildren 1
-     inheritalpha 0
+    ImageWidgetClass Hematoma {
+     visible 1
+     clipchildren 0
      color 0.8627 0.8627 0.8627 1
-     position 0 -25
-     size 22 12
-     halign center_ref
-     valign center_ref
+     position 80 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     priority 999
-     image0 "set:dayz_gui image:iconArrowUp2"
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/hematoma.paa"
      mode blend
      "src alpha" 1
      "no wrap" 1
-     stretch 0
-     "flip v" 1
+     stretch 1
      filter 1
      nocache 0
+     {
+      TextWidgetClass HematomaCount {
+       visible 1
+       color 0.8627 0.8627 0.8627 1
+       position -2 -2
+       size 17 15
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "10"
+       font "gui/fonts/sdf_MetronLight24"
+       "text halign" center
+      }
+     }
     }
-    ImageWidgetClass SleepingArrowUp1 {
-     visible 0
-     clipchildren 1
-     inheritalpha 0
+    ImageWidgetClass VisceraDamage {
+     visible 1
+     clipchildren 0
      color 0.8627 0.8627 0.8627 1
-     position 0 -22
-     size 22 7
-     halign center_ref
-     valign center_ref
+     position 120 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     priority 999
-     image0 "set:dayz_gui image:iconArrowUp1"
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/visceradamage.paa"
      mode blend
      "src alpha" 1
      "no wrap" 1
-     stretch 0
-     "flip v" 1
+     stretch 1
      filter 1
      nocache 0
+     {
+      TextWidgetClass VisceraDamageCount {
+       visible 1
+       color 0.8627 0.8627 0.8627 1
+       position -2 -2
+       size 17 15
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "10"
+       font "gui/fonts/sdf_MetronLight24"
+       "text halign" center
+      }
+     }
     }
-    ImageWidgetClass SleepingArrowDown1 {
-     visible 0
-     clipchildren 1
+    ImageWidgetClass Concussion {
+     visible 1
+     clipchildren 0
      color 0.8627 0.8627 0.8627 1
-     position 0 22
-     size 22 7
-     halign center_ref
-     valign center_ref
+     position 160 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     priority 999
-     image0 "set:dayz_gui image:iconArrowUp1"
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/Concussion.paa"
      mode blend
      "src alpha" 1
      "no wrap" 1
-     stretch 0
-     "flip v" 0
-     filter 1
-     nocache 0
-    }
-    ImageWidgetClass SleepingArrowDown2 {
-     visible 0
-     clipchildren 1
-     inheritalpha 0
-     color 0.8627 0.8627 0.8627 1
-     position 0 25
-     size 22 12
-     halign center_ref
-     valign center_ref
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     priority 999
-     image0 "set:dayz_gui image:iconArrowUp2"
-     mode blend
-     "src alpha" 1
-     "no wrap" 1
-     stretch 0
-     "flip v" 0
-     filter 1
-     nocache 0
-    }
-    ImageWidgetClass SleepingArrowDown3 {
-     visible 0
-     clipchildren 1
-     inheritalpha 0
-     color 0.8627 0.8627 0.8627 1
-     position 0 27
-     size 22 17
-     halign center_ref
-     valign center_ref
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     priority 999
-     image0 "set:dayz_gui image:iconArrowUp3"
-     mode blend
-     "src alpha" 1
-     "no wrap" 1
-     stretch 0
-     "flip v" 0
+     stretch 1
      filter 1
      nocache 0
     }

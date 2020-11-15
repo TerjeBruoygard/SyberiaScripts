@@ -1,24 +1,45 @@
 modded class PlayerBase
 {	
+	// Sleeping
 	private float m_sleepingDecTimer;
 	private int m_lastSleepingValue;
 	private float m_sleepingBoostTimer;
 	private int m_sleepingBoostValue;
 	protected int m_sleepingValue;
 	
+	// Adv medicine
+	int m_bulletHits;
+	int m_knifeHits;
+	int m_hematomaHits;
+	bool m_visceraHit;
+	bool m_concussionHit;
+	
 	override void Init()
 	{
 		super.Init();
+		
+		// Sleeping
 		m_sleepingDecTimer = 0;
 		m_sleepingBoostTimer = 0;
 		m_sleepingBoostValue = 0;
 		m_lastSleepingValue = SLEEPING_MAX_VALUE;
 		m_sleepingValue = SLEEPING_MAX_VALUE;
-		
 		RegisterNetSyncVariableInt("m_lastSleepingValue", 0, SLEEPING_MAX_VALUE);
 		RegisterNetSyncVariableInt("m_sleepingValue", 0, SLEEPING_MAX_VALUE);
 		RegisterNetSyncVariableFloat("m_sleepingBoostTimer");
 		RegisterNetSyncVariableInt("m_sleepingBoostValue");
+		
+		// Adv medicine
+		m_bulletHits = 0;
+		m_knifeHits = 0;
+		m_hematomaHits = 0;
+		m_visceraHit = false;
+		m_concussionHit = false;
+		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
+		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
+		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);
+		RegisterNetSyncVariableBool("m_visceraHit");
+		RegisterNetSyncVariableBool("m_concussionHit");
 	}
 	
 	override void OnScheduledTick(float deltaTime)
@@ -57,7 +78,10 @@ modded class PlayerBase
 			{
 				m_UnconsciousEndTime = -60;
 				SetHealth("","Shock",0);
-				SetSleepingBoost(SLEEPING_INC_PER_UNCONSION_BOOST_TIME, SLEEPING_INC_PER_UNCONSION_BOOST_VALUE);
+				if (GetGame().IsServer() || GetGame().IsMultiplayer())
+				{
+					SetSleepingBoost(SLEEPING_INC_PER_UNCONSION_BOOST_TIME, SLEEPING_INC_PER_UNCONSION_BOOST_VALUE);
+				}
 			}
 			
 			m_sleepingValue = 0;
@@ -69,52 +93,11 @@ modded class PlayerBase
 		}
 	}
 	
-	override void OnStoreSave( ParamsWriteContext ctx )
-	{
-		super.OnStoreSave(ctx);
-		ctx.Write( m_sleepingValue );
-		ctx.Write( m_sleepingBoostTimer );
-		ctx.Write( m_sleepingBoostValue );
-	}
-	
-	override bool OnStoreLoad( ParamsReadContext ctx, int version )
-	{
-		if (!super.OnStoreLoad(ctx, version))
-			return false;
-		
-		if(!ctx.Read( m_sleepingValue ))
-			return false;
-		
-		if(!ctx.Read( m_sleepingBoostTimer ))
-			return false;
-		
-		if(!ctx.Read( m_sleepingBoostValue ))
-			return false;
-		
-		
-		return true;
-	}
-	
-	override bool Consume(ItemBase source, float amount, EConsumeType consume_type )
-	{
-		bool result = super.Consume(source, amount, consume_type);
-				
-		if (result)
-		{
-			SodaCan_EnergyDrink edible_item = SodaCan_EnergyDrink.Cast(source);
-			if (edible_item)
-			{
-				AddSleepingBoost(amount, 10);
-			}
-		}
-		
-		return result;
-	}
-	
 	void SetSleepingBoost(float time, int value)
 	{
 		m_sleepingBoostTimer = time;
 		m_sleepingBoostValue = value;
+		SetSynchDirty();
 	}
 	
 	void AddSleepingBoost(float time, int value)
@@ -122,6 +105,7 @@ modded class PlayerBase
 		if (value == m_sleepingBoostValue)
 		{
 			m_sleepingBoostTimer = m_sleepingBoostTimer + time;
+			SetSynchDirty();
 		}
 		else
 		{

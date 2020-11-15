@@ -6,6 +6,27 @@ void SybLog(string message)
 	if (Syberia_DebugMode) Print(Syberia_ModPreffix + message);
 }
 
+bool ConfigIsInstanceOf(string basePath, string classname, string baseClassname)
+{
+	if (!GetGame().ConfigIsExisting(basePath + " " + classname))
+	{
+		return false;
+	}
+	
+	string baseOutputName;
+	while(GetGame().ConfigGetBaseName(basePath + " " + classname, baseOutputName))
+	{
+		if (baseOutputName == baseClassname)
+		{
+			return true;
+		}
+		
+		classname = baseOutputName;
+	}
+	
+	return false;
+}
+
 enum SyberiaRPC {
     SYBRPC_RESPAWN_SCREEN_OPEN,
 	SYBRPC_NEWCHAR_SCREEN_OPEN,
@@ -16,8 +37,14 @@ enum SyberiaRPC {
 	SYBRPC_DELETECHAR_REQUEST
 };
 
+const int NTFKEY_SLEEPING = 1000;
+const int NTFKEY_BULLETHIT = 1100;
+const int NTFKEY_KNIFEHIT = 1101;
+const int NTFKEY_HEMATOMA = 1102;
+const int NTFKEY_VISCERADMG = 1103;
+const int NTFKEY_CONCUSSION = 1104;
+
 // VALUE - (SLEEPING_DEC_PER_SEC + SLEEPING_DEC_PER_INJURE_SEC) + (SLEEPING_INC_PER_UNCONSION_SEC + SLEEPING_INC_PER_SLEEPING_SEC)
-const int NTFKEY_SLEEPING = 100;
 const int SLEEPING_MAX_VALUE = 14000;
 const int SLEEPING_DEC_PER_SEC = 1;
 const bool SLEEPING_UNCONSION_ENABLED = false;
@@ -28,3 +55,13 @@ const int SLEEPING_LEVEL_5 = 100;
 const int SLEEPING_LEVEL_4 = 1000;
 const int SLEEPING_LEVEL_3 = 5000;
 const int SLEEPING_LEVEL_2 = 10000;
+
+// Constants redefinition
+modded class PlayerConstants
+{
+	static const float CHANCE_TO_BLEED_SLIDING_LADDER_PER_SEC = 0.1; // probability of bleeding source occuring while sliding down ladder without gloves given as percentage per second(0.5 means 50% chance bleeding source will happen every second while sliding down) 
+	static const float GLOVES_DAMAGE_SLIDING_LADDER_PER_SEC = -0.5;// how much damage the gloves receive while sliding down the ladder (per sec)
+
+	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.02;
+	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.001;
+}
