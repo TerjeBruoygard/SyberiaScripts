@@ -43,6 +43,8 @@ const int NTFKEY_KNIFEHIT = 1101;
 const int NTFKEY_HEMATOMA = 1102;
 const int NTFKEY_VISCERADMG = 1103;
 const int NTFKEY_CONCUSSION = 1104;
+const int NTFKEY_PAIN = 1105;
+const int NTFKEY_MEDICINEINUSE = 1106;
 
 // VALUE - (SLEEPING_DEC_PER_SEC + SLEEPING_DEC_PER_INJURE_SEC) + (SLEEPING_INC_PER_UNCONSION_SEC + SLEEPING_INC_PER_SLEEPING_SEC)
 const int SLEEPING_MAX_VALUE = 14000;
@@ -56,6 +58,34 @@ const int SLEEPING_LEVEL_4 = 1000;
 const int SLEEPING_LEVEL_3 = 5000;
 const int SLEEPING_LEVEL_2 = 10000;
 
+// ADV MED
+const float PAIN_LVL1_TIME_SEC = 60 * 5;
+const float PAIN_LVL2_TIME_SEC = 60 * 30;
+const float PAIN_LVL3_TIME_SEC = 60 * 60;
+const float PAIN_MAX_DURATION_SEC = 60 * 60 * 4;
+const float PAINKILLER_MAX_DURATION_SEC = 60 * 60 * 1;
+
+const float BLEEDING_BULLETHIT_HEALTHLOSE_PER_SECOND = -1;
+const float BLEEDING_BULLETHIT_OPEN_PER_SECOND = -25;
+const float BLEEDING_BULLETHIT_CUPD1_PER_SECOND = -10;
+const float BLEEDING_BULLETHIT_CUPD2_PER_SECOND = -3;
+const float BLEEDING_BULLETHIT_CUPD3_PER_SECOND = -1;
+
+const float BLEEDING_KNIFEHIT_HEALTHLOSE_PER_SECOND = -1;
+const float BLEEDING_KNIFEHIT_OPEN_PER_SECOND = -40;
+const float BLEEDING_KNIFEHIT_CUPD1_PER_SECOND = -10;
+const float BLEEDING_KNIFEHIT_CUPD2_PER_SECOND = -3;
+const float BLEEDING_KNIFEHIT_CUPD3_PER_SECOND = -1;
+
+const float BLEEDING_VISCERA_BLOODLOSE_PER_SECOND = -30;
+const float BLEEDING_VISCERA_HEALTHLOSE_PER_SECOND = -5;
+
+const float BLEEDING_HEMATOMA_BLOODLOSE_PER_SECOND = 0;
+const float BLEEDING_HEMATOMA_HEALTHLOSE_PER_SECOND = -0.3;
+
+const float HEMATOMA_REGEN_TIMER_SEC = 60 * 15;
+const float CUTHIT_REGEN_TIMER_SEC = 60 * 5;
+
 // Constants redefinition
 modded class PlayerConstants
 {
@@ -64,4 +94,13 @@ modded class PlayerConstants
 
 	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.02;
 	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.001;
+	
+	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC = -1;
+	static const float BLOOD_REGEN_RATE_PER_SEC	= 0.05; 	//base amount of blood regenerated per second 
+	
+	static const float HEALTH_REGEN_MIN	= 0.001;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
+	static const float HEALTH_REGEN_MAX	= 0.005;	//health regen rate at MAXIMUM blood level
+	
+	static const float SHOCK_REFILL_CONSCIOUS_SPEED			= 2;		//shock refill speed when the player is conscious
+	static const float SHOCK_REFILl_UNCONSCIOUS_SPEED		= 0.2;		//shock refill speed when the player is unconscious
 }

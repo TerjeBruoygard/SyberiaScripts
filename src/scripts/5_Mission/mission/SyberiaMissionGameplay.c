@@ -51,6 +51,8 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_HEMATOMA, badgets, "Hematoma");
 				m_Hud.InitBadgetWidget(NTFKEY_VISCERADMG, badgets, "VisceraDamage");
 				m_Hud.InitBadgetWidget(NTFKEY_CONCUSSION, badgets, "Concussion");
+				m_Hud.InitBadgetWidget(NTFKEY_PAIN, badgets, "Pain");
+				m_Hud.InitBadgetWidget(NTFKEY_MEDICINEINUSE, badgets,"MedicinInuse");
 			}
 		}
 	}
@@ -75,6 +77,8 @@ modded class MissionGameplay
 			m_Hud.DisplayBadge(NTFKEY_HEMATOMA, player.m_hematomaHits);
 			m_Hud.DisplayBadge(NTFKEY_VISCERADMG, player.m_visceraHit);
 			m_Hud.DisplayBadge(NTFKEY_CONCUSSION, player.m_concussionHit);
+			m_Hud.DisplayBadge(NTFKEY_PAIN, player.GetCurrentPainLevel());
+			m_Hud.DisplayBadge(NTFKEY_MEDICINEINUSE, player.GetCurrentMedicineInUse());
 		}
 	}
 };
