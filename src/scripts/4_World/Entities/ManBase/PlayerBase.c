@@ -62,36 +62,6 @@ modded class PlayerBase
 			m_sleepingDecTimer = m_sleepingDecTimer - 1.0;
 			OnTickSleeping();
 		}
-		
-		OnTickAdvMedicine(deltaTime);
-	}
-	
-	private void OnTickAdvMedicine(float deltaTime)
-	{		
-		if (m_painLevel > m_painkillerEffect)
-		{			
-			m_painEffectDurationCur = Math.Clamp(m_painEffectDurationCur + deltaTime, 0, m_painLevel * 10);
-		}
-		else if (m_concussionHit)
-		{
-			m_painEffectDurationCur = Math.Clamp(m_painEffectDurationCur + deltaTime, 0, 10);
-		}
-		else
-		{
-			m_painEffectDurationCur = Math.Clamp(m_painEffectDurationCur - deltaTime, 0, 100);
-		}
-		
-		if (m_painEffectDurationCur > 0)
-		{
-			PPEffects.SetBlurFlashbang(m_painEffectDurationCur * 0.01);
-		}
-		
-		if (m_painEffectDurationLast > 0 && m_painEffectDurationCur == 0)
-		{
-			PPEffects.SetBlurFlashbang(0);
-		}
-		
-		m_painEffectDurationLast = m_painEffectDurationCur;
 	}
 	
 	private void OnTickSleeping()

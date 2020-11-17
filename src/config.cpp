@@ -146,10 +146,139 @@ class CfgVehicles
         scope=0;
     };
     
+    class Inventory_Base;
+    class InjectionVial: Inventory_Base
+    {
+        scope=0;
+    };
+    
+    class Epinephrine;
+    class Syringe: Epinephrine
+    {
+        scope=0;
+    };
+    class ClearSyringe: Inventory_Base
+    {
+        scope=0;
+    };
+    class BloodSyringe: Inventory_Base
+    {
+        scope=0;
+    };
+    
     class SyberiaMedicineBase : Edible_Base {
         medPainkillerLevel=0;
         medPainkillerTimeSec=0;
-    }
+    };
+    
+    class SyringeEmpty : Inventory_Base
+    {
+        scope=2;
+        displayName="#syb_syringe_empty_name";
+        descriptionShort="#syb_syringe_empty_desc";
+        model="SyberiaScripts\data\medical\syringe_empty.p3d";
+        rotationFlags=17;
+        itemSize[]={1,2};
+        weight=50;
+        absorbency=0;
+        class DamageSystem
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=50;
+                };
+            };
+        };
+    };
+    
+    class SyringeDirty : Inventory_Base
+    {
+        scope=2;
+        displayName="#syb_syringe_dirty_name";
+        descriptionShort="#syb_syringe_dirty_desc";
+        model="SyberiaScripts\data\medical\syringe_empty.p3d";
+        rotationFlags=17;
+        itemSize[]={1,2};
+        weight=50;
+        absorbency=0;
+        class DamageSystem
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=50;
+                };
+            };
+        };
+    };
+    
+    class SyringeFull : Inventory_Base
+    {
+        scope=2;
+        displayName="#syb_syringe_full_name";
+        descriptionShort="#syb_syringe_full_desc";
+        model="SyberiaScripts\data\medical\syringe_full.p3d";
+        rotationFlags=17;
+        itemSize[]={1,2};
+        weight=100;
+        absorbency=0;
+        hiddenSelections[]=
+        {
+            "camo"
+        };
+        hiddenSelectionsTextures[]=
+        {
+            "SyberiaScripts\data\medical\syringefluid_med_ca.paa"
+        };
+        class DamageSystem
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=50;
+                };
+            };
+        };
+        class AnimEvents
+        {
+            class SoundWeapon
+            {
+                class Syringe_out
+                {
+                    soundSet="Syringe_out_SoundSet";
+                    id=201;
+                };
+                class Syringe_spear
+                {
+                    soundSet="Syringe_spear_SoundSet";
+                    id=202;
+                };
+                class Syringe_splash
+                {
+                    soundSet="Syringe_splash_SoundSet";
+                    id=203;
+                };
+            };
+        };
+    };
+    
+    class SyberiaMedicineAmpoule : Inventory_Base
+    {
+        descriptionShort="#syb_ampoule_desc";
+        itemSize[]={2,2};
+        weight=100;
+        quantityBar=1;
+        varQuantityInit=30;
+        varQuantityMin=0;
+        varQuantityMax=30;
+        varQuantityDestroyOnMin=1;
+        absorbency=0;
+    };
+    
     class TabletsBase : SyberiaMedicineBase {
         descriptionShort="#syb_tablets_common_desc";
         rotationFlags=0;
@@ -161,7 +290,7 @@ class CfgVehicles
         weight=20;
         stackedUnit="pills";
         quantityBar=0;
-        absorbency=0.69999999;
+        absorbency=0;
     };
     class TabletsAnalgin : TabletsBase
     {
@@ -173,45 +302,75 @@ class CfgVehicles
         medPainkillerLevel=1;
         medPainkillerTimeSec=900; // 15 minutes
         class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class Tablets_open
-				{
-					soundSet="Tablets_open_SoundSet";
-					id=201;
-				};
-				class Tablets_catch
-				{
-					soundSet="Tablets_catch_SoundSet";
-					id=202;
-				};
-				class Tablets_close
-				{
-					soundSet="Tablets_close_SoundSet";
-					id=203;
-				};
-				class pickup
-				{
-					soundSet="purificationtablets_pickup_SoundSet";
-					id=797;
-				};
-				class drop
-				{
-					soundset="purificationtablets_drop_SoundSet";
-					id=898;
-				};
-			};
-		};
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=50;
+                };
+            };
+        };
+        class AnimEvents
+        {
+            class SoundWeapon
+            {
+                class Tablets_open
+                {
+                    soundSet="Tablets_open_SoundSet";
+                    id=201;
+                };
+                class Tablets_catch
+                {
+                    soundSet="Tablets_catch_SoundSet";
+                    id=202;
+                };
+                class Tablets_close
+                {
+                    soundSet="Tablets_close_SoundSet";
+                    id=203;
+                };
+                class pickup
+                {
+                    soundSet="purificationtablets_pickup_SoundSet";
+                    id=797;
+                };
+                class drop
+                {
+                    soundset="purificationtablets_drop_SoundSet";
+                    id=898;
+                };
+            };
+        };
+    };
+    
+    class AmpouleNovocain : SyberiaMedicineAmpoule
+    {
+        scope=2;
+        displayName="#syb_novocaine_name";
+        model="SyberiaScripts\data\medical\ampoul.p3d";
+        medPainkillerLevel=2;
+        medPainkillerTimeSec=1500; // 25 minutes
+        class DamageSystem
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=50;
+                };
+            };
+        };
+        class AnimEvents
+        {
+            class SoundWeapon
+            {
+                class pickUpItem
+                {
+                    soundSet="injectionvial_pickup_SoundSet";
+                    id=797;
+                };
+            };
+        };
     };
 };

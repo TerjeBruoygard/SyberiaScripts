@@ -62,23 +62,56 @@ modded class MissionGameplay
 		super.OnUpdate(timeslice);
 		
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
-		UIScriptedMenu menu = m_UIManager.GetMenu();
-		
-		if (m_SyberiaAdditionalHud && player && m_LifeState == EPlayerStates.ALIVE && !player.IsUnconscious() )
+		if (player)
 		{
-			m_SyberiaAdditionalHud.Refresh();	
+			UIScriptedMenu menu = m_UIManager.GetMenu();
+			
+			if (m_SyberiaAdditionalHud && m_LifeState == EPlayerStates.ALIVE && !player.IsUnconscious() )
+			{
+				m_SyberiaAdditionalHud.Refresh();	
+			}
+			
+			if (m_Hud)
+			{
+				m_Hud.DisplayNotifier(NTFKEY_SLEEPING, player.GetSleepingTendency(), player.GetSleepingState());
+				m_Hud.DisplayBadge(NTFKEY_BULLETHIT, player.m_bulletHits);
+				m_Hud.DisplayBadge(NTFKEY_KNIFEHIT, player.m_knifeHits);
+				m_Hud.DisplayBadge(NTFKEY_HEMATOMA, player.m_hematomaHits);
+				m_Hud.DisplayBadge(NTFKEY_VISCERADMG, player.m_visceraHit);
+				m_Hud.DisplayBadge(NTFKEY_CONCUSSION, player.m_concussionHit);
+				m_Hud.DisplayBadge(NTFKEY_PAIN, player.GetCurrentPainLevel());
+				m_Hud.DisplayBadge(NTFKEY_MEDICINEINUSE, player.GetCurrentMedicineInUse());
+			}
+			
+			OnUpdateAdvMedicineGUI(player, timeslice);
+		}
+	}
+	
+	private void OnUpdateAdvMedicineGUI(PlayerBase player, float deltaTime)
+	{		
+		if (player.GetCurrentPainLevel() > 1)
+		{			
+			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur + deltaTime, 0, player.m_painLevel * 10);
+		}
+		else if (player.m_concussionHit)
+		{
+			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur + deltaTime, 0, 10);
+		}
+		else
+		{
+			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur - deltaTime, 0, 100);
 		}
 		
-		if (m_Hud && player)
+		if (player.m_painEffectDurationCur > 0)
 		{
-			m_Hud.DisplayNotifier(NTFKEY_SLEEPING, player.GetSleepingTendency(), player.GetSleepingState());
-			m_Hud.DisplayBadge(NTFKEY_BULLETHIT, player.m_bulletHits);
-			m_Hud.DisplayBadge(NTFKEY_KNIFEHIT, player.m_knifeHits);
-			m_Hud.DisplayBadge(NTFKEY_HEMATOMA, player.m_hematomaHits);
-			m_Hud.DisplayBadge(NTFKEY_VISCERADMG, player.m_visceraHit);
-			m_Hud.DisplayBadge(NTFKEY_CONCUSSION, player.m_concussionHit);
-			m_Hud.DisplayBadge(NTFKEY_PAIN, player.GetCurrentPainLevel());
-			m_Hud.DisplayBadge(NTFKEY_MEDICINEINUSE, player.GetCurrentMedicineInUse());
+			PPEffects.SetBlurFlashbang(player.m_painEffectDurationCur * 0.01);
 		}
+		
+		if (player.m_painEffectDurationLast > 0 && player.m_painEffectDurationCur == 0)
+		{
+			PPEffects.SetBlurFlashbang(0);
+		}
+		
+		player.m_painEffectDurationLast = player.m_painEffectDurationCur;
 	}
 };
