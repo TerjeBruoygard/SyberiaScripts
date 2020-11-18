@@ -17,6 +17,8 @@ modded class PlayerBase
 	float m_painEffectDurationLast;
 	float m_painEffectDurationCur;
 	int m_painkillerEffect;
+	bool m_stomatchhealEffect;
+	bool m_antibioticsEffect;
 	
 	override void Init()
 	{
@@ -43,6 +45,8 @@ modded class PlayerBase
 		m_painEffectDurationLast = 0;
 		m_painEffectDurationCur = 0;
 		m_painkillerEffect = 0;
+		m_stomatchhealEffect = false;
+		m_antibioticsEffect = false;
 		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
 		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);
@@ -50,6 +54,8 @@ modded class PlayerBase
 		RegisterNetSyncVariableBool("m_concussionHit");
 		RegisterNetSyncVariableInt("m_painLevel", 0, 3);
 		RegisterNetSyncVariableInt("m_painkillerEffect", 0, 3);
+		RegisterNetSyncVariableBool("m_stomatchhealEffect");
+		RegisterNetSyncVariableBool("m_antibioticsEffect");
 	}
 	
 	override void OnScheduledTick(float deltaTime)
@@ -87,7 +93,7 @@ modded class PlayerBase
 			if (SLEEPING_UNCONSION_ENABLED)
 			{
 				m_UnconsciousEndTime = -60;
-				SetHealth("","Shock",0);
+				SetHealth("","Shock",0); // TODO: Make server only
 				if (GetGame().IsServer() || GetGame().IsMultiplayer())
 				{
 					SetSleepingBoost(SLEEPING_INC_PER_UNCONSION_BOOST_TIME, SLEEPING_INC_PER_UNCONSION_BOOST_VALUE);
@@ -165,17 +171,6 @@ modded class PlayerBase
 		}
 		
 		return m_painLevel;
-	}
-	
-	int GetCurrentMedicineInUse()
-	{
-		int counter = 0;
-		if (m_painkillerEffect > 0)
-		{
-			counter = counter + 1;
-		}
-		
-		return counter;
 	}
 	
 	bool IsGhostBody()

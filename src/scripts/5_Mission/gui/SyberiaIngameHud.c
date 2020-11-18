@@ -50,6 +50,12 @@ modded class IngameHud
 	
 	override void DisplayBadge( int key, int value )
 	{
+		if (key == NTFKEY_PILLS)
+		{
+			// Disable vanilla pills
+			value = 0;
+		}
+		
 		if (m_BadgesWidgetDisplay.Get( key ) == value)
 		{
 			return;
@@ -61,7 +67,33 @@ modded class IngameHud
 		TextWidget w_count = TextWidget.Cast( m_Badges.FindAnyWidget( badge_name + "Count" ) );
 		if (w_count)
 		{
-			w_count.SetText( value.ToString() );
+			string badgeText = "";
+			bool isLeveled = false;
+			
+			for (int i = 0; i < LEVELED_NTFKEY_BADGES_COUNT; i++)
+			{
+				if (LEVELED_NTFKEY_BADGES[i] == key)
+				{
+					isLeveled = true;
+					break;
+				}
+			}
+			
+			if (isLeveled)
+			{
+				if (value == 0) badgeText = "";
+				else if (value == 1) badgeText = "I";
+				else if (value == 2) badgeText = "II";
+				else if (value == 3) badgeText = "III";
+				else if (value == 4) badgeText = "IV";
+				else if (value == 5) badgeText = "V";
+			}
+			else
+			{
+				badgeText = value.ToString();
+			}
+			
+			w_count.SetText( badgeText );
 		}
 	}
 }

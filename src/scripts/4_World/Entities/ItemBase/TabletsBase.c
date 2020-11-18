@@ -1,9 +1,4 @@
-class SyberiaMedicineBase extends Edible_Base
-{
-
-};
-
-class TabletsBase extends SyberiaMedicineBase
+class TabletsBase extends Edible_Base
 {
 	override void SetActions()
 	{

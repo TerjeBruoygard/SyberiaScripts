@@ -537,7 +537,7 @@ FrameWidgetClass rootFrame {
       }
      }
     }
-    ImageWidgetClass MedicinInuse {
+    ImageWidgetClass Painkiller {
      visible 1
      clipchildren 0
      color 0.8627 0.8627 0.8627 1
@@ -550,7 +550,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      fixaspect fixwidth
-     image0 "SyberiaScripts/data/gui/badgets/MedicinInuse.paa"
+     image0 "SyberiaScripts/data/gui/badgets/Painkiller.paa"
      mode blend
      "src alpha" 1
      "no wrap" 1
@@ -558,7 +558,7 @@ FrameWidgetClass rootFrame {
      filter 1
      nocache 0
      {
-      TextWidgetClass MedicinInuseCount {
+      TextWidgetClass PainkillerCount {
        visible 1
        color 0.8627 0.8627 0.8627 1
        position -2 -2
@@ -572,6 +572,48 @@ FrameWidgetClass rootFrame {
        "text halign" center
       }
      }
+    }
+    ImageWidgetClass Antibiotic {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 280 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/Antibiotic.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
+    }
+    ImageWidgetClass Stomatchheal {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 320 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/Stomatchheal.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
     }
    }
   }
