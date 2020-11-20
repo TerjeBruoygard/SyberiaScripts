@@ -12,14 +12,16 @@ modded class PlayerBase
 	int m_knifeHits;
 	int m_hematomaHits;
 	int m_visceraHit;
-	bool m_concussionHit;
 	int m_painLevel;
 	float m_painEffectDurationLast;
 	float m_painEffectDurationCur;
 	int m_painkillerEffect;
+	int m_sepsis;
+	int m_zombieVirus;
+	
+	bool m_concussionHit;
 	bool m_stomatchhealEffect;
 	bool m_antibioticsEffect;
-	bool m_sepsis;
 	
 	override void Init()
 	{
@@ -48,7 +50,8 @@ modded class PlayerBase
 		m_painkillerEffect = 0;
 		m_stomatchhealEffect = false;
 		m_antibioticsEffect = false;
-		m_sepsis = false;
+		m_sepsis = 0;
+		m_zombieVirus = 0;
 		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
 		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);
@@ -58,7 +61,8 @@ modded class PlayerBase
 		RegisterNetSyncVariableInt("m_painkillerEffect", 0, 3);
 		RegisterNetSyncVariableBool("m_stomatchhealEffect");
 		RegisterNetSyncVariableBool("m_antibioticsEffect");
-		RegisterNetSyncVariableBool("m_sepsis");
+		RegisterNetSyncVariableInt("m_sepsis", 0, 4);
+		RegisterNetSyncVariableInt("m_zombieVirus", 0, 4);
 	}
 	
 	override void OnScheduledTick(float deltaTime)
@@ -174,6 +178,16 @@ modded class PlayerBase
 		}
 		
 		return m_painLevel;
+	}
+	
+	bool HasVisibleSepsis()
+	{
+		return m_sepsis > 1;
+	}
+	
+	bool HasVisibleZVirus()
+	{
+		return m_zombieVirus > 1;
 	}
 	
 	bool IsGhostBody()

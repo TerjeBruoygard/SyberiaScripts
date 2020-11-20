@@ -328,7 +328,7 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass Badgets {
    ignorepointer 1
    position 50 30
-   size 400 38
+   size 600 38
    halign right_ref
    valign bottom_ref
    hexactpos 1
@@ -629,6 +629,27 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      fixaspect fixwidth
      image0 "SyberiaScripts/data/gui/badgets/Sepsis.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
+    }
+    ImageWidgetClass ZVirus {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 400 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/ZVirus.paa"
      mode blend
      "src alpha" 1
      "no wrap" 1
