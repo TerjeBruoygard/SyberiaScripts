@@ -19,6 +19,7 @@ modded class PlayerBase
 	int m_painkillerEffect;
 	bool m_stomatchhealEffect;
 	bool m_antibioticsEffect;
+	bool m_sepsis;
 	
 	override void Init()
 	{
@@ -47,6 +48,7 @@ modded class PlayerBase
 		m_painkillerEffect = 0;
 		m_stomatchhealEffect = false;
 		m_antibioticsEffect = false;
+		m_sepsis = false;
 		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
 		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);
@@ -56,6 +58,7 @@ modded class PlayerBase
 		RegisterNetSyncVariableInt("m_painkillerEffect", 0, 3);
 		RegisterNetSyncVariableBool("m_stomatchhealEffect");
 		RegisterNetSyncVariableBool("m_antibioticsEffect");
+		RegisterNetSyncVariableBool("m_sepsis");
 	}
 	
 	override void OnScheduledTick(float deltaTime)
