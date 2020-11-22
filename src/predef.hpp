@@ -18,6 +18,7 @@ class DamageSystem {\
 class Inventory_Base;
 class Edible_Base;
 class SodaCan_ColorBase;
+class Clothing;
 
 // Characters
 class SurvivorM_Mirek;

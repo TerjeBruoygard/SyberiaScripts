@@ -8,5 +8,7 @@ modded class ActionConstructor
 		actions.Insert(ActionEmptySyringe);
 		actions.Insert(ActionInjectInjectorTarget);
 		actions.Insert(ActionInjectInjectorSelf);
+		actions.Insert(ActionSurgeryTarget);
+		actions.Insert(ActionSurgerySelf);
 	}
 };

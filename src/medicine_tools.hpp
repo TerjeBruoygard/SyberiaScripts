@@ -68,3 +68,71 @@ class SyringeFull : Inventory_Base
         };
     };
 };
+
+class BandageHemostatic: BandageDressing
+{
+    scope=2;
+    displayName="#syb_hemostatic_bandage_name";
+    descriptionShort="#syb_hemostatic_bandage_desc";
+    model="SyberiaScripts\data\medical\hemostatic_bandage.p3d";
+    inventorySlot[]=
+    {
+        "MedicalBandage"
+    };
+    isMeleeWeapon=1;
+    varQuantityInit=1;
+    varQuantityMin=0;
+    varQuantityMax=1;
+    quantityBar=1;
+    varQuantityDestroyOnMin=1;
+    rotationFlags=17;
+    weight=150;
+    absorbency=0.0;
+    itemSize[]={1,1};
+    medBloodStop=3;
+    ITEM_DAMAGE_SYSTEM(80, "DZ\gear\medical\data\bandage");
+    class AnimEvents
+    {
+        class SoundWeapon
+        {
+            class Bandage_loop1
+            {
+                soundSet="Bandage_loop_SoundSet";
+                id=201;
+            };
+            class Bandage_loop2
+            {
+                soundSet="Bandage_loop_SoundSet";
+                id=202;
+            };
+            class Bandage_loop3
+            {
+                soundSet="Bandage_loop_SoundSet";
+                id=203;
+            };
+            class Bandage_start
+            {
+                soundSet="Bandage_start_SoundSet";
+                id=204;
+            };
+            class Bandage_end
+            {
+                soundSet="Bandage_end_SoundSet";
+                id=205;
+            };
+        };
+    };
+};
+
+class SurgicalKit: Inventory_Base
+{
+    scope=2;
+    displayName="#syb_surgical_kit_once_name";
+    descriptionShort="#syb_surgical_kit_once_desc";
+    model="SyberiaScripts\data\medical\surgical_kit.p3d";
+    rotationFlags=17;
+    weight=300;
+    absorbency=0.0;
+    itemSize[]={2,2};
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\surgical_kit");
+};

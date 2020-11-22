@@ -57,6 +57,8 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_STOMATCHHEAL, badgets, "Stomatchheal");
 				m_Hud.InitBadgetWidget(NTFKEY_SEPSIS, badgets, "Sepsis");
 				m_Hud.InitBadgetWidget(NTFKEY_ZVIRUS, badgets, "ZVirus");
+				m_Hud.InitBadgetWidget(NTFKEY_BANDAGE1, badgets, "Bandage1");
+				m_Hud.InitBadgetWidget(NTFKEY_BANDAGE2, badgets, "Bandage2");
 			}
 		}
 	}
@@ -89,6 +91,8 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_STOMATCHHEAL, player.m_stomatchhealEffect);
 				m_Hud.DisplayBadge(NTFKEY_SEPSIS, player.HasVisibleSepsis());
 				m_Hud.DisplayBadge(NTFKEY_ZVIRUS, player.HasVisibleZVirus());
+				m_Hud.DisplayBadge(NTFKEY_BANDAGE1, player.m_bulletBandage1 + player.m_knifeBandage1);
+				m_Hud.DisplayBadge(NTFKEY_BANDAGE2, player.m_bulletBandage2 + player.m_knifeBandage2);
 			}
 			
 			OnUpdateAdvMedicineGUI(player, timeslice);

@@ -11,10 +11,15 @@ modded class IngameHud
 		Widget defaultBadgesSpacer = m_HudPanelWidget.FindAnyWidget("BadgesSpacer");
 		Widget defaultBadgesPanel = m_HudPanelWidget.FindAnyWidget("BadgesPanel");
 		
-		int widgetOffsetX = 150;
-		int widgetWidth = 35;
+		float widgetOffsetX;
+		float widgetWidth;
 		
-		float x, y;
+		float x, y, x2;
+		defaultNotifiersPanel.FindAnyWidget("Thirsty").GetPos(x, y);
+		defaultNotifiersPanel.FindAnyWidget("Hungry").GetPos(x2, y);
+		widgetWidth = x - x2;
+		widgetOffsetX = x + widgetWidth;
+		
 		defaultNotifiersPanel.GetSize(x, y);
 		defaultNotifiersPanel.SetSize(x + widgetWidth, y);
 		
