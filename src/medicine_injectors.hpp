@@ -43,3 +43,31 @@ class InjectorPromedol : InjectorBase
     ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
     INJECTOR_ANIM_EVENTS();
 };
+
+class InjectorZVirusAntidot : InjectorBase
+{
+    scope=2;
+    displayName="#syb_zvirus_antidot_name";
+    model="SyberiaScripts\data\medical\injector.p3d";
+    medRemoveZVirus=1;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\injector_red_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    INJECTOR_ANIM_EVENTS();
+};
+
+class InjectorTopoizomeraza : InjectorBase
+{
+    scope=2;
+    displayName="#syb_topoizomeraza_name";
+    model="SyberiaScripts\data\medical\injector.p3d";
+    medRemoveSepsis=1;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\injector_green_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    INJECTOR_ANIM_EVENTS();
+};
