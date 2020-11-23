@@ -44,7 +44,7 @@ class InjectorPromedol : InjectorBase
     INJECTOR_ANIM_EVENTS();
 };
 
-class InjectorZVirusAntidot : InjectorBase
+class InjectorZivirol : InjectorBase
 {
     scope=2;
     displayName="#syb_zvirus_antidot_name";
@@ -64,6 +64,69 @@ class InjectorTopoizomeraza : InjectorBase
     displayName="#syb_topoizomeraza_name";
     model="SyberiaScripts\data\medical\injector.p3d";
     medRemoveSepsis=1;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\injector_green_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    INJECTOR_ANIM_EVENTS();
+};
+
+class InjectorErytropoenin : InjectorBase
+{
+    scope=2;
+    displayName="#syb_erytropoenin_name";
+    model="SyberiaScripts\data\medical\injector.p3d";
+    medBloodHematopoiesis=1;
+    medBloodHematopoiesisTimeSec=900;
+    medBloodHemostatic=1;
+    medBloodHemostaticTimeSec=900;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\injector_red_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    INJECTOR_ANIM_EVENTS();
+};
+
+class InjectorNeiroks : InjectorBase
+{
+    scope=2;
+    displayName="#syb_neiroks_name";
+    model="SyberiaScripts\data\medical\injector.p3d";
+    medConcussionHeal=1;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\injector_blue_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    INJECTOR_ANIM_EVENTS();
+};
+
+class InjectorAmoksivan : InjectorBase
+{
+    scope=2;
+    displayName="#syb_amoksivan_name";
+    model="SyberiaScripts\data\medical\injector.p3d";
+    medAntibioticLevel=3;
+    medAntibioticsTimeSec=2500;
+    medAntibioticsStrength=5.0;
+    medRemoveSepsis=1;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\injector_red_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    INJECTOR_ANIM_EVENTS();
+};
+
+class InjectorKetorol : InjectorBase
+{
+    scope=2;
+    displayName="#syb_ketorol_name";
+    model="SyberiaScripts\data\medical\injector.p3d";
+    medStomatchhealLevel=2;
+    medStomatchhealTimeSec=2000;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\injector_green_co.paa"
