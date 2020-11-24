@@ -2,4 +2,5 @@
 #include "medicine_tablets.hpp"
 #include "medicine_ampouls.hpp"
 #include "medicine_injectors.hpp"
+#include "medicine_salves.hpp"
 #include "medicine_tools.hpp"

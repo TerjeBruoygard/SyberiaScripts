@@ -2,7 +2,7 @@ class ActionEmptySyringe: ActionSingleUseBase
 {
 	void ActionEmptySyringe()
 	{
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_EMPTYSEEDSPACK;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_ATTACHITEM;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 		
 		m_FullBody = false;

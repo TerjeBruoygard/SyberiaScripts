@@ -328,7 +328,7 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass Badgets {
    ignorepointer 1
    position 50 30
-   size 600 38
+   size 800 38
    halign right_ref
    valign bottom_ref
    hexactpos 1
@@ -770,6 +770,63 @@ FrameWidgetClass rootFrame {
      stretch 1
      filter 1
      nocache 0
+    }
+    ImageWidgetClass UseSalve {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 600 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/UseSalve.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
+    }
+    ImageWidgetClass Adrenalin {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 640 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/Adrenalin.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
+     {
+      TextWidgetClass AdrenalinCount {
+       visible 1
+       color 0.8627 0.8627 0.8627 1
+       position -2 -2
+       size 17 15
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "10"
+       font "gui/fonts/sdf_MetronLight24"
+       "text halign" center
+      }
+     }
     }
    }
   }

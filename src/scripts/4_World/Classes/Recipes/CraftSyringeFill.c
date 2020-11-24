@@ -18,7 +18,7 @@ class CraftSyringeFill extends RecipeBase
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
 		m_MaxDamageIngredient[1] = 3;//-1 = disable check
 		
-		m_MinQuantityIngredient[1] = 10;//-1 = disable check
+		m_MinQuantityIngredient[1] = 1;//-1 = disable check
 		m_MaxQuantityIngredient[1] = -1;//-1 = disable check
 		//----------------------------------------------------------------------------------------------------------------------
 		
@@ -38,7 +38,7 @@ class CraftSyringeFill extends RecipeBase
 		
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = -49;// 0 = do nothing
+		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -49,8 +49,12 @@ class CraftSyringeFill extends RecipeBase
 		return true;
 	}
 
-	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
+	override void Do(ItemBase ingredients[], PlayerBase player, array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		MiscGameplayFunctions.TurnItemIntoItemEx(player, new TurnSyringeFillLambda(ingredients[0], "SyringeFull", player, ingredients[1], ingredients[0].IsInherited(SyringeDirty)));
+		bool isSyringeDirty = ingredients[0].IsInherited(SyringeDirty);
+		ItemBase ampouleItem = ingredients[1];
+		TurnSyringeFillLambda lambda = new TurnSyringeFillLambda(ingredients[0], "SyringeFull", player);
+		lambda.InitValues(ampouleItem, isSyringeDirty);
+		MiscGameplayFunctions.TurnItemIntoItemEx(player, lambda);
 	}
 };
