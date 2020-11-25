@@ -5,6 +5,7 @@ modded class InjuryAnimationHandler
 		eInjuryHandlerLevels result = super.GetInjuryLevel(health);
 		eInjuryHandlerLevels sleepingState = CalculateSleepingState();
 		eInjuryHandlerLevels painState = CalculatePainState();
+		eInjuryHandlerLevels overdoseState = CalculateOverdoseState();
 		
 		if (InjuryLevelToValue(result) < InjuryLevelToValue(sleepingState))
 		{
@@ -14,6 +15,11 @@ modded class InjuryAnimationHandler
 		if (InjuryLevelToValue(result) < InjuryLevelToValue(painState))
 		{
 			result = painState;
+		}
+		
+		if (InjuryLevelToValue(result) < InjuryLevelToValue(overdoseState))
+		{
+			result = overdoseState;
 		}
 		
 		if (m_Player.m_concussionHit && InjuryLevelToValue(result) < 2)
@@ -55,6 +61,26 @@ modded class InjuryAnimationHandler
 		if (painLevel == 3)
 		{
 			return eInjuryHandlerLevels.RUINED;
+		}
+		
+		return eInjuryHandlerLevels.PRISTINE;
+	}
+	
+	private eInjuryHandlerLevels CalculateOverdoseState()
+	{
+		if (m_Player.m_overdosedValue > 3)
+		{
+			return eInjuryHandlerLevels.RUINED;
+		}
+		
+		if (m_Player.m_overdosedValue > 2)
+		{
+			return eInjuryHandlerLevels.BADLY_DAMAGED;
+		}
+		
+		if (m_Player.m_overdosedValue > 1)
+		{
+			return eInjuryHandlerLevels.WORN;
 		}
 		
 		return eInjuryHandlerLevels.PRISTINE;

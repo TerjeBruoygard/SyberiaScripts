@@ -43,6 +43,7 @@ class TabletsBase : Edible_Base {
     stackedUnit="pills";
     quantityBar=0;
     absorbency=0;
+    overdosedIncrement=0.1;
     hiddenSelections[]=
     {
         "pills"
@@ -181,6 +182,7 @@ class TabletsParacetamol : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=200;
     medAntibioticsStrength = 0.5;
+    overdosedIncrement=0.15;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
@@ -201,6 +203,7 @@ class TabletsIbuprofen : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=400;
     medAntibioticsStrength = 0.8;
+    overdosedIncrement=0.2;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
@@ -221,6 +224,7 @@ class TabletsNurofen : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=600;
     medAntibioticsStrength = 1.0;
+    overdosedIncrement=0.2;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
@@ -239,6 +243,7 @@ class TabletsTetracycline : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=900;
     medAntibioticsStrength = 1.5;
+    overdosedIncrement=0.2;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
@@ -257,6 +262,7 @@ class TabletsAmoksiklav : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=1200;
     medAntibioticsStrength = 1.5;
+    overdosedIncrement=0.25;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_sepia_co.paa"
@@ -275,6 +281,7 @@ class TabletsAmpicylin : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=900;
     medAntibioticsStrength = 1.3;
+    overdosedIncrement=0.23;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
@@ -293,6 +300,7 @@ class TabletsPiperacylin : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=1100;
     medAntibioticsStrength = 1.4;
+    overdosedIncrement=0.25;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
@@ -311,6 +319,7 @@ class TabletsTrihopol : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=400;
     medAntibioticsStrength = 0.8;
+    overdosedIncrement=0.15;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
@@ -329,6 +338,7 @@ class TabletsCyprolet : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=500;
     medAntibioticsStrength = 0.8;
+    overdosedIncrement=0.15;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
@@ -347,6 +357,7 @@ class TabletsAmoksivan : TabletsBase
     medAntibioticLevel=1;
     medAntibioticsTimeSec=600;
     medAntibioticsStrength = 1.2;
+    overdosedIncrement=0.28;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_sepia_co.paa"
@@ -382,6 +393,7 @@ class TabletsCharcoal : TabletsBase
     varQuantityMax=10;
     medStomatchhealLevel=1;
     medStomatchhealTimeSec=30;
+    overdosedIncrement=0.0;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_black_co.paa"
@@ -399,6 +411,7 @@ class TabletsMezimForte : TabletsBase
     varQuantityMax=10;
     medStomatchhealLevel=1;
     medStomatchhealTimeSec=60;
+    overdosedIncrement=0.05;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
@@ -416,6 +429,7 @@ class TabletsZerukal : TabletsBase
     varQuantityMax=10;
     medStomatchhealLevel=1;
     medStomatchhealTimeSec=120;
+    overdosedIncrement=0.05;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
@@ -433,6 +447,7 @@ class TabletsNifuroksazid : TabletsBase
     varQuantityMax=10;
     medStomatchhealLevel=1;
     medStomatchhealTimeSec=180;
+    overdosedIncrement=0.05;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
@@ -450,6 +465,7 @@ class TabletsPolisorb : TabletsBase
     varQuantityMax=10;
     medStomatchhealLevel=1;
     medStomatchhealTimeSec=180;
+    overdosedIncrement=0.05;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
@@ -674,6 +690,7 @@ class TabletsSorbiferDurulis : TabletsBase
     medBloodHematopoiesisTimeSec=300;
     medBloodHemostatic=1;
     medBloodHemostaticTimeSec=300;
+    overdosedIncrement=0.15;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"

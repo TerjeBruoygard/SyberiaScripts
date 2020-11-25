@@ -828,6 +828,42 @@ FrameWidgetClass rootFrame {
       }
      }
     }
+    ImageWidgetClass Overdosed {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 680 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/Overdosed.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
+     {
+      TextWidgetClass OverdosedCount {
+       visible 1
+       color 0.8627 0.8627 0.8627 1
+       position -2 -2
+       size 17 15
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "10"
+       font "gui/fonts/sdf_MetronLight24"
+       "text halign" center
+      }
+     }
+    }
    }
   }
  }
