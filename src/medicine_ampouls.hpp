@@ -35,7 +35,7 @@ class AmpouleAlcohol : SyberiaMedicineAmpoule
     displayName="#syb_alcohol_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
-    overdosedIncrement=10;
+    overdosedIncrement=4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -50,7 +50,7 @@ class AmpouleHihlofos : SyberiaMedicineAmpoule
     displayName="#syb_dihlofos_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
-    overdosedIncrement=10;
+    overdosedIncrement=4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
@@ -65,7 +65,7 @@ class AmpouleCypermetrin : SyberiaMedicineAmpoule
     displayName="#syb_cypermetrin_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
-    overdosedIncrement=10;
+    overdosedIncrement=4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
@@ -80,7 +80,7 @@ class AmpouleDiazinon : SyberiaMedicineAmpoule
     displayName="#syb_diazinon_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
-    overdosedIncrement=10;
+    overdosedIncrement=4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
@@ -95,7 +95,7 @@ class AmpouleArsenic : SyberiaMedicineAmpoule
     displayName="#syb_arsenic_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
-    overdosedIncrement=10;
+    overdosedIncrement=4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"

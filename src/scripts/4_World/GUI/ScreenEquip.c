@@ -17,7 +17,7 @@ class ScreenEquip extends ScreenBase
 	void ScreenEquip(ref array<ref array<string>> equip)
 	{
 		m_pages = new array<ref ButtonWidget>;
-		m_selectedIndexes = new array<int>;
+		m_selectedIndexes = new array<int>;		
 		m_previewEntities = new array<ref EntityAI>;		
 		m_equip = equip;
 		
@@ -49,7 +49,7 @@ class ScreenEquip extends ScreenBase
 		foreach (ref EntityAI entity : m_previewEntities)
 		{
 			if (entity) GetGame().ObjectDelete(entity);
-		}
+	}
 		delete m_previewEntities;
 	}
 	
@@ -99,7 +99,7 @@ class ScreenEquip extends ScreenBase
 			m_selectedIndexes.Set(m_currentPage, rowId);
 			ReequipPreview();
 		}
-	}
+		}
 	
 	private void UpdateCurrentPage()
 	{
@@ -134,7 +134,7 @@ class ScreenEquip extends ScreenBase
 				{
 					m_playerPreview.UpdateItemInHands(newEntity);
 					if (oldEntity) GetGame().ObjectDelete(oldEntity);
-				}
+		}
 				else
 				{
 					if (oldEntity == null)
@@ -170,10 +170,10 @@ class ScreenEquip extends ScreenBase
 				{
 					m_playerPreview.UpdateItemInHands(null);
 				}
-				
+		
 				GetGame().ObjectDelete(oldEntity);
 				m_previewEntities.Set(i, null);
-			}
+	}
 		}
 	}
 
