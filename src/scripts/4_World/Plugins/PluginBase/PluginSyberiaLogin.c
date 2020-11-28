@@ -70,9 +70,9 @@ class PluginSyberiaLogin extends PluginBase
 				
 		if (m_screenBase) m_screenBase.Close();
 		
-		Param3<string, int, int> clientData;
+		Param4<string, int, int, int> clientData;
        	if ( !ctx.Read( clientData ) ) return;			
-		m_screenBase = new ScreenRespawn(clientData.param1, clientData.param2, clientData.param3);
+		m_screenBase = new ScreenRespawn(clientData.param1, clientData.param2, clientData.param3, clientData.param4);
 	}
 	
 	void NewcharScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)

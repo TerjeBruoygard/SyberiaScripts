@@ -3,6 +3,7 @@ class ScreenRespawn extends ScreenBase
 	string m_charName;
 	int m_totalSouls;
 	int m_priceSouls;
+	int m_rp_mode;
 	
 	ref TextWidget m_charNameText;
 	ref TextWidget m_soulsCounterText;
@@ -12,11 +13,12 @@ class ScreenRespawn extends ScreenBase
 	
 	bool m_isRpcSended = false;
 	
-	void ScreenRespawn(string charName, int totalSouls, int priceSouls)
+	void ScreenRespawn(string charName, int totalSouls, int priceSouls, int rp_mode)
 	{
 		m_charName = charName;
 		m_totalSouls = totalSouls;
 		m_priceSouls = priceSouls;
+		m_rp_mode = rp_mode;
 	}
 	
 	void ~ScreenRespawn()
@@ -35,6 +37,10 @@ class ScreenRespawn extends ScreenBase
 		m_respawnBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "RespawnBtn" ) );
 		m_removeCharBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "RemoveCharBtn" ) );
 		
+		if (m_rp_mode == 1)
+		{
+			m_removeCharBtn.Show(false);
+		}
 		
 		m_charNameText.SetText(m_charName);
 		m_soulsCounterText.SetText("" + m_totalSouls);
