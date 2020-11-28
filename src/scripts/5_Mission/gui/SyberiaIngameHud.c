@@ -1,5 +1,5 @@
 modded class IngameHud
-{
+{	
 	void InitNotifierWidget(int id, ref Widget baseWidget, string name)
 	{
 		ref Widget notifierWidget = baseWidget.FindAnyWidget(name);

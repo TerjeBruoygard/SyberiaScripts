@@ -9,7 +9,18 @@ modded class DayZPlayerImplement
 	#ifndef NO_GUI
 		if (show && IsPlayerSelected())
 		{
-			GetGame().GetUIManager().ScreenFadeIn(duration, "", FadeColors.BLACK, FadeColors.WHITE);
+			string message;
+			PlayerBase player = PlayerBase.Cast(this);
+			if (!player || player.IsGhostBody())
+			{
+				message = "#syb_loading";
+			}
+			else
+			{
+				message = "#syb_uaredead";
+			}
+			
+			GetGame().GetUIManager().ScreenFadeIn(duration, message, FadeColors.BLACK, FadeColors.WHITE);
 		}
 		else
 		{

@@ -104,7 +104,7 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_ADRENALIN, player.m_adrenalinEffect);
 				m_Hud.DisplayBadge(NTFKEY_OVERDOSED, (int)Math.Floor(Math.Clamp(player.m_overdosedValue, 0, 3)));
 			}
-			
+						
 			OnUpdateAdvMedicineGUI(player, timeslice);
 		}
 	}
