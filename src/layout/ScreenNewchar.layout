@@ -9,7 +9,7 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass Background {
    ignorepointer 1
    color 0 0 0 1
-   position 0 0
+   position 1.6539 0
    size 1 1
    hexactpos 1
    vexactpos 1
@@ -118,9 +118,9 @@ FrameWidgetClass rootFrame {
       }
      }
     }
-    PanelWidgetClass ResultsPanel {
+    PanelWidgetClass ResultsPanelBack {
      ignorepointer 1
-     color 0 0 0 1
+     color 0.0353 0.0353 0.0353 1
      position 0 0
      size 0.3 0.8
      halign center_ref
@@ -131,123 +131,137 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style rover_sim_colorable
      {
-      EditBoxWidgetClass CharNameEdit {
-       ignorepointer 0
-       keepsafezone 0
-       size 0.7 48
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 1
-       scaled 1
-       style DefaultBorder
-       "limit visible" 0
-       "Default text color" 0.6 0.6 0.6 1
-       "Use default text" 1
-       "exact text" 1
-       font "gui/fonts/metronlight16"
-      }
-      ButtonWidgetClass NextBtn {
-       color 0.9529 0 0 1
-       size 0.3 48
-       halign right_ref
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 1
-       style Colorable
-       text "#syb_next"
-       font "gui/fonts/metron22"
-       "disabled text color" 0.0588 0.0588 0.0588 1
-      }
-      TextWidgetClass TextEnterYourName {
+      PanelWidgetClass ResultsPanel {
        ignorepointer 1
-       position 0 50
-       size 1 40
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 1
-       text " #syb_entername"
-       font "gui/fonts/metronlight16"
-       "text valign" center
-      }
-      ImageWidgetClass PlayerPreview {
-       ignorepointer 0
-       position 0 110
-       size 128 128
-       halign right_ref
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       stretch 1
-      }
-      XComboBoxWidgetClass GenderSelector {
-       position 0 180
-       size 400 48
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       font "gui/fonts/metronlight22"
-       items "#syb_male;#syb_female"
-      }
-      XComboBoxWidgetClass FaceSelector {
-       position 0 110
-       size 400 48
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       font "gui/fonts/metronlight22"
-      }
-      TextListboxWidgetClass SkillsResult {
-       disabled 0
+       color 0.0353 0.0353 0.0353 1
        position 0 0
-       size 1 600
-       hexactpos 1
-       vexactpos 1
+       size 0.94 0.96
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
        hexactsize 0
-       vexactsize 1
-       "title visible" 1
-       colums "#syb_skills;70; ;30;"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
+       vexactsize 0
+       style rover_sim_colorable
+       "next left" "0"
        {
-        PanelWidgetClass FrameWidget0 {
+        TextWidgetClass TextEnterYourName {
          ignorepointer 1
-         color 0.0745 0.0745 0.0745 0.8157
-         size 0.8 0.1
-         halign center_ref
-         valign center_ref
+         position 0 50
+         size 1 40
+         valign bottom_ref
          hexactpos 1
          vexactpos 1
          hexactsize 0
-         vexactsize 0
+         vexactsize 1
+         text " #syb_entername"
+         font "gui/fonts/etelkatextpro16"
+         "text valign" center
+        }
+        ImageWidgetClass PlayerPreview {
+         ignorepointer 0
+         position 0 110
+         size 128 128
+         halign right_ref
+         valign bottom_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         stretch 1
+        }
+        XComboBoxWidgetClass GenderSelector {
+         position 0 180
+         size 340 48
+         valign bottom_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         font "gui/fonts/etelkatextpro16"
+         items "#syb_male;#syb_female"
+        }
+        XComboBoxWidgetClass FaceSelector {
+         position 0 110
+         size 340 48
+         valign bottom_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         font "gui/fonts/etelkatextpro16"
+        }
+        TextListboxWidgetClass SkillsResult {
+         disabled 0
+         color 0.098 0.1373 0.1569 1
+         size 1 550
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style NoScrollBar
+         "title visible" 1
+         colums "#syb_skills;70; ;30;"
+         lines 1
+         "highlight row" 1
+         font "gui/fonts/etelkatextpro16"
+        }
+        PanelWidgetClass NextBtnBack {
+         ignorepointer 1
+         color 0.098 0.1373 0.1569 1
+         size 0.3 48
+         halign right_ref
+         valign bottom_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
          style rover_sim_colorable
          {
-          TextWidgetClass TextWidget0 {
-           ignorepointer 1
-           position 0 0
+          ButtonWidgetClass NextBtn {
+           color 0.1255 0.1765 0.2039 1
            size 1 1
-           halign center_ref
-           valign center_ref
+           halign right_ref
+           valign bottom_ref
            hexactpos 1
            vexactpos 1
            hexactsize 0
            vexactsize 0
-           text "Comming soon..."
-           font "gui/fonts/metron-bold22"
-           "text halign" center
-           "text valign" center
+           style EmptyHighlight
+           "no focus" 1
+           text "#syb_next"
+           font "gui/fonts/etelkatextpro22"
+           "disabled text color" 0.0588 0.0588 0.0588 1
+           switch once
+          }
+         }
+        }
+        PanelWidgetClass CharNameBack {
+         ignorepointer 1
+         color 0.0627 0.0627 0.0627 1
+         size 0.66 48
+         valign bottom_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          EditBoxWidgetClass CharNameEdit {
+           ignorepointer 0
+           keepsafezone 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           scaled 1
+           style DefaultBorder
+           "limit visible" 0
+           "Default text color" 0.6 0.6 0.6 1
+           "Use default text" 1
+           "exact text" 1
+           font "gui/fonts/etelkatextpro16"
           }
          }
         }

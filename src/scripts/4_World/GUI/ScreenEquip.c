@@ -89,6 +89,19 @@ class ScreenEquip extends ScreenBase
 		if (m_updateCurrentPage)
 		{
 			m_updateCurrentPage = false;
+			
+			foreach (ref ButtonWidget pageBtn : m_pages)
+			{
+				if (m_currentPage == pageBtn)
+				{
+					pageBtn.Enable(false);
+				}
+				else
+				{
+					pageBtn.Enable(true);
+				}
+			}
+			
 			UpdateCurrentPage();
 		}
 		

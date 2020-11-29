@@ -39,11 +39,11 @@ class ScreenRespawn extends ScreenBase
 		
 		if (m_rp_mode == 1)
 		{
-			m_removeCharBtn.Show(false);
+			layoutRoot.FindAnyWidget("RemoveCharBack").Show(false);
 		}
 		
 		m_charNameText.SetText(m_charName);
-		m_soulsCounterText.SetText("" + m_totalSouls);
+		m_soulsCounterText.SetText("#syb_souls " + m_totalSouls);
 		
 		if (m_totalSouls <= 0)
 		{

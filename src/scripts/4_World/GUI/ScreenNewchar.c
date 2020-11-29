@@ -10,6 +10,7 @@ class ScreenNewchar extends ScreenBase
 	ref ImageWidget m_playerPreview;
 	ref EditBoxWidget m_charNameEdit;
 	ref ButtonWidget m_NextBtn;	
+	ref Widget m_NextBack;
 	ref TextListboxWidget m_skillsResult;
 	
 	ref TextListboxWidget m_perksTotal;
@@ -56,6 +57,7 @@ class ScreenNewchar extends ScreenBase
 		m_charNameEdit = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "CharNameEdit" ) );	
 		m_skillsResult = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "SkillsResult" ) );
 		m_NextBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "NextBtn" ) );
+		m_NextBack = layoutRoot.FindAnyWidget( "NextBtnBack" );
 		
 		m_perksTotal = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "TotalPerksList" ) );
 		m_perksUsed = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "UsedPerksList" ) );
@@ -281,12 +283,12 @@ class ScreenNewchar extends ScreenBase
 		
 		if (m_isRpcSended)
 		{
-			m_NextBtn.Show(false);
+			m_NextBack.Show(false);
 		}
 		
 		UpdateHint();
 		
-		m_NextBtn.Show(m_currentScore >= 0 && (m_charNameEdit.GetText().LengthUtf8() == 0 || (m_charNameEdit.GetText().LengthUtf8() >= 4 && m_charNameEdit.GetText().LengthUtf8() <= m_maxNameLength)) );
+		m_NextBack.Show(m_currentScore >= 0 && (m_charNameEdit.GetText().LengthUtf8() == 0 || (m_charNameEdit.GetText().LengthUtf8() >= 4 && m_charNameEdit.GetText().LengthUtf8() <= m_maxNameLength)) );
 	}
 
 	override bool OnClick( Widget w, int x, int y, int button )
