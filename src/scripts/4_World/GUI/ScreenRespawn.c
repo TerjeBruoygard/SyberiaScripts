@@ -45,7 +45,7 @@ class ScreenRespawn extends ScreenBase
 		m_charNameText.SetText(m_charName);
 		m_soulsCounterText.SetText("#syb_souls " + m_totalSouls);
 		
-		if (m_totalSouls <= 0)
+		if ((m_totalSouls - m_priceSouls) < 0)
 		{
 			m_soulsPriceText.SetText("#syb_nosoulsleft");
 			m_respawnBtn.Show(false);
