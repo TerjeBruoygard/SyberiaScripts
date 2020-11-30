@@ -37,6 +37,17 @@ enum SyberiaRPC {
 	SYBRPC_DELETECHAR_REQUEST
 };
 
+enum SyberiaScreenEquipPages {
+	SYBSEP_SPAWN_PAGE = 0,
+	SYBSEP_BODY_PAGE = 1,
+	SYBSEP_PANTS_PAGE = 2,
+	SYBSEP_FOOT_PAGE = 3,
+	SYBSEP_HEAD_PAGE = 4,
+	SYBSEP_WEAPON_PAGE = 5,
+	SYBSEP_ITEMS_PAGE = 6,
+	SYBSEP_SPECIAL_PAGE = 7
+};
+
 const int NTFKEY_SLEEPING = 1000;
 const int NTFKEY_BULLETHIT = 1100;
 const int NTFKEY_KNIFEHIT = 1101;
@@ -71,6 +82,8 @@ const int SLEEPING_LEVEL_5 = 100;
 const int SLEEPING_LEVEL_4 = 1000;
 const int SLEEPING_LEVEL_3 = 5000;
 const int SLEEPING_LEVEL_2 = 10000;
+
+const int LOGOUT_TIME_SEC = 60;
 
 // Constants redefinition
 modded class PlayerConstants

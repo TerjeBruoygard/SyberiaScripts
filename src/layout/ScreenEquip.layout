@@ -42,6 +42,7 @@ FrameWidgetClass rootFrame {
        "no focus" 1
        {
         ButtonWidgetClass SpawnPage {
+         disabled 0
          color 0.1255 0.1765 0.2039 1
          position 0 0
          size 1 1
@@ -55,6 +56,19 @@ FrameWidgetClass rootFrame {
          text_halign right
          font "gui/fonts/etelkatextpro16"
          switch normal
+         {
+          PanelWidgetClass ColorableHightlight0 {
+           ignorepointer 1
+           color 0.098 0.098 0.098 0.2588
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
         }
        }
       }
@@ -72,12 +86,13 @@ FrameWidgetClass rootFrame {
        {
         TextListboxWidgetClass ItemsSelector {
          color 0.098 0.1373 0.1569 0.4667
-         size 500 0.99
+         position 0 0
+         size 0.95 0.99
          halign right_ref
          valign center_ref
          hexactpos 1
          vexactpos 1
-         hexactsize 1
+         hexactsize 0
          vexactsize 0
          style Editor
          "title visible" 0
@@ -112,6 +127,19 @@ FrameWidgetClass rootFrame {
          text "#syb_bodyselect  "
          text_halign right
          font "gui/fonts/etelkatextpro16"
+         {
+          PanelWidgetClass ColorableHightlight1 {
+           ignorepointer 1
+           color 0.098 0.098 0.098 0.2588
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
         }
        }
       }
@@ -139,6 +167,19 @@ FrameWidgetClass rootFrame {
          text "#syb_pantsselect  "
          text_halign right
          font "gui/fonts/etelkatextpro16"
+         {
+          PanelWidgetClass ColorableHightlight2 {
+           ignorepointer 1
+           color 0.098 0.098 0.098 0.2588
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
         }
        }
       }
@@ -166,6 +207,19 @@ FrameWidgetClass rootFrame {
          text "#syb_footwearselect  "
          text_halign right
          font "gui/fonts/etelkatextpro16"
+         {
+          PanelWidgetClass ColorableHightlight3 {
+           ignorepointer 1
+           color 0.098 0.098 0.098 0.2588
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
         }
        }
       }
@@ -193,12 +247,25 @@ FrameWidgetClass rootFrame {
          text "#syb_headgearselect  "
          text_halign right
          font "gui/fonts/etelkatextpro16"
+         {
+          PanelWidgetClass ColorableHightlight4 {
+           ignorepointer 1
+           color 0.098 0.098 0.098 0.2588
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
         }
        }
       }
       PanelWidgetClass ItemsPageBack {
        color 0.098 0.1373 0.1569 1
-       position 0 300
+       position 0 360
        size 0.4 50
        hexactpos 1
        vexactpos 1
@@ -220,12 +287,25 @@ FrameWidgetClass rootFrame {
          text "#syb_itemsselect  "
          text_halign right
          font "gui/fonts/etelkatextpro16"
+         {
+          PanelWidgetClass ColorableHightlight5 {
+           ignorepointer 1
+           color 0.098 0.098 0.098 0.2588
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
         }
        }
       }
       PanelWidgetClass WeaponPageBack {
        color 0.098 0.1373 0.1569 1
-       position 0 360
+       position 0 300
        size 0.4 50
        hexactpos 1
        vexactpos 1
@@ -247,6 +327,19 @@ FrameWidgetClass rootFrame {
          text "#syb_weaponselect  "
          text_halign right
          font "gui/fonts/etelkatextpro16"
+         {
+          PanelWidgetClass ColorableHightlight6 {
+           ignorepointer 1
+           color 0.098 0.098 0.098 0.2588
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
         }
        }
       }
@@ -274,6 +367,19 @@ FrameWidgetClass rootFrame {
          text "#syb_specialselect  "
          text_halign right
          font "gui/fonts/etelkatextpro16"
+         {
+          PanelWidgetClass ColorableHightlight7 {
+           ignorepointer 1
+           color 0.098 0.098 0.098 0.2588
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
         }
        }
       }
