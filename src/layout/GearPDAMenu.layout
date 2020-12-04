@@ -1,0 +1,839 @@
+FrameWidgetClass GearPDAMenu {
+ visible 1
+ color 0 0 0 0
+ position 0 0
+ size 1024 1024
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  ImageWidgetClass PagePDA {
+   visible 0
+   inheritalpha 0
+   ignorepointer 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   image0 "SyberiaScripts\data\pda\gui_messages.paa"
+   mode blend
+   "src alpha" 1
+   "no wrap" 1
+   stretch 1
+   {
+    TextListboxWidgetClass contact_list {
+     color 0.1255 0.1451 0.0706 0.8235
+     position 85 220
+     size 280 345
+     halign left_ref
+     valign top_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Editor
+     "title visible" 1
+     colums ";5;#pda_contact_list;75; ;20;"
+     lines 1
+     "highlight row" 1
+     font "gui/fonts/etelkatextpro14"
+     "text color" 0.1961 0.2157 0.1137 1
+     "disabled text color" 0.1961 0.2157 0.1137 1
+    }
+    TextListboxWidgetClass messages_txt {
+     ignorepointer 0
+     color 0.1255 0.1451 0.0706 0.7843
+     position 385 220
+     size 550 460
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Editor
+     "title visible" 1
+     colums ";3;#pda_sender;22;#pda_message;75;"
+     lines 1
+     "highlight row" 1
+     font "gui/fonts/etelkatextpro14"
+     "text color" 0.1961 0.2157 0.1137 1
+     "disabled text color" 0.1961 0.2157 0.1137 1
+    }
+    TextWidgetClass callibration_txt {
+     ignorepointer 1
+     position 0 -9000
+     size 5000 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     font "gui/fonts/etelkatextpro14"
+    }
+    TextWidgetClass your_id_text {
+     color 0.1961 0.2157 0.1137 1
+     position 85 190
+     size 280 26
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Normal
+     text "PDA"
+     font "gui/fonts/etelkatextpro22"
+     "text offset" 10 0
+     "exact text" 1
+     "text valign" center
+    }
+    PanelWidgetClass add_contact_back {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.8627
+     position 85 685
+     size 280 40
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      EditBoxWidgetClass add_contact_txt {
+       color 0.5882 0.6627 0.3412 1
+       position 10 0
+       size 270 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 0
+       style Default
+       text "#pda_hint1"
+       "limit visible" 0
+       "Default text color" 0.5882 0.6627 0.3412 1
+       "Use default text" 1
+       "exact text" 1
+       font "gui/fonts/etelkatextpro16"
+       "text color" 0.5882 0.6627 0.3412 1
+       "disabled text color" 0.1961 0.2157 0.1137 1
+       {
+        TextWidgetClass add_contact_view {
+         ignorepointer 1
+         color 0.7412 0.8353 0.4275 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         font "gui/fonts/etelkatextpro16"
+         "exact text" 0
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass add_contact_btnback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 85 655
+     size 280 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass add_contact_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass add_contact_btntext {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_add_contact"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass delete_contact_btnback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 85 625
+     size 280 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass delete_contact_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass delete_contact_btntext {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_remove_contact"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass rename_contact_btnback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 85 595
+     size 280 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass rename_contact_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass rename_contact_btntext {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_rename_contact"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass ban_contact_btnback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 85 565
+     size 280 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass ban_contact_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass ban_contact_btntext {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_ban_contact"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass send_msg_txtback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.8627
+     position 385 685
+     size 450 40
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      EditBoxWidgetClass send_msg_txt {
+       color 0.5882 0.6627 0.3412 1
+       position 10 0
+       size 440 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 0
+       style Default
+       text "#pda_hint2"
+       "limit visible" 0
+       "Default text color" 0.5882 0.6627 0.3412 1
+       "Use default text" 1
+       "exact text" 1
+       font "gui/fonts/etelkatextpro16"
+       "text color" 0.5882 0.6627 0.3412 1
+       "disabled text color" 0.1961 0.2157 0.1137 1
+       {
+        TextWidgetClass send_msg_view {
+         ignorepointer 1
+         color 0.7412 0.8353 0.4275 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         font "gui/fonts/etelkatextpro16"
+         "exact text" 0
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass semd_msg_btnback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 835 685
+     size 100 40
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass semd_msg_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass semd_msg_btntext {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_send"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass top_butons_pannel {
+     ignorepointer 1
+     position 385 190
+     size 550 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      PanelWidgetClass mute_btnback {
+       ignorepointer 1
+       color 0.1255 0.1451 0.0706 0.6745
+       position 0 0
+       size 0.5 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+       {
+        ButtonWidgetClass mute_btn {
+         color 0.1255 0.1451 0.0706 0.298
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style EmptyHighlight
+         "no focus" 1
+         font "gui/fonts/etelkatextpro16"
+         {
+          TextWidgetClass mute_btntext {
+           ignorepointer 1
+           color 0.5882 0.6627 0.3412 1
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "pda_mute"
+           font "gui/fonts/etelkatextpro22"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+      PanelWidgetClass hideid_btnback {
+       ignorepointer 1
+       color 0.1255 0.1451 0.0706 0.6745
+       size 0.5 1
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+       {
+        ButtonWidgetClass hideid_btn {
+         color 0.1255 0.1451 0.0706 0.298
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style EmptyHighlight
+         "no focus" 1
+         font "gui/fonts/etelkatextpro16"
+         {
+          TextWidgetClass hideid_btntext {
+           ignorepointer 1
+           color 0.5882 0.6627 0.3412 1
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "pda_hideId"
+           font "gui/fonts/etelkatextpro22"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  ImageWidgetClass PageMap {
+   visible 0
+   inheritalpha 0
+   ignorepointer 0
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   image0 "SyberiaScripts\data\pda\gui.paa"
+   mode blend
+   "src alpha" 1
+   "no wrap" 1
+   stretch 1
+   {
+    MapWidgetClass map_widget {
+     color 0.1961 0.2157 0.1137 1
+     position 85 190
+     size 850 535
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+    }
+   }
+  }
+  ImageWidgetClass PageGroups {
+   visible 1
+   inheritalpha 0
+   ignorepointer 0
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   image0 "SyberiaScripts\data\pda\gui_messages.paa"
+   mode blend
+   "src alpha" 1
+   "no wrap" 1
+   stretch 1
+   {
+    TextListboxWidgetClass group_members {
+     color 0.1255 0.1451 0.0706 0.8235
+     position 85 185
+     size 555 540
+     halign right_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Editor
+     "title visible" 1
+     colums ";3;ID;40;Name;57;"
+     lines 1
+     "highlight row" 1
+     font "gui/fonts/etelkatextpro14"
+     "text color" 0.1961 0.2157 0.1137 1
+     "disabled text color" 0.1961 0.2157 0.1137 1
+    }
+    TextWidgetClass group_info {
+     ignorepointer 0
+     color 0.1961 0.2157 0.1137 1
+     position 85 190
+     size 280 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     font "gui/fonts/etelkatextpro28"
+     "text color" 0.1961 0.2157 0.1137 1
+     "exact text" 1
+     "text halign" center
+    }
+    PanelWidgetClass member_id_txtback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.8627
+     position 85 685
+     size 280 40
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      EditBoxWidgetClass member_id_txt {
+       color 0.5882 0.6627 0.3412 1
+       position 10 0
+       size 270 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 0
+       style Default
+       text "#pda_hint1"
+       "limit visible" 0
+       "Default text color" 0.5882 0.6627 0.3412 1
+       "Use default text" 1
+       "exact text" 1
+       font "gui/fonts/etelkatextpro16"
+       "text color" 0.5882 0.6627 0.3412 1
+       "disabled text color" 0.1961 0.2157 0.1137 1
+       {
+        TextWidgetClass member_id_view {
+         ignorepointer 1
+         color 0.7412 0.8353 0.4275 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         font "gui/fonts/etelkatextpro16"
+         "exact text" 0
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass add_member_btnback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 85 645
+     size 280 40
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass add_member_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass add_member_btntext {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_add_member"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass del_member_btnback {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 85 605
+     size 280 40
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass del_member_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass del_member_btntext {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_del_member"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass PagesBtnsPanel {
+   ignorepointer 0
+   color 1 1 1 0
+   position 75 228
+   size 868 58
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   "no focus" 0
+   {
+    PanelWidgetClass pagemsg_back {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 0 0
+     size 250 1
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 0
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass pagemsg_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass pagemsg_text {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_messages_page"
+         font "gui/fonts/etelkatextpro28"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass pagemap_back {
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 250 0
+     size 250 1
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 0
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass pagemap_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass pagemap_text {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_map_page"
+         font "gui/fonts/etelkatextpro28"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass pagegrp_back {
+     visible 0
+     ignorepointer 1
+     color 0.1255 0.1451 0.0706 0.6745
+     position 500 0
+     size 250 1
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 0
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass pagegrp_btn {
+       color 0.1255 0.1451 0.0706 0.298
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
+       {
+        TextWidgetClass pagegrp_text {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#pda_groups_page"
+         font "gui/fonts/etelkatextpro28"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

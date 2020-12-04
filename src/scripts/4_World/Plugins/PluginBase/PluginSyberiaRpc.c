@@ -69,6 +69,17 @@ class PluginSyberiaRpc : PluginBase
         	GetGame().RPC(null, 67993700, sendData, true, null);
 		}
     }
+	
+	void SendToAll(int id, ref Param params) 
+	{
+		if (GetGame().IsServer())
+		{		
+			auto sendData = new ref array< ref Param >;
+			sendData.Insert(new ref Param1<int>( id ));
+			sendData.Insert(params);
+        	GetGame().RPC(null, 67993700, sendData, true, null);
+		}
+    }
 }
 
 PluginSyberiaRpc GetSyberiaRPC() 

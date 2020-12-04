@@ -39,9 +39,20 @@ class CfgVehicles
     #include "drinks.hpp"
     #include "foods.hpp"
     #include "medicine_base.hpp"
+    #include "electronic_base.hpp"
 };
 
 class CfgSounds
 {
     #include "sounds.hpp"
+};
+
+class CfgSoundShaders
+{
+    #include "sounds_shaders.hpp"
+};
+
+class CfgSoundSets
+{
+    #include "sounds_sets.hpp"
 };
