@@ -10,7 +10,7 @@ class PluginGearPDA extends PluginBase
 	
 	ref map<string, ref array<ref PluginGearPDA_Comment>> m_comments;
 	
-	string m_steamId;
+	string m_name;
 	
 	bool m_enableGlobalChat;
 	
@@ -27,6 +27,8 @@ class PluginGearPDA extends PluginBase
 	ref array<ref Param2<string, string>> m_groupMessages;
 	
 	ref PluginGearPDA_Options m_options;
+	
+	int m_current_page_id = 0;
 	
 	void PluginGearPDA()
 	{
@@ -272,7 +274,7 @@ class PluginGearPDA extends PluginBase
 		}
 	}
 	
-	void EnableGroupManagement(ref array<ref GroupMember> members, string infoText)
+	void EnableGroupManagement(ref array<ref SyberiaPdaGroupMember> members, string infoText)
 	{
 		if (m_GearPDAMenu)
 		{

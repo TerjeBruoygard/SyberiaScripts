@@ -24,6 +24,7 @@ class GearPDAMenu extends UIScriptedMenu
 	ref ButtonWidget m_group_del_btn;
 	ref EditBoxWidget m_group_input;
 	ref TextWidget m_group_help_text;
+	ref TextWidget m_map_coords_text;
 	
 	ref ImageWidget m_page_msg;
 	ref ImageWidget m_page_map;
@@ -52,9 +53,8 @@ class GearPDAMenu extends UIScriptedMenu
 	bool m_externalSendEvent = false;
 	bool m_sendFuncEnabled = true;
 	
-	int m_selectedPage = -1;
 	bool m_updateGroupManagement = false;
-	ref array<ref GroupMember> m_group_members = null;
+	ref array<ref SyberiaPdaGroupMember> m_group_members = null;
 	string m_group_info = "";
 	
 	void GearPDAMenu()
@@ -87,6 +87,7 @@ class GearPDAMenu extends UIScriptedMenu
 		m_rename_btn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "rename_contact_btn" ) );
 		m_ban_btn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "ban_contact_btn" ) );
 		m_map = ImageWidget.Cast( layoutRoot.FindAnyWidget("map_widget") );
+		m_map_coords_text = TextWidget.Cast( layoutRoot.FindAnyWidget("map_coords_text") );
 		m_page_buttons_panel = layoutRoot.FindAnyWidget("PagesBtnsPanel");
 		
 		m_groupMembersList = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "group_members" ) );
@@ -108,13 +109,14 @@ class GearPDAMenu extends UIScriptedMenu
 		
 		UpdateMutedButton();
 		UpdateMap();
-		SelectPdaPage(0);
 				
 		PluginGearPDA pluginGearPDA;
 		Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));
 		
 		m_visibleBtnsPanel[1] = pluginGearPDA.m_enableMapPage;
 		m_updateBtnsPanel = true;
+		
+		SelectPdaPage(pluginGearPDA.m_current_page_id);
 				
 		ref array<string> request = new array<string>();
 		for (int i = 0; i < pluginGearPDA.m_contacts.Count(); i++)
@@ -136,7 +138,7 @@ class GearPDAMenu extends UIScriptedMenu
         return layoutRoot;
     }
 	
-	void EnableGroupManagement(ref array<ref GroupMember> members, string infoText)
+	void EnableGroupManagement(ref array<ref SyberiaPdaGroupMember> members, string infoText)
 	{
 		m_group_members = members;
 		m_group_info = infoText;
@@ -149,38 +151,34 @@ class GearPDAMenu extends UIScriptedMenu
 	{
 		string worldName;
 		GetGame().GetWorldName(worldName);
-		SybLog("Words name: " + worldName);
 		m_map.LoadImageFile(0, "SyberiaScripts\\data\\pda\\" + worldName + "_map.paa");
 		
 		float x, y, w, h;
 		m_map.GetPos(x, y);
 		m_map.GetSize(w, h);
-		SybLog("MAP POS: " + x + " " + y + " " + w + " " + h);
-		
+
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if (!player) return;
 		
 		vector pos = player.GetPosition();
 		vector mapSize = GetGame().ConfigGetVector("CfgWorldInfo " + worldName + " worldSize");
-		SybLog("Player pos: " + pos);
-		SybLog("Map size: " + mapSize);
-		
+
 		float x_rel = (pos[0] - (mapSize[0] * 0.5)) / (mapSize[0] * 0.5);
 		float y_rel = (pos[2] - (mapSize[1] * 0.5)) / (mapSize[1] * 0.5);
 		
-		SybLog("Rel pos: " + x_rel + " " + y_rel);
-		
 		m_map.SetPos((x_rel * -1) * (w / 2), y_rel * (h / 2));
+		
+		int x_view = (int)(pos[0] / 100);
+		int y_view = (int)(pos[2] / 100);
+		m_map_coords_text.SetText(x_view.ToString() + " " + y_view.ToString());
 	}
 	
 	void SelectPdaPage(int id)
 	{
-		if (m_selectedPage == id)
-		{
-			return;
-		}
+		PluginGearPDA pluginGearPDA;
+		Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));		
+		pluginGearPDA.m_current_page_id = id;
 		
-		m_selectedPage = id;
 		m_page_msg.Show(false);
 		m_page_map.Show(false);
 		m_page_grp.Show(false);
@@ -517,7 +515,7 @@ class GearPDAMenu extends UIScriptedMenu
 		{					
 			PluginGearPDA pluginGearPDA;
 			Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));
-			m_yourIdText.SetText("#pda_user_id " + pluginGearPDA.m_steamId);		
+			m_yourIdText.SetText("#pda_user_id " + pluginGearPDA.m_name);		
 			
 			FillContactsList();
 			m_dirty = false;
@@ -535,10 +533,9 @@ class GearPDAMenu extends UIScriptedMenu
 			
 			m_group_help_text.SetText(m_group_info);			
 			m_groupMembersList.ClearItems();
-			foreach (ref GroupMember member : m_group_members)
+			foreach (ref SyberiaPdaGroupMember member : m_group_members)
 			{
-				int pos = m_groupMembersList.AddItem(member.m_uid, null, 0);
-				m_groupMembersList.SetItem(pos, member.m_name, null, 1);
+				m_groupMembersList.AddItem(member.m_name, null, 1);
 			}
 		}
 		
@@ -880,8 +877,8 @@ class GearPDAMenu extends UIScriptedMenu
 			int selectedMemberId = m_groupMembersList.GetSelectedRow();
 			if (selectedMemberId >= 0 && selectedMemberId < m_group_members.Count())
 			{
-				ref GroupMember member = m_group_members.Get(selectedMemberId);
-				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_PDA_CMD_GROUP, new Param2< int, string >( 1, member.m_guid ) );
+				ref SyberiaPdaGroupMember member = m_group_members.Get(selectedMemberId);
+				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_PDA_CMD_GROUP, new Param2< int, string >( 1, member.m_id.ToString() ) );
 			}
 			return true;
 		}

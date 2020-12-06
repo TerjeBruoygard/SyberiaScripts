@@ -21,11 +21,6 @@ class PluginLogicPDA extends PluginBase
         GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_PDA_SEND_GLOBAL_MESSAGE, this, "SendGlobalMessage");
         GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_PDA_SEND_GROUP_MESSAGE, this, "SendGroupMessage");
         GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_PDA_CMD_GROUP, this, "GroupCommand");
-		
-		if (GetGame().IsClient())
-		{
-            GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_PDA_USER_STATE, new Param1<string>( "" ));
-		}
 	}
 	
 	bool HasWorkingPDA(PlayerBase player)
@@ -151,7 +146,7 @@ class PluginLogicPDA extends PluginBase
 
 	void CheckContacts( ref ParamsReadContext ctx, ref PlayerIdentity sender )
     { 
-        Param5< array<string>, bool, ref array<ref GroupMember>, string, string > clientData;
+        Param5< array<string>, bool, ref array<ref SyberiaPdaGroupMember>, string, string > clientData;
         if ( !ctx.Read( clientData ) ) return;
         
         PluginGearPDA pluginGearPDA;
@@ -191,9 +186,9 @@ class PluginLogicPDA extends PluginBase
         Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));
         if (pluginGearPDA)
         {
-            pluginGearPDA.m_steamId = clientData.param1;
+            pluginGearPDA.m_name = clientData.param1;
             pluginGearPDA.m_enableGlobalChat = clientData.param2;
-			pluginGearPDA.m_enableMapPage = clientData.param2;
+			pluginGearPDA.m_enableMapPage = clientData.param3;
         }
 	}
 	
@@ -216,9 +211,9 @@ class PluginLogicPDA extends PluginBase
 	}
 };
 
-class GroupMember
+class SyberiaPdaGroupMember
 {
-	string m_guid;
+	int m_id;
 	string m_uid;
 	string m_name;
 };

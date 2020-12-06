@@ -12,7 +12,7 @@ FrameWidgetClass GearPDAMenu {
  vexactsize 1
  {
   ImageWidgetClass PagePDA {
-   visible 1
+   visible 0
    inheritalpha 0
    ignorepointer 0
    size 1 1
@@ -405,7 +405,7 @@ FrameWidgetClass GearPDAMenu {
    }
   }
   ImageWidgetClass PageMap {
-   visible 0
+   visible 1
    clipchildren 1
    inheritalpha 0
    ignorepointer 0
@@ -459,6 +459,48 @@ FrameWidgetClass GearPDAMenu {
        image0 "set:dayz_gui image:icon_x"
        mode blend
        "src alpha" 1
+      }
+      PanelWidgetClass map_coords_panel_back1 {
+       ignorepointer 1
+       color 0.4392 0.4941 0.251 1
+       position -4 -5
+       size 100 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        PanelWidgetClass map_coords_panel_back2 {
+         ignorepointer 1
+         color 0.1255 0.1451 0.0706 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style Outline
+         {
+          TextWidgetClass map_coords_text {
+           ignorepointer 1
+           color 0.1255 0.1451 0.0706 1
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "255 255"
+           font "gui/fonts/etelkatextpro22"
+           "text color" 0.5882 0.6627 0.3412 1
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+       }
       }
      }
     }
