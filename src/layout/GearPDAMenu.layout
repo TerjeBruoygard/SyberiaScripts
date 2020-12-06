@@ -1,5 +1,6 @@
 FrameWidgetClass GearPDAMenu {
  visible 1
+ clipchildren 1
  color 0 0 0 0
  position 0 0
  size 1024 1024
@@ -11,7 +12,7 @@ FrameWidgetClass GearPDAMenu {
  vexactsize 1
  {
   ImageWidgetClass PagePDA {
-   visible 0
+   visible 1
    inheritalpha 0
    ignorepointer 0
    size 1 1
@@ -28,7 +29,7 @@ FrameWidgetClass GearPDAMenu {
     TextListboxWidgetClass contact_list {
      color 0.1255 0.1451 0.0706 0.8235
      position 85 220
-     size 280 345
+     size 280 315
      halign left_ref
      valign top_ref
      hexactpos 1
@@ -47,15 +48,15 @@ FrameWidgetClass GearPDAMenu {
     TextListboxWidgetClass messages_txt {
      ignorepointer 0
      color 0.1255 0.1451 0.0706 0.7843
-     position 385 220
-     size 550 460
+     position 385 190
+     size 550 490
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
      style Editor
      "title visible" 1
-     colums ";3;#pda_sender;22;#pda_message;75;"
+     colums ";3;#pda_sender;24; ;3;#pda_message;70;"
      lines 1
      "highlight row" 1
      font "gui/fonts/etelkatextpro14"
@@ -114,22 +115,7 @@ FrameWidgetClass GearPDAMenu {
        "exact text" 1
        font "gui/fonts/etelkatextpro16"
        "text color" 0.5882 0.6627 0.3412 1
-       "disabled text color" 0.1961 0.2157 0.1137 1
-       {
-        TextWidgetClass add_contact_view {
-         ignorepointer 1
-         color 0.7412 0.8353 0.4275 1
-         position 0 0
-         size 1 1
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         font "gui/fonts/etelkatextpro16"
-         "exact text" 0
-         "text valign" center
-        }
-       }
+       "disabled text color" 0.5882 0.6627 0.3412 1
       }
      }
     }
@@ -329,21 +315,6 @@ FrameWidgetClass GearPDAMenu {
        font "gui/fonts/etelkatextpro16"
        "text color" 0.5882 0.6627 0.3412 1
        "disabled text color" 0.1961 0.2157 0.1137 1
-       {
-        TextWidgetClass send_msg_view {
-         ignorepointer 1
-         color 0.7412 0.8353 0.4275 1
-         position 0 0
-         size 1 1
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         font "gui/fonts/etelkatextpro16"
-         "exact text" 0
-         "text valign" center
-        }
-       }
       }
      }
     }
@@ -389,96 +360,43 @@ FrameWidgetClass GearPDAMenu {
       }
      }
     }
-    PanelWidgetClass top_butons_pannel {
+    PanelWidgetClass mute_btnback {
      ignorepointer 1
-     position 385 190
-     size 550 30
+     color 0.1255 0.1451 0.0706 0.6745
+     position 85 535
+     size 280 30
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
+     style rover_sim_colorable
      {
-      PanelWidgetClass mute_btnback {
-       ignorepointer 1
-       color 0.1255 0.1451 0.0706 0.6745
+      ButtonWidgetClass mute_btn {
+       color 0.1255 0.1451 0.0706 0.298
        position 0 0
-       size 0.5 1
+       size 1 1
        hexactpos 1
        vexactpos 1
        hexactsize 0
        vexactsize 0
-       style rover_sim_colorable
+       style EmptyHighlight
+       "no focus" 1
+       font "gui/fonts/etelkatextpro16"
        {
-        ButtonWidgetClass mute_btn {
-         color 0.1255 0.1451 0.0706 0.298
+        TextWidgetClass mute_btntext {
+         ignorepointer 1
+         color 0.5882 0.6627 0.3412 1
          position 0 0
          size 1 1
          hexactpos 1
          vexactpos 1
          hexactsize 0
          vexactsize 0
-         style EmptyHighlight
-         "no focus" 1
-         font "gui/fonts/etelkatextpro16"
-         {
-          TextWidgetClass mute_btntext {
-           ignorepointer 1
-           color 0.5882 0.6627 0.3412 1
-           position 0 0
-           size 1 1
-           hexactpos 1
-           vexactpos 1
-           hexactsize 0
-           vexactsize 0
-           text "pda_mute"
-           font "gui/fonts/etelkatextpro22"
-           "exact text" 1
-           "text halign" center
-           "text valign" center
-          }
-         }
-        }
-       }
-      }
-      PanelWidgetClass hideid_btnback {
-       ignorepointer 1
-       color 0.1255 0.1451 0.0706 0.6745
-       size 0.5 1
-       halign right_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 0
-       style rover_sim_colorable
-       {
-        ButtonWidgetClass hideid_btn {
-         color 0.1255 0.1451 0.0706 0.298
-         position 0 0
-         size 1 1
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         style EmptyHighlight
-         "no focus" 1
-         font "gui/fonts/etelkatextpro16"
-         {
-          TextWidgetClass hideid_btntext {
-           ignorepointer 1
-           color 0.5882 0.6627 0.3412 1
-           position 0 0
-           size 1 1
-           hexactpos 1
-           vexactpos 1
-           hexactsize 0
-           vexactsize 0
-           text "pda_hideId"
-           font "gui/fonts/etelkatextpro22"
-           "exact text" 1
-           "text halign" center
-           "text valign" center
-          }
-         }
+         text "pda_mute"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
         }
        }
       }
@@ -488,6 +406,7 @@ FrameWidgetClass GearPDAMenu {
   }
   ImageWidgetClass PageMap {
    visible 0
+   clipchildren 1
    inheritalpha 0
    ignorepointer 0
    position 0 0
@@ -502,19 +421,51 @@ FrameWidgetClass GearPDAMenu {
    "no wrap" 1
    stretch 1
    {
-    MapWidgetClass map_widget {
-     color 0.1961 0.2157 0.1137 1
-     position 85 190
-     size 850 535
+    PanelWidgetClass map_widget_panel {
+     clipchildren 1
+     position 77 184
+     size 865 548
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
+     {
+      ImageWidgetClass map_widget {
+       ignorepointer 1
+       color 0.4941 0.5569 0.2824 0.7843
+       size 4096 4096
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       scaled 1
+       image0 "SyberiaScripts\data\pda\namalsk_map.paa"
+       mode blend
+       "no wrap" 0
+       stretch 1
+      }
+      ImageWidgetClass map_center {
+       ignorepointer 1
+       color 0.1255 0.1451 0.0706 1
+       size 48 48
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       image0 "set:dayz_gui image:icon_x"
+       mode blend
+       "src alpha" 1
+      }
+     }
     }
    }
   }
   ImageWidgetClass PageGroups {
-   visible 1
+   visible 0
    inheritalpha 0
    ignorepointer 0
    position 0 0
@@ -589,21 +540,6 @@ FrameWidgetClass GearPDAMenu {
        font "gui/fonts/etelkatextpro16"
        "text color" 0.5882 0.6627 0.3412 1
        "disabled text color" 0.1961 0.2157 0.1137 1
-       {
-        TextWidgetClass member_id_view {
-         ignorepointer 1
-         color 0.7412 0.8353 0.4275 1
-         position 0 0
-         size 1 1
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         font "gui/fonts/etelkatextpro16"
-         "exact text" 0
-         "text valign" center
-        }
-       }
       }
      }
     }
@@ -697,7 +633,7 @@ FrameWidgetClass GearPDAMenu {
    ignorepointer 0
    color 1 1 1 0
    position 75 228
-   size 868 58
+   size 870 58
    valign bottom_ref
    hexactpos 1
    vexactpos 1
@@ -707,6 +643,7 @@ FrameWidgetClass GearPDAMenu {
    "no focus" 0
    {
     PanelWidgetClass pagemsg_back {
+     visible 0
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
      position 0 0
@@ -749,9 +686,10 @@ FrameWidgetClass GearPDAMenu {
      }
     }
     PanelWidgetClass pagemap_back {
+     visible 0
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 250 0
+     position 0 0
      size 250 1
      hexactpos 1
      vexactpos 1
@@ -760,6 +698,7 @@ FrameWidgetClass GearPDAMenu {
      style rover_sim_colorable
      {
       ButtonWidgetClass pagemap_btn {
+       visible 1
        color 0.1255 0.1451 0.0706 0.298
        position 0 0
        size 1 1
@@ -794,7 +733,7 @@ FrameWidgetClass GearPDAMenu {
      visible 0
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 500 0
+     position 0 0
      size 250 1
      hexactpos 1
      vexactpos 1

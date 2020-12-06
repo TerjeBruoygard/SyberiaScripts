@@ -184,7 +184,7 @@ class PluginLogicPDA extends PluginBase
 	
 	void GetVisualUserId( ref ParamsReadContext ctx, ref PlayerIdentity sender )
     {   
-        Param2<string, bool> clientData;
+        Param3<string, bool, bool> clientData;
         if ( !ctx.Read( clientData ) ) return;
         
         PluginGearPDA pluginGearPDA;
@@ -193,6 +193,7 @@ class PluginLogicPDA extends PluginBase
         {
             pluginGearPDA.m_steamId = clientData.param1;
             pluginGearPDA.m_enableGlobalChat = clientData.param2;
+			pluginGearPDA.m_enableMapPage = clientData.param2;
         }
 	}
 	
