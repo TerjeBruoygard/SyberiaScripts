@@ -89,6 +89,7 @@ class GearPDAMenu extends UIScriptedMenu
 		m_map = ImageWidget.Cast( layoutRoot.FindAnyWidget("map_widget") );
 		m_map_coords_text = TextWidget.Cast( layoutRoot.FindAnyWidget("map_coords_text") );
 		m_page_buttons_panel = layoutRoot.FindAnyWidget("PagesBtnsPanel");
+		m_group_help_text = TextWidget.Cast( layoutRoot.FindAnyWidget("group_info") );
 		
 		m_groupMembersList = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "group_members" ) );
 		m_group_add_btn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "add_member_btn" ) );
@@ -535,7 +536,11 @@ class GearPDAMenu extends UIScriptedMenu
 			m_groupMembersList.ClearItems();
 			foreach (ref SyberiaPdaGroupMember member : m_group_members)
 			{
-				m_groupMembersList.AddItem(member.m_name, null, 1);
+				int itemId = m_groupMembersList.AddItem(member.m_id.ToString(), null, 1);
+				m_groupMembersList.SetItem(itemId, member.m_name, null, 2);
+				
+				m_groupMembersList.SetItemColor(itemId, 1, ARGBF(1, 0.588, 0.662, 0.341));
+				m_groupMembersList.SetItemColor(itemId, 2, ARGBF(1, 0.588, 0.662, 0.341));
 			}
 		}
 		
