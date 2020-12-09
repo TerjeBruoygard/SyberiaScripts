@@ -20,7 +20,7 @@ class SyberiaMedicineAmpoule : Inventory_Base
     varQuantityInit=4;
     varQuantityMin=0;
     varQuantityMax=4;
-    varQuantityDestroyOnMin=1;
+    //varQuantityDestroyOnMin=1;
     absorbency=0;
     overdosedIncrement=0.25;
     hiddenSelections[]=

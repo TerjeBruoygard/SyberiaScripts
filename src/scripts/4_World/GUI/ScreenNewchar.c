@@ -3,15 +3,14 @@ class ScreenNewchar extends ScreenBase
 	bool m_updateFacePreview = false;
 	ref RpcNewCharContainer m_metadata;
 	
-	const int m_maxNameLength = 32;
+	const int m_maxNameLength = 16;
 	
 	ref XComboBoxWidget m_genderSelector;
 	ref XComboBoxWidget m_faceSelector;
 	ref ImageWidget m_playerPreview;
-	ref TextWidget m_charNameText;
-	ref EditBoxWidget m_charNameEdit;
 	ref ButtonWidget m_NextBtn;	
 	ref TextListboxWidget m_skillsResult;
+	ref MultilineTextWidget m_nameHintBox;
 	
 	ref TextListboxWidget m_perksTotal;
 	ref TextListboxWidget m_perksUsed;
@@ -20,6 +19,12 @@ class ScreenNewchar extends ScreenBase
 	ref ButtonWidget m_addPerkBtn;
 	ref ButtonWidget m_delPerkBtn;
 	
+	ref TextWidget m_charNameText1;
+	ref TextWidget m_charNameText2;
+	ref EditBoxWidget m_charNameEdit1;
+	ref EditBoxWidget m_charNameEdit2;
+	
+	bool m_isRpcError = false;
 	bool m_isRpcSended = false;
 	bool m_updatePerks = false;
 	int m_currentScore = 0;
@@ -51,13 +56,18 @@ class ScreenNewchar extends ScreenBase
     override Widget Init()
     {
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/ScreenNewchar.layout" );
+		
 		m_genderSelector = XComboBoxWidget.Cast( layoutRoot.FindAnyWidget( "GenderSelector" ) );
 		m_faceSelector = XComboBoxWidget.Cast( layoutRoot.FindAnyWidget( "FaceSelector" ) );	
-		m_playerPreview = ImageWidget.Cast( layoutRoot.FindAnyWidget( "PlayerPreview" ) );	
-		m_charNameEdit = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "CharNameEdit" ) );	
-		m_charNameText = TextWidget.Cast( layoutRoot.FindAnyWidget( "CharNameText" ) );	
+		m_playerPreview = ImageWidget.Cast( layoutRoot.FindAnyWidget( "PlayerPreview" ) );		
 		m_skillsResult = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "SkillsResult" ) );
+		m_nameHintBox = MultilineTextWidget.Cast( layoutRoot.FindAnyWidget( "NameHintBox" ) );
 		m_NextBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "NextBtn" ) );
+		
+		m_charNameEdit1 = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "CharNameEdit1" ) );
+		m_charNameEdit2 = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "CharNameEdit2" ) );
+		m_charNameText1 = TextWidget.Cast( layoutRoot.FindAnyWidget( "CharNameText1" ) );	
+		m_charNameText2 = TextWidget.Cast( layoutRoot.FindAnyWidget( "CharNameText2" ) );
 		
 		m_perksTotal = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "TotalPerksList" ) );
 		m_perksUsed = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "UsedPerksList" ) );
@@ -72,7 +82,6 @@ class ScreenNewchar extends ScreenBase
 	override void OnShow()
 	{
 		super.OnShow();
-		m_charNameEdit.SetText(m_metadata.m_name);
 		m_updateFacePreview = true;
 		m_updatePerks = true;
 	}
@@ -268,8 +277,14 @@ class ScreenNewchar extends ScreenBase
 	override void Update(float timeslice)
 	{
 		super.Update(timeslice);
-
-		m_charNameText.SetText(m_charNameEdit.GetText());
+		
+		if (m_isRpcError)
+		{
+			m_isRpcError = false;
+			m_isRpcSended = false;
+			m_nameHintBox.SetText("#syb_name_already_exist");
+			return;
+		}
 		
 		if (m_isRpcSended)
 		{
@@ -291,7 +306,12 @@ class ScreenNewchar extends ScreenBase
 		
 		UpdateHint();
 		
-		m_NextBtn.Enable(m_currentScore >= 0 && (m_charNameEdit.GetText().LengthUtf8() == 0 || (m_charNameEdit.GetText().LengthUtf8() >= 4 && m_charNameEdit.GetText().LengthUtf8() <= m_maxNameLength)) );
+		string fname = CharacterMetadata.FormatNamePart(m_charNameEdit1.GetText());
+		string sname = CharacterMetadata.FormatNamePart(m_charNameEdit2.GetText());
+		m_charNameText1.SetText(fname);
+		m_charNameText2.SetText(sname);
+		
+		m_NextBtn.Enable(m_currentScore >= 0 && CharacterMetadata.ValidateCharacterNamePart(fname) && CharacterMetadata.ValidateCharacterNamePart(sname));
 	}
 
 	override bool OnClick( Widget w, int x, int y, int button )
@@ -302,17 +322,14 @@ class ScreenNewchar extends ScreenBase
 		{			
 			if (w == m_NextBtn)
 			{
-				if (m_currentScore >= 0)
+				string fname = CharacterMetadata.FormatNamePart(m_charNameEdit1.GetText());
+				string sname = CharacterMetadata.FormatNamePart(m_charNameEdit2.GetText());				
+				if (m_currentScore >= 0 && CharacterMetadata.ValidateCharacterNamePart(fname) && CharacterMetadata.ValidateCharacterNamePart(sname))
 				{
 					m_isRpcSended = true;
 					
 					ref RpcCreateNewCharContainer requestParams = new RpcCreateNewCharContainer();
-					requestParams.m_name = m_charNameEdit.GetText();
-					if (requestParams.m_name.LengthUtf8() > m_maxNameLength)
-					{
-						requestParams.m_name = requestParams.m_name.SubstringUtf8(0, m_maxNameLength);
-					}
-					
+					requestParams.m_name = fname + " " + sname;
 					requestParams.m_isMale = (m_genderSelector.GetCurrentItem() == 0);
 					requestParams.m_faceId = m_faceSelector.GetCurrentItem();					
 					requestParams.m_perks = m_usedPerks;
@@ -374,10 +391,18 @@ class ScreenNewchar extends ScreenBase
 		bool result = super.OnChange(w, x, y, finished);
 	
 		string text;
-		if (w.GetName() == m_charNameEdit.GetName()) {			
-			text = m_charNameEdit.GetText();
+		if (w.GetName() == m_charNameEdit1.GetName()) {			
+			text = m_charNameEdit1.GetText();
 			if (text.LengthUtf8() > m_maxNameLength) {
-				m_charNameEdit.SetText(text.Substring(0, m_maxNameLength));
+				m_charNameEdit1.SetText(text.Substring(0, m_maxNameLength));
+			}
+			
+			return true;
+		}
+		if (w.GetName() == m_charNameEdit2.GetName()) {			
+			text = m_charNameEdit2.GetText();
+			if (text.LengthUtf8() > m_maxNameLength) {
+				m_charNameEdit2.SetText(text.Substring(0, m_maxNameLength));
 			}
 			
 			return true;
@@ -399,9 +424,16 @@ class ScreenNewchar extends ScreenBase
 	override bool OnKeyPress(Widget w, int x, int y, int key) {
 		string text;
 		
-		if (w.GetName() == m_charNameEdit.GetName()) {
-			text = m_charNameEdit.GetText();
-			if (text.LengthUtf8() >= m_maxNameLength) {
+		if (w.GetName() == m_charNameEdit1.GetName()) {
+			text = m_charNameEdit1.GetText();
+			if (text.LengthUtf8() > m_maxNameLength) {
+				return true;
+			}
+		}
+		
+		if (w.GetName() == m_charNameEdit2.GetName()) {
+			text = m_charNameEdit2.GetText();
+			if (text.LengthUtf8() > m_maxNameLength) {
 				return true;
 			}
 		}
