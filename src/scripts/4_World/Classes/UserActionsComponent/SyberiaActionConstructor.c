@@ -14,5 +14,6 @@ modded class ActionConstructor
 		actions.Insert(ActionUseSalveSelf);
 		actions.Insert(ActionOpenPDA);
 		actions.Insert(ActionCheckName);
+		actions.Insert(ActionSayName);
 	}
 };
