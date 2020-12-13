@@ -1,20 +1,10 @@
 class PluginLogicPDA extends PluginBase
 {	
 	EffectSound effect;
-	
-	void PluginLogicPDA()
-	{
 
-	}
-	
-	void ~PluginLogicPDA()
-	{
-
-	}
-	
 	override void OnInit()
 	{
-        GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_PDA_USER_STATE, this, "GetVisualUserId");
+        GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_PDA_USER_STATE, this, "InitPdaProfile");
         GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_PDA_ADD_CONTACT, this, "AddContact");
         GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_PDA_CHECK_CONTACT, this, "CheckContacts");
         GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_PDA_SEND_MESSAGE, this, "SendMessage");
@@ -113,12 +103,12 @@ class PluginLogicPDA extends PluginBase
 	
 	void SendMessage( ref ParamsReadContext ctx, ref PlayerIdentity sender )
     { 
-        Param4< string, string, string, string > clientData;			
+        Param4< int, string, int, string > clientData;			
         if ( !ctx.Read( clientData ) ) return;
         
-        string contactId = clientData.param1;
+        int contactId = clientData.param1;
         string contactName = clientData.param2;
-        string userSenderId = clientData.param3;
+        int userSenderId = clientData.param3;
         string message = clientData.param4;
         
         PluginGearPDA pluginGearPDA;
@@ -146,7 +136,7 @@ class PluginLogicPDA extends PluginBase
 
 	void CheckContacts( ref ParamsReadContext ctx, ref PlayerIdentity sender )
     { 
-        Param5< array<string>, bool, ref array<ref SyberiaPdaGroupMember>, string, string > clientData;
+        Param5< array<int>, bool, ref array<ref SyberiaPdaGroupMember>, string, string > clientData;
         if ( !ctx.Read( clientData ) ) return;
         
         PluginGearPDA pluginGearPDA;
@@ -177,9 +167,9 @@ class PluginLogicPDA extends PluginBase
         }
 	}
 	
-	void GetVisualUserId( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void InitPdaProfile( ref ParamsReadContext ctx, ref PlayerIdentity sender )
     {   
-        Param3<string, bool, bool> clientData;
+        Param4<string, string, bool, bool> clientData;
         if ( !ctx.Read( clientData ) ) return;
         
         PluginGearPDA pluginGearPDA;
@@ -187,14 +177,15 @@ class PluginLogicPDA extends PluginBase
         if (pluginGearPDA)
         {
             pluginGearPDA.m_name = clientData.param1;
-            pluginGearPDA.m_enableGlobalChat = clientData.param2;
-			pluginGearPDA.m_enableMapPage = clientData.param3;
+            pluginGearPDA.m_enableGlobalChat = clientData.param3;
+			pluginGearPDA.m_enableMapPage = clientData.param4;
+			pluginGearPDA.InitPdaProfile(clientData.param2);
         }
 	}
 	
 	void AddContact( ref ParamsReadContext ctx, ref PlayerIdentity sender )
     {        
-        Param2< string, string > clientData;
+        Param2< int, string > clientData;
         if ( !ctx.Read( clientData ) ) return;
         
         PluginGearPDA pluginGearPDA;
@@ -214,6 +205,5 @@ class PluginLogicPDA extends PluginBase
 class SyberiaPdaGroupMember
 {
 	int m_id;
-	string m_uid;
 	string m_name;
 };

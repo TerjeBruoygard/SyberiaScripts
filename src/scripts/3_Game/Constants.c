@@ -44,6 +44,7 @@ enum SyberiaRPC {
 	SYBRPC_PDA_SEND_GROUP_MESSAGE,
 	SYBRPC_PDA_CMD_GROUP,
 	SYBRPC_SCREEN_MESSAGE,
+	SYBRPC_CLIENT_OPTIONS
 };
 
 enum SyberiaScreenEquipPages {
@@ -94,11 +95,6 @@ const int SLEEPING_LEVEL_4 = 1000;
 const int SLEEPING_LEVEL_3 = 5000;
 const int SLEEPING_LEVEL_2 = 10000;
 
-// 0 - DISABLE
-// 1 - CAN CHECK ANY PLAYER (IF NOT IN MASK)
-// 2 - CHECK ONLY DEAD/UNCON PLAYERS
-const int SYB_CHECK_IDENTITY_MODE = 1;
-
 // Constants redefinition
 modded class PlayerConstants
 {
@@ -108,11 +104,11 @@ modded class PlayerConstants
 	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.02;
 	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.001;
 	
-	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC = -1;
-	static const float BLOOD_REGEN_RATE_PER_SEC	= 0.05; 	//base amount of blood regenerated per second 
+	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC = -2;
+	static const float BLOOD_REGEN_RATE_PER_SEC	= 0.05; //base amount of blood regenerated per second 
 	
-	static const float HEALTH_REGEN_MIN	= 0.001;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
-	static const float HEALTH_REGEN_MAX	= 0.005;	//health regen rate at MAXIMUM blood level
+	static const float HEALTH_REGEN_MIN	= 0.0025;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
+	static const float HEALTH_REGEN_MAX	= 0.015;	//health regen rate at MAXIMUM blood level
 	
 	static const float SHOCK_REFILL_CONSCIOUS_SPEED			= 1;		//shock refill speed when the player is conscious
 	static const float SHOCK_REFILl_UNCONSCIOUS_SPEED		= 0.1;		//shock refill speed when the player is unconscious

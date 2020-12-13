@@ -122,10 +122,18 @@ class ScreenEquip extends ScreenBase
 		ref array<string> items = m_equip.Get(m_currentPage);
 		foreach (string itemClass : items)
 		{
-			string itemName = itemClass;
+			string itemName;
 			if (m_currentPage > SyberiaScreenEquipPages.SYBSEP_SPAWN_PAGE && m_currentPage < SyberiaScreenEquipPages.SYBSEP_ITEMS_PAGE)
 			{
-				itemName = GameHelpers.GetItemDisplayName(itemClass);
+				string magName;
+				float health, quantity;
+				TStringArray attachments = new TStringArray();
+				EquipItemData.Parse(itemClass, itemName, attachments, health, quantity, magName);
+				itemName = GameHelpers.GetItemDisplayName(itemName);
+			}
+			else
+			{
+				itemName = itemClass;
 			}
 			
 			m_selection.AddItem(itemName, null, 0);

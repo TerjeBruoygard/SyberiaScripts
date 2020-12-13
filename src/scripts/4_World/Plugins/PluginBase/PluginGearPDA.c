@@ -6,9 +6,9 @@ class PluginGearPDA extends PluginBase
 	
 	ref array<ref PluginGearPDA_Conversation> m_contacts;
 	
-	ref array<string> m_onlineContacts;
+	ref array<int> m_onlineContacts;
 	
-	ref map<string, ref array<ref PluginGearPDA_Comment>> m_comments;
+	ref map<int, ref array<ref PluginGearPDA_Comment>> m_comments;
 	
 	string m_name;
 	
@@ -33,12 +33,11 @@ class PluginGearPDA extends PluginBase
 	void PluginGearPDA()
 	{
 		m_contacts = new array<ref PluginGearPDA_Conversation>();
-		m_comments = new map<string, ref array<ref PluginGearPDA_Comment>>();
-		m_onlineContacts = new array<string>();
+		m_comments = new map<int, ref array<ref PluginGearPDA_Comment>>();
+		m_onlineContacts = new array<int>();
 		m_globalMessages = new array<ref Param2<string, string>>;
 		m_groupMessages = new array<ref Param2<string, string>>;
 		m_options = new PluginGearPDA_Options();
-		m_configDir = "$profile:SyberiaPDA\\";
 	}
 	
 	void ~PluginGearPDA()
@@ -46,8 +45,12 @@ class PluginGearPDA extends PluginBase
 		SaveOptionsConfig();
 	}
 	
-	override void OnInit()
+	void InitPdaProfile(string profileName)
 	{
+		MakeDirectory("$profile:Syberia\\");
+		MakeDirectory("$profile:Syberia\\PDA\\");
+		
+		m_configDir = "$profile:Syberia\\PDA\\" + profileName + "\\";		
 		MakeDirectory(m_configDir);
 		
 		if (!FileExist(m_configDir + contactsBinFilename)) {
@@ -79,54 +82,54 @@ class PluginGearPDA extends PluginBase
 		BinaryFileLoader<ref array<ref PluginGearPDA_Conversation>>.BinaryLoadFile(m_configDir + contactsBinFilename, m_contacts);
 	}
 	
-	void SaveCommentsConfig(string uid)
+	void SaveCommentsConfig(int id)
 	{
-		if (m_comments.Contains(uid))
+		if (m_comments.Contains(id))
 		{
-			ref array<ref PluginGearPDA_Comment> comments = m_comments[uid];
+			ref array<ref PluginGearPDA_Comment> comments = m_comments[id];
 			
 			while (comments.Count() > 100)
 			{
 				comments.RemoveOrdered(0);
 			}
 			
-			BinaryFileLoader<ref array<ref PluginGearPDA_Comment>>.BinarySaveFile(m_configDir + uid + ".bin", comments);
+			BinaryFileLoader<ref array<ref PluginGearPDA_Comment>>.BinarySaveFile(m_configDir + id + ".bin", comments);
 		}
 	}
 	
-	void LoadCommentsConfig(string uid)
+	void LoadCommentsConfig(int id)
 	{
-		string fileName = m_configDir + uid + ".bin";
+		string fileName = m_configDir + id + ".bin";
 		if (FileExist(fileName))
 		{
 			ref array<ref PluginGearPDA_Comment> result = new array<ref PluginGearPDA_Comment>(); 
 			BinaryFileLoader<ref array<ref PluginGearPDA_Comment>>.BinaryLoadFile(fileName, result);
-			m_comments[uid] = result;
+			m_comments[id] = result;
 		}
 	}
 	
-	ref array<ref PluginGearPDA_Comment> GetComments(string uid)
+	ref array<ref PluginGearPDA_Comment> GetComments(int id)
 	{
-		if (!m_comments.Contains(uid))
+		if (!m_comments.Contains(id))
 		{
-			LoadCommentsConfig(uid);
+			LoadCommentsConfig(id);
 		}
 
-		if (!m_comments.Contains(uid))
+		if (!m_comments.Contains(id))
 		{
-			m_comments[uid] = new array<ref PluginGearPDA_Comment>();
+			m_comments[id] = new array<ref PluginGearPDA_Comment>();
 		}
 		
-		return m_comments[uid];
+		return m_comments[id];
 	}
 	
-	void AddComment(string contactId, string senderId, string message)
+	void AddComment(int contactId, int senderId, string message)
 	{
-		if (contactId.Length() > 0)
+		if (contactId != -1)
 		{
 			ref array<ref PluginGearPDA_Comment> comments = GetComments(contactId);
 			ref PluginGearPDA_Comment comment = new PluginGearPDA_Comment();
-			comment.m_UID = senderId;
+			comment.m_id = senderId;
 			comment.m_Message = message;
 			comments.Insert(comment);
 			
@@ -151,12 +154,12 @@ class PluginGearPDA extends PluginBase
 				m_GearPDAMenu.m_sendMessageStatus = 0;
 			}
 				
-			ref array<string> request = new array<string>();
+			ref array<int> request = new array<int>();
 			for (int i = 0; i < m_contacts.Count(); i++)
 			{
-				request.Insert(m_contacts[i].m_UID);
+				request.Insert(m_contacts[i].m_id);
 			}
-			GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_PDA_CHECK_CONTACT, new Param1< ref array<string> >( request ) );
+			GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_PDA_CHECK_CONTACT, new Param1< ref array<int> >( request ) );
             delete request;
 		}
 	}
@@ -182,12 +185,12 @@ class PluginGearPDA extends PluginBase
 		GetGame().GetUIManager().ShowScriptedMenu( m_GearPDAMenu, NULL );
 	}
 	
-	ref PluginGearPDA_Conversation FindContact(string uid)
+	ref PluginGearPDA_Conversation FindContact(int id)
 	{
 		for (int i = 0; i < m_contacts.Count(); i++)
 		{
 			ref PluginGearPDA_Conversation item = m_contacts[i];
-			if (item.m_UID == uid)
+			if (item.m_id == id)
 			{
 				return item;
 			}
@@ -196,19 +199,19 @@ class PluginGearPDA extends PluginBase
 		return null;
 	}
 	
-	void AddContact(string uid, string name)
+	void AddContact(int id, string name)
 	{
-		if (uid.Length() > 0 && name.Length() > 0)
+		if (name.Length() > 0)
 		{
-			if (FindContact(uid) == null)
+			if (FindContact(id) == null)
 			{
 				ref PluginGearPDA_Conversation conv = new PluginGearPDA_Conversation();
-				conv.m_UID = uid;
+				conv.m_id = id;
 				conv.m_Name = name;
 				conv.m_Unreaded = 0;
 				conv.m_IsBanned = false;
 				m_contacts.Insert(conv);
-				m_onlineContacts.Insert(uid);
+				m_onlineContacts.Insert(id);
 				SaveContactsConfig();
 			}
 		}
@@ -219,9 +222,9 @@ class PluginGearPDA extends PluginBase
 		}
 	}
 	
-	void RemoveContact(string uid)
+	void RemoveContact(int id)
 	{
-		ref PluginGearPDA_Conversation contactToDelete = FindContact(uid);
+		ref PluginGearPDA_Conversation contactToDelete = FindContact(id);
 		if (contactToDelete == null)
 		{
 			return;
@@ -230,21 +233,21 @@ class PluginGearPDA extends PluginBase
 		m_contacts.RemoveItem(contactToDelete);
 		SaveContactsConfig();
 		
-		if (m_comments.Contains(uid))
+		if (m_comments.Contains(id))
 		{
-			m_comments.Remove(uid);
+			m_comments.Remove(id);
 		}
 		
-		string fileName = m_configDir + uid + ".bin";
+		string fileName = m_configDir + id + ".bin";
 		if (FileExist(fileName))
 		{
 			DeleteFile(fileName);
 		}
 	}
 	
-	void RenameContact(string uid, string newName)
+	void RenameContact(int id, string newName)
 	{
-		ref PluginGearPDA_Conversation contactToRename = FindContact(uid);
+		ref PluginGearPDA_Conversation contactToRename = FindContact(id);
 		if (contactToRename == null)
 		{
 			return;
@@ -254,9 +257,9 @@ class PluginGearPDA extends PluginBase
 		SaveContactsConfig();
 	}
 	
-	void BanUnbanContact(string uid)
+	void BanUnbanContact(int id)
 	{
-		ref PluginGearPDA_Conversation contactToRename = FindContact(uid);
+		ref PluginGearPDA_Conversation contactToRename = FindContact(id);
 		if (contactToRename == null)
 		{
 			return;
@@ -285,7 +288,7 @@ class PluginGearPDA extends PluginBase
 
 class PluginGearPDA_Conversation
 {
-	string m_UID;
+	int m_id;
 	string m_Name;
 	int m_Unreaded;
 	bool m_IsBanned;
@@ -298,7 +301,7 @@ class PluginGearPDA_Conversation
 
 class PluginGearPDA_Comment
 {
-	string m_UID;
+	int m_id;
 	string m_Message;
 	
 	void PluginGearPDA_Comment()

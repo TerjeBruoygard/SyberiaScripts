@@ -3,7 +3,12 @@ class ActionSurgeryBase: ActionContinuousBase
 	void ApplySurgery( ItemBase item, PlayerBase player, bool self) {}
 	bool ConditionSurgery( ItemBase item, PlayerBase player, bool self)
 	{
-		return (!self && player.m_visceraHit) || (player.m_bulletHits > 0) || (player.m_knifeHits > 0);
+		if ( (GetSyberiaOptions().m_client.m_operateVisceraHimself || !self) && player.m_visceraHit )
+		{
+			return true;
+		}
+		
+		return (player.m_bulletHits > 0) || (player.m_knifeHits > 0);
 	}
 	
 	override string ActionBlockerText( PlayerBase player, ActionTarget target, ItemBase item )

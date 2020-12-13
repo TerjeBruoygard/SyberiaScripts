@@ -2,6 +2,7 @@ class ActionCheckName: ActionInteractBase
 {
 	void ActionCheckName()
 	{
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 		m_HUDCursorIcon = CursorIcons.CloseHood;
 	}
@@ -19,7 +20,13 @@ class ActionCheckName: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		if (SYB_CHECK_IDENTITY_MODE == 0)
+		int mode = 0;		
+		if (GetSyberiaOptions() && GetSyberiaOptions().m_client)
+		{
+			mode = GetSyberiaOptions().m_client.m_checkIdentityMode;
+		}
+				
+		if (mode == 0)
 		{
 			return false;
 		}
@@ -27,14 +34,14 @@ class ActionCheckName: ActionInteractBase
 		PlayerBase ntarget = PlayerBase.Cast(  target.GetObject() );
 		if( ntarget )
 		{
-			if (SYB_CHECK_IDENTITY_MODE == 1)
+			if (mode == 1)
 			{
 				if (!IsFaceClosed(ntarget))
 				{
 					return true;
 				}
 			}
-			else if (SYB_CHECK_IDENTITY_MODE == 2)
+			else if (mode == 2)
 			{
 				if (!ntarget.IsAlive() || ntarget.IsUnconscious())
 				{
@@ -75,6 +82,7 @@ class ActionSayName: ActionInteractBase
 {
 	void ActionCheckName()
 	{
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 		m_HUDCursorIcon = CursorIcons.CloseHood;
 	}
@@ -92,7 +100,13 @@ class ActionSayName: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		if (SYB_CHECK_IDENTITY_MODE != 2)
+		int mode = 0;		
+		if (GetSyberiaOptions() && GetSyberiaOptions().m_client)
+		{
+			mode = GetSyberiaOptions().m_client.m_checkIdentityMode;
+		}
+		
+		if (mode != 2)
 		{
 			return false;
 		}
