@@ -93,6 +93,12 @@ modded class PlayerBase
 		RegisterNetSyncVariableBool("m_salveEffect");
 	}
 	
+	override void SetActionsRemoteTarget( out TInputActionMap InputActionMap)
+	{
+		super.SetActionsRemoteTarget(InputActionMap);
+		AddAction(ActionCheckName, InputActionMap);
+		AddAction(ActionSayName, InputActionMap);
+	}
 	
 	override bool IsBleeding()
 	{

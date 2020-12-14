@@ -9,8 +9,8 @@ class ActionCheckName: ActionInteractBase
 	
 	override void CreateConditionComponents()  
 	{
-		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 		m_ConditionItem = new CCINone;
+		m_ConditionTarget = new CCTDummy( );
 	}
 
 	override string GetText()
@@ -20,36 +20,37 @@ class ActionCheckName: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		if (player.GetItemInHands()) return false;
+		
+		PlayerBase ntarget = PlayerBase.Cast( target.GetObject() );
+		if( !ntarget ) return false;
+		
 		int mode = 0;		
 		if (GetSyberiaOptions() && GetSyberiaOptions().m_client)
 		{
 			mode = GetSyberiaOptions().m_client.m_checkIdentityMode;
 		}
-				
+
 		if (mode == 0)
 		{
 			return false;
 		}
 		
-		PlayerBase ntarget = PlayerBase.Cast(  target.GetObject() );
-		if( ntarget )
+		if (mode == 1)
 		{
-			if (mode == 1)
+			if (!IsFaceClosed(ntarget))
 			{
-				if (!IsFaceClosed(ntarget))
-				{
-					return true;
-				}
-			}
-			else if (mode == 2)
-			{
-				if (!ntarget.IsAlive() || ntarget.IsUnconscious())
-				{
-					return true;
-				}
+				return true;
 			}
 		}
-		
+		else if (mode == 2)
+		{
+			if (!ntarget.IsAlive() || ntarget.IsUnconscious() || ntarget.IsRestrained())
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 	
@@ -80,7 +81,7 @@ class ActionCheckName: ActionInteractBase
 
 class ActionSayName: ActionInteractBase
 {
-	void ActionCheckName()
+	void ActionSayName()
 	{
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
@@ -89,8 +90,8 @@ class ActionSayName: ActionInteractBase
 	
 	override void CreateConditionComponents()  
 	{
-		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 		m_ConditionItem = new CCINone;
+		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 	}
 
 	override string GetText()
@@ -100,6 +101,11 @@ class ActionSayName: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		if (player.GetItemInHands()) return false;
+		
+		PlayerBase ntarget = PlayerBase.Cast( target.GetObject() );
+		if( !ntarget ) return false;
+		
 		int mode = 0;		
 		if (GetSyberiaOptions() && GetSyberiaOptions().m_client)
 		{
@@ -111,13 +117,9 @@ class ActionSayName: ActionInteractBase
 			return false;
 		}
 		
-		PlayerBase ntarget = PlayerBase.Cast( target.GetObject() );
-		if( ntarget )
+		if (ntarget.IsAlive() && !ntarget.IsUnconscious() && !ntarget.IsRestrained())
 		{
-			if (ntarget.IsAlive() && !ntarget.IsUnconscious())
-			{
-				return true;
-			}
+			return true;
 		}
 		
 		return false;

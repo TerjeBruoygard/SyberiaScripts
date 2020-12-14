@@ -112,4 +112,27 @@ modded class PlayerConstants
 	
 	static const float SHOCK_REFILL_CONSCIOUS_SPEED			= 1;		//shock refill speed when the player is conscious
 	static const float SHOCK_REFILl_UNCONSCIOUS_SPEED		= 0.1;		//shock refill speed when the player is unconscious
+	
+	
+	// Metabolic
+	static const float SL_ENERGY_CRITICAL = 0;
+	static const float SL_ENERGY_LOW = 200;
+	static const float SL_ENERGY_NORMAL = 1500;
+	static const float SL_ENERGY_HIGH = 2800;
+	
+	static const float METABOLIC_SPEED_ENERGY_BASAL		= 0.02;		//energy loss per second while idle	
+	static const float METABOLIC_SPEED_ENERGY_WALK		= 0.05;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_JOG		= 0.2;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_SPRINT	= 0.4;		//energy loss per second
+	
+	// Water
+	static const float SL_WATER_CRITICAL = 0;
+	static const float SL_WATER_LOW = 100;
+	static const float SL_WATER_NORMAL = 600;
+	static const float SL_WATER_HIGH = 1300;
+	
+	static const float METABOLIC_SPEED_WATER_BASAL		= 0.02;		//water loss per second while idle	
+	static const float METABOLIC_SPEED_WATER_WALK		= 0.05;		//water loss per second
+	static const float METABOLIC_SPEED_WATER_JOG		= 0.2;		//water loss per second
+	static const float METABOLIC_SPEED_WATER_SPRINT		= 0.3;		//water loss per second
 }

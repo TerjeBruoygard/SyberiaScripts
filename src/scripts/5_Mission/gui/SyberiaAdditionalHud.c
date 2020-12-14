@@ -77,9 +77,9 @@ class SyberiaAdditionalHud
 				m_screenMessageWidget.SetText(m_screenMessageText);
 			}
 			
-			if (m_screenMessageTimer < 1)
+			if (m_screenMessageTimer < 0.2)
 			{
-				m_screenMessageWidget.SetColor( ARGBF(m_screenMessageTimer, 1, 1, 1) );
+				m_screenMessageWidget.SetColor( ARGBF(m_screenMessageTimer / 0.2, 1, 1, 1) );
 			}
 			else if (m_screenMessageDuration - m_screenMessageTimer < 1)
 			{

@@ -131,8 +131,13 @@ class SurgicalKit: Inventory_Base
     descriptionShort="#syb_surgical_kit_once_desc";
     model="SyberiaScripts\data\medical\surgical_kit.p3d";
     rotationFlags=17;
+    varQuantityInit=3;
+    varQuantityMin=0;
+    varQuantityMax=3;
+    quantityBar=1;
+    varQuantityDestroyOnMin=1;
     weight=300;
     absorbency=0.0;
-    itemSize[]={2,2};
+    itemSize[]={1,2};
     ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\surgical_kit");
 };
