@@ -127,6 +127,9 @@ class ActionSayName: ActionInteractBase
 	
 	override void OnEndClient( ActionData action_data )
 	{
-		action_data.m_Player.GetEmoteManager().PlayEmote(EmoteConstants.ID_EMOTE_GREETING);
+		if (action_data.m_Player && action_data.m_Player.GetEmoteManager())
+		{
+			action_data.m_Player.GetEmoteManager().CreateEmoteCBFromMenu(EmoteConstants.ID_EMOTE_GREETING);
+		}
 	}
 };
