@@ -6,3 +6,10 @@ class messagePDA_SoundSet: baseCharacter_SoundSet
         "messagePDA_Soundshader"
     };
 };
+class hearthbit_SoundSet: baseCharacter_SoundSet
+{
+    soundShaders[]=
+    {
+        "hearthbit_Soundshader"
+    };
+};

@@ -13,8 +13,6 @@ modded class PlayerBase
 	int m_hematomaHits;
 	int m_visceraHit;
 	int m_painLevel;
-	float m_painEffectDurationLast;
-	float m_painEffectDurationCur;
 	int m_painkillerEffect;
 	int m_sepsis;
 	int m_zombieVirus;
@@ -55,8 +53,6 @@ modded class PlayerBase
 		m_visceraHit = 0;
 		m_concussionHit = false;
 		m_painLevel = 0;
-		m_painEffectDurationLast = 0;
-		m_painEffectDurationCur = 0;
 		m_painkillerEffect = 0;
 		m_stomatchhealEffect = false;
 		m_antibioticsEffect = false;

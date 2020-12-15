@@ -869,7 +869,7 @@ FrameWidgetClass rootFrame {
   MultilineTextWidgetClass ScreenInfoWidget {
    visible 1
    ignorepointer 1
-   position 0 150
+   position 0 120
    size 0.6 80
    halign center_ref
    valign bottom_ref
