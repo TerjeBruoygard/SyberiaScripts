@@ -59,6 +59,7 @@ enum SyberiaScreenEquipPages {
 };
 
 const int NTFKEY_SLEEPING = 1000;
+const int NTFKEY_MINDSTATE = 1001;
 const int NTFKEY_BULLETHIT = 1100;
 const int NTFKEY_KNIFEHIT = 1101;
 const int NTFKEY_HEMATOMA = 1102;
@@ -94,6 +95,12 @@ const int SLEEPING_LEVEL_5 = 100;
 const int SLEEPING_LEVEL_4 = 1000;
 const int SLEEPING_LEVEL_3 = 5000;
 const int SLEEPING_LEVEL_2 = 10000;
+
+const float MINDSTATE_MAX_VALUE = 100;
+const float MINDSTATE_LEVEL_5 = 1.0;
+const float MINDSTATE_LEVEL_4 = 10.0;
+const float MINDSTATE_LEVEL_3 = 30.0;
+const float MINDSTATE_LEVEL_2 = 70.0;
 
 // Constants redefinition
 modded class PlayerConstants

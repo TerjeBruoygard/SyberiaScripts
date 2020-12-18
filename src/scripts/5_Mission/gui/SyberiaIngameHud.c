@@ -1,6 +1,6 @@
 modded class IngameHud
 {	
-	void InitNotifierWidget(int id, ref Widget baseWidget, string name)
+	void InitNotifierWidget(int id, ref Widget baseWidget, string name, int offset)
 	{
 		ref Widget notifierWidget = baseWidget.FindAnyWidget(name);
 		baseWidget.RemoveChild(notifierWidget);
@@ -18,7 +18,7 @@ modded class IngameHud
 		defaultNotifiersPanel.FindAnyWidget("Thirsty").GetPos(x, y);
 		defaultNotifiersPanel.FindAnyWidget("Hungry").GetPos(x2, y);
 		widgetWidth = x - x2;
-		widgetOffsetX = x + widgetWidth;
+		widgetOffsetX = x + (widgetWidth * offset);
 		
 		defaultNotifiersPanel.GetSize(x, y);
 		defaultNotifiersPanel.SetSize(x + widgetWidth, y);
