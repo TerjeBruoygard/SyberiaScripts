@@ -41,6 +41,7 @@ class CfgVehicles
     #include "medicine_base.hpp"
     #include "electronic_base.hpp"
     #include "sleeping_bags.hpp"
+    #include "sounds_emitters.hpp"
 };
 
 class CfgSounds

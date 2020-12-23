@@ -18,16 +18,6 @@ class SyberiaActionPlacementApplyCB : ActionContinuousBaseCB
 	{
 		m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.DEFAULT_DEPLOY);
 	}
-	
-	override void OnAnimationEvent(int pEventID)	
-	{
-		super.OnAnimationEvent( pEventID );
-		
-		if (pEventID == UA_ANIM_EVENT && GetGame().IsServer())
-		{					
-			m_ActionData.m_MainItem.SoundSynchRemote();
-		}
-	}
 };
 
 class SyberiaActionPlacementApply : ActionContinuousBase
@@ -56,11 +46,6 @@ class SyberiaActionPlacementApply : ActionContinuousBase
 	{
 		return true;
 	}
-	
-	/*override bool HasAlternativeInterrupt()
-	{
-		return true;
-	}*/
 	
 	override string GetText()
 	{
@@ -188,13 +173,6 @@ class SyberiaActionPlacementApply : ActionContinuousBase
 		if ( action_data.m_Player.IsPlacingServer() )
 		{
 			action_data.m_Player.GetHologramServer().SetUpdatePosition( false );
-		}
-		
-		if ( GetGame().IsMultiplayer() )
-		{
-			EntityAI entity_for_placing = action_data.m_MainItem;
-			GetGame().AddActionJuncture( action_data.m_Player, entity_for_placing, 10000 );
-			action_data.m_MainItem.SetIsBeingPlaced( true );
 		}
 	}
 	
