@@ -31,5 +31,5 @@ class ItemPDA: Inventory_Base
         attachmentAction=1;
         wetnessExposure=0.1;
     };
-    ITEM_DAMAGE_SYSTEM(250, "SyberiaScripts\data\pda\pda");
+    ITEM_DAMAGE_SYSTEM(250, "SyberiaScripts\data\pda\pda.rvmat", "SyberiaScripts\data\pda\pda_damage.rvmat", "SyberiaScripts\data\pda\pda_destruct.rvmat");
 };

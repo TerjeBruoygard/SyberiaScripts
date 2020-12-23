@@ -28,7 +28,7 @@ class SalveKapsikam : SalveBase
     {
         "SyberiaScripts\data\medical\salve_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(150, "SyberiaScripts\data\medical\salve");
+    ITEM_DAMAGE_SYSTEM(150, "SyberiaScripts\data\medical\salve.rvmat", "SyberiaScripts\data\medical\salve_damage.rvmat", "SyberiaScripts\data\medical\salve_destruct.rvmat");
 };
 
 class SalveFinalgon : SalveBase
@@ -42,7 +42,7 @@ class SalveFinalgon : SalveBase
     {
         "SyberiaScripts\data\medical\salve_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(150, "SyberiaScripts\data\medical\salve");
+    ITEM_DAMAGE_SYSTEM(150, "SyberiaScripts\data\medical\salve.rvmat", "SyberiaScripts\data\medical\salve_damage.rvmat", "SyberiaScripts\data\medical\salve_destruct.rvmat");
 };
 
 class SalveViprosal : SalveBase
@@ -56,5 +56,5 @@ class SalveViprosal : SalveBase
     {
         "SyberiaScripts\data\medical\salve_orange_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(150, "SyberiaScripts\data\medical\salve");
+    ITEM_DAMAGE_SYSTEM(150, "SyberiaScripts\data\medical\salve.rvmat", "SyberiaScripts\data\medical\salve_damage.rvmat", "SyberiaScripts\data\medical\salve_destruct.rvmat");
 };

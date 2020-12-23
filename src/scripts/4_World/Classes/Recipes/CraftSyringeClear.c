@@ -18,7 +18,7 @@ class CraftSyringeClear extends RecipeBase
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
 		m_MaxDamageIngredient[1] = 3;//-1 = disable check
 		
-		m_MinQuantityIngredient[1] = 5;//-1 = disable check
+		m_MinQuantityIngredient[1] = 1;//-1 = disable check
 		m_MaxQuantityIngredient[1] = -1;//-1 = disable check
 		//----------------------------------------------------------------------------------------------------------------------
 		
@@ -34,11 +34,10 @@ class CraftSyringeClear extends RecipeBase
 		
 		//ingredient 2
 		InsertIngredient(1,"AmpouleAlcohol");//you can insert multiple ingredients this way
-		InsertIngredient(1,"DisinfectantAlcohol");//you can insert multiple ingredients this way
 		
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = -25;// 0 = do nothing
+		m_IngredientAddQuantity[1] = -1;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------

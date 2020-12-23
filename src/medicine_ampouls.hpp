@@ -40,7 +40,7 @@ class AmpouleAlcohol : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -55,7 +55,7 @@ class AmpouleHihlofos : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -70,7 +70,7 @@ class AmpouleCypermetrin : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -85,7 +85,7 @@ class AmpouleDiazinon : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -100,7 +100,7 @@ class AmpouleArsenic : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -115,7 +115,7 @@ class AmpouleNovocain : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -130,7 +130,7 @@ class AmpouleIrineks : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -145,7 +145,7 @@ class AmpouleNimesulid : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -160,7 +160,7 @@ class AmpouleKetoprofen : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -176,7 +176,7 @@ class AmpoulePropofol : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -192,7 +192,7 @@ class AmpouleTiopental : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -208,7 +208,7 @@ class AmpouleKetamin : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -223,7 +223,7 @@ class AmpoulePropanidid : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -238,7 +238,7 @@ class AmpouleGexobarbital : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -254,7 +254,7 @@ class AmpouleSodiumOxybutirate : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -273,7 +273,7 @@ class AmpouleMetoclopramid : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -288,7 +288,7 @@ class AmpouleZerukal : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -303,7 +303,7 @@ class AmpouleKetorol : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -318,7 +318,7 @@ class AmpouleDiklofenak : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -334,7 +334,7 @@ class AmpouleHeptral : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -354,7 +354,7 @@ class AmpouleCylaspen : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -371,7 +371,7 @@ class AmpouleGrimipenem : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -388,7 +388,7 @@ class AmpouleZeftriaxon : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -405,7 +405,7 @@ class AmpouleErytromicyn : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -423,7 +423,7 @@ class AmpouleFlemoclav : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -440,7 +440,7 @@ class AmpouleOcsacylin : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -458,7 +458,7 @@ class AmpouleImipenem : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -476,7 +476,7 @@ class AmpouleAmoksivan : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -493,7 +493,7 @@ class AmpouleZivirol : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -508,7 +508,7 @@ class AmpouleMeksidol : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -523,7 +523,7 @@ class AmpouleActovegin : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -538,7 +538,7 @@ class AmpouleNeiroks : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -556,7 +556,7 @@ class AmpoulePeklitakcel : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -572,7 +572,7 @@ class AmpouleNonacogAlpha : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -588,7 +588,7 @@ class AmpouleAminokaprolSulfat : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -604,7 +604,7 @@ class AmpouleVikasol : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -620,7 +620,7 @@ class AmpouleEtamzilat : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -636,7 +636,7 @@ class AmpoulePerftoran : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -652,7 +652,7 @@ class AmpouleMaltofer : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -670,7 +670,7 @@ class AmpouleErytropoenin : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -687,7 +687,7 @@ class AmpouleAdrenalin05 : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -703,7 +703,7 @@ class AmpouleAdrenalin10 : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };
 
@@ -719,6 +719,6 @@ class AmpouleAdrenalin30 : SyberiaMedicineAmpoule
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule.rvmat", "SyberiaScripts\data\medical\ampoule_damage.rvmat", "SyberiaScripts\data\medical\ampoule_destruct.rvmat");
     AMPOUL_ANIM_EVENT();
 };

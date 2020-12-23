@@ -41,7 +41,7 @@ class InjectorPromedol : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
 
@@ -56,7 +56,7 @@ class InjectorZivirol : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
 
@@ -70,7 +70,7 @@ class InjectorTopoizomeraza : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
 
@@ -87,7 +87,7 @@ class InjectorErytropoenin : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
 
@@ -102,7 +102,7 @@ class InjectorNeiroks : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
 
@@ -120,7 +120,7 @@ class InjectorAmoksivan : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_red_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
 
@@ -135,7 +135,7 @@ class InjectorKetorol : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
 
@@ -151,7 +151,7 @@ class InjectorEpipen : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
 
@@ -166,6 +166,6 @@ class InjectorNovichek : InjectorBase
     {
         "SyberiaScripts\data\medical\injector_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector.rvmat", "SyberiaScripts\data\medical\injector_damage.rvmat", "SyberiaScripts\data\medical\injector_destruct.rvmat");
     INJECTOR_ANIM_EVENTS();
 };
