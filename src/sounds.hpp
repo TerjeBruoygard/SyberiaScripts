@@ -41,3 +41,17 @@ class sbag_deploy: default
         "SyberiaScripts\data\sleeping\deploy.ogg", 2, 1, 25
     };
 };
+class sleeping_male: default
+{
+    sound[]=
+    {
+        "SyberiaScripts\data\sleeping\sleeping_male.ogg", 1, 1, 10
+    };
+};
+class sleeping_female: default
+{
+    sound[]=
+    {
+        "SyberiaScripts\data\sleeping\sleeping_female.ogg", 0.8, 1, 10
+    };
+};

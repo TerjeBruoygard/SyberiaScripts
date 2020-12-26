@@ -16,6 +16,7 @@ modded class ActionConstructor
 		actions.Insert(SyberiaActionPlacementApply);
 		actions.Insert(ActionOpenPDA);
 		actions.Insert(ActionCheckName);
-		actions.Insert(ActionSayName);		
+		actions.Insert(ActionSayName);
+		actions.Insert(ActionSleep);
 	}
 };

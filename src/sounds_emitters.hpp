@@ -41,3 +41,18 @@ class SleepingBagPlaced_SoundEmitter: SyberiaSoundEmitter
     emitterRange=30;
     emitterSound="sbag_deploy";
 };
+
+class SleepingMale_SoundEmitter: SyberiaSoundEmitter
+{
+    scope=2;
+    emitterLifetime=5;
+    emitterRange=10;
+    emitterSound="sleeping_male";
+};
+class SleepingFemale_SoundEmitter: SyberiaSoundEmitter
+{
+    scope=2;
+    emitterLifetime=4;
+    emitterRange=10;
+    emitterSound="sleeping_female";
+};

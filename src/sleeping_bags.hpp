@@ -37,6 +37,13 @@ class SleepingBagPlaced_Base : BaseBuildingBase {
 
 class SleepingBagPlaced_BaseColor : SleepingBagPlaced_Base {
     placedSound="SleepingBagPlaced_SoundEmitter";
+    foldingSound="SleepingBagPlaced_SoundEmitter";
+    sleepingSound="SleepingBagPlaced_SoundEmitter";
+    physLayer="item_large";
+    carveNavmesh=0;
+    varTemperatureInit=25;
+    varTemperatureMin=25;
+    varTemperatureMax=25;
 };
 
 class SleepingBagPlacing : SleepingBagPlaced_Base {

@@ -105,8 +105,15 @@ class SyberiaAdditionalHud
 	
 	void ShowScreenMessage(string message, float duration)
 	{
-		m_screenMessageDuration = duration;
-		m_screenMessageText = message;
-		m_screenMessageTimer = 0;
+		if (m_screenMessageText == message)
+		{
+			m_screenMessageTimer = 0.2;
+		}
+		else
+		{
+			m_screenMessageDuration = duration;
+			m_screenMessageText = message;
+			m_screenMessageTimer = 0;
+		}
 	}
 }

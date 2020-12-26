@@ -3,6 +3,7 @@ modded class PlayerBase
 	// Sleeping
 	int m_lastSleepingValue;
 	int m_sleepingValue;
+	int m_sleepingLevel;
 	
 	// Adv medicine
 	int m_bulletHits;
@@ -37,8 +38,10 @@ modded class PlayerBase
 		// Sleeping
 		m_lastSleepingValue = SLEEPING_MAX_VALUE;
 		m_sleepingValue = SLEEPING_MAX_VALUE;
+		m_sleepingLevel = (int)SyberiaSleepingLevel.SYBSL_NONE;
 		RegisterNetSyncVariableInt("m_lastSleepingValue", 0, SLEEPING_MAX_VALUE);
 		RegisterNetSyncVariableInt("m_sleepingValue", 0, SLEEPING_MAX_VALUE);
+		RegisterNetSyncVariableInt("m_sleepingLevel", -2, 2);
 		
 		// Adv medicine
 		m_overdosedValue = 0;
@@ -134,6 +137,15 @@ modded class PlayerBase
 		if (value < SLEEPING_LEVEL_3) return 3;
 		if (value < SLEEPING_LEVEL_2) return 2;
 		return 1; 
+	}
+	
+	SyberiaSleepingLevel GetSleepingProcessLevel()
+	{
+		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_COLD) return SyberiaSleepingLevel.SYBSL_COLD;
+		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_HOT) return SyberiaSleepingLevel.SYBSL_HOT;
+		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_COMFORT) return SyberiaSleepingLevel.SYBSL_COMFORT;
+		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_PERFECT) return SyberiaSleepingLevel.SYBSL_PERFECT;
+		return SyberiaSleepingLevel.SYBSL_NONE;
 	}
 	
 	int GetCurrentPainLevel()
