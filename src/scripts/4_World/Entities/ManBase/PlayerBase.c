@@ -19,10 +19,11 @@ modded class PlayerBase
 	int m_knifeBandage1;
 	int m_knifeBandage2;
 	int m_adrenalinEffect;
+	int m_influenzaLevel;
+	int m_antibioticsLevel;
 	float m_overdosedValue;	
 	bool m_concussionHit;
 	bool m_stomatchhealEffect;
-	bool m_antibioticsEffect;
 	bool m_bloodHemostaticEffect;
 	bool m_hematopoiesisEffect;
 	bool m_salveEffect;
@@ -53,7 +54,6 @@ modded class PlayerBase
 		m_painLevel = 0;
 		m_painkillerEffect = 0;
 		m_stomatchhealEffect = false;
-		m_antibioticsEffect = false;
 		m_sepsis = 0;
 		m_zombieVirus = 0;
 		m_bulletBandage1 = 0;
@@ -64,6 +64,8 @@ modded class PlayerBase
 		m_hematopoiesisEffect = false;
 		m_salveEffect = false;
 		m_adrenalinEffect = 0;
+		m_influenzaLevel = 0;
+		m_antibioticsLevel = 0;
 		RegisterNetSyncVariableFloat("m_overdosedValue");
 		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
@@ -78,10 +80,11 @@ modded class PlayerBase
 		RegisterNetSyncVariableInt("m_knifeBandage1", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeBandage2", 0, 99);
 		RegisterNetSyncVariableInt("m_adrenalinEffect", 0, 3);
+		RegisterNetSyncVariableInt("m_influenzaLevel", 0, 3);
+		RegisterNetSyncVariableInt("m_antibioticsLevel", 0, 3);
 		
 		RegisterNetSyncVariableBool("m_concussionHit");
 		RegisterNetSyncVariableBool("m_stomatchhealEffect");
-		RegisterNetSyncVariableBool("m_antibioticsEffect");
 		RegisterNetSyncVariableBool("m_bloodHemostaticEffect");
 		RegisterNetSyncVariableBool("m_hematopoiesisEffect");
 		RegisterNetSyncVariableBool("m_salveEffect");
@@ -98,6 +101,21 @@ modded class PlayerBase
 		super.SetActionsRemoteTarget(InputActionMap);
 		AddAction(ActionCheckName, InputActionMap);
 		AddAction(ActionSayName, InputActionMap);
+	}
+	
+	override void IncreaseDiseaseCount()
+	{
+		m_DiseaseCount = 0;
+	}
+	
+	override void DecreaseDiseaseCount()
+	{
+		m_DiseaseCount = 0;
+	}
+	
+	override bool HasDisease()
+	{
+		return false;
 	}
 	
 	override bool IsBleeding()

@@ -200,7 +200,7 @@ class TabletsIbuprofen : TabletsBase
     varQuantityMax=10;
     medPainkillerLevel=1;
     medPainkillerTimeSec=800;
-    medAntibioticLevel=1;
+    medAntibioticLevel=2;
     medAntibioticsTimeSec=400;
     medAntibioticsStrength = 0.8;
     overdosedIncrement=0.2;
@@ -221,7 +221,7 @@ class TabletsNurofen : TabletsBase
     varQuantityMax=10;
     medPainkillerLevel=1;
     medPainkillerTimeSec=800;
-    medAntibioticLevel=1;
+    medAntibioticLevel=2;
     medAntibioticsTimeSec=600;
     medAntibioticsStrength = 1.0;
     overdosedIncrement=0.2;
@@ -240,7 +240,7 @@ class TabletsTetracycline : TabletsBase
     model="SyberiaScripts\data\medical\tablets.p3d";
     varQuantityInit=10;
     varQuantityMax=10;
-    medAntibioticLevel=1;
+    medAntibioticLevel=2;
     medAntibioticsTimeSec=900;
     medAntibioticsStrength = 1.5;
     overdosedIncrement=0.2;
@@ -259,7 +259,7 @@ class TabletsAmoksiklav : TabletsBase
     model="SyberiaScripts\data\medical\tablets.p3d";
     varQuantityInit=10;
     varQuantityMax=10;
-    medAntibioticLevel=1;
+    medAntibioticLevel=2;
     medAntibioticsTimeSec=1200;
     medAntibioticsStrength = 1.5;
     overdosedIncrement=0.25;
@@ -278,7 +278,7 @@ class TabletsAmpicylin : TabletsBase
     model="SyberiaScripts\data\medical\tablets.p3d";
     varQuantityInit=10;
     varQuantityMax=10;
-    medAntibioticLevel=1;
+    medAntibioticLevel=2;
     medAntibioticsTimeSec=900;
     medAntibioticsStrength = 1.3;
     overdosedIncrement=0.23;
@@ -297,7 +297,7 @@ class TabletsPiperacylin : TabletsBase
     model="SyberiaScripts\data\medical\tablets.p3d";
     varQuantityInit=10;
     varQuantityMax=10;
-    medAntibioticLevel=1;
+    medAntibioticLevel=2;
     medAntibioticsTimeSec=1100;
     medAntibioticsStrength = 1.4;
     overdosedIncrement=0.25;
@@ -354,7 +354,7 @@ class TabletsAmoksivan : TabletsBase
     model="SyberiaScripts\data\medical\tablets.p3d";
     varQuantityInit=10;
     varQuantityMax=10;
-    medAntibioticLevel=1;
+    medAntibioticLevel=2;
     medAntibioticsTimeSec=600;
     medAntibioticsStrength = 1.2;
     overdosedIncrement=0.28;
