@@ -87,10 +87,12 @@ const int NTFKEY_USESALVE = 1115;
 const int NTFKEY_ADRENALIN = 1116;
 const int NTFKEY_OVERDOSED = 1117;
 const int NTFKEY_INFLUENZA = 1118;
+const int NTFKEY_STOMATCHPOISONING = 1119;
 
-const int LEVELED_NTFKEY_BADGES_COUNT = 6;
+const int LEVELED_NTFKEY_BADGES_COUNT = 8;
 const int LEVELED_NTFKEY_BADGES[LEVELED_NTFKEY_BADGES_COUNT] = { 
-	NTFKEY_PAIN, NTFKEY_PAINKILLER, NTFKEY_ADRENALIN, NTFKEY_OVERDOSED, NTFKEY_INFLUENZA, NTFKEY_ANTIBIOTIC 
+	NTFKEY_PAIN, NTFKEY_PAINKILLER, NTFKEY_ADRENALIN, NTFKEY_OVERDOSED, NTFKEY_INFLUENZA, 
+	NTFKEY_ANTIBIOTIC, NTFKEY_STOMATCHPOISONING, NTFKEY_STOMATCHHEAL 
 };
 
 const string ALLOWED_LETTERS_IN_NAME = "abcdefghijklmnopqrstuvwxyz";
@@ -121,7 +123,7 @@ modded class PlayerConstants
 	static const float BLOOD_REGEN_RATE_PER_SEC	= 0.05; //base amount of blood regenerated per second 
 	
 	static const float HEALTH_REGEN_MIN	= 0.002;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
-	static const float HEALTH_REGEN_MAX	= 0.008;	//health regen rate at MAXIMUM blood level
+	static const float HEALTH_REGEN_MAX	= 0.01;	//health regen rate at MAXIMUM blood level
 	
 	static const float SHOCK_REFILL_CONSCIOUS_SPEED			= 1;		//shock refill speed when the player is conscious
 	static const float SHOCK_REFILl_UNCONSCIOUS_SPEED		= 0.1;		//shock refill speed when the player is unconscious
@@ -148,4 +150,50 @@ modded class PlayerConstants
 	static const float METABOLIC_SPEED_WATER_WALK		= 0.05;		//water loss per second
 	static const float METABOLIC_SPEED_WATER_JOG		= 0.2;		//water loss per second
 	static const float METABOLIC_SPEED_WATER_SPRINT		= 0.3;		//water loss per second
-}
+};
+
+modded class GameConstants
+{
+	const int 	STAMINA_DRAIN_STANDING_SPRINT_PER_SEC = 2; //in units (how much sprint depletes stamina)
+	const int 	STAMINA_DRAIN_CROUCHED_SPRINT_PER_SEC = 1; //in units (how much sprint in crouch depletes stamina)
+	const int 	STAMINA_DRAIN_PRONE_SPRINT_PER_SEC = 1; //in units (how much sprint in prone depletes stamina)
+	const int	STAMINA_DRAIN_SWIM_FAST_PER_SEC = 3; //in units (how much fast swimming depletes stamina)
+	const int	STAMINA_DRAIN_LADDER_FAST_PER_SEC = 3; //in units (how much fast ladder climb depletes stamina)
+	
+	const float	STAMINA_DRAIN_HOLD_BREATH_START = 0.2; //in units (how much holding breath depletes stamina at the start)
+	const float	STAMINA_DRAIN_HOLD_BREATH_END = 1.0; //in units (how much holding breath depletes stamina at the end)
+	const float	STAMINA_DRAIN_JUMP = 20;		// in units (how much jumping depletes stamina)
+	const float	STAMINA_DRAIN_VAULT = 10;		// in units (how much jumping depletes stamina)
+	const float	STAMINA_DRAIN_CLIMB = 20;		// in units (how much jumping depletes stamina)
+	const float	STAMINA_DRAIN_MELEE_LIGHT = 5; //in units (how much light melee punch depletes stamina)
+	const float	STAMINA_DRAIN_MELEE_HEAVY = 15; //in units (how much heavy melee punch depletes stamina)
+	const float	STAMINA_DRAIN_MELEE_EVADE = 8; // in units (how much evade depletes stamina)
+	
+	const float STAMINA_DRAIN_HOLD_BREATH_DURATION = 5.0; //in seconds, time it takes to increase stamina drain from STAMINA_DRAIN_HOLD_BREATH_START to STAMINA_DRAIN_HOLD_BREATH_END
+	const float	STAMINA_DRAIN_HOLD_BREATH_EXPONENT = 4.0; //holding breath exponent
+	
+	const int 	STAMINA_GAIN_JOG_PER_SEC = 0.5; //in units (how much of stamina units is gained while jogging)
+	const int 	STAMINA_GAIN_WALK_PER_SEC = 1; //in units (how much of stamina units is gained while walking)
+	const int 	STAMINA_GAIN_IDLE_PER_SEC = 3; //in units (how much of stamina units is gained while iddling)
+	const int	STAMINA_GAIN_SWIM_PER_SEC = 0.5; //in units (how much of stamina units is gained while slowly swim)
+	const int	STAMINA_GAIN_LADDER_PER_SEC = 1; //in units (how much of stamina units is gained while slowly swim)
+	const float STAMINA_GAIN_BONUS_CAP = 1.0; //in units (tells how much extra units can be added at best to stamina regain)
+	
+	const float STAMINA_KG_TO_STAMINAPERCENT_PENALTY = 0.75; //in units (by how many  units is max stamina bar reduced for each 1 kg of load weight)
+	const float STAMINA_MIN_CAP = 5; //in units (overload won't reduce max stamina bar under this value)
+	const float STAMINA_HOLD_BREATH_THRESHOLD_ACTIVATE = 10; // in units
+	const float STAMINA_HOLD_BREATH_THRESHOLD_DRAIN = 0; // in units
+	const float STAMINA_JUMP_THRESHOLD = 25; // in units
+	const float STAMINA_VAULT_THRESHOLD = 20; // in units
+	const float STAMINA_CLIMB_THRESHOLD = 42; // in units
+	
+	
+	const float STAMINA_MELEE_HEAVY_THRESHOLD = STAMINA_DRAIN_MELEE_HEAVY; // in units (how many units we need to make a heavy hit in melee)
+	const float STAMINA_MELEE_EVADE_THRESHOLD = 8; // in units
+	const float STAMINA_REGEN_COOLDOWN_DEPLETION = 0.45; // in secs (how much time we will spend in cooldown before the stamina will starts with regeneration)
+	const float STAMINA_REGEN_COOLDOWN_EXHAUSTION = 0.5;
+	const float STAMINA_WEIGHT_LIMIT_THRESHOLD = 6000; //! in grams (weight where the player is not penalized by stamina)
+	const float STAMINA_KG_TO_GRAMS = 1000; //for kg to g conversion
+	const float STAMINA_SYNC_RATE = 1; //in secs
+	const float STAMINA_MAX = 120;
+};

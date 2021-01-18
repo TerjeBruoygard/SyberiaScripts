@@ -74,6 +74,7 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_ADRENALIN, badgets, "Adrenalin");
 				m_Hud.InitBadgetWidget(NTFKEY_OVERDOSED, badgets, "Overdosed");
 				m_Hud.InitBadgetWidget(NTFKEY_INFLUENZA, badgets, "Influenza");
+				m_Hud.InitBadgetWidget(NTFKEY_STOMATCHPOISONING, badgets, "Stomatchpoison");
 			}
 		}
 		
@@ -109,7 +110,7 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_PAIN, player.GetCurrentPainLevel());
 				m_Hud.DisplayBadge(NTFKEY_PAINKILLER, player.m_painkillerEffect);
 				m_Hud.DisplayBadge(NTFKEY_ANTIBIOTIC, player.m_antibioticsLevel);
-				m_Hud.DisplayBadge(NTFKEY_STOMATCHHEAL, player.m_stomatchhealEffect);
+				m_Hud.DisplayBadge(NTFKEY_STOMATCHHEAL, player.m_stomatchhealLevel);
 				m_Hud.DisplayBadge(NTFKEY_SEPSIS, player.HasVisibleSepsis());
 				m_Hud.DisplayBadge(NTFKEY_ZVIRUS, player.HasVisibleZVirus());
 				m_Hud.DisplayBadge(NTFKEY_BANDAGE1, player.m_bulletBandage1 + player.m_knifeBandage1);
@@ -120,6 +121,7 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_ADRENALIN, player.m_adrenalinEffect);
 				m_Hud.DisplayBadge(NTFKEY_OVERDOSED, (int)Math.Floor(Math.Clamp(player.m_overdosedValue, 0, 3)));
 				m_Hud.DisplayBadge(NTFKEY_INFLUENZA, player.m_influenzaLevel);
+				m_Hud.DisplayBadge(NTFKEY_STOMATCHPOISONING, player.m_stomatchpoisonLevel);
 			}
 						
 			OnUpdateAdvMedicineGUI(player, timeslice);

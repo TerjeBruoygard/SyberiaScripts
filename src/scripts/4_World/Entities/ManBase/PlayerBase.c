@@ -21,9 +21,10 @@ modded class PlayerBase
 	int m_adrenalinEffect;
 	int m_influenzaLevel;
 	int m_antibioticsLevel;
+	int m_stomatchpoisonLevel;
+	int m_stomatchhealLevel;
 	float m_overdosedValue;	
 	bool m_concussionHit;
-	bool m_stomatchhealEffect;
 	bool m_bloodHemostaticEffect;
 	bool m_hematopoiesisEffect;
 	bool m_salveEffect;
@@ -53,7 +54,8 @@ modded class PlayerBase
 		m_concussionHit = false;
 		m_painLevel = 0;
 		m_painkillerEffect = 0;
-		m_stomatchhealEffect = false;
+		m_stomatchpoisonLevel = 0;
+		m_stomatchhealLevel = 0;
 		m_sepsis = 0;
 		m_zombieVirus = 0;
 		m_bulletBandage1 = 0;
@@ -81,10 +83,11 @@ modded class PlayerBase
 		RegisterNetSyncVariableInt("m_knifeBandage2", 0, 99);
 		RegisterNetSyncVariableInt("m_adrenalinEffect", 0, 3);
 		RegisterNetSyncVariableInt("m_influenzaLevel", 0, 3);
-		RegisterNetSyncVariableInt("m_antibioticsLevel", 0, 3);
+		RegisterNetSyncVariableInt("m_antibioticsLevel", 0, 3);		
+		RegisterNetSyncVariableInt("m_stomatchpoisonLevel", 0, 3);
+		RegisterNetSyncVariableInt("m_stomatchhealLevel", 0, 3);
 		
 		RegisterNetSyncVariableBool("m_concussionHit");
-		RegisterNetSyncVariableBool("m_stomatchhealEffect");
 		RegisterNetSyncVariableBool("m_bloodHemostaticEffect");
 		RegisterNetSyncVariableBool("m_hematopoiesisEffect");
 		RegisterNetSyncVariableBool("m_salveEffect");
