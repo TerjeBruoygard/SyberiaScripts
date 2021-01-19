@@ -55,3 +55,10 @@ class sleeping_female: default
         "SyberiaScripts\data\sleeping\sleeping_female.ogg", 0.8, 1, 10
     };
 };
+class cut_page: default
+{
+    sound[]=
+    {
+        "SyberiaScripts\data\sounds\actions\cut_page.ogg", 0.8, 1, 10
+    };
+};

@@ -18,5 +18,6 @@ modded class ActionConstructor
 		actions.Insert(ActionCheckName);
 		actions.Insert(ActionSayName);
 		actions.Insert(ActionSleep);
+        actions.Insert(ActionCutBookPage);
 	}
 };
