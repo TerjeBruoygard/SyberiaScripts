@@ -2,8 +2,11 @@ modded class LoginTimeBase
 {
 	override Widget Init()
 	{
-		Widget result = super.Init();		
-		m_btnLeave.Show(false);
+		Widget result = super.Init();
+		if (m_btnLeave)
+		{		
+			m_btnLeave.Show(false);
+		}
 		return result;
 	}
 	

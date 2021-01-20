@@ -17,5 +17,5 @@ class hearthbit_Soundshader: baseCharacter_SoundShader
             "SyberiaScripts\data\sounds\player\Hearthbit.ogg", 1
         }
     };
-    volume=1.0;
+    volume=0.3;
 };

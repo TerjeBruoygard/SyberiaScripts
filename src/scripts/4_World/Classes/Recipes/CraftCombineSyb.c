@@ -1,8 +1,8 @@
-class CraftAmpouleRefill extends RecipeBase
+class CraftCombineSyb extends RecipeBase
 {
 	override void Init()
 	{
-		m_Name = "#syb_ampoule_refill";
+		m_Name = "#syb_combine";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.6;//animation length in relative time units
 		m_Specialty = -0.02;// value > 0 for roughness, value < 0 for precision
@@ -25,7 +25,9 @@ class CraftAmpouleRefill extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 		InsertIngredient(0,"SyberiaMedicineAmpoule");//you can insert multiple ingredients this way
-
+		InsertIngredient(0,"SalveBase");
+		InsertIngredient(0,"Matchbox");
+		
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
@@ -34,6 +36,8 @@ class CraftAmpouleRefill extends RecipeBase
 		
 		//ingredient 2
 		InsertIngredient(1,"SyberiaMedicineAmpoule");//you can insert multiple ingredients this way
+		InsertIngredient(1,"SalveBase");
+		InsertIngredient(1,"Matchbox");
 		
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
@@ -50,7 +54,7 @@ class CraftAmpouleRefill extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player, array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		TurnAmpouleRefillLambda lambda = new TurnAmpouleRefillLambda(ingredients[0], ingredients[0].GetType(), player);
+		TurnCombineSybLambda lambda = new TurnCombineSybLambda(ingredients[0], ingredients[0].GetType(), player);
 		lambda.InitValues(ingredients[1]);
 		MiscGameplayFunctions.TurnItemIntoItemEx(player, lambda);
 	}

@@ -21,8 +21,11 @@ class PluginSyberiaLogin extends PluginBase
 		super.OnUpdate(delta_time);
 
 		PlayerBase player = GetGame().GetPlayer();
-		if (!player) return;
-		
+		if (!player) 
+		{
+			return;
+		}
+				
 		if (player.IsGhostBody())
 		{
 			if (!player.IsAlive() && !m_isRespawnCommited)

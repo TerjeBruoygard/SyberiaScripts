@@ -22,11 +22,6 @@ modded class MissionGameplay
 	
 	override void OnInit()
 	{
-		if ( m_Initialized )
-		{
-			return;
-		}
-		
 		super.OnInit();
 		
 		SyberiaPPEffects.Init();
