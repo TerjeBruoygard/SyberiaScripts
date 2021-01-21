@@ -1,7 +1,7 @@
 class CfgPatches {
 	class SyberiaScripts {
         units[] = {};
-		requiredAddons[] = {"DZ_Data", "DZ_Scripts", "namalsk_survival"};
+		requiredAddons[] = {"DZ_Data", "DZ_Scripts", "DZ_Gear_Medical", "DZ_Gear_Consumables", "namalsk_survival"};
 	};
 };
 
@@ -36,6 +36,7 @@ class CfgVehicles
 {
     #include "predef.hpp"
     #include "characters.hpp"
+    #include "fix_items.hpp"
     #include "drinks.hpp"
     #include "foods.hpp"
     #include "medicine_base.hpp"
