@@ -6,13 +6,6 @@ class Paper : Inventory_Base {
     varQuantityDestroyOnMin = 1;
 };
 
-class BurlapStrip : Inventory_Base {
-    canBeSplit = 1;
-    varQuantityInit = 1.0;
-    varQuantityMin = 0.0;
-    varQuantityMax = 10.0;
-};
-
 class Matchbox : Inventory_Base {
     stackedUnit = "units";
     canBeSplit = 0;
