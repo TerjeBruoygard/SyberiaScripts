@@ -43,7 +43,7 @@ modded class PlayerBase
 		m_sleepingLevel = (int)SyberiaSleepingLevel.SYBSL_NONE;
 		RegisterNetSyncVariableInt("m_lastSleepingValue", 0, SLEEPING_MAX_VALUE);
 		RegisterNetSyncVariableInt("m_sleepingValue", 0, SLEEPING_MAX_VALUE);
-		RegisterNetSyncVariableInt("m_sleepingLevel", -2, 2);
+		RegisterNetSyncVariableInt("m_sleepingLevel", -4, 2);
 		
 		// Adv medicine
 		m_overdosedValue = 0;
@@ -162,6 +162,8 @@ modded class PlayerBase
 	
 	SyberiaSleepingLevel GetSleepingProcessLevel()
 	{
+		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_ENERGED) return SyberiaSleepingLevel.SYBSL_ENERGED;
+		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_SICK) return SyberiaSleepingLevel.SYBSL_SICK;
 		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_COLD) return SyberiaSleepingLevel.SYBSL_COLD;
 		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_HOT) return SyberiaSleepingLevel.SYBSL_HOT;
 		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_COMFORT) return SyberiaSleepingLevel.SYBSL_COMFORT;
@@ -221,6 +223,62 @@ modded class PlayerBase
 		if (value < MINDSTATE_LEVEL_3) return 3;
 		if (value < MINDSTATE_LEVEL_2) return 2;
 		return 1; 
+	}
+	
+	bool IsFaceBlocked(bool mouthOnly)
+	{
+		ref ItemBase itemCheck = GetItemOnSlot("Mask");
+		if (itemCheck)
+		{
+			if (mouthOnly)
+			{
+				bool skipMaskCondition = false;
+				string itemMaskType = itemCheck.GetType();
+				if (itemMaskType.IndexOf("Balaclava3Holes_") == 0)
+				{
+					skipMaskCondition = true;
+				}
+				
+				if (!skipMaskCondition)
+				{
+					return true;
+				}
+			}
+			else
+			{
+				return true;
+			}
+		}
+		
+		itemCheck = GetItemOnSlot("Headgear");
+		if (itemCheck)
+		{
+			string configPathNoMask = "CfgVehicles " + itemCheck.GetType() +  " noMask";
+			if (GetGame().ConfigIsExisting(configPathNoMask))
+			{
+				if (GetGame().ConfigGetInt(configPathNoMask) == 1)
+				{
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	bool IsSicknesOrInjured()
+	{
+		if (m_bulletHits > 3) return true;
+		if (m_knifeHits > 3) return true;
+		if (m_visceraHit > 0) return true;
+		if (m_painLevel > 1) return true;
+		if (m_sepsis > 1) return true;
+		if (m_zombieVirus > 1) return true;
+		if (m_influenzaLevel > 2) return true;
+		if (m_stomatchpoisonLevel > 1) return true;
+		if (m_overdosedValue > 1) return true;
+		if (m_mindStateValue < MINDSTATE_LEVEL_4) return true;
+		return false;
 	}
 	
 	bool IsGhostBody()

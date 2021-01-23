@@ -7,36 +7,7 @@ modded class ActionDrinkWellContinuous
 			return false;
 		}
 		
-		ref ItemBase itemCheck = player.GetItemOnSlot("Mask");
-		if (itemCheck)
-		{
-			bool skipMaskCondition = false;
-			string itemMaskType = itemCheck.GetType();
-			if (itemMaskType.IndexOf("Balaclava3Holes_") == 0)
-			{
-				skipMaskCondition = true;
-			}
-			
-			if (!skipMaskCondition)
-			{
-				return true;
-			}
-		}
-		
-		itemCheck = player.GetItemOnSlot("Headgear");
-		if (itemCheck)
-		{
-			string configPathNoMask = "CfgVehicles " + itemCheck.GetType() +  " noMask";
-			if (GetGame().ConfigIsExisting(configPathNoMask))
-			{
-				if (GetGame().ConfigGetInt(configPathNoMask) == 1)
-				{
-					return true;
-				}
-			}
-		}
-		
-		return false;
+		return player.IsFaceBlocked(true);
 	}
 	
 	override string ActionBlockerText( PlayerBase player, ActionTarget target, ItemBase item )
@@ -54,36 +25,7 @@ modded class ActionDrinkPondContinuous
 {
 	override bool ActionBlockerCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		ref ItemBase itemCheck = player.GetItemOnSlot("Mask");
-		if (itemCheck)
-		{
-			bool skipMaskCondition = false;
-			string itemMaskType = itemCheck.GetType();
-			if (itemMaskType.IndexOf("Balaclava3Holes_") == 0)
-			{
-				skipMaskCondition = true;
-			}
-			
-			if (!skipMaskCondition)
-			{
-				return true;
-			}
-		}
-		
-		itemCheck = player.GetItemOnSlot("Headgear");
-		if (itemCheck)
-		{
-			string configPathNoMask = "CfgVehicles " + itemCheck.GetType() +  " noMask";
-			if (GetGame().ConfigIsExisting(configPathNoMask))
-			{
-				if (GetGame().ConfigGetInt(configPathNoMask) == 1)
-				{
-					return true;
-				}
-			}
-		}
-		
-		return false;
+		return player.IsFaceBlocked(true);
 	}
 	
 	override string ActionBlockerText( PlayerBase player, ActionTarget target, ItemBase item )
