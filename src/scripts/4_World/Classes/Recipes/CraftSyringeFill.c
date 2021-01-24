@@ -51,9 +51,10 @@ class CraftSyringeFill extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player, array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		bool isSyringeDirty = ingredients[0].IsInherited(SyringeDirty);
-		ItemBase ampouleItem = ingredients[1];
-		TurnSyringeFillLambda lambda = new TurnSyringeFillLambda(ingredients[0], "SyringeFull", player);
+		ItemBase syringeItem = ingredients[0];
+		ItemBase ampouleItem = ingredients[1]; 
+		bool isSyringeDirty = syringeItem.IsInherited(SyringeDirty);		
+		TurnSyringeFillLambda lambda = new TurnSyringeFillLambda(syringeItem, "SyringeFull", player);
 		lambda.InitValues(ampouleItem, isSyringeDirty);
 		MiscGameplayFunctions.TurnItemIntoItemEx(player, lambda);
 	}

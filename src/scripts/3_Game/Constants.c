@@ -133,7 +133,7 @@ modded class PlayerConstants
 	
 	// Metabolic
 	static const float SL_ENERGY_CRITICAL = 0;
-	static const float SL_ENERGY_LOW = 200;
+	static const float SL_ENERGY_LOW = 300;
 	static const float SL_ENERGY_NORMAL = 1500;
 	static const float SL_ENERGY_HIGH = 2800;
 	
@@ -144,7 +144,7 @@ modded class PlayerConstants
 	
 	// Water
 	static const float SL_WATER_CRITICAL = 0;
-	static const float SL_WATER_LOW = 100;
+	static const float SL_WATER_LOW = 150;
 	static const float SL_WATER_NORMAL = 700;
 	static const float SL_WATER_HIGH = 1300;
 	
