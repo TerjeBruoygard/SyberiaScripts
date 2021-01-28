@@ -271,12 +271,12 @@ modded class PlayerBase
 		if (m_bulletHits > 3) return true;
 		if (m_knifeHits > 3) return true;
 		if (m_visceraHit > 0) return true;
-		if (m_painLevel > 1) return true;
+		if (GetCurrentPainLevel() > 1) return true;
 		if (m_sepsis > 1) return true;
 		if (m_zombieVirus > 1) return true;
 		if (m_influenzaLevel > 2) return true;
 		if (m_stomatchpoisonLevel > 1) return true;
-		if (m_overdosedValue > 1) return true;
+		if (m_overdosedValue > 2) return true;
 		if (m_mindStateValue < MINDSTATE_LEVEL_4) return true;
 		if (GetStatWater().Get() < PlayerConstants.SL_WATER_LOW) return true;
 		if (GetStatEnergy().Get() < PlayerConstants.SL_ENERGY_LOW) return true;

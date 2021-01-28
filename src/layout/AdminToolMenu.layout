@@ -1,0 +1,392 @@
+FrameWidgetClass rootFrame {
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass BackgroundPanel {
+   ignorepointer 1
+   position 0 0
+   size 1 1
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_blackbox
+   {
+    PanelWidgetClass TabsHeaderPanel {
+     ignorepointer 1
+     size 1 0.06
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      PanelWidgetClass EspTabBtnBack {
+       ignorepointer 1
+       color 0.098 0.1373 0.1569 1
+       position 0.66 0
+       size 0.34 1
+       hexactpos 0
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_blackbox
+       {
+        ButtonWidgetClass EspTabBtn {
+         color 0.0588 0.0588 0.0588 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style EmptyHighlight
+         "no focus" 1
+         text "ESP"
+         font "gui/fonts/etelkatextpro22"
+         switch normal
+        }
+       }
+      }
+      PanelWidgetClass PlayersTabBtnBack {
+       ignorepointer 1
+       color 0.098 0.1373 0.1569 1
+       position 0 0
+       size 0.33 1
+       hexactpos 0
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_blackbox
+       {
+        ButtonWidgetClass PlayersTabBtn {
+         color 0.0588 0.0588 0.0588 1
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style EmptyHighlight
+         "no focus" 1
+         text "PLAYERS"
+         font "gui/fonts/etelkatextpro22"
+         switch normal
+        }
+       }
+      }
+      PanelWidgetClass SpawnerTabBtnBack {
+       ignorepointer 1
+       color 0.098 0.1373 0.1569 1
+       position 0.33 0
+       size 0.33 1
+       hexactpos 0
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_blackbox
+       {
+        ButtonWidgetClass SpawnerTabBtn {
+         color 0.0588 0.0588 0.0588 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style EmptyHighlight
+         "no focus" 1
+         text "SPAWNER"
+         font "gui/fonts/etelkatextpro22"
+         switch normal
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass TabsBodyPanel {
+     ignorepointer 1
+     position 0 0.02
+     size 0.98 0.9
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      PanelWidgetClass PlayersTabBody {
+       visible 1
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       {
+        TextListboxWidgetClass PlayersListBox {
+         position 0 0
+         size 0.3 1
+         halign left_ref
+         valign top_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         style Default
+         "title visible" 1
+         colums "Character;50;Nickname;50;"
+         lines 1
+         "highlight row" 1
+         font "gui/fonts/etelkatextpro14"
+        }
+        PanelWidgetClass PlayersDataPanel {
+         ignorepointer 1
+         size 0.7 1
+         halign right_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         {
+          PanelWidgetClass PlayersDataStatsPanel {
+           ignorepointer 1
+           position 0.02129 0
+           size 0.48 1
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextListboxWidgetClass PlayersDataInfoList {
+             position 0 0.05
+             size 1 0.2
+             halign left_ref
+             valign top_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             style NoScrollBar
+             "no focus" 1
+             "title visible" 0
+             colums ";30;;70;"
+             lines 1
+             "highlight row" 1
+             font "gui/fonts/etelkatextpro14"
+            }
+            TextListboxWidgetClass PlayersDataStatsList {
+             position 0 0.25
+             size 1 0.69
+             halign left_ref
+             valign top_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             style Default
+             "no focus" 1
+             "title visible" 1
+             colums "Stat;40;Value;20;Min;20;Max;20;"
+             lines 1
+             "highlight row" 1
+             font "gui/fonts/etelkatextpro14"
+            }
+            PanelWidgetClass PlayersDataRefreshBack {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 0 0
+             size 1 0.04
+             hexactpos 0
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass PlayersDataRefresh {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "REFRESH"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass PlayersDataStatsApplyBack {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 0 0
+             size 0.3 0.05
+             halign right_ref
+             valign bottom_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass PlayersDataStatsApply {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "APPLY"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass PlayersStatEditBack {
+             ignorepointer 1
+             position 0 0
+             size 0.7 0.05
+             valign bottom_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              TextWidgetClass PlayersStatEditText {
+               ignorepointer 1
+               size 0.98 1
+               halign right_ref
+               valign center_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               font "gui/fonts/etelkatextpro16"
+               "exact text" 0
+               "text valign" center
+              }
+              EditBoxWidgetClass PlayersStatEditBox {
+               ignorepointer 0
+               keepsafezone 0
+               position 0 0
+               size 0.98 1
+               halign right_ref
+               valign center_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               scaled 0
+               style Default
+               "limit visible" 0
+               "Default text color" 0.6 0.6 0.6 1
+               "Use default text" 1
+               "exact text" 1
+               font "gui/fonts/etelkatextpro16"
+              }
+             }
+            }
+           }
+          }
+          PanelWidgetClass PlayersDataInvPanel {
+           ignorepointer 1
+           size 0.48 1
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextListboxWidgetClass PlayersDataInv {
+             position 0 0
+             size 1 1
+             halign left_ref
+             valign top_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             style Default
+             "no focus" 1
+             "title visible" 1
+             colums "Items;80;Count;20;"
+             lines 1
+             "highlight row" 1
+             font "gui/fonts/etelkatextpro14"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+      PanelWidgetClass SpawnerTabBody {
+       visible 0
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       {
+        TextWidgetClass TextWidget1 {
+         ignorepointer 1
+         size 400 48
+         halign center_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "SPAWNER TAB"
+         "text halign" center
+        }
+       }
+      }
+      PanelWidgetClass EspTabBody {
+       visible 0
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       {
+        TextWidgetClass TextWidget2 {
+         ignorepointer 1
+         size 400 48
+         halign center_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "ESP TAB"
+         "text halign" center
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

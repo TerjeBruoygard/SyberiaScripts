@@ -2,6 +2,7 @@ modded class MissionGameplay
 {
 	ref Widget m_AdditionHudRootWidget = null;
 	ref SyberiaAdditionalHud m_SyberiaAdditionalHud = null;
+	bool m_isAltPressed = false;
 	
 	override void OnMissionStart()
 	{
@@ -200,9 +201,24 @@ modded class MissionGameplay
 		return GameConstants.RESPAWN_MODE_RANDOM;
 	}
 	
+	override void OnKeyPress(int key)
+	{
+		super.OnKeyPress(key);
+		
+		if (key == KeyCode.KC_LMENU)
+		{
+			m_isAltPressed = true;
+		}
+	}
+	
 	override void OnKeyRelease(int key)
 	{
 		super.OnKeyRelease(key);
+		
+		if (key == KeyCode.KC_LMENU)
+		{
+			m_isAltPressed = false;
+		}
 		
 		PluginGearPDA pluginGearPDA;
 		if ( key == KeyCode.KC_ESCAPE )
@@ -219,6 +235,24 @@ modded class MissionGameplay
 			if (pluginGearPDA && pluginGearPDA.IsOpen())
 			{
 				pluginGearPDA.m_GearPDAMenu.m_externalSendEvent = true;
+			}
+		}
+		
+		PluginAdminTool pluginAdminTool;
+		if ( m_isAltPressed && key == KeyCode.KC_INSERT )
+		{			
+			Class.CastTo(pluginAdminTool, GetPlugin(PluginAdminTool));
+			if (pluginAdminTool && !pluginAdminTool.IsOpen())
+			{
+				pluginAdminTool.Open();
+			}
+		}
+		else if ( key == KeyCode.KC_ESCAPE )
+		{	
+			Class.CastTo(pluginAdminTool, GetPlugin(PluginAdminTool));
+			if (pluginAdminTool && pluginAdminTool.IsOpen())
+			{
+				pluginAdminTool.Close();
 			}
 		}
 	}
