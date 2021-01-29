@@ -59,4 +59,25 @@ modded class DayZPlayerImplement
 			GetGame().GetSoundScene().SetRadioVolume(g_Game.m_volume_radio,1);
 		}
 	}
+	
+	override void CommandHandler(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)
+	{
+		super.CommandHandler(pDt,pCurrentCommandID,pCurrentCommandFinished);
+
+		UAInput skillsMenuKey = GetUApi().GetInputByName("UAToggleSyberiaSkillsMenu");
+		if ( skillsMenuKey.LocalClick() )
+		{
+		
+		}
+		
+        UAInput hideItemKey = GetUApi().GetInputByName("UAToggleSyberiaHideItem");
+		if ( hideItemKey.LocalClick() )
+		{
+			PlayerBase player = PlayerBase.Cast(this);
+			if ( !player.GetInventory().IsInventoryLocked() && player.GetHumanInventory().CanRemoveEntityInHands() )
+			{
+				player.PredictiveMoveItemFromHandsToInventory();
+			}
+		}
+	}
 };
