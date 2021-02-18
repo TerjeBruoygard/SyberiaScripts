@@ -1,0 +1,140 @@
+FrameWidgetClass rootFrame {
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass BackgroundPanel {
+   ignorepointer 1
+   position 0 0
+   size 0.7 0.7
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_blackbox
+   {
+    PanelWidgetClass ContentPanel {
+     ignorepointer 1
+     size 0.97 0.95
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextListboxWidgetClass SkillsWidget {
+       color 0.098 0.098 0.098 0.4196
+       size 0.3 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       scaled 1
+       style Editor
+       "title visible" 1
+       colums "#syb_skills;80; ;20;"
+       lines 1
+       "highlight row" 1
+       font "gui/fonts/etelkatextpro28"
+      }
+      PanelWidgetClass RightPanel {
+       ignorepointer 1
+       size 0.68 1
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       {
+        TextWidgetClass TotalLvlText {
+         ignorepointer 1
+         size 1 40
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         text "Level: 5"
+         font "gui/fonts/etelkatextpro28"
+         "exact text" 1
+        }
+        TextWidgetClass NextLvlText {
+         ignorepointer 1
+         position 0 40
+         size 1 40
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         text "#syb_skill_progress"
+         font "gui/fonts/etelkatextpro22"
+         "exact text" 1
+        }
+        PanelWidgetClass PanelWidget1 {
+         visible 1
+         ignorepointer 1
+         position 0 80
+         size 1 50
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         scaled 1
+         style blank
+         {
+          SimpleProgressBarWidgetClass CurrentLvlProgress {
+           ignorepointer 1
+           color 0.2431 0.2431 0.2431 1
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           vertical 0
+           flipped 0
+           {
+            TextWidgetClass CurrentLvlText {
+             ignorepointer 1
+             size 1 1
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "100/200"
+             font "gui/fonts/metron-bold28"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+          PanelWidgetClass PanelWidget0 {
+           ignorepointer 1
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           scaled 1
+           style Outline
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

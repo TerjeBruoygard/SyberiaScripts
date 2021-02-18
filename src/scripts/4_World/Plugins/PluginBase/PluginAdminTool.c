@@ -11,6 +11,7 @@ class PluginAdminTool extends PluginBase
         GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_OPEN, this, "RequestOpen");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_PLAYERINFO, this, "PlayerInfo");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_PLAYERUPDATE, this, "PlayerUpdate");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_SPAWNITEM, this, "SpawnItem");
 	}
 	
 	bool IsOpen()
@@ -64,15 +65,15 @@ class PluginAdminTool extends PluginBase
 		m_guiMenu.UpdatePlayerContext(serverData.param1);
 	}
 	
-	void PlayerUpdate( ref ParamsReadContext ctx, ref PlayerIdentity sender )
-    { 
-		
-	}
+	void PlayerUpdate( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
+	
+	void SpawnItem( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
 };
 
 class PluginAdminTool_OpenContext
 {
 	ref array<ref PluginAdminTool_PlayerContextBase> m_players;
+	ref array<ref PluginAdminTool_SpawnerCategories> m_spawnerCategories;
 	
 	void ~PluginAdminTool_OpenContext()
 	{
@@ -82,6 +83,13 @@ class PluginAdminTool_OpenContext
 			delete m_players;
 		}
 	}
+};
+
+class PluginAdminTool_SpawnerCategories
+{
+	string m_name;
+	string m_preffix;
+	string m_class;
 };
 
 class PluginAdminTool_PlayerContextBase

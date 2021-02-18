@@ -14,6 +14,7 @@ class PluginSyberiaLogin extends PluginBase
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_NEWCHAR_SCREEN_OPEN, this, "NewcharScreen_Open");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_EQUIP_SCREEN_OPEN, this, "EquipScreen_Open");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_CREATENEWCHAR_ERROR, this, "NewcharScreen_Error");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_SKILLS_UPDATE, this, "OnSkillsUpdate");
 	}
 	
 	override void OnUpdate(float delta_time)
@@ -105,6 +106,25 @@ class PluginSyberiaLogin extends PluginBase
 		if (screenNewChar)
 		{
 			screenNewChar.m_isRpcError = true;
+		}
+	}
+	
+	void OnSkillsUpdate(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	{
+		SybLog("PluginSyberiaLogin SYBRPC_SKILLS_UPDATE RPC Received.");
+		
+		Param1<ref SkillsContainer> clientData;
+		if ( !ctx.Read( clientData ) ) return;	
+		
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());		
+		if (player)
+		{
+			if (player.m_skills)
+			{ 
+				delete player.m_skills;
+			}
+			
+			player.m_skills = clientData.param1;
 		}
 	}
 };
