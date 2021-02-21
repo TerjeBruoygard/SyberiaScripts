@@ -62,3 +62,5 @@ class CfgSoundSets
 {
     #include "sounds_sets.hpp"
 };
+
+#include "map_settings.hpp"

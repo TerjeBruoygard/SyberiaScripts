@@ -364,7 +364,7 @@ FrameWidgetClass rootFrame {
        }
       }
       PanelWidgetClass SpawnerTabBody {
-       visible 1
+       visible 0
        ignorepointer 1
        position 0 0
        size 1 1
@@ -516,7 +516,7 @@ FrameWidgetClass rootFrame {
           }
           CheckBoxWidgetClass SpawnerFillProxies {
            position 0 80
-           size 0.5 50
+           size 0.49 50
            hexactpos 1
            vexactpos 1
            hexactsize 0
@@ -529,9 +529,10 @@ FrameWidgetClass rootFrame {
           PanelWidgetClass SpawnerActionBack {
            ignorepointer 1
            color 0.098 0.1373 0.1569 1
-           position 0 160
-           size 0.5 60
+           position 0 60
+           size 0.5 80
            halign center_ref
+           valign bottom_ref
            hexactpos 0
            vexactpos 1
            hexactsize 0
@@ -564,6 +565,65 @@ FrameWidgetClass rootFrame {
            font "gui/fonts/etelkatextpro22"
            items "In Inventory;On Ground;At Crosshair"
           }
+          TextListboxWidgetClass SpawnerProxySlotSelect {
+           position 0 160
+           size 0.39 400
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           scaled 1
+           style Default
+           "title visible" 1
+           colums "Attachments;100;"
+           lines 1
+           "highlight row" 1
+           font "gui/fonts/etelkatextpro14"
+          }
+          TextListboxWidgetClass SpawnerProxySlotType {
+           position 0 160
+           size 0.59 400
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           scaled 1
+           style Default
+           "title visible" 1
+           colums "Classname;50;Name;50;"
+           lines 1
+           "highlight row" 1
+           font "gui/fonts/etelkatextpro14"
+          }
+          PanelWidgetClass SpawnerClearBack {
+           ignorepointer 1
+           color 0.098 0.1373 0.1569 1
+           position 0 0
+           size 0.5 40
+           halign center_ref
+           valign bottom_ref
+           hexactpos 0
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style rover_sim_blackbox
+           {
+            ButtonWidgetClass SpawnerClear {
+             color 0.0588 0.0588 0.0588 1
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style EmptyHighlight
+             "no focus" 1
+             text "CLEAR ITEMS NEAR PLAYER"
+             font "gui/fonts/etelkatextpro16"
+             switch normal
+            }
+           }
+          }
          }
         }
        }
@@ -593,7 +653,7 @@ FrameWidgetClass rootFrame {
        }
       }
       PanelWidgetClass MapTabBody {
-       visible 0
+       visible 1
        ignorepointer 1
        position 0 0
        size 1 1
@@ -602,17 +662,14 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        {
-        TextWidgetClass TextWidget0 {
-         ignorepointer 1
-         size 400 48
-         halign center_ref
-         valign center_ref
+        MapWidgetClass MapPreview {
+         position 0 0
+         size 1 1
          hexactpos 1
          vexactpos 1
-         hexactsize 1
-         vexactsize 1
-         text "MAP TAB"
-         "text halign" center
+         hexactsize 0
+         vexactsize 0
+         scaled 1
         }
        }
       }
