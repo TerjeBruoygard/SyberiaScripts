@@ -49,7 +49,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style EmptyHighlight
          "no focus" 1
-         text "ESP"
+         text "TOOLS"
          font "gui/fonts/etelkatextpro22"
          switch normal
         }
@@ -629,7 +629,7 @@ FrameWidgetClass rootFrame {
        }
       }
       PanelWidgetClass EspTabBody {
-       visible 0
+       visible 1
        ignorepointer 1
        position 0 0
        size 1 1
@@ -638,22 +638,298 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        {
-        TextWidgetClass TextWidget2 {
-         ignorepointer 1
-         size 400 48
-         halign center_ref
-         valign center_ref
+        CheckBoxWidgetClass ToolsEspToggle {
+         visible 0
+         position 0 50
+         size 0.2 50
          hexactpos 1
          vexactpos 1
-         hexactsize 1
+         hexactsize 0
          vexactsize 1
-         text "ESP TAB"
-         "text halign" center
+         text "Free cam mode"
+         font "gui/fonts/etelkatextpro22"
+        }
+        FrameWidgetClass ToolsFreeCamFrame {
+         ignorepointer 1
+         position 0 0
+         size 0.39 0.15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         {
+          CheckBoxWidgetClass ToolsFreeCamToggle {
+           position 0 50
+           size 1 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Free cam mode"
+           font "gui/fonts/etelkatextpro22"
+          }
+          TextWidgetClass TextWidget0 {
+           ignorepointer 1
+           position 0 0
+           size 1 48
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "General tools:"
+           font "gui/fonts/etelkatextpro22"
+           "text valign" center
+          }
+         }
+        }
+        FrameWidgetClass ToolsEspFrame {
+         ignorepointer 1
+         position 0 0.15
+         size 0.39 0.85
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextWidgetClass TextWidget1 {
+           ignorepointer 1
+           position 0 0
+           size 1 48
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "ESP Tools:"
+           font "gui/fonts/etelkatextpro22"
+           "text valign" center
+          }
+          CheckBoxWidgetClass ToolsEspPlayers {
+           position 0 50
+           size 1 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Players"
+           font "gui/fonts/etelkatextpro22"
+          }
+          CheckBoxWidgetClass ToolsEspDeadBodies {
+           position 0 100
+           size 1 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Dead bodies"
+           font "gui/fonts/etelkatextpro22"
+          }
+          CheckBoxWidgetClass ToolsEspVehicles {
+           position 0 150
+           size 1 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Vehicles"
+           font "gui/fonts/etelkatextpro22"
+          }
+          CheckBoxWidgetClass ToolsEspLoot {
+           position 0 300
+           size 1 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Loot"
+           font "gui/fonts/etelkatextpro22"
+          }
+          PanelWidgetClass ToolsEspFilterBack {
+           ignorepointer 1
+           position 0 350
+           size 0.8 48
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style rover_sim_blackbox
+           {
+            TextWidgetClass ToolsEspFilterText {
+             ignorepointer 1
+             size 0.98 1
+             halign right_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             font "gui/fonts/etelkatextpro16"
+             "exact text" 0
+             "text valign" center
+            }
+            EditBoxWidgetClass ToolsEspFilterBox {
+             clipchildren 1
+             ignorepointer 0
+             keepsafezone 0
+             position 0 0
+             size 0.98 1
+             halign right_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             scaled 0
+             style Default
+             "limit visible" 0
+             "Default text color" 0.6 0.6 0.6 1
+             "Use default text" 1
+             "exact text" 1
+             font "gui/fonts/etelkatextpro16"
+            }
+           }
+          }
+          TextWidgetClass TextWidget2 {
+           ignorepointer 1
+           position 0 350
+           size 0.2 48
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Filter:"
+           font "gui/fonts/etelkatextpro22"
+           "text valign" center
+          }
+          TextWidgetClass TextWidget3 {
+           ignorepointer 1
+           position 0 400
+           size 0.2 48
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Distance:"
+           font "gui/fonts/etelkatextpro22"
+           "text valign" center
+          }
+          SliderWidgetClass ToolsEspSliderDist2 {
+           color 0.0627 0.0627 0.0627 1
+           position 0 400
+           size 0.8 48
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style Default
+           minimum 1
+           maximum 300
+           current 100
+           {
+            TextWidgetClass ToolsEspTestDist2 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "100"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+          TextWidgetClass TextWidget4 {
+           ignorepointer 1
+           position 0 200
+           size 0.2 48
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Distance:"
+           font "gui/fonts/etelkatextpro22"
+           "text valign" center
+          }
+          SliderWidgetClass ToolsEspSliderDist1 {
+           color 0.0627 0.0627 0.0627 1
+           position 0 200
+           size 0.8 48
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style Default
+           minimum 100
+           maximum 10000
+           step 100
+           current 1000
+           {
+            TextWidgetClass ToolsEspTestDist1 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "1000"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        FrameWidgetClass ToolsObjectsFrame {
+         ignorepointer 1
+         size 0.55 1
+         halign right_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         {
+          TextWidgetClass TextWidget5 {
+           ignorepointer 1
+           position 0 0
+           size 1 0.05
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "World tools:"
+           font "gui/fonts/etelkatextpro22"
+           "text valign" center
+          }
+          TextListboxWidgetClass ToolsObjectsList {
+           position 0 0.05
+           size 0.4 0.95
+           hexactpos 1
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           scaled 1
+           style Default
+           "title visible" 1
+           colums "Objects;100;"
+           lines 1
+           "highlight row" 1
+           font "gui/fonts/etelkatextpro14"
+          }
+         }
         }
        }
       }
       PanelWidgetClass MapTabBody {
-       visible 1
+       visible 0
        ignorepointer 1
        position 0 0
        size 1 1

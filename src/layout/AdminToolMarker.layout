@@ -1,0 +1,39 @@
+FrameWidgetClass rootFrame {
+ clipchildren 0
+ size 300 18
+ valign bottom_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  TextWidgetClass Text {
+   ignorepointer 1
+   position 0 0
+   size 285 18
+   halign right_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Player"
+   font "gui/fonts/etelkatextpro16"
+   "exact text" 1
+   "text valign" center
+  }
+  ImageWidgetClass Image {
+   ignorepointer 1
+   position -9 0
+   size 18 18
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   image0 "SyberiaScripts\data\gui\Markers\player.paa"
+   mode blend
+   "src alpha" 1
+   "no wrap" 0
+   stretch 1
+  }
+ }
+}

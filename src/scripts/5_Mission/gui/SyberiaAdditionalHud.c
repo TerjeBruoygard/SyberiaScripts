@@ -11,6 +11,9 @@ class SyberiaAdditionalHud
 	string m_screenMessageText;
 	float m_screenMessageTimer;
 	float m_screenMessageDuration;
+	
+	ref array<ref Widget> m_espMarkers; 
+	float m_espUpdateInterval;
 
 	void SyberiaAdditionalHud(ref Widget mainHud, ref Widget actionBlocker, ref MultilineTextWidget screenMessageWidget)
 	{
@@ -23,11 +26,14 @@ class SyberiaAdditionalHud
 		m_screenMessageText = "";
 		m_screenMessageTimer = 0;
 		m_screenMessageDuration = 0;
+		
+		m_espMarkers = new array<ref Widget>;
+		m_espUpdateInterval = 0;
 	}
 	
 	void ~SyberiaAdditionalHud()
 	{
-		
+		if (m_espMarkers) delete m_espMarkers;
 	}
 
 	void Init()
@@ -44,6 +50,7 @@ class SyberiaAdditionalHud
 	{
 		RefreshActionBlocker(dt);
 		RefreshScreenMessage(dt);
+		RefreshAdminEsp(dt);
 	}
 	
 	void RefreshActionBlocker(float dt)
@@ -101,6 +108,93 @@ class SyberiaAdditionalHud
 				m_screenMessageWidget.SetText("");
 			}
 		}
+	}
+	
+	void RefreshAdminEsp(float dt)
+	{
+		m_espUpdateInterval = m_espUpdateInterval + dt;
+		if (m_espUpdateInterval < 0.015)
+			return;
+		
+		m_espUpdateInterval = 0;		
+		PluginAdminTool adminTool = PluginAdminTool.Cast(GetPlugin(PluginAdminTool));
+		if (!adminTool) return;
+		if (!adminTool.HasAdminPermissions()) return;
+		
+		array<vector> espPoses = new array<vector>;
+		array<string> espNames = new array<string>;
+		array<int> espTypes = new array<int>;
+		adminTool.GetEspMarkers(espPoses, espNames, espTypes);
+		
+		foreach (ref Widget w : m_espMarkers)
+		{
+			delete w;
+		}
+		m_espMarkers.Clear();
+		
+		for (int i = 0; i < espPoses.Count(); i++)
+		{
+			vector pos = espPoses.Get(i);
+			string name = espNames.Get(i);
+			int type = espTypes.Get(i);
+			CreateEspMarker(pos, name, type);
+		}
+	}
+	
+	void CreateEspMarker(vector pos, string name, int type)
+	{
+		if (type == PluginAdminTool_EspType.PLAYER)
+		{
+			pos[1] = pos[1] + 1.8;
+		}
+		else if (type == PluginAdminTool_EspType.BODY)
+		{
+			pos[1] = pos[1] + 0.5;
+		}
+		else if (type == PluginAdminTool_EspType.VEHICLES)
+		{
+			pos[1] = pos[1] + 2.0;
+		}
+		
+		int sx, sy;
+		GetScreenSize(sx, sy);
+		vector screenPos = GetGame().GetScreenPos(pos);
+		if (screenPos[0] <= 0 || screenPos[0] >= sx) return;
+		if (screenPos[1] <= 0 || screenPos[1] >= sy) return;
+		if (screenPos[2] < 0) return;
+		
+		ref Widget w = GetGame().GetWorkspace().CreateWidgets("SyberiaScripts/layout/AdminToolMarker.layout");
+		ref TextWidget tw = TextWidget.Cast(w.FindAnyWidget("Text"));
+		ref ImageWidget iw = ImageWidget.Cast(w.FindAnyWidget("Image"));
+		w.SetPos(screenPos[0], sy - screenPos[1]);	
+		
+		int color = 0;
+		if (type == PluginAdminTool_EspType.PLAYER)
+		{
+			color = ARGB(255, 255, 0, 0);
+		}
+		else if (type == PluginAdminTool_EspType.BODY)
+		{
+			color = ARGB(255, 128, 93, 128);
+			iw.LoadImageFile(0, "SyberiaScripts\\data\\gui\\Markers\\corpse.paa");
+		}
+		else if (type == PluginAdminTool_EspType.VEHICLES)
+		{
+			color = ARGB(255, 255, 216, 0);
+			iw.LoadImageFile(0, "SyberiaScripts\\data\\gui\\Markers\\car.paa");
+			name = GameHelpers.GetItemDisplayName(name);
+		}
+		else if (type == PluginAdminTool_EspType.LOOT)
+		{
+			color = ARGB(255, 147, 255, 0);
+			name = GameHelpers.GetItemDisplayName(name);
+		}
+		
+		tw.SetText(name);
+		tw.SetColor(color);
+		iw.SetColor(color);
+
+		m_espMarkers.Insert(w);
 	}
 	
 	void ShowScreenMessage(string message, float duration)

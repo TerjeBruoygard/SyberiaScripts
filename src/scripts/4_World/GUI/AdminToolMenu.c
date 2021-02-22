@@ -49,6 +49,26 @@ class AdminToolMenu extends UIScriptedMenu
 	static vector m_mapPos = "0 0 0";
 	static float m_mapScale = 0.1;
 	
+	// Tools
+	ref CheckBoxWidget m_toolsFreeCamToggle;
+	static bool m_toolsFreeCamToggleChecked = false;
+	
+	ref CheckBoxWidget m_toolsEspPlayers;
+	ref CheckBoxWidget m_toolsEspDeadBodies;
+	ref CheckBoxWidget m_toolsEspVehicles;
+	ref SliderWidget m_toolsEspSliderDist1;	
+	ref CheckBoxWidget m_toolsEspLoot;
+	ref SliderWidget m_toolsEspSliderDist2;	
+	ref TextWidget m_toolsEspFilterText;
+	ref EditBoxWidget m_toolsEspFilterBox;
+	static bool m_toolsEspPlayersChecked = false;
+	static bool m_toolsEspDeadBodiesChecked = false;
+	static bool m_toolsEspVehiclesChecked = false;
+	static bool m_toolsEspLootChecked = false;
+	static float m_toolsEspSliderDist1Value = 1000;
+	static float m_toolsEspSliderDist2Value = 100;
+	static string m_toolsEspFilterValue = "";
+	
 	void AdminToolMenu()
 	{
 		m_tabButtons = new array<ref Widget>;
@@ -125,6 +145,29 @@ class AdminToolMenu extends UIScriptedMenu
 		m_mapWidget.SetMapPos(m_mapPos);	
 		m_mapWidget.SetScale(m_mapScale);
 		
+		// Tools
+		m_toolsFreeCamToggle = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsFreeCamToggle"));
+		m_toolsFreeCamToggle.SetChecked( m_toolsFreeCamToggleChecked );
+		
+		m_toolsEspPlayers = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspPlayers"));
+		m_toolsEspDeadBodies = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspDeadBodies"));
+		m_toolsEspVehicles = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspVehicles"));
+		m_toolsEspSliderDist1 = SliderWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspSliderDist1"));
+		m_toolsEspLoot = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspLoot"));
+		m_toolsEspSliderDist2 = SliderWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspSliderDist2"));
+		m_toolsEspFilterText = TextWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspFilterText"));
+		m_toolsEspFilterBox = EditBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspFilterBox"));
+		
+		m_toolsEspPlayers.SetChecked( m_toolsEspPlayersChecked );
+		m_toolsEspDeadBodies.SetChecked( m_toolsEspDeadBodiesChecked );
+		m_toolsEspVehicles.SetChecked( m_toolsEspVehiclesChecked );
+		m_toolsEspLoot.SetChecked( m_toolsEspLootChecked );
+		m_toolsEspSliderDist1.SetCurrent( m_toolsEspSliderDist1Value );
+		m_toolsEspSliderDist2.SetCurrent( m_toolsEspSliderDist2Value );
+		m_toolsEspFilterText.SetText( m_toolsEspFilterValue );
+		m_toolsEspFilterBox.SetText( m_toolsEspFilterValue );
+			
+		
 		// Common tabs
 		m_tabButtons.Clear();
 		m_tabButtons.Insert(layoutRoot.FindAnyWidget("PlayersTabBtn"));
@@ -157,7 +200,10 @@ class AdminToolMenu extends UIScriptedMenu
 	{
 		float value = (w.GetCurrent() / w.GetMax()) * max;
 		TextWidget tw = TextWidget.Cast(w.GetChildren());
-		tw.SetText(text + ": (" + value + "/" + max + ")");
+		
+		string fullText = text;
+		if (fullText != "") fullText = fullText + ": ";
+		tw.SetText(fullText + "(" + value + "/" + max + ")");
 	}
 	
 	void UpdateSpawnerItemPreview()
@@ -288,6 +334,13 @@ class AdminToolMenu extends UIScriptedMenu
 		for (int pid = 0; pid < playersCount; pid++)
 		{
 			m_mapWidget.AddUserMark(context.m_playerPositions.Get(pid), context.m_playerNames.Get(pid), ARGB(255, 255, 0, 0), "SyberiaScripts\\data\\gui\\Markers\\player.paa");
+		}
+		
+		int corpseCount = context.m_bodiesPositions.Count();	
+		for (int cid = 0; cid < corpseCount; cid++)
+		{
+			string corpseName = context.m_bodiesNames.Get(cid);
+			m_mapWidget.AddUserMark(context.m_bodiesPositions.Get(cid), corpseName, ARGB(255, 128, 93, 128), "SyberiaScripts\\data\\gui\\Markers\\corpse.paa");
 		}
 		
 		int vehiclesCount = context.m_vehiclePositions.Count();	
@@ -645,8 +698,17 @@ class AdminToolMenu extends UIScriptedMenu
 			
 			if (w == m_mapWidget)
 			{
+				PluginAdminTool adminTool = PluginAdminTool.Cast(GetPlugin(PluginAdminTool));
 				vector worldPos = MapPositionToWorldPosition();
-				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, new Param1< vector >( worldPos ) );
+				if (m_toolsFreeCamToggleChecked && adminTool.m_freeCam)
+				{					
+					adminTool.m_freeCam.SetPosition(worldPos);
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, new Param2< vector, int >( worldPos, 1 ) );
+				}
+				else
+				{
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, new Param2< vector, int >( worldPos, 0 ) );
+				}
 			}
 		}
 		
@@ -691,6 +753,34 @@ class AdminToolMenu extends UIScriptedMenu
 			m_spawnerProxySlotSelect.Show(m_spawnerFillProxiesChecked);
 			m_spawnerProxySlotType.Show(m_spawnerFillProxiesChecked);
 			UpdateSpawnerItemPreview( );
+		}
+		else if (w == m_toolsFreeCamToggle && m_toolsFreeCamToggle.IsChecked() != m_toolsFreeCamToggleChecked)
+		{
+			m_toolsFreeCamToggleChecked = m_toolsFreeCamToggle.IsChecked();
+			GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_FREECAM, new Param1< bool >( m_toolsFreeCamToggleChecked ) );
+		}
+		else if (w == m_toolsEspSliderDist1)
+		{
+			UpdateSliderValue(m_toolsEspSliderDist1, "", m_toolsEspSliderDist1.GetMax());
+			m_toolsEspSliderDist1Value = m_toolsEspSliderDist1.GetCurrent();
+		}
+		else if (w == m_toolsEspSliderDist2)
+		{
+			UpdateSliderValue(m_toolsEspSliderDist2, "", m_toolsEspSliderDist2.GetMax());
+			m_toolsEspSliderDist2Value = m_toolsEspSliderDist2.GetCurrent();
+		}
+		else if (w == m_toolsEspPlayers || w == m_toolsEspVehicles || w == m_toolsEspDeadBodies || w == m_toolsEspLoot)
+		{
+			m_toolsEspPlayersChecked = m_toolsEspPlayers.IsChecked();
+			m_toolsEspVehiclesChecked = m_toolsEspVehicles.IsChecked();
+			m_toolsEspDeadBodiesChecked = m_toolsEspDeadBodies.IsChecked();
+			m_toolsEspLootChecked = m_toolsEspLoot.IsChecked();
+		}
+		else if (w == m_toolsEspFilterBox) 
+		{			
+			text = m_toolsEspFilterBox.GetText();
+			m_toolsEspFilterText.SetText(text);	
+			m_toolsEspFilterValue = text;		
 		}
 		
 		return super.OnChange(w, x, y, finished);
