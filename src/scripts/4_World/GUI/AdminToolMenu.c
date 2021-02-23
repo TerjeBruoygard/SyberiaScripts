@@ -49,10 +49,11 @@ class AdminToolMenu extends UIScriptedMenu
 	static vector m_mapPos = "0 0 0";
 	static float m_mapScale = 0.1;
 	
-	// Tools
+	// Freecam
 	ref CheckBoxWidget m_toolsFreeCamToggle;
 	static bool m_toolsFreeCamToggleChecked = false;
 	
+	// Esp
 	ref CheckBoxWidget m_toolsEspPlayers;
 	ref CheckBoxWidget m_toolsEspDeadBodies;
 	ref CheckBoxWidget m_toolsEspVehicles;
@@ -69,10 +70,19 @@ class AdminToolMenu extends UIScriptedMenu
 	static float m_toolsEspSliderDist2Value = 100;
 	static string m_toolsEspFilterValue = "";
 	
+	// Objects
+	ref ButtonWidget m_toolsObjectsRefresh;
+	ref ButtonWidget m_toolsObjectsDelete;
+	ref TextListboxWidget m_toolsObjectsList;
+	ref array<ref ButtonWidget> m_toolsObjectsCtls;
+	ref array<ref TextWidget> m_toolsObjectsInfo;
+	
 	void AdminToolMenu()
 	{
 		m_tabButtons = new array<ref Widget>;
 		m_tabBodies = new array<ref Widget>;
+		m_toolsObjectsCtls = new array<ref ButtonWidget>;
+		m_toolsObjectsInfo = new array<ref TextWidget>;
 	}
 	
 	void ~AdminToolMenu()
@@ -80,6 +90,8 @@ class AdminToolMenu extends UIScriptedMenu
 		delete m_tabButtons;
 		delete m_tabBodies;
 		
+		if (m_toolsObjectsCtls) delete m_toolsObjectsCtls;
+		if (m_toolsObjectsInfo) delete m_toolsObjectsInfo;
 		if (m_context) delete m_context;
 		if (m_playerContext) delete m_playerContext;
 
@@ -145,10 +157,11 @@ class AdminToolMenu extends UIScriptedMenu
 		m_mapWidget.SetMapPos(m_mapPos);	
 		m_mapWidget.SetScale(m_mapScale);
 		
-		// Tools
+		// Freecam
 		m_toolsFreeCamToggle = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsFreeCamToggle"));
 		m_toolsFreeCamToggle.SetChecked( m_toolsFreeCamToggleChecked );
 		
+		// Esp
 		m_toolsEspPlayers = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspPlayers"));
 		m_toolsEspDeadBodies = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspDeadBodies"));
 		m_toolsEspVehicles = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspVehicles"));
@@ -167,6 +180,29 @@ class AdminToolMenu extends UIScriptedMenu
 		m_toolsEspFilterText.SetText( m_toolsEspFilterValue );
 		m_toolsEspFilterBox.SetText( m_toolsEspFilterValue );
 			
+		// Objects
+		m_toolsObjectsRefresh = ButtonWidget.Cast(layoutRoot.FindAnyWidget("ToolsObjectsRefresh"));
+		m_toolsObjectsDelete = ButtonWidget.Cast(layoutRoot.FindAnyWidget("ToolsObjectsDelete"));
+		m_toolsObjectsList = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("ToolsObjectsList"));
+		m_toolsObjectsInfo.Clear();
+		m_toolsObjectsCtls.Clear();
+		for (int axisId = 1; axisId <= 6; axisId++)
+		{
+			string axisName = "X";
+			if (axisId == 2) axisName = "Y";
+			else if (axisId == 3) axisName = "Z";
+			else if (axisId == 4) axisName = "Yaw";
+			else if (axisId == 5) axisName = "Pitch";
+			else if (axisId == 6) axisName = "Roll";
+			
+			m_toolsObjectsInfo.Insert(TextWidget.Cast(layoutRoot.FindAnyWidget("ToolsCtlText" + axisId)));
+			for (int axisMode = 1; axisMode <= 6; axisMode++)
+			{
+				m_toolsObjectsCtls.Insert(ButtonWidget.Cast(layoutRoot.FindAnyWidget("Button" + axisName + axisMode)));
+			}
+		}
+		
+		SelectCurrentObject();
 		
 		// Common tabs
 		m_tabButtons.Clear();
@@ -511,6 +547,91 @@ class AdminToolMenu extends UIScriptedMenu
 		}
 	}
 	
+	private void RefreshObjectsList()
+	{
+		m_toolsObjectsList.ClearItems();
+		
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+		if (player)
+		{
+			array<Object> objects = new array<Object>;
+			GetGame().GetObjectsAtPosition3D(player.GetPosition(), 10, objects, null);
+			foreach (Object obj : objects)
+			{
+				if (obj.IsBuilding() || obj.IsBush() || obj.IsTree() || obj.IsRock())
+					continue;
+				
+				if (!obj.HasNetworkID())
+					continue;
+				
+				if (obj == player)
+					continue;
+				
+				if (obj.GetType() == "")
+					continue;
+				
+				m_toolsObjectsList.AddItem(obj.GetType(), obj, 0);
+			}
+		}
+	}
+	
+	private void SelectCurrentObject()
+	{
+		int row = m_toolsObjectsList.GetSelectedRow();
+		vector pos = "0 0 0";
+		vector rot = "0 0 0";
+		
+		if (row != -1)
+		{
+			Object obj;
+			m_toolsObjectsList.GetItemData(row, 0, obj);
+			
+			if (obj)
+			{
+				pos = obj.GetPosition();
+				rot = obj.GetOrientation();
+			}
+		}
+		
+		m_toolsObjectsInfo.Get(0).SetText( pos[0].ToString() );
+		m_toolsObjectsInfo.Get(1).SetText( pos[1].ToString() );
+		m_toolsObjectsInfo.Get(2).SetText( pos[2].ToString() );
+		m_toolsObjectsInfo.Get(3).SetText( rot[0].ToString() );
+		m_toolsObjectsInfo.Get(4).SetText( rot[1].ToString() );
+		m_toolsObjectsInfo.Get(5).SetText( rot[2].ToString() );
+	}
+	
+	private void MoveCurrentObject(int axis, int value)
+	{
+		int row = m_toolsObjectsList.GetSelectedRow();
+		if (row == -1) return;
+		
+		Object obj;
+		m_toolsObjectsList.GetItemData(row, 0, obj);		
+		if (!obj) return;
+		
+		float fval = 0;
+		if (value == 0) fval = -0.001;
+		if (value == 1) fval = -0.1;
+		if (value == 2) fval = -1;
+		if (value == 3) fval = 1;
+		if (value == 4) fval = 0.1;
+		if (value == 5) fval = 0.001;		
+		GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_OBJMOVE, new Param3<Object, int, float>( obj, axis, fval ) );
+	}
+	
+	private void DeleteCurrentObject()
+	{
+		int row = m_toolsObjectsList.GetSelectedRow();
+		if (row == -1) return;
+		
+		Object obj;
+		m_toolsObjectsList.GetItemData(row, 0, obj);		
+		if (!obj) return;
+		GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_OBJDEL, new Param1<Object>( obj ) );		
+		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(RefreshObjectsList, 250, false);
+	}
+	
 	private void SpawnCurrentItemRequest()
 	{
 		string classname;
@@ -556,6 +677,11 @@ class AdminToolMenu extends UIScriptedMenu
 		{
 			UpdateCurrentTab();
 			m_dirty = false;
+		}
+		
+		if (m_selectedTabId == 3)
+		{
+			SelectCurrentObject();
 		}
 		
 		if (!m_active)
@@ -618,6 +744,24 @@ class AdminToolMenu extends UIScriptedMenu
 			if (w == m_spawnerClear)
 			{
 				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_CLEARITEMS, new Param1< int >( 0 ) );
+			}
+			
+			if (w == m_toolsObjectsRefresh)
+			{
+				RefreshObjectsList();
+			}
+			
+			if (w == m_toolsObjectsDelete)
+			{
+				DeleteCurrentObject();
+			}
+			
+			int toolsObjectsCtlsIndex = m_toolsObjectsCtls.Find(w);
+			if (toolsObjectsCtlsIndex != -1)
+			{
+				int axis = (int)(toolsObjectsCtlsIndex / 6);
+				int btnid = (int)(toolsObjectsCtlsIndex % 6);
+				MoveCurrentObject(axis, btnid);
 			}
 		}
 		

@@ -25,6 +25,8 @@ class PluginAdminTool extends PluginBase
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, this, "Teleport");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_FREECAM, this, "FreeCam");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_ESPSYNCH, this, "EspSynch");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_OBJMOVE, this, "ObjMove");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_OBJDEL, this, "ObjDel");
 	}
 	
 	override void OnUpdate(float delta_time)
@@ -170,6 +172,10 @@ class PluginAdminTool extends PluginBase
 		if (m_espSynchContext) delete m_espSynchContext;
 		m_espSynchContext = serverData.param1;
 	}
+	
+	void ObjMove( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	
+	void ObjDel( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
 	
 	bool HasAdminPermissions()
 	{

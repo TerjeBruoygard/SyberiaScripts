@@ -665,7 +665,7 @@ FrameWidgetClass rootFrame {
            vexactpos 1
            hexactsize 0
            vexactsize 1
-           text "Free cam mode"
+           text "Spectrator mode"
            font "gui/fonts/etelkatextpro22"
           }
           TextWidgetClass TextWidget0 {
@@ -910,19 +910,1288 @@ FrameWidgetClass rootFrame {
            "text valign" center
           }
           TextListboxWidgetClass ToolsObjectsList {
-           position 0 0.05
-           size 0.4 0.95
+           position 0 0.1
+           size 0.4 0.9
            hexactpos 1
            vexactpos 0
            hexactsize 0
            vexactsize 0
            scaled 1
            style Default
-           "title visible" 1
+           "title visible" 0
            colums "Objects;100;"
            lines 1
            "highlight row" 1
            font "gui/fonts/etelkatextpro14"
+          }
+          PanelWidgetClass ToolsObjectsRefreshBack {
+           ignorepointer 1
+           color 0.098 0.1373 0.1569 1
+           position 0 0.05
+           size 0.4 0.05
+           hexactpos 1
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_blackbox
+           {
+            ButtonWidgetClass ToolsObjectsRefresh {
+             color 0.0588 0.0588 0.0588 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style EmptyHighlight
+             "no focus" 1
+             text "REFRESH"
+             font "gui/fonts/etelkatextpro22"
+             switch normal
+            }
+           }
+          }
+          PanelWidgetClass ToolsObjectsDeleteBack {
+           ignorepointer 1
+           color 0.098 0.1373 0.1569 1
+           position 0 0.55
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_blackbox
+           {
+            ButtonWidgetClass ToolsObjectsDelete {
+             color 0.0588 0.0588 0.0588 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style EmptyHighlight
+             "no focus" 1
+             text "DELETE"
+             font "gui/fonts/etelkatextpro22"
+             switch normal
+            }
+           }
+          }
+          TextWidgetClass TextWidget6 {
+           ignorepointer 1
+           position 0 0.05
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Position:"
+           font "gui/fonts/etelkatextpro22"
+           "text valign" center
+          }
+          FrameWidgetClass ToolsObjectCtlX {
+           ignorepointer 1
+           position 0 0.1
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass TextWidget7 {
+             ignorepointer 1
+             position 0 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "X:"
+             font "gui/fonts/etelkatextpro22"
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 30 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonX1 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack0 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 80 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonX2 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack1 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 130 0
+             size 60 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonX3 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            TextWidgetClass ToolsCtlText1 {
+             ignorepointer 1
+             position 20 0
+             size 180 1
+             halign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "12345.6789"
+             font "gui/fonts/etelkatextpro16"
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack2 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 90 0
+             size 60 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonX4 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack3 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 40 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonX5 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack4 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             size 30 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonX6 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+           }
+          }
+          FrameWidgetClass ToolsObjectCtlY {
+           ignorepointer 1
+           position 0 0.16
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass TextWidget8 {
+             ignorepointer 1
+             position 0 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "Y:"
+             font "gui/fonts/etelkatextpro22"
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack5 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 30 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonY1 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack6 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 80 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonY2 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack7 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 130 0
+             size 60 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonY3 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            TextWidgetClass ToolsCtlText2 {
+             ignorepointer 1
+             position 20 0
+             size 180 1
+             halign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "12345.6789"
+             font "gui/fonts/etelkatextpro16"
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack8 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 90 0
+             size 60 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonY4 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack9 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 40 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonY5 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack10 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             size 30 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonY6 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+           }
+          }
+          FrameWidgetClass ToolsObjectCtlZ {
+           ignorepointer 1
+           position 0 0.22
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass TextWidget9 {
+             ignorepointer 1
+             position 0 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "Z:"
+             font "gui/fonts/etelkatextpro22"
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack11 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 30 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonZ1 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack12 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 80 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonZ2 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack13 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 130 0
+             size 60 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonZ3 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            TextWidgetClass ToolsCtlText3 {
+             ignorepointer 1
+             position 20 0
+             size 180 1
+             halign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "12345.6789"
+             font "gui/fonts/etelkatextpro16"
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack14 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 90 0
+             size 60 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonZ4 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack15 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 40 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonZ5 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack16 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             size 30 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonZ6 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+           }
+          }
+          TextWidgetClass TextWidget10 {
+           ignorepointer 1
+           position 0 0.3
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Rotation:"
+           font "gui/fonts/etelkatextpro22"
+           "text valign" center
+          }
+          FrameWidgetClass ToolsObjectCtlYaw {
+           ignorepointer 1
+           position 0 0.35
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass TextWidget11 {
+             ignorepointer 1
+             position 0 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "X:"
+             font "gui/fonts/etelkatextpro22"
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack17 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 30 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonYaw1 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack18 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 80 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonYaw2 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack19 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 130 0
+             size 60 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonYaw3 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            TextWidgetClass ToolsCtlText4 {
+             ignorepointer 1
+             position 20 0
+             size 180 1
+             halign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "12345.6789"
+             font "gui/fonts/etelkatextpro16"
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack110 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 90 0
+             size 60 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonYaw4 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack111 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 40 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonYaw5 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack112 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             size 30 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonYaw6 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+           }
+          }
+          FrameWidgetClass ToolsObjectCtlPitch {
+           ignorepointer 1
+           position 0 0.41
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass TextWidget12 {
+             ignorepointer 1
+             position 0 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "Y:"
+             font "gui/fonts/etelkatextpro22"
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack113 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 30 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonPitch1 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack114 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 80 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonPitch2 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack115 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 130 0
+             size 60 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonPitch3 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            TextWidgetClass ToolsCtlText5 {
+             ignorepointer 1
+             position 20 0
+             size 180 1
+             halign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "12345.6789"
+             font "gui/fonts/etelkatextpro16"
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack116 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 90 0
+             size 60 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonPitch4 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack117 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 40 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonPitch5 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack118 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             size 30 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonPitch6 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+           }
+          }
+          FrameWidgetClass ToolsObjectCtlRoll {
+           ignorepointer 1
+           position 0 0.47
+           size 0.55 0.05
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass TextWidget13 {
+             ignorepointer 1
+             position 0 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "Z:"
+             font "gui/fonts/etelkatextpro22"
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack119 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 30 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonRoll1 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack1110 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 80 0
+             size 40 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonRoll2 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack1111 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 130 0
+             size 60 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonRoll3 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "<<<"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            TextWidgetClass ToolsCtlText6 {
+             ignorepointer 1
+             position 20 0
+             size 180 1
+             halign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             text "12345.6789"
+             font "gui/fonts/etelkatextpro16"
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass ButtonBack1112 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 90 0
+             size 60 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonRoll4 {
+               color 0.0588 0.0588 0.0588 1
+               position 0 0
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack1113 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 40 0
+             size 40 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonRoll5 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">>"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass ButtonBack1114 {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             size 30 1
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass ButtonRoll6 {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text ">"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+           }
           }
          }
         }
