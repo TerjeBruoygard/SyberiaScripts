@@ -1,6 +1,7 @@
 class SkillsContainer
 {
-	protected ref map<int, float> m_values;
+	protected ref map<int, float> m_skills;
+	protected ref map<int, int> m_perks;
 	bool m_dirty = true;
 	
 	void SkillsContainer()
@@ -10,80 +11,119 @@ class SkillsContainer
 	
 	void ~SkillsContainer()
 	{
-		if (m_values)
+		if (m_skills)
 		{
-			delete m_values;
+			delete m_skills;
+		}
+		
+		if (m_perks)
+		{
+			delete m_perks;
 		}
 	}
 	
-	float GetValue(int id)
+	float GetSkillValue(int id)
 	{
-		if (m_values.Contains(id))
+		if (m_skills.Contains(id))
 		{
-			return m_values.Get(id);
+			return m_skills.Get(id);
 		}
 		
 		return 0;
 	}
 	
-	int GetValueInt(int id)
+	int GetSkillValueInt(int id)
 	{
-		return (int)GetValue(id);
+		return (int)GetSkillValue(id);
 	}
 	
-	void SetValue(int id, float value)
+	void SetSkillValue(int id, float value)
 	{
-		value = Math.Clamp(value, GetMin(id), GetMax(id));
+		value = Math.Clamp(value, GetSkillMin(id), GetSkillMax(id));
 		
-		if (m_values.Contains(id))
+		if (m_skills.Contains(id))
 		{
-			m_values.Set(id, value);
+			m_skills.Set(id, value);
 		}
 		else
 		{
-			m_values.Insert(id, value);
+			m_skills.Insert(id, value);
 		}
 		
 		m_dirty = true;
 	}
 	
-	void AddValue(int id, float value)
+	void AddSkillValue(int id, float value)
 	{
-		SetValue(id, GetValue(id) + value);
+		SetSkillValue(id, GetSkillValue(id) + value);
 	}
 	
-	float GetMin(int id)
-	{
-		if (id == SyberiaSkillType.SYBSKILL_HUMANITY)
-		{
-			return -100;
-		}
-		
+	float GetSkillMin(int id)
+	{		
 		return 0;
 	}
 	
-	float GetMax(int id)
+	float GetSkillMax(int id)
 	{
 		return 100;
 	}
 	
-	float GetLevelSize(int id)
+	float GetSkillLevelSize(int id)
 	{
-		return SkillsContainer.CalculateLevelSize(GetValueInt(id));
+		return SkillsContainer.CalculateSkillLevelSize(GetSkillValueInt(id));
 	}
 	
-	float GetLevelValue(int id)
+	float GetSkillLevelValue(int id)
 	{
-		float val = GetValue(id);
+		float val = GetSkillValue(id);
 		int lval = (int)val;
 		float dif = val - (float)lval;
-		return GetLevelSize(lval) * dif;
+		return GetSkillLevelSize(lval) * dif;
+	}
+	
+	bool HasPerk(int perkId)
+	{
+		return m_perks.Contains(perkId);
+	}
+	
+	int GetPerkLevel(int perkId)
+	{
+		if (HasPerk(perkId))
+		{
+			return m_perks.Get(perkId);
+		}
+		
+		return -1;
+	}
+	
+	int GetPerkValue(int perkId)
+	{
+		int perkLevel = GetPerkLevel(perkId);
+		ref PerkInfo perk = PerksCollection.m_Instance.GetPerk(perkId);
+		if (perk && perk.HasUnlockLevel(perkLevel))
+		{
+			return perk.GetUnlockLevelValue(perkLevel);
+		}
+		
+		return -1;
+	}
+	
+	void SetPerk(int perkId, int perkLevel)
+	{
+		if (HasPerk(perkId))
+		{
+			m_perks.Set(perkId, perkLevel);
+		}
+		else
+		{
+			m_perks.Insert(perkId, perkLevel);
+		}
 	}
 	
 	float GetTotalScore()
 	{
 		float result = 0;
-		foreach (int id, float val : m_values)
+		foreach (int id, float val : m_skills)
 		{
 			result = result + val;
 		}
@@ -91,7 +131,57 @@ class SkillsContainer
 		return result;
 	}
 	
-	static float CalculateLevelSize(int levelValue)
+	int GetSkillLevelVisualStatus(int skillId, int level)
+	{
+		if ( GetSkillValueInt(skillId) < level )
+			return -1;
+		
+		array<ref PerkInfo> m_perksOnThisLevel = new array<ref PerkInfo>;
+		PerksCollection.m_Instance.GetFilteredPerks(skillId, level, m_perksOnThisLevel);
+		foreach (ref PerkInfo checkedPerk : m_perksOnThisLevel)
+		{
+			if (GetPerkLevel(checkedPerk.GetId()) >= level)
+			{
+				return 1;
+			}
+		}
+		
+		return 0;
+	}
+	
+	int GetPerkStatus(int perkId, int level)
+	{
+		ref PerkInfo perk = PerksCollection.m_Instance.GetPerk(perkId);
+		if (!perk || !perk.HasUnlockLevel(level)) 
+			return -3;
+		
+		int skillId = perk.GetSkillId();
+		array<ref PerkInfo> m_perksOnThisLevel = new array<ref PerkInfo>;
+		PerksCollection.m_Instance.GetFilteredPerks(skillId, level, m_perksOnThisLevel);
+		foreach (ref PerkInfo checkedPerk : m_perksOnThisLevel)
+		{
+			if (checkedPerk.GetId() == perkId)
+				continue;
+			
+			if (GetPerkLevel(checkedPerk.GetId()) >= level)
+				return -2;
+		}
+		
+		if (level > GetSkillValueInt(skillId)) 
+			return -1;
+				
+		if (GetPerkLevel(perkId) >= level)
+			return 1;
+		
+		return 0;
+	}
+	
+	bool CanActivatePerk(int perkId, int level)
+	{		
+		return GetPerkStatus(perkId, level) == 0;
+	}
+	
+	static float CalculateSkillLevelSize(int levelValue)
 	{
 		int skillLevelSize = GetSyberiaOptions().m_client.m_skillLevelSize;
 		int skillLevelModifier = GetSyberiaOptions().m_client.m_skillLevelModifier;
@@ -108,7 +198,8 @@ class SkillsContainer
 	static ref SkillsContainer Create()
 	{
 		ref SkillsContainer result = new SkillsContainer;
-		result.m_values = new map<int, float>;		
+		result.m_skills = new map<int, float>;
+		result.m_perks = new map<int, int>;		
 		return result;
 	}
 };
