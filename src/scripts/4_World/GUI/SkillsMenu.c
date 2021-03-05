@@ -199,7 +199,7 @@ class SkillsMenu extends UIScriptedMenu
 				if (perk && player && player.m_skills)
 				{
 					perkName = perk.GetName();
-					perkDesc = perk.GetDesc();
+					perkDesc = perk.GetDesc(selectedLevelValue.param1);
 					perkStatus = player.m_skills.GetPerkStatus( perk.GetId(), selectedLevelValue.param1 );
 				}
 			}
