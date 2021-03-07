@@ -153,6 +153,10 @@ class SkillsContainer
 	{
 		ref PerkInfo perk = PerksCollection.m_Instance.GetPerk(perkId);
 		if (!perk || !perk.HasUnlockLevel(level)) 
+			return -4;
+		
+		int prevUnlockLevel = perk.GetPrevUnlockLevel(level);
+		if (prevUnlockLevel != -1 && GetPerkLevel(perkId) != prevUnlockLevel)
 			return -3;
 		
 		int skillId = perk.GetSkillId();

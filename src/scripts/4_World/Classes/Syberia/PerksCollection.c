@@ -536,6 +536,22 @@ class PerkInfo
 		return m_unlockValues.Contains(unlockLevel);
 	}
 	
+	int GetPrevUnlockLevel(int unlockLevel)
+	{
+		int result = -1;
+		ref array<int> keys = m_unlockValues.GetKeyArray();
+		keys.Sort();
+		
+		int curIndex = keys.Find(unlockLevel);
+		if (curIndex > 0)
+		{
+			result = keys.Get(curIndex - 1);
+		}
+		
+		delete keys;
+		return result;
+	}
+	
 	int GetUnlockLevelValue(int unlockLevel)
 	{
 		return m_unlockValues.Get(unlockLevel);
