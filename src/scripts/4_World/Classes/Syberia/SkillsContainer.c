@@ -76,9 +76,8 @@ class SkillsContainer
 	float GetSkillLevelValue(int id)
 	{
 		float val = GetSkillValue(id);
-		int lval = (int)val;
-		float dif = val - (float)lval;
-		return GetSkillLevelSize(lval) * dif;
+		float dif = val - Math.Floor(val);
+		return GetSkillLevelSize(id) * dif;
 	}
 	
 	bool HasPerk(int perkId)
@@ -118,6 +117,8 @@ class SkillsContainer
 		{
 			m_perks.Insert(perkId, perkLevel);
 		}
+		
+		m_dirty = true;
 	}
 	
 	float GetTotalScore()
@@ -155,10 +156,6 @@ class SkillsContainer
 		if (!perk || !perk.HasUnlockLevel(level)) 
 			return -4;
 		
-		int prevUnlockLevel = perk.GetPrevUnlockLevel(level);
-		if (prevUnlockLevel != -1 && GetPerkLevel(perkId) != prevUnlockLevel)
-			return -3;
-		
 		int skillId = perk.GetSkillId();
 		array<ref PerkInfo> m_perksOnThisLevel = new array<ref PerkInfo>;
 		PerksCollection.m_Instance.GetFilteredPerks(skillId, level, m_perksOnThisLevel);
@@ -173,6 +170,10 @@ class SkillsContainer
 		
 		if (level > GetSkillValueInt(skillId)) 
 			return -1;
+		
+		int prevUnlockLevel = perk.GetPrevUnlockLevel(level);
+		if (prevUnlockLevel != -1 && GetPerkLevel(perkId) != prevUnlockLevel)
+			return -3;
 				
 		if (GetPerkLevel(perkId) >= level)
 			return 1;
