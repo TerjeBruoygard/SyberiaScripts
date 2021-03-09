@@ -135,8 +135,6 @@ modded class Environment
 			float itemTemperature = item.GetTemperature();
 			if (itemTemperature > envTemperature) item.AddTemperature( GameConstants.TEMPERATURE_ITEM_HEAT_TRANSFER_COEF * -1.0 );
 			else item.AddTemperature( GameConstants.TEMPERATURE_ITEM_HEAT_TRANSFER_COEF );
-			
-			SybLog("TEMPERATURE TRANSFER " + item.GetType() + " FROM " + itemTemperature + " TO " + item.GetTemperature());
 		}
 		
 		if (!item.GetInventory())

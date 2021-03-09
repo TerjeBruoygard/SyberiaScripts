@@ -24,11 +24,6 @@ class PersonalRadio : Transmitter_Base {
     };
 };
 
-class FireplaceBase: Inventory_Base
-{
-    varTemperatureMin=-100;
-};
-
 class Pot: Bottle_Base
 {
     varTemperatureMin=-100;
