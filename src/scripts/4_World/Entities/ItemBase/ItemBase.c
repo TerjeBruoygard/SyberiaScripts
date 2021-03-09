@@ -5,4 +5,9 @@ modded class ItemBase
 		super.SetActions();		
 		AddAction(ActionCutBookPage);
 	}
+
+	bool IsTemperatureVisible()
+	{
+		return CanHaveTemperature();
+	}
 };

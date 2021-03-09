@@ -23,3 +23,18 @@ class PersonalRadio : Transmitter_Base {
         energyUsagePerSecond = 0.001;
     };
 };
+
+class FireplaceBase: Inventory_Base
+{
+    varTemperatureMin=-100;
+};
+
+class Pot: Bottle_Base
+{
+    varTemperatureMin=-100;
+};
+
+class FryingPan: Inventory_Base
+{
+    varTemperatureMin=-100;
+};

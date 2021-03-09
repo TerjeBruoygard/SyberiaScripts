@@ -1,3 +1,26 @@
+class CfgWorlds
+{
+	class DefaultWorld
+	{
+        winterWorld=0;
+        airDayTemperatureMin=15;
+        airDayTemperatureMax=25;
+        airNightTemperatureMin=10;
+        airNightTemperatureMax=20;
+        clothingHeatIsolationGlobal=1;
+	};
+	class CAWorld;
+	class namalsk: CAWorld
+	{
+        winterWorld=1;
+        airDayTemperatureMin=-15;
+        airDayTemperatureMax=-5;
+        airNightTemperatureMin=-20;
+        airNightTemperatureMax=-10;
+        clothingHeatIsolationGlobal=1.6;
+    };
+};
+
 class RscMapControl
 {
 	scaleMin=4.9999999e-005;

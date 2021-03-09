@@ -16,7 +16,12 @@ class DamageSystem {\
 
 // Items
 class Inventory_Base;
-class Edible_Base;
+class Edible_Base: Inventory_Base
+{
+    varTemperatureMin=-100;
+};
+
+class Bottle_Base;
 class SodaCan_ColorBase;
 class Clothing;
 class Container_Base;

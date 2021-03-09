@@ -1,7 +1,7 @@
 class CfgPatches {
 	class SyberiaScripts {
         units[] = {};
-		requiredAddons[] = {"DZ_Data", "DZ_Scripts", "DZ_Gear_Medical", "DZ_Gear_Consumables", "namalsk_survival"};
+		requiredAddons[] = {"DZ_Data", "DZ_Scripts", "DZ_Gear_Medical", "DZ_Gear_Consumables"};
 	};
 };
 
