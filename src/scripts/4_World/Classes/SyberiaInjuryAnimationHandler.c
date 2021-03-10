@@ -6,6 +6,7 @@ modded class InjuryAnimationHandler
 		eInjuryHandlerLevels sleepingState = CalculateSleepingState();
 		eInjuryHandlerLevels painState = CalculatePainState();
 		eInjuryHandlerLevels overdoseState = CalculateOverdoseState();
+		eInjuryHandlerLevels waterEnergy = CalculateLowEnergyWaterState();
 		
 		if (InjuryLevelToValue(result) < InjuryLevelToValue(sleepingState))
 		{
@@ -20,6 +21,11 @@ modded class InjuryAnimationHandler
 		if (InjuryLevelToValue(result) < InjuryLevelToValue(overdoseState))
 		{
 			result = overdoseState;
+		}
+		
+		if (InjuryLevelToValue(result) < InjuryLevelToValue(waterEnergy))
+		{
+			result = waterEnergy;
 		}
 		
 		if (m_Player.m_concussionHit && InjuryLevelToValue(result) < 2)
@@ -83,6 +89,21 @@ modded class InjuryAnimationHandler
 			return eInjuryHandlerLevels.WORN;
 		}
 		
+		return eInjuryHandlerLevels.PRISTINE;
+	}
+	
+	private eInjuryHandlerLevels CalculateLowEnergyWaterState()
+	{
+		if (m_Player.GetStatEnergy().Get() <= PlayerConstants.SL_ENERGY_CRITICAL || m_Player.GetStatWater().Get() <= PlayerConstants.SL_WATER_CRITICAL)
+		{
+			return eInjuryHandlerLevels.RUINED;
+		}
+		
+		if (m_Player.GetStatEnergy().Get() <= PlayerConstants.SL_ENERGY_LOW || m_Player.GetStatWater().Get() <= PlayerConstants.SL_WATER_LOW)
+		{
+			return eInjuryHandlerLevels.DAMAGED;
+		}
+
 		return eInjuryHandlerLevels.PRISTINE;
 	}
 	
