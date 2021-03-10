@@ -44,8 +44,8 @@ class MedicineSystem
     sepsisDirtySyringeChance = 0.6;
     sepsisDitryHandsBandageChance = 0.2;
     sepsisDitryHandsSyrgeryChance = 0.8;
-    zvirusStage1TimeSec = 20 * 60;
-    zvirusStage2TimeSec = ZVIRUS_STAGE1_TIME_SEC + (40 * 60);
+    zvirusStage1TimeSec = 20 * 60; // 20 min
+    zvirusStage2TimeSec = 60 * 60; // zvirusStage1TimeSec + 40 min
     zvirusDeathTimeSec = 60 * 15;
     zvirusBloodRegenPerSec = 4;
     zvirusZombieHitChance = 0.25;
@@ -88,7 +88,7 @@ class MedicineSystem
     mindstateHealPerSec = 0.04;
     mindstateEmptyDeadtimeSec = 10 * 60;
     influenzaIncubatePeriodsSec[] = { 60 * 5, 60 * 25, 60 * 30 };
-    influenzaTemperatureLevels[] = { -1, 37.0, 40.0 };
+    influenzaTemperatureLevels[] = { -1.0, 37.0, 40.0 };
     influenzaSympthomChance[] = { 0.02, 0.04, 0.08 };
     influenzaDeathTime[] = {0, 0, 60 * 15};
     influenzaApplyOnColdWarnChance = 0.0003;
@@ -117,16 +117,6 @@ class ZombieSystem
     zombieOpenDoorEnable = 1;
     zombieOpenDoorDistance = 1.8;
     zombieFindHouseDistance = 20.0;
-}:
-
-class TemperatureSystem
-{
-    temperatureHighConsumeItemsMod = 0.04;
-    temperatureLowConsumeItemsMod = -0.2;
-    temperatureDrinkPondPenalty = -0.2;
-    temperatureDrinkWellPenalty = -0.2;
-    temperatureFillWaterBottleTotal = 6;
-    temperatureFillWaterBottleMod = 0.1;
 };
 
 class IngameSystem

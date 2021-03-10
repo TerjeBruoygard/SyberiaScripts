@@ -153,35 +153,82 @@ class SyberiaConfig
 	float m_mindstateLevel3;
 	float m_mindstateLevel2;
 	
-    void SyberiaConfig()
-    {
-        Init();
-    }
+	protected void ConfigGetTextArray(string path, out array<string> result, int count)
+	{
+		if (!GetGame().ConfigIsExisting(path))
+			Error("Config property not exists");
+		
+		GetGame().ConfigGetTextArray(path, result);
+		if (count != -1 && result.Count() != count)
+			Error("Count check failed for config loading");
+	}
 	
-	protected void Init()
+	protected void ConfigGetFloatArray(string path, out array<float> result, int count)
+	{
+		if (!GetGame().ConfigIsExisting(path))
+			Error("Config property not exists");
+		
+		GetGame().ConfigGetFloatArray(path, result);
+		if (count != -1 && result.Count() != count)
+			Error("Count check failed for config loading");
+	}
+	
+	protected void ConfigGetIntArray(string path, out array<int> result, int count)
+	{
+		if (!GetGame().ConfigIsExisting(path))
+			Error("Config property not exists");
+		
+		GetGame().ConfigGetIntArray(path, result);
+		if (count != -1 && result.Count() != count)
+			Error("Count check failed for config loading");
+	}
+	
+	protected int ConfigGetInt(string path)
+	{
+		if (!GetGame().ConfigIsExisting(path))
+			Error("Config property not exists");
+		
+		return GetGame().ConfigGetInt(path);
+	}
+	
+	protected float ConfigGetFloat(string path)
+	{
+		if (!GetGame().ConfigIsExisting(path))
+			Error("Config property not exists");
+		
+		return GetGame().ConfigGetFloat(path);
+	}
+	
+	void Init()
 	{
 		// Auth
-		GetGame().ConfigGetTextArray("CfgSyberia AuthSystem allowedLettersInName", m_allowedLettersInName);
+		ConfigGetTextArray("CfgSyberia AuthSystem allowedLettersInName", m_allowedLettersInName, -1);
 		
 		// Sleeping
-		m_sleepingMaxValue = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingMaxValue");
-	    m_sleepingLevel5 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel5");
-	    m_sleepingLevel4 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel4");
-	    m_sleepingLevel3 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel3");
-	    m_sleepingLevel2 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel2");
+		m_sleepingMaxValue = ConfigGetInt("CfgSyberia SleepingSystem sleepingMaxValue");
+	    m_sleepingLevel5 = ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel5");
+	    m_sleepingLevel4 = ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel4");
+	    m_sleepingLevel3 = ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel3");
+	    m_sleepingLevel2 = ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel2");
 		
 		// Mindstate
-		m_mindstateMaxValue = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateMaxValue");
-	    m_mindstateLevel5 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel5");
-	    m_mindstateLevel4 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel4");
-	    m_mindstateLevel3 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel3");
-	    m_mindstateLevel2 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel2");
+		m_mindstateMaxValue = ConfigGetFloat("CfgSyberia MindstateSystem mindstateMaxValue");
+	    m_mindstateLevel5 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel5");
+	    m_mindstateLevel4 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel4");
+	    m_mindstateLevel3 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel3");
+	    m_mindstateLevel2 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel2");
 	}
 };
 
-static ref SyberiaConfig m_syberiaConfig = new SyberiaConfig;
+static ref SyberiaConfig m_syberiaConfig = null;
 ref SyberiaConfig GetSyberiaConfig()
 {
+    if (!m_syberiaConfig)
+    {
+        m_syberiaConfig = new SyberiaConfig;
+		m_syberiaConfig.Init();
+    }
+    
     return m_syberiaConfig;
 };
 
@@ -206,8 +253,8 @@ modded class PlayerConstants
 	
 	// Metabolic
 	static const float SL_ENERGY_CRITICAL = 0;
-	static const float SL_ENERGY_LOW = 300;
-	static const float SL_ENERGY_NORMAL = 1500;
+	static const float SL_ENERGY_LOW = 1000;
+	static const float SL_ENERGY_NORMAL = 2000;
 	static const float SL_ENERGY_HIGH = 2800;
 	
 	static const float METABOLIC_SPEED_ENERGY_BASAL		= 0.01;		//energy loss per second while idle	
@@ -217,8 +264,8 @@ modded class PlayerConstants
 	
 	// Water
 	static const float SL_WATER_CRITICAL = 0;
-	static const float SL_WATER_LOW = 150;
-	static const float SL_WATER_NORMAL = 700;
+	static const float SL_WATER_LOW = 500;
+	static const float SL_WATER_NORMAL = 1000;
 	static const float SL_WATER_HIGH = 1300;
 	
 	static const float METABOLIC_SPEED_WATER_BASAL		= 0.02;		//water loss per second while idle	

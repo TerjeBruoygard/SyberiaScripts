@@ -8,6 +8,13 @@ class CfgWorlds
         airNightTemperatureMin=10;
         airNightTemperatureMax=20;
         clothingHeatIsolationGlobal=1;
+        
+        temperatureHighConsumeItemsMod = 0.02;
+        temperatureLowConsumeItemsMod = -0.1;
+        temperatureDrinkPondPenalty = -0.05;
+        temperatureDrinkWellPenalty = -0.1;
+        temperatureFillWaterBottleTotal = 12;
+        temperatureFillWaterBottleMod = 0.1;
 	};
 	class CAWorld;
 	class namalsk: CAWorld
@@ -18,6 +25,12 @@ class CfgWorlds
         airNightTemperatureMin=-20;
         airNightTemperatureMax=-10;
         clothingHeatIsolationGlobal=1.8;
+        
+        temperatureHighConsumeItemsMod = 0.04;
+        temperatureLowConsumeItemsMod = -0.2;
+        temperatureDrinkPondPenalty = -0.2;
+        temperatureDrinkWellPenalty = -0.2;
+        temperatureFillWaterBottleTotal = 6;
     };
 };
 
