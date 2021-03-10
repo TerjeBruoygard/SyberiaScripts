@@ -32,7 +32,7 @@ class CharacterMetadata
 			string letter = name.SubstringUtf8(i, 1);
 			letter.ToLower();
 
-			if (GetSyberiaConfig().ALLOWED_LETTERS_IN_NAME.Find(letter) == -1)
+			if (GetSyberiaConfig().m_allowedLettersInName.Find(letter) == -1)
 			{
 				return false;
 			}

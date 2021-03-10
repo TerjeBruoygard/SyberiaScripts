@@ -32,12 +32,12 @@ modded class InjuryAnimationHandler
 	
 	private eInjuryHandlerLevels CalculateSleepingState()
 	{
-		if (m_Player.GetSleepingValue() < SLEEPING_LEVEL_5)
+		if (m_Player.GetSleepingValue() < GetSyberiaConfig().m_sleepingLevel5)
 		{
 			return eInjuryHandlerLevels.RUINED;
 		}
 		
-		if (m_Player.GetSleepingValue() < SLEEPING_LEVEL_4)
+		if (m_Player.GetSleepingValue() < GetSyberiaConfig().m_sleepingLevel4)
 		{
 			return eInjuryHandlerLevels.DAMAGED;
 		}
