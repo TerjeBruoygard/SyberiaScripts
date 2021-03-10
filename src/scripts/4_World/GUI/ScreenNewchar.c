@@ -228,7 +228,7 @@ class ScreenNewchar extends ScreenBase
 		if (w.GetName() == m_charNameEdit1.GetName()) {			
 			text = m_charNameEdit1.GetText();
 			if (text.LengthUtf8() > m_maxNameLength) {
-				m_charNameEdit1.SetText(text.Substring(0, m_maxNameLength));
+				m_charNameEdit1.SetText(text.SubstringUtf8(0, m_maxNameLength));
 			}
 			
 			return true;
@@ -236,7 +236,7 @@ class ScreenNewchar extends ScreenBase
 		if (w.GetName() == m_charNameEdit2.GetName()) {			
 			text = m_charNameEdit2.GetText();
 			if (text.LengthUtf8() > m_maxNameLength) {
-				m_charNameEdit2.SetText(text.Substring(0, m_maxNameLength));
+				m_charNameEdit2.SetText(text.SubstringUtf8(0, m_maxNameLength));
 			}
 			
 			return true;

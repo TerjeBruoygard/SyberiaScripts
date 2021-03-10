@@ -63,4 +63,9 @@ class CfgSoundSets
     #include "sounds_sets.hpp"
 };
 
+class CfgSyberia
+{
+    #include "syberia_config.hpp"
+};
+
 #include "map_settings.hpp"

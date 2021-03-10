@@ -23,16 +23,16 @@ class CharacterMetadata
 	}
 	
 	static bool ValidateCharacterNamePart(string name)
-	{
+	{		
 		int length = name.LengthUtf8();
 		if (length < 2 || length > 16) return false;
-		
+
 		for (int i = 0; i < length; i++)
 		{
-			string letter = name.Get(i);
+			string letter = name.SubstringUtf8(i, 1);
 			letter.ToLower();
-			
-			if (!ALLOWED_LETTERS_IN_NAME.Contains(letter))
+
+			if (GetSyberiaConfig().ALLOWED_LETTERS_IN_NAME.Find(letter) == -1)
 			{
 				return false;
 			}

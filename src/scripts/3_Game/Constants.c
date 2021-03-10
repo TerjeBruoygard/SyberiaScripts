@@ -134,20 +134,56 @@ const int LEVELED_NTFKEY_BADGES[LEVELED_NTFKEY_BADGES_COUNT] = {
 	NTFKEY_ANTIBIOTIC, NTFKEY_STOMATCHPOISONING, NTFKEY_STOMATCHHEAL 
 };
 
-const string ALLOWED_LETTERS_IN_NAME = "abcdefghijklmnopqrstuvwxyz";
+class SyberiaConfig
+{
+	// Auth	
+    ref array<string> allowedLettersInName = new array<string>;
+    
+	// Sleeping
+	int sleepingMaxValue;
+    int sleepingLevel5;
+    int sleepingLevel4;
+    int sleepingLevel3;
+    int sleepingLevel2;
+	
+	// Mindstate
+	float mindstateMaxValue;
+	float mindstateLevel5;
+	float mindstateLevel4;
+	float mindstateLevel3;
+	float mindstateLevel2;
+	
+    void SyberiaConfig()
+    {
+        Init();
+    }
+	
+	protected void Init()
+	{
+		// Auth
+		GetGame().ConfigGetTextArray("CfgSyberia AuthSystem allowedLettersInName", allowedLettersInName);
+		
+		// Sleeping
+		sleepingMaxValue = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingMaxValue");
+	    sleepingLevel5 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel5");
+	    sleepingLevel4 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel4");
+	    sleepingLevel3 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel3");
+	    sleepingLevel2 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel2");
+		
+		// Mindstate
+		mindstateMaxValue = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateMaxValue");
+	    mindstateLevel5 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel5");
+	    mindstateLevel4 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel4");
+	    mindstateLevel3 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel3");
+	    mindstateLevel2 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel2");
+	}
+};
 
-// U CAN CHANGE THIS CONSTANTS
-const int SLEEPING_MAX_VALUE = 14000;
-const int SLEEPING_LEVEL_5 = 100;
-const int SLEEPING_LEVEL_4 = 1000;
-const int SLEEPING_LEVEL_3 = 5000;
-const int SLEEPING_LEVEL_2 = 10000;
-
-const float MINDSTATE_MAX_VALUE = 100;
-const float MINDSTATE_LEVEL_5 = 1.0;
-const float MINDSTATE_LEVEL_4 = 10.0;
-const float MINDSTATE_LEVEL_3 = 30.0;
-const float MINDSTATE_LEVEL_2 = 70.0;
+static ref SyberiaConfig m_syberiaConfig = new SyberiaConfig;
+ref SyberiaConfig GetSyberiaConfig()
+{
+    return m_syberiaConfig;
+};
 
 // Constants redefinition
 modded class PlayerConstants
