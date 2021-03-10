@@ -7,4 +7,9 @@ class TabletsBase extends Edible_Base
 		AddAction(ActionForceConsumeSingle);
 		AddAction(ActionConsumeSingle);
 	}
+	
+	override bool CanHaveTemperature()
+	{
+		return false;
+	}
 };
