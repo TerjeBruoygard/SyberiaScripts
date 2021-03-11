@@ -92,7 +92,7 @@ class MedicineSystem
     influenzaSympthomChance[] = { 0.02, 0.04, 0.08 };
     influenzaDeathTime[] = {0, 0, 60 * 15};
     influenzaApplyOnColdWarnChance = 0.0003;
-    influenzaApplyOnColdCritChance = 0.0006;
+    influenzaApplyOnColdCritChance = 0.001;
     antibioticsGlobalEffectivityModifier = 0.006;
     stomatchpoisonVomitChance[] = { 1 / 120, 1 / 60, 1 / 30 };
     stomatchpoisonWaterDrainFromVomit[] = { 100, 300, 500 };
