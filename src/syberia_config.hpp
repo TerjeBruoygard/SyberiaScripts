@@ -53,9 +53,9 @@ class MedicineSystem
     zvirusAntidotBloodDmg01 = 0.15;
     zvirusAntidotHealthDmg01 = 0.2;
     painLvl1TimeSec = 180;
-    painLvl2TimeSec = 1200;
-    painLvl3TimeSec = 2100;
-    painMaxDurationSec = 3600;
+    painLvl2TimeSec = 600;
+    painLvl3TimeSec = 1200;
+    painMaxDurationSec = 2400;
     bleedingBullethitHealthlosePerSecond = 0.003;
     bleedingBullethitOpenPerSecond = 5;
     bleedingBullethitCupd1PerSecond = 0.3;
@@ -130,4 +130,15 @@ class ZombieSystem
 class IngameSystem
 {
     bookPagesCountToCut = 10;
+};
+
+class SkillsExperienceSystem
+{
+    skillsExpImmunityPain = 5;
+    skillsExpImmunityHematoma = 5;
+    skillsExpImmunityInfluenza = 50;
+    skillsExpImmunityStomatch = 80;
+    skillsExpImmunityZVirus = 250;
+    skillsExpImmunitySepsis = 200;
+    skillsExpImmunityOverdose = 10;
 };
