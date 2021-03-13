@@ -753,12 +753,16 @@ class AdminToolMenu extends UIScriptedMenu
 				DeleteCurrentObject();
 			}
 			
-			int toolsObjectsCtlsIndex = m_toolsObjectsCtls.Find(w);
-			if (toolsObjectsCtlsIndex != -1)
+			ButtonWidget wb = ButtonWidget.Cast(w);
+			if (wb)
 			{
-				int axis = (int)(toolsObjectsCtlsIndex / 6);
-				int btnid = (int)(toolsObjectsCtlsIndex % 6);
-				MoveCurrentObject(axis, btnid);
+				int toolsObjectsCtlsIndex = m_toolsObjectsCtls.Find(wb);
+				if (toolsObjectsCtlsIndex != -1)
+				{
+					int axis = (int)(toolsObjectsCtlsIndex / 6);
+					int btnid = (int)(toolsObjectsCtlsIndex % 6);
+					MoveCurrentObject(axis, btnid);
+				}
 			}
 		}
 		
