@@ -171,13 +171,14 @@ class SkillsContainer
 		if (level > GetSkillValueInt(skillId)) 
 			return -1;
 		
-		int prevUnlockLevel = perk.GetPrevUnlockLevel(level);
-		if (prevUnlockLevel != -1 && GetPerkLevel(perkId) != prevUnlockLevel)
-			return -3;
-				
-		if (GetPerkLevel(perkId) >= level)
+		int currentPerkLevel = GetPerkLevel(perkId);
+		if (currentPerkLevel >= level)
 			return 1;
 		
+		int prevUnlockLevel = perk.GetPrevUnlockLevel(level);		
+		if (prevUnlockLevel != -1 && currentPerkLevel != prevUnlockLevel)
+			return -3;
+						
 		return 0;
 	}
 	

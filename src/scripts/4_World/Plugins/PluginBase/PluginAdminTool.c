@@ -204,10 +204,11 @@ class PluginAdminTool extends PluginBase
 			for (int pi = 0; pi < m_espSynchContext.m_playerPositions.Count(); pi++)
 			{
 				vector pvec = m_espSynchContext.m_playerPositions.Get(pi);
-				if (vector.Distance(pvec, pos) < AdminToolMenu.m_toolsEspSliderDist1Value)
+				float pdist = vector.Distance(pvec, pos);
+				if (pdist < AdminToolMenu.m_toolsEspSliderDist1Value)
 				{
 					positions.Insert( pvec );
-					names.Insert( m_espSynchContext.m_playerNames.Get(pi) );
+					names.Insert( m_espSynchContext.m_playerNames.Get(pi) + " (" + (int)pdist + "m)" );
 					types.Insert( PluginAdminTool_EspType.PLAYER );
 				}
 			}
@@ -218,10 +219,11 @@ class PluginAdminTool extends PluginBase
 			for (int bi = 0; bi < m_espSynchContext.m_bodiesPositions.Count(); bi++)
 			{
 				vector bvec = m_espSynchContext.m_bodiesPositions.Get(bi);
-				if (vector.Distance(bvec, pos) < AdminToolMenu.m_toolsEspSliderDist1Value)
+				float bdist = vector.Distance(bvec, pos);
+				if (bdist < AdminToolMenu.m_toolsEspSliderDist1Value)
 				{
 					positions.Insert( bvec );
-					names.Insert( m_espSynchContext.m_bodiesNames.Get(bi) );
+					names.Insert( m_espSynchContext.m_bodiesNames.Get(bi) + " (" + (int)bdist + "m)" );
 					types.Insert( PluginAdminTool_EspType.BODY );
 				}
 			}
@@ -232,10 +234,11 @@ class PluginAdminTool extends PluginBase
 			for (int vi = 0; vi < m_espSynchContext.m_vehiclePositions.Count(); vi++)
 			{
 				vector vvec = m_espSynchContext.m_vehiclePositions.Get(vi);
-				if (vector.Distance(vvec, pos) < AdminToolMenu.m_toolsEspSliderDist1Value)
+				float vdist = vector.Distance(vvec, pos);
+				if (vdist < AdminToolMenu.m_toolsEspSliderDist1Value)
 				{
 					positions.Insert( vvec );
-					names.Insert( m_espSynchContext.m_vehicleNames.Get(vi) );
+					names.Insert( m_espSynchContext.m_vehicleNames.Get(vi) + " (" + (int)vdist + "m)" );
 					types.Insert( PluginAdminTool_EspType.VEHICLES );
 				}
 			}

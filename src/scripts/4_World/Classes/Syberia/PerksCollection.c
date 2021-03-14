@@ -193,7 +193,7 @@ class PerksCollection
 		Register(SyberiaPerkType.SYBPERK_IMMUNITY_ZVIRUS_TIME, "%").AddUnlockValue(40, 15).AddUnlockValue(65, 30).AddUnlockValue(100, 120);
 		Register(SyberiaPerkType.SYBPERK_IMMUNITY_SEPSIS_TIME, "%").AddUnlockValue(40, 15).AddUnlockValue(65, 30).AddUnlockValue(100, 120);
         
-        Register(SyberiaPerkType.SYBPERK_IMMUNITY_INFLUENZA_FIREPLACE_HEAL).AddUnlockValue(50, 0);
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_INFLUENZA_FIREPLACE_HEAL).AddUnlockValue(50, 1);
         Register(SyberiaPerkType.SYBPERK_IMMUNITY_PAIN_STRONG, " #syb_skill_level2").AddUnlockValue(100, 1);
         
         
