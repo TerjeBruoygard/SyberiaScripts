@@ -111,6 +111,8 @@ class MedicineSystem
     stomatchpoisonChanceDrinkWell = 0.01;
     stomatchpoisonDrinkWell[] = { 1, 60 };
     stomatchpoisonDefaultTimes[] = { 1800, 900, 600 }; // lvl1, lvl2, lvl3
+    glovesDamageOnApplyBandage = -5;
+    glovesDamageOnSurgery = -15;
 };
 
 class AttackSystem
