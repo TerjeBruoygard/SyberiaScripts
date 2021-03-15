@@ -73,6 +73,10 @@ class ScreenEquip extends ScreenBase
 		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "PantsPage" ) ));
 		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "FootPage" ) ));
 		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "HeadPage" ) ));
+		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "MaskPage" ) ));
+		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "GlovesPage" ) ));
+		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "VestPage" ) ));
+		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "BackpackPage" ) ));
 		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "WeaponPage" ) ));
 		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "ItemsPage" ) ));
 		m_pages.Insert(ButtonWidget.Cast( layoutRoot.FindAnyWidget( "SpecialPage" ) ));
