@@ -67,208 +67,249 @@ FrameWidgetClass rootFrame {
          "exact text" 0
          "text valign" center
         }
-        PanelWidgetClass PanelWidget1 {
-         visible 1
+        PanelWidgetClass PanelSkillEditing {
+         visible 0
          ignorepointer 1
-         position 0 55
-         size 1 50
-         halign right_ref
+         size 1 1
+         halign center_ref
+         valign bottom_ref
          hexactpos 1
-         vexactpos 1
+         vexactpos 0
          hexactsize 0
-         vexactsize 1
-         scaled 1
-         style blank
+         vexactsize 0
          {
-          SimpleProgressBarWidgetClass CurrentLvlProgress {
+          PanelWidgetClass PanelWidget1 {
+           visible 1
            ignorepointer 1
-           color 0.2431 0.2431 0.2431 1
-           position 0 0
-           size 1 1
+           position 0 55
+           size 1 50
+           halign right_ref
            hexactpos 1
            vexactpos 1
            hexactsize 0
-           vexactsize 0
-           vertical 0
-           flipped 0
+           vexactsize 1
+           scaled 1
+           style blank
            {
-            TextWidgetClass CurrentLvlText {
+            SimpleProgressBarWidgetClass CurrentLvlProgress {
              ignorepointer 1
+             color 0.2431 0.2431 0.2431 1
+             position 0 0
              size 1 1
-             halign center_ref
-             valign center_ref
              hexactpos 1
              vexactpos 1
              hexactsize 0
              vexactsize 0
-             text "100/200"
-             font "gui/fonts/metron-bold28"
-             "exact text" 1
-             "text halign" center
-             "text valign" center
+             vertical 0
+             flipped 0
+             {
+              TextWidgetClass CurrentLvlText {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               text "100/200"
+               font "gui/fonts/metron-bold28"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+            PanelWidgetClass PanelWidget0 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             style Outline
             }
            }
           }
-          PanelWidgetClass PanelWidget0 {
-           ignorepointer 1
+          TextListboxWidgetClass SkillLevelsList {
+           color 0.098 0.098 0.098 0.4196
            position 0 0
-           size 1 1
+           size 0.25 570
+           valign bottom_ref
            hexactpos 1
            vexactpos 1
            hexactsize 0
-           vexactsize 0
+           vexactsize 1
            scaled 1
-           style Outline
+           style Editor
+           "title visible" 1
+           colums "#syb_skill_levels;100;"
+           lines 1
+           "highlight row" 1
+           font "gui/fonts/etelkatextpro16"
           }
-         }
-        }
-        TextListboxWidgetClass SkillLevelsList {
-         color 0.098 0.098 0.098 0.4196
-         position 0 0
-         size 0.25 570
-         valign bottom_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 1
-         scaled 1
-         style Editor
-         "title visible" 1
-         colums "#syb_skill_levels;100;"
-         lines 1
-         "highlight row" 1
-         font "gui/fonts/etelkatextpro16"
-        }
-        MultilineTextWidgetClass TotalLvlDesc {
-         ignorepointer 1
-         position 0 110
-         size 1 80
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 1
-         text "Test desc test desc Test desc test desc Test desc test desc Test desc test desc Test desc test desc"
-         font "gui/fonts/etelkatextpro16"
-         "exact text" 1
-         wrap 1
-         "condense whitespace" 1
-         "strip newlines" 1
-        }
-        TextListboxWidgetClass SkillPerksList {
-         color 0.098 0.098 0.098 0.4196
-         position 0 390
-         size 0.72 180
-         halign right_ref
-         valign bottom_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 1
-         scaled 1
-         style Editor
-         "title visible" 1
-         colums "#syb_features;100;"
-         lines 1
-         "highlight row" 1
-         font "gui/fonts/etelkatextpro16"
-        }
-        TextWidgetClass PerkName {
-         ignorepointer 1
-         position 0 320
-         size 0.72 50
-         halign right_ref
-         valign bottom_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 1
-         text "Bla bla"
-         font "gui/fonts/etelkatextpro28"
-         "exact text" 0
-         "text valign" center
-        }
-        MultilineTextWidgetClass PerkDesc {
-         ignorepointer 1
-         position 0 140
-         size 0.72 180
-         halign right_ref
-         valign bottom_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 1
-         text "Test desc test desc Test desc test desc Test desc test desc Test desc test desc Test desc test desc"
-         font "gui/fonts/etelkatextpro16"
-         "exact text" 1
-         wrap 1
-         "condense whitespace" 1
-         "strip newlines" 1
-        }
-        PanelWidgetClass PerkSelectBack {
-         ignorepointer 1
-         color 0.098 0.1373 0.1569 1
-         size 0.72 60
-         halign right_ref
-         valign bottom_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 1
-         style rover_sim_colorable
-         {
-          ButtonWidgetClass PerkSelectBtn {
-           color 0.1255 0.1765 0.2039 1
-           position 0 0
-           size 1 1
+          MultilineTextWidgetClass TotalLvlDesc {
+           ignorepointer 1
+           position 0 110
+           size 1 80
            hexactpos 1
            vexactpos 1
            hexactsize 0
-           vexactsize 0
-           style EmptyHighlight
-           "no focus" 1
-           text "#syb_perk_activate"
-           font "gui/fonts/etelkatextpro22"
-           switch normal
+           vexactsize 1
+           text "Test desc test desc Test desc test desc Test desc test desc Test desc test desc Test desc test desc"
+           font "gui/fonts/etelkatextpro16"
+           "exact text" 1
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+          TextListboxWidgetClass SkillPerksList {
+           color 0.098 0.098 0.098 0.4196
+           position 0 390
+           size 0.72 180
+           halign right_ref
+           valign bottom_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           scaled 1
+           style Editor
+           "title visible" 1
+           colums "#syb_features;100;"
+           lines 1
+           "highlight row" 1
+           font "gui/fonts/etelkatextpro16"
+          }
+          TextWidgetClass PerkName {
+           ignorepointer 1
+           position 0 320
+           size 0.72 50
+           halign right_ref
+           valign bottom_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Bla bla"
+           font "gui/fonts/etelkatextpro28"
+           "exact text" 0
+           "text valign" center
+          }
+          MultilineTextWidgetClass PerkDesc {
+           ignorepointer 1
+           position 0 140
+           size 0.72 180
+           halign right_ref
+           valign bottom_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Test desc test desc Test desc test desc Test desc test desc Test desc test desc Test desc test desc"
+           font "gui/fonts/etelkatextpro16"
+           "exact text" 1
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+          PanelWidgetClass PerkSelectBack {
+           ignorepointer 1
+           color 0.098 0.1373 0.1569 1
+           size 0.72 60
+           halign right_ref
+           valign bottom_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style rover_sim_colorable
+           {
+            ButtonWidgetClass PerkSelectBtn {
+             color 0.1255 0.1765 0.2039 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style EmptyHighlight
+             "no focus" 1
+             text "#syb_perk_activate"
+             font "gui/fonts/etelkatextpro22"
+             switch normal
+            }
+           }
+          }
+          MultilineTextWidgetClass PerkHint {
+           ignorepointer 1
+           color 0.8824 0.6 0.0275 1
+           position 0 60
+           size 0.72 80
+           halign right_ref
+           valign bottom_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "#syb_perk_hint"
+           font "gui/fonts/etelkatextpro16"
+           "text color" 0.7412 0.502 0.0196 1
+           "exact text" 1
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+          MultilineTextWidgetClass PerkErr {
+           ignorepointer 1
+           color 0.6196 0 0 1
+           position 0 0
+           size 0.72 60
+           halign right_ref
+           valign bottom_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "ERROR"
+           font "gui/fonts/etelkatextpro16"
+           "text color" 0.6196 0 0 1
+           "exact text" 1
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
           }
          }
         }
-        MultilineTextWidgetClass PerkHint {
+        PanelWidgetClass PanelSkillDisabled {
+         visible 0
          ignorepointer 1
-         color 0.8824 0.6 0.0275 1
-         position 0 60
-         size 0.72 80
-         halign right_ref
-         valign bottom_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 1
-         text "#syb_perk_hint"
-         font "gui/fonts/etelkatextpro16"
-         "text color" 0.7412 0.502 0.0196 1
-         "exact text" 1
-         wrap 1
-         "condense whitespace" 1
-         "strip newlines" 1
-        }
-        MultilineTextWidgetClass PerkErr {
-         ignorepointer 1
-         color 0.6196 0 0 1
          position 0 0
-         size 0.72 60
-         halign right_ref
-         valign bottom_ref
+         size 1 1
          hexactpos 1
          vexactpos 1
          hexactsize 0
-         vexactsize 1
-         text "ERROR"
-         font "gui/fonts/etelkatextpro16"
-         "text color" 0.6196 0 0 1
-         "exact text" 1
-         wrap 1
-         "condense whitespace" 1
-         "strip newlines" 1
+         vexactsize 0
+         {
+          MultilineTextWidgetClass SkillDisabledHint {
+           ignorepointer 1
+           color 0.6196 0 0 1
+           position 0 60
+           size 1 200
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "#syb_skill_disabled_hint"
+           font "gui/fonts/etelkatextpro22"
+           "exact text" 1
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+         }
         }
        }
       }
