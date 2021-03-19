@@ -7,58 +7,48 @@ FrameWidgetClass rootFrame {
  hexactsize 0
  vexactsize 0
  {
-  PanelWidgetClass BackgroundPanel {
+  ImageWidgetClass BackgroundPanel {
    ignorepointer 1
    position 0 0
-   size 0.8 0.75
+   size 1600 1400
    halign center_ref
    valign center_ref
    hexactpos 1
    vexactpos 1
-   hexactsize 0
-   vexactsize 0
-   style rover_sim_blackbox
+   hexactsize 1
+   vexactsize 1
+   image0 "SyberiaScripts/data/gui/skills/background.paa"
+   mode blend
+   "src alpha" 1
+   "no wrap" 0
+   stretch 1
    {
     PanelWidgetClass ContentPanel {
      ignorepointer 1
-     size 0.97 0.95
+     position 0 -5
+     size 1300 800
      halign center_ref
      valign center_ref
      hexactpos 1
      vexactpos 1
-     hexactsize 0
-     vexactsize 0
+     hexactsize 1
+     vexactsize 1
      {
-      TextListboxWidgetClass SkillsWidget {
-       color 0.098 0.098 0.098 0.4196
-       position 0 0
-       size 0.28 1
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 0
-       scaled 1
-       style Editor
-       "title visible" 1
-       colums "#syb_skills;80; ;20;"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/etelkatextpro22"
-      }
       PanelWidgetClass RightPanel {
        ignorepointer 1
-       size 0.7 1
+       size 0.48 1
        halign right_ref
        hexactpos 1
        vexactpos 1
        hexactsize 0
        vexactsize 0
+       style rover_sim_black_2
        {
         TextWidgetClass TotalLvlText {
          ignorepointer 1
-         position 0 0
-         size 1 50
-         hexactpos 1
+         position 0.04 10
+         size 0.92 50
+         hexactpos 0
          vexactpos 1
          hexactsize 0
          vexactsize 1
@@ -70,17 +60,18 @@ FrameWidgetClass rootFrame {
         PanelWidgetClass PanelSkillEditing {
          visible 0
          ignorepointer 1
-         size 1 1
-         halign center_ref
+         position 0.04 25
+         size 0.92 760
          valign bottom_ref
-         hexactpos 1
-         vexactpos 0
+         hexactpos 0
+         vexactpos 1
          hexactsize 0
-         vexactsize 0
+         vexactsize 1
          {
           PanelWidgetClass PanelWidget1 {
            visible 1
            ignorepointer 1
+           color 0.0588 0.0588 0.0588 1
            position 0 55
            size 1 50
            halign right_ref
@@ -93,7 +84,7 @@ FrameWidgetClass rootFrame {
            {
             SimpleProgressBarWidgetClass CurrentLvlProgress {
              ignorepointer 1
-             color 0.2431 0.2431 0.2431 1
+             color 0.2196 0.2902 0.3333 1
              position 0 0
              size 1 1
              hexactpos 1
@@ -134,16 +125,16 @@ FrameWidgetClass rootFrame {
            }
           }
           TextListboxWidgetClass SkillLevelsList {
-           color 0.098 0.098 0.098 0.4196
+           color 0.4588 0.4588 0.4588 1
            position 0 0
-           size 0.25 570
+           size 0.3 570
            valign bottom_ref
            hexactpos 1
            vexactpos 1
            hexactsize 0
            vexactsize 1
            scaled 1
-           style Editor
+           style Default
            "title visible" 1
            colums "#syb_skill_levels;100;"
            lines 1
@@ -166,9 +157,9 @@ FrameWidgetClass rootFrame {
            "strip newlines" 1
           }
           TextListboxWidgetClass SkillPerksList {
-           color 0.098 0.098 0.098 0.4196
+           color 0.4588 0.4588 0.4588 1
            position 0 390
-           size 0.72 180
+           size 0.68 180
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -176,7 +167,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 1
            scaled 1
-           style Editor
+           style Default
            "title visible" 1
            colums "#syb_features;100;"
            lines 1
@@ -186,7 +177,7 @@ FrameWidgetClass rootFrame {
           TextWidgetClass PerkName {
            ignorepointer 1
            position 0 320
-           size 0.72 50
+           size 0.68 50
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -201,7 +192,7 @@ FrameWidgetClass rootFrame {
           MultilineTextWidgetClass PerkDesc {
            ignorepointer 1
            position 0 140
-           size 0.72 180
+           size 0.68 180
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -217,8 +208,8 @@ FrameWidgetClass rootFrame {
           }
           PanelWidgetClass PerkSelectBack {
            ignorepointer 1
-           color 0.098 0.1373 0.1569 1
-           size 0.72 60
+           color 0.1255 0.1765 0.2039 1
+           size 0.68 60
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -228,7 +219,7 @@ FrameWidgetClass rootFrame {
            style rover_sim_colorable
            {
             ButtonWidgetClass PerkSelectBtn {
-             color 0.1255 0.1765 0.2039 1
+             color 0.1922 0.2549 0.2902 1
              position 0 0
              size 1 1
              hexactpos 1
@@ -245,9 +236,9 @@ FrameWidgetClass rootFrame {
           }
           MultilineTextWidgetClass PerkHint {
            ignorepointer 1
-           color 0.8824 0.6 0.0275 1
+           color 1 0.6784 0.1608 1
            position 0 60
-           size 0.72 80
+           size 0.68 80
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -264,9 +255,9 @@ FrameWidgetClass rootFrame {
           }
           MultilineTextWidgetClass PerkErr {
            ignorepointer 1
-           color 0.6196 0 0 1
+           color 0.7961 0.0627 0.0627 1
            position 0 0
-           size 0.72 60
+           size 0.68 60
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -284,19 +275,19 @@ FrameWidgetClass rootFrame {
          }
         }
         PanelWidgetClass PanelSkillDisabled {
-         visible 0
+         visible 1
          ignorepointer 1
-         position 0 0
-         size 1 1
-         hexactpos 1
+         position 0.04 0
+         size 0.92 1
+         hexactpos 0
          vexactpos 1
          hexactsize 0
          vexactsize 0
          {
           MultilineTextWidgetClass SkillDisabledHint {
            ignorepointer 1
-           color 0.6196 0 0 1
-           position 0 60
+           color 0.8824 0.6 0.0275 1
+           position 0 80
            size 1 200
            hexactpos 1
            vexactpos 1
@@ -310,6 +301,34 @@ FrameWidgetClass rootFrame {
            "strip newlines" 1
           }
          }
+        }
+       }
+      }
+      PanelWidgetClass LeftPanel {
+       ignorepointer 1
+       position 0 0
+       size 0.47 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_black_2
+       {
+        TextListboxWidgetClass SkillsWidget {
+         color 0.4588 0.4588 0.4588 1
+         position 0.05 0.02
+         size 0.9 0.96
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         style Default
+         "title visible" 1
+         colums "#syb_skills;80; ;20;"
+         lines 1
+         "highlight row" 1
+         font "gui/fonts/etelkatextpro22"
         }
        }
       }
