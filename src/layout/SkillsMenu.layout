@@ -58,7 +58,7 @@ FrameWidgetClass rootFrame {
          "text valign" center
         }
         PanelWidgetClass PanelSkillEditing {
-         visible 0
+         visible 1
          ignorepointer 1
          position 0.04 25
          size 0.92 760
@@ -158,8 +158,8 @@ FrameWidgetClass rootFrame {
           }
           TextListboxWidgetClass SkillPerksList {
            color 0.4588 0.4588 0.4588 1
-           position 0 390
-           size 0.68 180
+           position 0 410
+           size 0.68 160
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -176,7 +176,7 @@ FrameWidgetClass rootFrame {
           }
           TextWidgetClass PerkName {
            ignorepointer 1
-           position 0 320
+           position 0 360
            size 0.68 50
            halign right_ref
            valign bottom_ref
@@ -191,7 +191,7 @@ FrameWidgetClass rootFrame {
           }
           MultilineTextWidgetClass PerkDesc {
            ignorepointer 1
-           position 0 140
+           position 0 180
            size 0.68 180
            halign right_ref
            valign bottom_ref
@@ -238,7 +238,7 @@ FrameWidgetClass rootFrame {
            ignorepointer 1
            color 1 0.6784 0.1608 1
            position 0 60
-           size 0.68 80
+           size 0.68 120
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -257,7 +257,7 @@ FrameWidgetClass rootFrame {
            ignorepointer 1
            color 0.7961 0.0627 0.0627 1
            position 0 0
-           size 0.68 60
+           size 0.68 100
            halign right_ref
            valign bottom_ref
            hexactpos 1
@@ -275,7 +275,7 @@ FrameWidgetClass rootFrame {
          }
         }
         PanelWidgetClass PanelSkillDisabled {
-         visible 1
+         visible 0
          ignorepointer 1
          position 0.04 0
          size 0.92 1

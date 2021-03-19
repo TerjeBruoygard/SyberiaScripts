@@ -293,6 +293,7 @@ modded class MissionGameplay
 			ref Widget watermarkWidget = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/WatermarkInGame.layout" );		
 			ref Widget watermarkBase = watermarkWidget.FindAnyWidget( "WatermarkBase" );
 			ref Widget watermarkBtn = watermarkBase.FindAnyWidget( "WatermarkActionBtn" );
+			TextWidget.Cast( watermarkBase.FindAnyWidget( "WatermarkTextWidget5" ) ).SetText(Syberia_Version);
 			m_WidgetEventHandler.RegisterOnClick(watermarkBtn, m_watermarkHandler, "OnWatermarkClick");
 			watermarkWidget.RemoveChild(watermarkBase);
 			ingameMenu.GetLayoutRoot().AddChild(watermarkBase, true);
