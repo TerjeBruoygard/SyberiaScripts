@@ -9,8 +9,7 @@ modded class Cooking
 		for ( int i = 0; i < cargo.GetItemCount(); i++ )
 		{
 			ItemBase item = ItemBase.Cast( cargo.GetItem( i ) );
-			SyringeDirty syringeDirtyItem = SyringeDirty.Cast( item );
-			
+			SyringeDirty syringeDirtyItem = SyringeDirty.Cast( item );			
 			if ( syringeDirtyItem )
 			{
 				if (hasWater)
@@ -26,12 +25,14 @@ modded class Cooking
 			}
 			
 			SyringeEmpty syringeEmptyItem = SyringeEmpty.Cast( item );
-			if ( syringeEmptyItem )
+			if ( hasWater && !syringeEmptyItem.IsRuined() && syringeEmptyItem )
 			{
-				if (hasWater)
-				{
-					item.AddHealth( "", "", PARAM_BURN_DAMAGE_COEF * 100 );
-				}
+				item.AddHealth( "", "", PARAM_BURN_DAMAGE_COEF * 100 );
+			}
+			
+			if ( hasWater && item && !item.IsRuined() && GetGame().ConfigGetInt("CfgVehicles " + item.GetType() + " medGloves") == 1)
+			{
+				item.AddHealth( "", "", PARAM_BURN_DAMAGE_COEF * 100 );
 			}
 		}
 		

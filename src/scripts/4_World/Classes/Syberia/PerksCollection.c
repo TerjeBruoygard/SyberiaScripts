@@ -233,7 +233,7 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_STRENGTH_KNOCKOUT_HEAVY_ITEMS).AddUnlockValue(100, 1);
         Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ITEMS).AddUnlockValue(8, 1);
         
-        /*
+		
         //
         // MEDICINE
         //
@@ -246,12 +246,12 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_MEDICINE_TABLETS_RESEARCH).AddUnlockValue(25, 1);
         Register(SyberiaPerkType.SYBPERK_MEDICINE_BRING_FROM_UNCUNSION).AddUnlockValue(40, 1);
         Register(SyberiaPerkType.SYBPERK_MEDICINE_AMPOULES_RESEARCH).AddUnlockValue(50, 1);
-        Register(SyberiaPerkType.SYBPERK_MEDICINE_DEATH_CAUSE).AddUnlockValue(60, 1);
+        //Register(SyberiaPerkType.SYBPERK_MEDICINE_DEATH_CAUSE).AddUnlockValue(60, 1);
         Register(SyberiaPerkType.SYBPERK_MEDICINE_INJECTORS_RESEARCH).AddUnlockValue(75, 1);
-        Register(SyberiaPerkType.SYBPERK_MEDICINE_SHOW_PLAYER_STATE).AddUnlockValue(80, 1);
+        //Register(SyberiaPerkType.SYBPERK_MEDICINE_SHOW_PLAYER_STATE).AddUnlockValue(80, 1);
         Register(SyberiaPerkType.SYBPERK_MEDICINE_START_LOADOUT).AddUnlockValue(100, 1);
         
-        
+        /*
         //
         // STEALTH
         //

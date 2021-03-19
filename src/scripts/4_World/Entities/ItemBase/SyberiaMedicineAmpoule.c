@@ -1,18 +1,10 @@
-class InjectorBase : Inventory_Base
+class SyberiaMedicineAmpoule : Inventory_Base
 {
-    override void SetActions()
-	{
-		super.SetActions();
-		
-		AddAction(ActionInjectInjectorTarget);
-		AddAction(ActionInjectInjectorSelf);
-	}
-	
 	override string GetTooltip()
 	{
 		string additionalText = "";
 		PlayerBase sourcePlayer = PlayerBase.Cast( GetHierarchyRootPlayer() );
-		if (sourcePlayer && sourcePlayer.GetPerkBoolValue(SyberiaPerkType.SYBPERK_MEDICINE_INJECTORS_RESEARCH))
+		if (sourcePlayer && sourcePlayer.GetPerkBoolValue(SyberiaPerkType.SYBPERK_MEDICINE_AMPOULES_RESEARCH))
 		{
 			array<string> effects = new array<string>;
 			GameHelpers.GetMedicineItemVisualEffects(GetType(), effects);
