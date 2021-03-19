@@ -5,9 +5,51 @@ modded class PlayerSwayConstants
 
 modded class StaminaHandler
 {
+	private float CalculateStaminaConsumerValue(EStaminaConsumers consumer)
+	{
+		float resultValue = m_Stamina;
+		if (consumer == EStaminaConsumers.HOLD_BREATH)
+		{
+			resultValue = resultValue * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_BREATH_DEC, 1, 1);
+		}
+		else if (consumer == EStaminaConsumers.JUMP)
+		{
+			resultValue = resultValue / (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0));
+		}
+		else if (consumer == EStaminaConsumers.VAULT)
+		{
+			resultValue = resultValue / (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0));
+		}
+		else if (consumer == EStaminaConsumers.CLIMB)
+		{
+			resultValue = resultValue / (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0));
+		}
+		else if (consumer == EStaminaConsumers.MELEE_EVADE)
+		{
+			resultValue = resultValue / (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_BLOCK_STAMINA_DEC, 0, 0));
+		}
+		else if (consumer == EStaminaConsumers.MELEE_HEAVY)
+		{
+			resultValue = resultValue / (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC, 0, 0));
+		}
+
+		return resultValue * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, 1, 1);
+	}
+	
+	override bool HasEnoughStaminaFor(EStaminaConsumers consumer)
+	{
+		return m_StaminaConsumers.HasEnoughStaminaFor(consumer, CalculateStaminaConsumerValue(consumer), m_StaminaDepleted, m_StaminaCap);
+	}
+	
+	override bool HasEnoughStaminaToStart(EStaminaConsumers consumer)
+	{
+		return m_StaminaConsumers.HasEnoughStaminaToStart(consumer, CalculateStaminaConsumerValue(consumer), m_StaminaDepleted, m_StaminaCap);
+	}
+	
 	override void DepleteStamina(EStaminaModifiers modifier, float dT = -1)
 	{
 		float depleteMod = 1;
+		float additionaMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, 0, 0);
 		StaminaModifier sm = m_StaminaModifiers.GetModifierData(modifier);
 		if (modifier == EStaminaModifiers.HOLD_BREATH)
 		{
@@ -17,33 +59,33 @@ modded class StaminaHandler
 		else if (modifier == EStaminaModifiers.JUMP)
 		{
 			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0);
-			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_JUMP * depleteMod );
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_JUMP * depleteMod * additionaMod );
 		}
 		else if (modifier == EStaminaModifiers.VAULT)
 		{
 			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0);
-			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_VAULT * depleteMod );
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_VAULT * depleteMod * additionaMod );
 		}
 		else if (modifier == EStaminaModifiers.CLIMB)
 		{
 			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0);
-			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_CLIMB * depleteMod );
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_CLIMB * depleteMod * additionaMod );
 		}
 		else if (modifier == EStaminaModifiers.MELEE_EVADE)
 		{
 			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_BLOCK_STAMINA_DEC, 0, 0);
-			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_EVADE * depleteMod );
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_EVADE * depleteMod * additionaMod );
 			sm.SetMinValue( sm.GetMaxValue() * 0.5 );
 		}
 		else if (modifier == EStaminaModifiers.MELEE_LIGHT)
 		{
 			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_FAST_ATTACK_STAMINA_DEC, 0, 0);
-			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_LIGHT * depleteMod );
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_LIGHT * depleteMod * additionaMod );
 		}
 		else if (modifier == EStaminaModifiers.MELEE_HEAVY)
 		{
 			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC, 0, 0);
-			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_HEAVY * depleteMod );
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_HEAVY * depleteMod * additionaMod );
 		}
 		
 		super.DepleteStamina(modifier, dT);
