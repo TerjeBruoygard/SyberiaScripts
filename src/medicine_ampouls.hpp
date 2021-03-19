@@ -1,4 +1,4 @@
-#define AMPOUL_ANIM_EVENT()\
+#define AMPOUL_ANIM_EVENT\
 class AnimEvents\
 {\
     class SoundWeapon\
@@ -39,7 +39,7 @@ class AmpouleAlcohol : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleHihlofos : SyberiaMedicineAmpoule
@@ -52,7 +52,7 @@ class AmpouleHihlofos : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleCypermetrin : SyberiaMedicineAmpoule
@@ -65,7 +65,7 @@ class AmpouleCypermetrin : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_green_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleDiazinon : SyberiaMedicineAmpoule
@@ -78,7 +78,7 @@ class AmpouleDiazinon : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_green_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleArsenic : SyberiaMedicineAmpoule
@@ -91,7 +91,7 @@ class AmpouleArsenic : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_green_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleNovocain : SyberiaMedicineAmpoule
@@ -104,7 +104,7 @@ class AmpouleNovocain : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleIrineks : SyberiaMedicineAmpoule
@@ -117,7 +117,7 @@ class AmpouleIrineks : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleNimesulid : SyberiaMedicineAmpoule
@@ -130,7 +130,7 @@ class AmpouleNimesulid : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_yellow_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleKetoprofen : SyberiaMedicineAmpoule
@@ -143,7 +143,7 @@ class AmpouleKetoprofen : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpoulePropofol : SyberiaMedicineAmpoule
@@ -157,7 +157,7 @@ class AmpoulePropofol : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_yellow_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleTiopental : SyberiaMedicineAmpoule
@@ -171,7 +171,7 @@ class AmpouleTiopental : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleKetamin : SyberiaMedicineAmpoule
@@ -185,7 +185,7 @@ class AmpouleKetamin : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpoulePropanidid : SyberiaMedicineAmpoule
@@ -198,7 +198,7 @@ class AmpoulePropanidid : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_yellow_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleGexobarbital : SyberiaMedicineAmpoule
@@ -211,7 +211,7 @@ class AmpouleGexobarbital : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleSodiumOxybutirate : SyberiaMedicineAmpoule
@@ -225,7 +225,7 @@ class AmpouleSodiumOxybutirate : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 
@@ -242,7 +242,7 @@ class AmpouleMetoclopramid : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_yellow_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleZerukal : SyberiaMedicineAmpoule
@@ -255,7 +255,7 @@ class AmpouleZerukal : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleKetorol : SyberiaMedicineAmpoule
@@ -273,7 +273,7 @@ class AmpouleKetorol : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_green_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleDiklofenak : SyberiaMedicineAmpoule
@@ -286,7 +286,7 @@ class AmpouleDiklofenak : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleHeptral : SyberiaMedicineAmpoule
@@ -300,7 +300,7 @@ class AmpouleHeptral : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 
@@ -318,7 +318,7 @@ class AmpouleCylaspen : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleGrimipenem : SyberiaMedicineAmpoule
@@ -333,7 +333,7 @@ class AmpouleGrimipenem : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleZeftriaxon : SyberiaMedicineAmpoule
@@ -348,7 +348,7 @@ class AmpouleZeftriaxon : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleErytromicyn : SyberiaMedicineAmpoule
@@ -363,7 +363,7 @@ class AmpouleErytromicyn : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleFlemoclav : SyberiaMedicineAmpoule
@@ -379,7 +379,7 @@ class AmpouleFlemoclav : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_yellow_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleOcsacylin : SyberiaMedicineAmpoule
@@ -395,7 +395,7 @@ class AmpouleOcsacylin : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleImipenem : SyberiaMedicineAmpoule
@@ -411,7 +411,7 @@ class AmpouleImipenem : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleAmoksivan : SyberiaMedicineAmpoule
@@ -427,7 +427,7 @@ class AmpouleAmoksivan : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 
@@ -442,7 +442,7 @@ class AmpouleZivirol : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleMeksidol : SyberiaMedicineAmpoule
@@ -455,7 +455,7 @@ class AmpouleMeksidol : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_green_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleActovegin : SyberiaMedicineAmpoule
@@ -468,7 +468,7 @@ class AmpouleActovegin : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleNeiroks : SyberiaMedicineAmpoule
@@ -481,7 +481,7 @@ class AmpouleNeiroks : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 
@@ -497,7 +497,7 @@ class AmpoulePeklitakcel : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleNonacogAlpha : SyberiaMedicineAmpoule
@@ -511,7 +511,7 @@ class AmpouleNonacogAlpha : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleAminokaprolSulfat : SyberiaMedicineAmpoule
@@ -525,7 +525,7 @@ class AmpouleAminokaprolSulfat : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleVikasol : SyberiaMedicineAmpoule
@@ -539,7 +539,7 @@ class AmpouleVikasol : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleEtamzilat : SyberiaMedicineAmpoule
@@ -553,7 +553,7 @@ class AmpouleEtamzilat : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_yellow_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpoulePerftoran : SyberiaMedicineAmpoule
@@ -567,7 +567,7 @@ class AmpoulePerftoran : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleMaltofer : SyberiaMedicineAmpoule
@@ -581,7 +581,7 @@ class AmpouleMaltofer : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleErytropoenin : SyberiaMedicineAmpoule
@@ -597,7 +597,7 @@ class AmpouleErytropoenin : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 
@@ -612,7 +612,7 @@ class AmpouleAdrenalin05 : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleAdrenalin10 : SyberiaMedicineAmpoule
@@ -626,7 +626,7 @@ class AmpouleAdrenalin10 : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_yellow_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
 
 class AmpouleAdrenalin30 : SyberiaMedicineAmpoule
@@ -640,5 +640,5 @@ class AmpouleAdrenalin30 : SyberiaMedicineAmpoule
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
-    AMPOUL_ANIM_EVENT();
+    AMPOUL_ANIM_EVENT;
 };
