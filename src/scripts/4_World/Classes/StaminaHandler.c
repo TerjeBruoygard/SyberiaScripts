@@ -7,11 +7,43 @@ modded class StaminaHandler
 {
 	override void DepleteStamina(EStaminaModifiers modifier, float dT = -1)
 	{
-		if (dT > 0 && modifier == EStaminaModifiers.HOLD_BREATH)
+		float depleteMod = 1;
+		StaminaModifier sm = m_StaminaModifiers.GetModifierData(modifier);
+		if (modifier == EStaminaModifiers.HOLD_BREATH)
 		{
-			float breathMod = m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_BREATH_DEC, 1, 1);
-			StaminaModifier sm = m_StaminaModifiers.GetModifierData(modifier);
-			sm.SetMinValue( GameConstants.STAMINA_DRAIN_HOLD_BREATH_START / breathMod );
+			depleteMod = m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_BREATH_DEC, 1, 1);
+			sm.SetMinValue( GameConstants.STAMINA_DRAIN_HOLD_BREATH_START / depleteMod );
+		}
+		else if (modifier == EStaminaModifiers.JUMP)
+		{
+			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0);
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_JUMP * depleteMod );
+		}
+		else if (modifier == EStaminaModifiers.VAULT)
+		{
+			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0);
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_VAULT * depleteMod );
+		}
+		else if (modifier == EStaminaModifiers.CLIMB)
+		{
+			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, 0, 0);
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_CLIMB * depleteMod );
+		}
+		else if (modifier == EStaminaModifiers.MELEE_EVADE)
+		{
+			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_BLOCK_STAMINA_DEC, 0, 0);
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_EVADE * depleteMod );
+			sm.SetMinValue( sm.GetMaxValue() * 0.5 );
+		}
+		else if (modifier == EStaminaModifiers.MELEE_LIGHT)
+		{
+			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_FAST_ATTACK_STAMINA_DEC, 0, 0);
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_LIGHT * depleteMod );
+		}
+		else if (modifier == EStaminaModifiers.MELEE_HEAVY)
+		{
+			depleteMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC, 0, 0);
+			sm.SetMaxValue( GameConstants.STAMINA_DRAIN_MELEE_HEAVY * depleteMod );
 		}
 		
 		super.DepleteStamina(modifier, dT);

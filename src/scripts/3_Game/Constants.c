@@ -305,12 +305,12 @@ modded class GameConstants
 	
 	const float	STAMINA_DRAIN_HOLD_BREATH_START = 0.4; //in units (how much holding breath depletes stamina at the start)
 	const float	STAMINA_DRAIN_HOLD_BREATH_END = 1.0; //in units (how much holding breath depletes stamina at the end)
-	const float	STAMINA_DRAIN_JUMP = 20;		// in units (how much jumping depletes stamina)
-	const float	STAMINA_DRAIN_VAULT = 10;		// in units (how much jumping depletes stamina)
-	const float	STAMINA_DRAIN_CLIMB = 20;		// in units (how much jumping depletes stamina)
-	const float	STAMINA_DRAIN_MELEE_LIGHT = 5; //in units (how much light melee punch depletes stamina)
-	const float	STAMINA_DRAIN_MELEE_HEAVY = 15; //in units (how much heavy melee punch depletes stamina)
-	const float	STAMINA_DRAIN_MELEE_EVADE = 8; // in units (how much evade depletes stamina)
+	const float	STAMINA_DRAIN_JUMP = 40;		// in units (how much jumping depletes stamina)
+	const float	STAMINA_DRAIN_VAULT = 30;		// in units (how much jumping depletes stamina)
+	const float	STAMINA_DRAIN_CLIMB = 60;		// in units (how much jumping depletes stamina)
+	const float	STAMINA_DRAIN_MELEE_LIGHT = 10; //in units (how much light melee punch depletes stamina)
+	const float	STAMINA_DRAIN_MELEE_HEAVY = 5; //in units (how much heavy melee punch depletes stamina)
+	const float	STAMINA_DRAIN_MELEE_EVADE = 15; // in units (how much evade depletes stamina)
 	
 	const float STAMINA_DRAIN_HOLD_BREATH_DURATION = 1.0; //in seconds, time it takes to increase stamina drain from STAMINA_DRAIN_HOLD_BREATH_START to STAMINA_DRAIN_HOLD_BREATH_END
 	const float	STAMINA_DRAIN_HOLD_BREATH_EXPONENT = 4.0; //holding breath exponent
@@ -322,23 +322,23 @@ modded class GameConstants
 	const int	STAMINA_GAIN_LADDER_PER_SEC = 0.8; //in units (how much of stamina units is gained while slowly swim)
 	const float STAMINA_GAIN_BONUS_CAP = 0.01; //in units (tells how much extra units can be added at best to stamina regain)
 	
-	const float STAMINA_KG_TO_STAMINAPERCENT_PENALTY = 0.75; //in units (by how many  units is max stamina bar reduced for each 1 kg of load weight)
+	const float STAMINA_KG_TO_STAMINAPERCENT_PENALTY = 2.0; //in units (by how many  units is max stamina bar reduced for each 1 kg of load weight)
 	const float STAMINA_MIN_CAP = 5; //in units (overload won't reduce max stamina bar under this value)
 	const float STAMINA_HOLD_BREATH_THRESHOLD_ACTIVATE = 10; // in units
 	const float STAMINA_HOLD_BREATH_THRESHOLD_DRAIN = 0; // in units
-	const float STAMINA_JUMP_THRESHOLD = 25; // in units
-	const float STAMINA_VAULT_THRESHOLD = 20; // in units
-	const float STAMINA_CLIMB_THRESHOLD = 42; // in units
+	const float STAMINA_JUMP_THRESHOLD = STAMINA_DRAIN_JUMP; // in units
+	const float STAMINA_VAULT_THRESHOLD = STAMINA_DRAIN_VAULT; // in units
+	const float STAMINA_CLIMB_THRESHOLD = STAMINA_DRAIN_CLIMB; // in units
 	
 	
 	const float STAMINA_MELEE_HEAVY_THRESHOLD = STAMINA_DRAIN_MELEE_HEAVY; // in units (how many units we need to make a heavy hit in melee)
 	const float STAMINA_MELEE_EVADE_THRESHOLD = 8; // in units
 	const float STAMINA_REGEN_COOLDOWN_DEPLETION = 3; // in secs (how much time we will spend in cooldown before the stamina will starts with regeneration)
 	const float STAMINA_REGEN_COOLDOWN_EXHAUSTION = 5;
-	const float STAMINA_WEIGHT_LIMIT_THRESHOLD = 6000; //! in grams (weight where the player is not penalized by stamina)
+	const float STAMINA_WEIGHT_LIMIT_THRESHOLD = 5000; //! in grams (weight where the player is not penalized by stamina)
 	const float STAMINA_KG_TO_GRAMS = 1000; //for kg to g conversion
 	const float STAMINA_SYNC_RATE = 1; //in secs
-	const float STAMINA_MAX = 120;
+	const float STAMINA_MAX = 100;
 	
 	const float TEMPERATURE_RATE_COOLING_INSIDE = -0.18;
 	const float TEMPERATURE_RATE_COOLING_GROUND = -0.20;
