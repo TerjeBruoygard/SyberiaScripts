@@ -70,7 +70,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 1
        vexactsize 1
-       text "Prowered by Syberia Project"
+       text "Powered by Syberia Project"
        font "gui/fonts/metronbook22"
        "exact text" 1
        "size to text h" 0
