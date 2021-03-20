@@ -1,5 +1,4 @@
-#define ITEM_DAMAGE_SYSTEM(hitpoints_value, rvmat_path, rvmat_path_damage, rvmat_path_destruct)\
-class DamageSystem {\
+#define ITEM_DAMAGE_SYSTEM(hitpoints_value, rvmat_path, rvmat_path_damage, rvmat_path_destruct) class DamageSystem {\
     class GlobalHealth {\
         class Health {\
             hitpoints=hitpoints_value;\

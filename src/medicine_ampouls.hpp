@@ -1,5 +1,4 @@
-#define AMPOUL_ANIM_EVENT\
-class AnimEvents\
+#define AMPOUL_ANIM_EVENT class AnimEvents\
 {\
     class SoundWeapon\
     {\
