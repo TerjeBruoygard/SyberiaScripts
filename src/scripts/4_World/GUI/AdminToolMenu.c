@@ -42,6 +42,7 @@ class AdminToolMenu extends UIScriptedMenu
 	static float m_spawnerSelectedSpawnType = 0;
 	static bool m_spawnerFillProxiesChecked = true;
 	static int m_spawnerProxySlotSelectedAttachment = -1;
+	static string m_spawnerFilterCache = "";
 	static ref array<int> m_spawnerProxySlotsSelections = new array<int>;
 	
 	// Map
@@ -145,6 +146,8 @@ class AdminToolMenu extends UIScriptedMenu
 		m_spawnerSliderQuantity.SetCurrent(m_spawnerSelectedQuantity);
 		m_spawnerTypeSelect.SetCurrentItem( m_spawnerSelectedSpawnType );
 		m_spawnerFillProxies.SetChecked( m_spawnerFillProxiesChecked );
+		m_spawnerFilterEditText.SetText( m_spawnerFilterCache );
+		m_spawnerFilterEditBox.SetText( m_spawnerFilterCache );
 		
 		InitItemsConfig("CfgVehicles");
 		InitItemsConfig("CfgWeapons");
@@ -407,17 +410,15 @@ class AdminToolMenu extends UIScriptedMenu
 			return;
 
 		string displayName;
-		string textFilter = m_spawnerFilterEditBox.GetText();
 		bool anyBaseClass = (filter.m_class == "*");
-		bool emptyTextFilter = (textFilter == "");
+		bool emptyTextFilter = (m_spawnerFilterCache.LengthUtf8() == 0);
 		foreach (string classname : m_cachedConfigItems.Get(filter.m_preffix))
 		{
 			if (anyBaseClass || GetGame().IsKindOf(classname, filter.m_class))
 			{
-				
-				if (emptyTextFilter || GameHelpers.StringContainsCaseInsensetive(classname, textFilter))
+				displayName = GetGame().ConfigGetTextOut(filter.m_preffix + " " + classname + " displayName");
+				if (emptyTextFilter || GameHelpers.StringContainsCaseInsensetive(classname, m_spawnerFilterCache) || GameHelpers.StringContainsCaseInsensetive(displayName, m_spawnerFilterCache))
 				{
-					displayName = GetGame().ConfigGetTextOut(filter.m_preffix + " " + classname + " displayName");
 					rowId = m_spawnerItemsListBox.AddItem(classname, null, 0);
 					m_spawnerItemsListBox.SetItem(rowId, displayName, null, 1);
 					m_spawnerItemsListBox.SetItemColor(rowId, 1, ARGBF(1, 0.5, 1.0, 0.6));
@@ -427,7 +428,7 @@ class AdminToolMenu extends UIScriptedMenu
 		
 		if (m_spawnerSelectedItem < 0) m_spawnerSelectedItem = 0;
 		if (m_spawnerSelectedItem >= m_spawnerItemsListBox.GetNumItems()) m_spawnerSelectedItem = 0;		
-		m_spawnerItemsListBox.SelectRow(m_spawnerSelectedItem);
+		if (m_spawnerItemsListBox.GetNumItems() > 0) m_spawnerItemsListBox.SelectRow(m_spawnerSelectedItem);
 	}
 	
 	void RefreshPlayersTab()
@@ -885,6 +886,7 @@ class AdminToolMenu extends UIScriptedMenu
 		else if (w == m_spawnerFilterEditBox) {
 			text = m_spawnerFilterEditBox.GetText();
 			m_spawnerFilterEditText.SetText(text);	
+			m_spawnerFilterCache = text;
 			m_dirty = true;
 		}
 		else if (w == m_spawnerSliderHealth || w == m_spawnerSliderQuantity) {

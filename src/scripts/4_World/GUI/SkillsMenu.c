@@ -84,7 +84,7 @@ class SkillsMenu extends UIScriptedMenu
 		for (int i = 0; i < SyberiaSkillType.SYBSKILL_TOTALCOUNT; ++i)
 		{
 			rowId = m_skillsList.AddItem("#syb_skill" + i, null, 0);
-			int currentSkillValue = (int)player.m_skills.GetSkillValue(i);			
+			int currentSkillValue = player.m_skills.GetSkillValueInt(i);			
 			m_skillsList.SetItem(rowId, currentSkillValue.ToString(), null, 1);
 		}
 		
@@ -98,8 +98,8 @@ class SkillsMenu extends UIScriptedMenu
 		m_totalLvlText.SetText("#syb_skill" + currentSelection + ": " + currentValue);
 		m_totalLvlDesc.SetText("#syb_skill_desc" + currentSelection);
 				
-		int curLvlValue = (int)player.m_skills.GetSkillLevelValue(currentSelection);
-		int maxLvlValue = (int)player.m_skills.GetSkillLevelSize(currentSelection);
+		int curLvlValue = (int)Math.Round(player.m_skills.GetSkillLevelValue(currentSelection));
+		int maxLvlValue = (int)Math.Round(player.m_skills.GetSkillLevelSize(currentSelection));
 		if (currentValue != player.m_skills.GetSkillMax(currentSelection))
 		{
 			m_currentLvlText.SetText( curLvlValue.ToString() + "/" + maxLvlValue.ToString() );
