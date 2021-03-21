@@ -138,6 +138,9 @@ modded class PlayerBase
 	{
 		super.EEItemIntoHands(item);
 		
+		if (GetGame().GetPlayer() != this)
+			return;
+		
 		if (item && item.IsHeavyBehaviour() && CanDropEntity(item) && GetHumanInventory().CanRemoveEntityInHands())
 		{
 			if (GetPerkBoolValue(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ITEMS) == false)
