@@ -8,9 +8,9 @@ class SyberiaAdditionalHud
 	ref GridSpacerWidget m_defaultActionMenu;
 	
 	ref MultilineTextWidget m_screenMessageWidget;
-	string m_screenMessageText;
+	ref array<string> m_screenMessageText;
+	ref array<float> m_screenMessageDuration;
 	float m_screenMessageTimer;
-	float m_screenMessageDuration;
 	
 	ref array<ref Widget> m_espMarkers; 
 	float m_espUpdateInterval;
@@ -23,9 +23,9 @@ class SyberiaAdditionalHud
 		m_actionBlockerVisible = false;
 		
 		m_screenMessageWidget = screenMessageWidget;
-		m_screenMessageText = "";
+		m_screenMessageText = new array<string>;
+		m_screenMessageDuration = new array<float>;
 		m_screenMessageTimer = 0;
-		m_screenMessageDuration = 0;
 		
 		m_espMarkers = new array<ref Widget>;
 		m_espUpdateInterval = 0;
@@ -76,21 +76,21 @@ class SyberiaAdditionalHud
 	
 	void RefreshScreenMessage(float dt)
 	{
-		if (m_screenMessageText.Length() > 0)
+		if (m_screenMessageText.Count() > 0)
 		{
 			if (m_screenMessageTimer == 0)
 			{
 				m_screenMessageWidget.Show(true);
-				m_screenMessageWidget.SetText(m_screenMessageText);
+				m_screenMessageWidget.SetText( m_screenMessageText.Get(0) );
 			}
 			
 			if (m_screenMessageTimer < 0.2)
 			{
 				m_screenMessageWidget.SetColor( ARGBF(m_screenMessageTimer / 0.2, 1, 1, 1) );
 			}
-			else if (m_screenMessageDuration - m_screenMessageTimer < 1)
+			else if (m_screenMessageDuration.Get(0) - m_screenMessageTimer < 1)
 			{
-				m_screenMessageWidget.SetColor( ARGBF(m_screenMessageDuration - m_screenMessageTimer, 1, 1, 1) );
+				m_screenMessageWidget.SetColor( ARGBF(m_screenMessageDuration.Get(0) - m_screenMessageTimer, 1, 1, 1) );
 			}
 			else
 			{
@@ -99,10 +99,10 @@ class SyberiaAdditionalHud
 			
 			m_screenMessageTimer = m_screenMessageTimer + dt;
 			
-			if (m_screenMessageTimer >= m_screenMessageDuration)
+			if (m_screenMessageTimer >= m_screenMessageDuration.Get(0))
 			{
-				m_screenMessageDuration = 0;
-				m_screenMessageText = "";
+				m_screenMessageDuration.Remove(0);
+				m_screenMessageText.Remove(0);
 				m_screenMessageTimer = 0;
 				m_screenMessageWidget.Show(false);
 				m_screenMessageWidget.SetText("");
@@ -199,15 +199,17 @@ class SyberiaAdditionalHud
 	
 	void ShowScreenMessage(string message, float duration)
 	{
-		if (m_screenMessageText == message)
+		foreach (string cacheMsg : m_screenMessageText)
 		{
-			m_screenMessageTimer = 0.2;
+			if (cacheMsg == message)
+			{
+				m_screenMessageTimer = 0.2;
+				return;
+			}
 		}
-		else
-		{
-			m_screenMessageDuration = duration;
-			m_screenMessageText = message;
-			m_screenMessageTimer = 0;
-		}
+		
+		m_screenMessageDuration.Insert(duration);
+		m_screenMessageText.Insert(message);
+		m_screenMessageTimer = 0;
 	}
-}
+};

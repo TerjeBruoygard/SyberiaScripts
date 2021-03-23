@@ -134,30 +134,6 @@ modded class PlayerBase
 		return super.GetPlayerLoad() * (1.0 - GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0));
 	}
 	
-	override void EEItemIntoHands(EntityAI item)
-	{
-		super.EEItemIntoHands(item);
-		
-		if (GetGame().GetPlayer() != this)
-			return;
-		
-		if (item && item.IsHeavyBehaviour() && CanDropEntity(item) && GetHumanInventory().CanRemoveEntityInHands())
-		{
-			if (GetPerkBoolValue(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ITEMS) == false)
-			{
-				PredictiveDropEntity(item);
-				if (GetGame().IsClient())
-				{
-					MissionBaseWorld mission = MissionBaseWorld.Cast( GetGame().GetMission() );
-					if (mission)
-					{
-						mission.ShowScreenMessage("#syb_skill_overweight_item #syb_perk_name_" + SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ITEMS, 4 );
-					}
-				}
-			}
-		}	
-	}
-	
 	int GetSleepingValue()
 	{
 		return m_sleepingValue; 
@@ -318,6 +294,11 @@ modded class PlayerBase
 	bool IsGhostBody()
 	{
 		return (GetType().Contains("_Ghost"));
+	}
+	
+	bool CanOpenSyberiaUI()
+	{
+		return !IsGhostBody() && m_MovementState.m_iMovement == DayZPlayerConstants.MOVEMENTIDX_IDLE;
 	}
 	
 	int GetPerkIntValue(int perkId, int defaultValue = 0)

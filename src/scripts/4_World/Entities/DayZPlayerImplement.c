@@ -76,7 +76,8 @@ modded class DayZPlayerImplement
 				return;
 			}
 				
-			if (GetGame().GetUIManager().GetMenu() != NULL) return;		
+			if (GetGame().GetUIManager().GetMenu() != NULL) return;
+			if (!player.CanOpenSyberiaUI()) return;		
 			if (!player.m_skills) return;		
 	        if (!m_skillsMenu) m_skillsMenu = new SkillsMenu;
 
