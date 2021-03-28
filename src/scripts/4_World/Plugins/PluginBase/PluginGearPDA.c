@@ -176,7 +176,7 @@ class PluginGearPDA extends PluginBase
 			Close();
 		}
 		
-		PlayerBase player = GetGame().GetPlayer();
+		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
 		if (GetGame().GetUIManager().GetMenu() != NULL || !player || !player.CanOpenSyberiaUI())
 		{
 			return;

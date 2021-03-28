@@ -149,7 +149,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      {
       PanelWidgetClass PlayersTabBody {
-       visible 0
+       visible 1
        ignorepointer 1
        position 0 0
        size 1 1
@@ -170,7 +170,7 @@ FrameWidgetClass rootFrame {
          scaled 1
          style Default
          "title visible" 1
-         colums "Character;50;Nickname;50;"
+         colums "Character;50;Nickname;25;Group;25;"
          lines 1
          "highlight row" 1
          font "gui/fonts/etelkatextpro14"
@@ -340,10 +340,9 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            {
             TextListboxWidgetClass PlayersDataInv {
-             position 0 0
-             size 1 1
-             halign left_ref
-             valign top_ref
+             size 1 0.8
+             halign right_ref
+             valign bottom_ref
              hexactpos 0
              vexactpos 0
              hexactsize 0
@@ -357,6 +356,110 @@ FrameWidgetClass rootFrame {
              "highlight row" 1
              font "gui/fonts/etelkatextpro14"
             }
+            PanelWidgetClass PlayersDataDeleteBack {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 0 0.15
+             size 1 0.04
+             hexactpos 1
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass PlayersDataDelete {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "DELETE CHARACTER"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass PlayersDataKickBack {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 0 0.1
+             size 1 0.04
+             hexactpos 1
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass PlayersDataKick {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "KICK"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass PlayersDataTeleportToPlayerBack {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 0 0
+             size 1 0.04
+             hexactpos 1
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass PlayersDataTeleportToPlayer {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "TELEPORT TO PLAYER"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass PlayersDataTeleportPlayerToMeBack {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 0 0.05
+             size 1 0.04
+             hexactpos 1
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass PlayersDataTeleportPlayerToMe {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "TELEPORT PLAYER TO ME"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
            }
           }
          }
@@ -364,7 +467,7 @@ FrameWidgetClass rootFrame {
        }
       }
       PanelWidgetClass SpawnerTabBody {
-       visible 1
+       visible 0
        ignorepointer 1
        position 0 0
        size 1 1

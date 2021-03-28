@@ -11,12 +11,16 @@ class AdminToolMenu extends UIScriptedMenu
 	// Players
 	ref PluginAdminTool_PlayerContextDetails m_playerContext;
 	ref Widget m_playersDataRefresh;
+	ref Widget m_playersDataDelete;
+	ref Widget m_playersDataKick;
+	ref Widget m_playersDataTeleportToPlayer;
+	ref Widget m_playersDataTeleportPlayerToMe;
 	ref TextListboxWidget m_playersListBox;
 	ref TextListboxWidget m_playersDataInfo;
 	ref TextListboxWidget m_playersDataStats;
 	ref TextListboxWidget m_playersDataInv;
 	ref TextWidget m_playersStatEditText;
-	ref EditBoxWidget m_playersStatEditBox;
+	ref EditBoxWidget m_playersStatEditBox;	
 	ref Widget m_playersStatApply;
 	string m_selectedPlayerUID;
 	
@@ -123,7 +127,11 @@ class AdminToolMenu extends UIScriptedMenu
 		m_playersDataInfo = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("PlayersDataInfoList"));
 		m_playersDataStats = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("PlayersDataStatsList"));
 		m_playersDataInv = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("PlayersDataInv"));
-		m_playersDataRefresh = layoutRoot.FindAnyWidget("PlayersDataRefresh");
+		m_playersDataRefresh = layoutRoot.FindAnyWidget("PlayersDataRefresh");		
+		m_playersDataDelete = layoutRoot.FindAnyWidget("PlayersDataDelete");
+		m_playersDataKick = layoutRoot.FindAnyWidget("PlayersDataKick");
+		m_playersDataTeleportToPlayer = layoutRoot.FindAnyWidget("PlayersDataTeleportToPlayer");
+		m_playersDataTeleportPlayerToMe = layoutRoot.FindAnyWidget("PlayersDataTeleportPlayerToMe");		
 		m_playersStatEditText = TextWidget.Cast(layoutRoot.FindAnyWidget("PlayersStatEditText"));
 		m_playersStatEditBox = EditBoxWidget.Cast(layoutRoot.FindAnyWidget("PlayersStatEditBox"));
 		m_playersStatApply = layoutRoot.FindAnyWidget("PlayersDataStatsApply");
@@ -440,6 +448,7 @@ class AdminToolMenu extends UIScriptedMenu
 		{
 			rowId = m_playersListBox.AddItem(playerContext.m_name, NULL, 0);
 			m_playersListBox.SetItem(rowId, playerContext.m_nickname, NULL, 1);
+			m_playersListBox.SetItem(rowId, playerContext.m_group, NULL, 2);
 			if (playerContext.m_isGhost) 
 			{
 				m_playersListBox.SetItemColor(rowId, 0, ARGBF(1, 0.8, 0.8, 0.8));
@@ -454,7 +463,7 @@ class AdminToolMenu extends UIScriptedMenu
 			{
 				m_playersListBox.SetItemColor(rowId, 0, ARGBF(1, 0.039, 0.760, 0.207));
 				m_playersListBox.SetItemColor(rowId, 1, ARGBF(1, 0.039, 0.760, 0.207));
-			}
+			}			
 			
 			if (m_selectedPlayerUID == playerContext.m_uid)
 			{
@@ -643,12 +652,16 @@ class AdminToolMenu extends UIScriptedMenu
 		
 		if (classname == "") return;
 		
+		int spawnType = m_spawnerTypeSelect.GetCurrentItem();
+		vector cursorPos = "0 0 0";
+		if (spawnType == 2 && !GameHelpers.GetCursorPos(cursorPos)) return;
+		
 		PluginAdminTool_SpawnItemContext m_context = new PluginAdminTool_SpawnItemContext;
 		m_context.m_classname = classname;
 		m_context.m_health = m_spawnerSliderHealth.GetCurrent();
 		m_context.m_quantity = m_spawnerSliderQuantity.GetCurrent();
-		m_context.m_spawnType = m_spawnerTypeSelect.GetCurrentItem();
-		m_context.m_cursorPos = GameHelpers.GetCursorPos();
+		m_context.m_spawnType = spawnType;
+		m_context.m_cursorPos = cursorPos;
 		m_context.m_attachments = new array<string>;
 		
 		string proxySlotName;
@@ -711,6 +724,38 @@ class AdminToolMenu extends UIScriptedMenu
 				if (m_selectedPlayerUID.Length() > 0)
 				{
 					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_PLAYERINFO, new Param1< string >( m_selectedPlayerUID ) );	
+				}
+			}
+			
+			if (w == m_playersDataDelete)
+			{
+				if (m_selectedPlayerUID.Length() > 0)
+				{
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_DELETE_CHARACTER, new Param1< string >( m_selectedPlayerUID ) );	
+				}
+			}
+			
+			if (w == m_playersDataKick)
+			{
+				if (m_selectedPlayerUID.Length() > 0)
+				{
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_KICK, new Param1< string >( m_selectedPlayerUID ) );	
+				}
+			}
+			
+			if (w == m_playersDataTeleportToPlayer)
+			{
+				if (m_selectedPlayerUID.Length() > 0)
+				{
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT_TO_PLAYER, new Param1< string >( m_selectedPlayerUID ) );	
+				}
+			}
+			
+			if (w == m_playersDataTeleportPlayerToMe)
+			{
+				if (m_selectedPlayerUID.Length() > 0)
+				{
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT_PLAYER_TO_ME, new Param1< string >( m_selectedPlayerUID ) );	
 				}
 			}
 			
@@ -853,7 +898,7 @@ class AdminToolMenu extends UIScriptedMenu
 				}
 				else
 				{
-					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, new Param2< vector, int >( worldPos, 0 ) );
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, new Param2< vector, int >( worldPos, 3 ) );
 				}
 			}
 		}
@@ -905,8 +950,27 @@ class AdminToolMenu extends UIScriptedMenu
 		}
 		else if (w == m_toolsFreeCamToggle && m_toolsFreeCamToggle.IsChecked() != m_toolsFreeCamToggleChecked)
 		{
-			m_toolsFreeCamToggleChecked = m_toolsFreeCamToggle.IsChecked();
-			GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_FREECAM, new Param1< bool >( m_toolsFreeCamToggleChecked ) );
+			PluginAdminTool pluginAdminTool = PluginAdminTool.Cast( GetPlugin(PluginAdminTool) );
+			if (pluginAdminTool)
+			{
+				vector camPos = "0 0 0";
+				m_toolsFreeCamToggleChecked = m_toolsFreeCamToggle.IsChecked();
+				if (!m_toolsFreeCamToggleChecked)
+				{
+					if (pluginAdminTool.m_freeCam)
+					{
+						SybLog("!!!!!!!!!! DBG1");
+						camPos = pluginAdminTool.m_freeCam.GetPosition();
+					}
+					else if (GetGame().GetPlayer())
+					{
+						SybLog("!!!!!!!!!! DBG2");
+						camPos = GetGame().GetPlayer().GetPosition();
+					}
+				}
+				
+				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_FREECAM, new Param2< bool, vector >( m_toolsFreeCamToggleChecked, camPos ) );
+			}
 		}
 		else if (w == m_toolsEspSliderDist1)
 		{

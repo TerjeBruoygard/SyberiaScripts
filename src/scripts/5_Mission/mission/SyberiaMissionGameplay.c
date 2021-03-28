@@ -211,6 +211,13 @@ modded class MissionGameplay
 		{
 			m_isAltPressed = true;
 		}
+		
+		PluginAdminTool pluginAdminTool;
+		Class.CastTo(pluginAdminTool, GetPlugin(PluginAdminTool));
+		if ( pluginAdminTool.m_adminPermissions && pluginAdminTool.m_freeCam )
+		{
+			pluginAdminTool.m_freeCam.HandleKey(key, true);
+		}
 	}
 	
 	override void OnKeyRelease(int key)
@@ -241,20 +248,33 @@ modded class MissionGameplay
 		}
 		
 		PluginAdminTool pluginAdminTool;
-		if ( m_isAltPressed && key == KeyCode.KC_INSERT )
-		{			
-			Class.CastTo(pluginAdminTool, GetPlugin(PluginAdminTool));
-			if (pluginAdminTool && !pluginAdminTool.IsOpen())
-			{
-				pluginAdminTool.Open();
+		Class.CastTo(pluginAdminTool, GetPlugin(PluginAdminTool));
+		if (pluginAdminTool)
+		{
+			if ( m_isAltPressed && key == KeyCode.KC_GRAVE )
+			{			
+				if (!pluginAdminTool.IsOpen())
+				{
+					pluginAdminTool.Open();
+				}
 			}
-		}
-		else if ( key == KeyCode.KC_ESCAPE )
-		{	
-			Class.CastTo(pluginAdminTool, GetPlugin(PluginAdminTool));
-			if (pluginAdminTool && pluginAdminTool.IsOpen())
+			else if ( m_isAltPressed && key == KeyCode.KC_T )
+			{	
+				if (pluginAdminTool.m_adminPermissions)
+				{
+					pluginAdminTool.TeleportToCursor();
+				}
+			}
+			else if ( key == KeyCode.KC_ESCAPE )
+			{	
+				if (pluginAdminTool.IsOpen())
+				{
+					pluginAdminTool.Close();
+				}
+			}
+			else if ( pluginAdminTool.m_adminPermissions && pluginAdminTool.m_freeCam )
 			{
-				pluginAdminTool.Close();
+				pluginAdminTool.m_freeCam.HandleKey(key, false);
 			}
 		}
 		
