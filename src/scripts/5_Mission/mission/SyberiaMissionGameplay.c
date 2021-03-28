@@ -3,13 +3,14 @@ modded class MissionGameplay
 	private ref WatermarkHandler m_watermarkHandler;
 	ref Widget m_AdditionHudRootWidget = null;
 	ref SyberiaAdditionalHud m_SyberiaAdditionalHud = null;
-	bool m_isAltPressed = false;
+	ref array<int> m_pressedKeys;
 	
 	override void OnMissionStart()
 	{
 		SybLog("MissionGameplay OnMissionStart");
 		super.OnMissionStart();
 		SyberiaPPEffects.ResetAllEffects();
+		m_pressedKeys = new array<int>;
 	}
 	
 	override void OnMissionFinish()
@@ -19,6 +20,7 @@ modded class MissionGameplay
 		
 		delete m_AdditionHudRootWidget;
 		delete m_SyberiaAdditionalHud;
+		delete m_pressedKeys;
 		SyberiaPPEffects.ResetAllEffects();
 	}
 	
@@ -207,9 +209,9 @@ modded class MissionGameplay
 	{
 		super.OnKeyPress(key);
 		
-		if (key == KeyCode.KC_LMENU)
+		if (m_pressedKeys.Find(key) == -1)
 		{
-			m_isAltPressed = true;
+			m_pressedKeys.Insert(key);
 		}
 		
 		PluginAdminTool pluginAdminTool;
@@ -224,10 +226,27 @@ modded class MissionGameplay
 	{
 		super.OnKeyRelease(key);
 		
-		if (key == KeyCode.KC_LMENU)
+		int keyIndex = m_pressedKeys.Find(key);
+		if (keyIndex != -1)
 		{
-			m_isAltPressed = false;
+			m_pressedKeys.Remove(keyIndex);
+			OnKeyClicked(key);
 		}
+		
+		PluginAdminTool pluginAdminTool;
+		Class.CastTo(pluginAdminTool, GetPlugin(PluginAdminTool));
+		if (pluginAdminTool)
+		{
+			if ( pluginAdminTool.m_adminPermissions && pluginAdminTool.m_freeCam )
+			{
+				pluginAdminTool.m_freeCam.HandleKey(key, false);
+			}
+		}
+	}
+	
+	void OnKeyClicked(int key)
+	{
+		bool m_isAltPressed = m_pressedKeys.Find(KeyCode.KC_LMENU) != -1;
 		
 		PluginGearPDA pluginGearPDA;
 		if ( key == KeyCode.KC_ESCAPE )
@@ -272,10 +291,6 @@ modded class MissionGameplay
 					pluginAdminTool.Close();
 				}
 			}
-			else if ( pluginAdminTool.m_adminPermissions && pluginAdminTool.m_freeCam )
-			{
-				pluginAdminTool.m_freeCam.HandleKey(key, false);
-			}
 		}
 		
 		DayZPlayerImplement playerClient = DayZPlayerImplement.Cast(GetGame().GetPlayer());
@@ -306,7 +321,7 @@ modded class MissionGameplay
 	override void Pause()
 	{
 		super.Pause();
-		
+
 		UIScriptedMenu ingameMenu = GetGame().GetUIManager().GetMenu();
 		if (ingameMenu && ingameMenu.GetID() == MENU_INGAME)
 		{

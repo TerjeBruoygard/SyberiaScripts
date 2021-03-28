@@ -149,7 +149,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      {
       PanelWidgetClass PlayersTabBody {
-       visible 1
+       visible 0
        ignorepointer 1
        position 0 0
        size 1 1
@@ -988,6 +988,144 @@ FrameWidgetClass rootFrame {
              "text valign" center
             }
            }
+          }
+          CheckBoxWidgetClass ToolsEspLootCt0 {
+           position 0 460
+           size 0.5 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt1 {
+           position 0 460
+           size 0.5 50
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt2 {
+           position 0 510
+           size 0.5 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt3 {
+           position 0 510
+           size 0.5 50
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt4 {
+           position 0 560
+           size 0.5 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt5 {
+           position 0 560
+           size 0.5 50
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt6 {
+           position 0 610
+           size 0.5 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt7 {
+           position 0 610
+           size 0.5 50
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt8 {
+           position 0 660
+           size 0.5 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt9 {
+           position 0 660
+           size 0.5 50
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt10 {
+           position 0 710
+           size 0.5 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
+          }
+          CheckBoxWidgetClass ToolsEspLootCt11 {
+           position 0 710
+           size 0.5 50
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           text "Category"
+           font "gui/fonts/etelkatextpro22"
+           checked 1
           }
          }
         }

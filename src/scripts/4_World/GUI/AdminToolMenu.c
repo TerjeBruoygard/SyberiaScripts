@@ -67,6 +67,7 @@ class AdminToolMenu extends UIScriptedMenu
 	ref SliderWidget m_toolsEspSliderDist2;	
 	ref TextWidget m_toolsEspFilterText;
 	ref EditBoxWidget m_toolsEspFilterBox;
+	ref array<ref CheckBoxWidget> m_toolsEspLootCategories;
 	static bool m_toolsEspPlayersChecked = false;
 	static bool m_toolsEspDeadBodiesChecked = false;
 	static bool m_toolsEspVehiclesChecked = false;
@@ -74,6 +75,10 @@ class AdminToolMenu extends UIScriptedMenu
 	static float m_toolsEspSliderDist1Value = 1000;
 	static float m_toolsEspSliderDist2Value = 100;
 	static string m_toolsEspFilterValue = "";
+	static ref array<bool> m_toolsEspLootCategoriesSelections = null;
+	static ref array<string> m_toolsEspLootCategoriesNames = null;
+	static ref array<typename> m_toolsEspLootCategoriesFilter = null;
+	static ref array<int> m_toolsEspLootCategoriesColor = null;
 	
 	// Objects
 	ref ButtonWidget m_toolsObjectsRefresh;
@@ -99,6 +104,7 @@ class AdminToolMenu extends UIScriptedMenu
 		if (m_toolsObjectsInfo) delete m_toolsObjectsInfo;
 		if (m_context) delete m_context;
 		if (m_playerContext) delete m_playerContext;
+		if (m_toolsEspLootCategories) delete m_toolsEspLootCategories;
 
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		player.GetInputController().SetDisabled(false);
@@ -180,6 +186,37 @@ class AdminToolMenu extends UIScriptedMenu
 		m_toolsEspFilterText = TextWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspFilterText"));
 		m_toolsEspFilterBox = EditBoxWidget.Cast(layoutRoot.FindAnyWidget("ToolsEspFilterBox"));
 		
+		if (!m_toolsEspLootCategoriesSelections)
+		{
+			m_toolsEspLootCategoriesSelections = new array<bool>;
+			m_toolsEspLootCategoriesFilter = new array<typename>;
+			m_toolsEspLootCategoriesNames = new array<string>;
+			m_toolsEspLootCategoriesColor = new array<int>;
+			InitEspLootFilter("Food", Edible_Base, ARGB(255, 27, 161, 226));
+			InitEspLootFilter("Base Building", BaseBuildingBase, ARGB(255, 109,135,100));
+			InitEspLootFilter("Rifles", Rifle_Base, ARGB(255, 162,0,37));
+			InitEspLootFilter("Pistols", Pistol_Base, ARGB(255, 162,0,37));
+			InitEspLootFilter("Magazines", Magazine_Base, ARGB(255, 162,0,37));
+			InitEspLootFilter("Containers", Container_Base, ARGB(255, 130,90,44));
+			InitEspLootFilter("Tablets", TabletsBase, ARGB(255, 244,94,208));
+			InitEspLootFilter("Ampouls", SyberiaMedicineAmpoule, ARGB(255, 244,104,208));
+			InitEspLootFilter("Injectors", InjectorBase, ARGB(255, 244,114,208));
+			InitEspLootFilter("Clothing", ClothingBase, ARGB(255, 27,161,226));
+			InitEspLootFilter("Books", ItemBook, ARGB(255, 106,0,255));
+			InitEspLootFilter("Others", ItemBase, ARGB(255, 147, 255, 0));
+		}
+		
+		m_toolsEspLootCategories = new array<ref CheckBoxWidget>;
+		for (int toolsEspLootCatId = 0; toolsEspLootCatId < m_toolsEspLootCategoriesSelections.Count(); toolsEspLootCatId++)
+		{
+			ref CheckBoxWidget tesplw = CheckBoxWidget.Cast( layoutRoot.FindAnyWidget("ToolsEspLootCt" + toolsEspLootCatId) );
+			if (tesplw)
+			{
+				tesplw.SetText( m_toolsEspLootCategoriesNames.Get(toolsEspLootCatId) );
+				m_toolsEspLootCategories.Insert( tesplw );
+			}
+		}
+		
 		m_toolsEspPlayers.SetChecked( m_toolsEspPlayersChecked );
 		m_toolsEspDeadBodies.SetChecked( m_toolsEspDeadBodiesChecked );
 		m_toolsEspVehicles.SetChecked( m_toolsEspVehiclesChecked );
@@ -188,6 +225,10 @@ class AdminToolMenu extends UIScriptedMenu
 		m_toolsEspSliderDist2.SetCurrent( m_toolsEspSliderDist2Value );
 		m_toolsEspFilterText.SetText( m_toolsEspFilterValue );
 		m_toolsEspFilterBox.SetText( m_toolsEspFilterValue );
+		for (int toolsEspLootCatId2 = 0; toolsEspLootCatId2 < m_toolsEspLootCategories.Count(); toolsEspLootCatId2++)
+		{
+			m_toolsEspLootCategories.Get(toolsEspLootCatId2).SetChecked( m_toolsEspLootCategoriesSelections.Get(toolsEspLootCatId2) );
+		}
 			
 		// Objects
 		m_toolsObjectsRefresh = ButtonWidget.Cast(layoutRoot.FindAnyWidget("ToolsObjectsRefresh"));
@@ -229,6 +270,15 @@ class AdminToolMenu extends UIScriptedMenu
 		m_active = true;
         return layoutRoot;
     }
+	
+	void InitEspLootFilter(string name, typename filter, int color)
+	{
+		m_toolsEspLootCategoriesSelections.Insert( true );
+		m_toolsEspLootCategoriesFilter.Insert( filter );
+		m_toolsEspLootCategoriesNames.Insert( name );
+		m_toolsEspLootCategoriesColor.Insert( color );
+		
+	}
 	
 	void InitItemsConfig(string preffix)
 	{
@@ -994,6 +1044,14 @@ class AdminToolMenu extends UIScriptedMenu
 			text = m_toolsEspFilterBox.GetText();
 			m_toolsEspFilterText.SetText(text);	
 			m_toolsEspFilterValue = text;		
+		}
+		
+		for (int toolsEspLootCatId = 0; toolsEspLootCatId < 12; toolsEspLootCatId++)
+		{
+			if (w == m_toolsEspLootCategories.Get(toolsEspLootCatId))
+			{
+				m_toolsEspLootCategoriesSelections.Set(toolsEspLootCatId, m_toolsEspLootCategories.Get(toolsEspLootCatId).IsChecked());
+			}
 		}
 		
 		return super.OnChange(w, x, y, finished);

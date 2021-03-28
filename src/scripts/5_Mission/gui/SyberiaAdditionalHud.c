@@ -124,7 +124,8 @@ class SyberiaAdditionalHud
 		array<vector> espPoses = new array<vector>;
 		array<string> espNames = new array<string>;
 		array<int> espTypes = new array<int>;
-		adminTool.GetEspMarkers(espPoses, espNames, espTypes);
+		array<int> espColors = new array<int>;
+		adminTool.GetEspMarkers(espPoses, espNames, espTypes, espColors);
 		
 		foreach (ref Widget w : m_espMarkers)
 		{
@@ -137,11 +138,12 @@ class SyberiaAdditionalHud
 			vector pos = espPoses.Get(i);
 			string name = espNames.Get(i);
 			int type = espTypes.Get(i);
-			CreateEspMarker(pos, name, type);
+			int color = espColors.Get(i);
+			CreateEspMarker(pos, name, type, color);
 		}
 	}
 	
-	void CreateEspMarker(vector pos, string name, int type)
+	void CreateEspMarker(vector pos, string name, int type, int color)
 	{
 		if (type == PluginAdminTool_EspType.PLAYER)
 		{
@@ -168,25 +170,21 @@ class SyberiaAdditionalHud
 		ref ImageWidget iw = ImageWidget.Cast(w.FindAnyWidget("Image"));
 		w.SetPos(screenPos[0], sy - screenPos[1]);	
 		
-		int color = 0;
 		if (type == PluginAdminTool_EspType.PLAYER)
 		{
-			color = ARGB(255, 255, 0, 0);
+			// Do nothing
 		}
 		else if (type == PluginAdminTool_EspType.BODY)
 		{
-			color = ARGB(255, 128, 93, 128);
 			iw.LoadImageFile(0, "SyberiaScripts\\data\\gui\\Markers\\corpse.paa");
 		}
 		else if (type == PluginAdminTool_EspType.VEHICLES)
 		{
-			color = ARGB(255, 255, 216, 0);
 			iw.LoadImageFile(0, "SyberiaScripts\\data\\gui\\Markers\\car.paa");
 			name = GameHelpers.GetItemDisplayName(name);
 		}
 		else if (type == PluginAdminTool_EspType.LOOT)
 		{
-			color = ARGB(255, 147, 255, 0);
 			name = GameHelpers.GetItemDisplayName(name);
 		}
 		
