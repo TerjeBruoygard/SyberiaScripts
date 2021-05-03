@@ -26,10 +26,10 @@ class CfgWorlds
 	{
         winterWorld=1;
         airDayTemperatureMin=-15;
-        airDayTemperatureMax=-5;
+        airDayTemperatureMax=-10;
         airNightTemperatureMin=-20;
-        airNightTemperatureMax=-10;
-        clothingHeatIsolationGlobal=1.5;
+        airNightTemperatureMax=-15;
+        clothingHeatIsolationGlobal=1.3;
         
         temperatureHighConsumeItemsMod = 0.03;
         temperatureLowConsumeItemsMod = -0.05;
