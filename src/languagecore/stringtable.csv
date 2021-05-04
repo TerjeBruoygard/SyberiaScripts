@@ -1,4 +1,5 @@
 Language,original,english,czech,german,russian,polish,hungarian,italian,spanish,french,chinese,japanese,portuguese,chinesesimp
+syb_skinning_action,Skinning,Skinning,Skinning,Skinning,Разделать,Skinning,Skinning,Skinning,Skinning,Skinning,Skinning,Skinning,Skinning,Skinning
 syb_liquid_ice,Ice,Ice,Ice,Ice,Лед,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Ice
 syb_action_consume_blocked_temp,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen,Нельзя употребить замороженным,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen,Cannot be consumed frozen
 syb_action_empty_blocked_temp,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen,Нельзя опорожнить замороженным,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen,Cannot be emptied frozen
@@ -549,3 +550,5 @@ zl_starterkit_full,Heatpack / Rag / Flare,Heatpack / Rag / Flare,Heatpack / Rag 
 zl_starterkit_knife,Hunting Knife,Hunting Knife,Hunting Knife,Hunting Knife,Охотничий Нож,Hunting Knife,Hunting Knife,Hunting Knife,Hunting Knife,Hunting Knife,Hunting Knife,Hunting Knife,Hunting Knife,Hunting Knife
 zl_starterkit_hardcore,Nothing,Nothing,Nothing,Nothing,Ничего,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing
 zl_defaultVor,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta,В окрестностях Воркуты,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta,Near the Vorkuta
+zl_spraycan_black,Spraycan Black,Spraycan Black,Spraycan Black,Spraycan Black,Аэрозольная краска черная,Spraycan Black,Spraycan Black,Spraycan Black,Spraycan Black,Spraycan Black,Spraycan Black,Spraycan Black,Spraycan Black,Spraycan Black
+zl_spraycan_green,Spraycan Green,Spraycan Green,Spraycan Green,Spraycan Green,Аэрозольная краска зеленая,Spraycan Green,Spraycan Green,Spraycan Green,Spraycan Green,Spraycan Green,Spraycan Green,Spraycan Green,Spraycan Green,Spraycan Green
