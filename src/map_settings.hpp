@@ -7,7 +7,7 @@ class CfgWorlds
         airDayTemperatureMax=25;
         airNightTemperatureMin=10;
         airNightTemperatureMax=20;
-        clothingHeatIsolationGlobal=1;
+        clothingHeatIsolationGlobal=0.8;
         
         temperatureHighConsumeItemsMod = 0.02;
         temperatureLowConsumeItemsMod = -0.1;
