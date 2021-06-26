@@ -4,8 +4,8 @@ modded class ActionSkinningCB
 	{
 		float skinTime = 30;		
 		if (m_ActionData.m_Player) {
-			int divider = Math.Max(1, m_ActionData.m_Player.GetSkillValue(SyberiaSkillType.SYBSKILL_HUNTING) / 10);
-			skinTime = skinTime / divider;
+			float modifier = 1 - m_ActionData.m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_HUNTING_BUTCH_SPEED, 0, 0);
+			skinTime = Math.Max(1, skinTime * modifier);
 		}
 		
 		m_ActionData.m_ActionComponent = new CAContinuousTime( skinTime );
