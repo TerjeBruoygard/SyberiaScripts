@@ -14,6 +14,7 @@ modded class ModItemRegisterCallbacks
 		pType.AddItemInHandsProfileIK("SurgicalKit",  "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/gear/sewing_kit.anm");
 		pType.AddItemInHandsProfileIK("SalveBase", "dz/anims/workspaces/player/player_main/props/player_main_1h_pills.asi", pBehavior,	"dz/anims/anm/player/ik/gear/VitaminBottle.anm");
         pType.AddItemInHandsProfileIK("ItemPDA", "dz/anims/workspaces/player/player_main/props/player_main_1h_compass.asi", pBehavior, "dz/anims/anm/player/ik/gear/compass.anm");
+		pType.AddItemInHandsProfileIK("Stethoscope", "dz/anims/workspaces/player/player_main/weapons/player_main_1h_knife.asi", pBehavior, "dz/anims/anm/player/ik/gear/steak_knife.anm");
 	}
 	
 	override void RegisterTwoHanded(DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior)

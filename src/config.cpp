@@ -48,6 +48,7 @@ class CfgVehicles
     #include "sleeping_bags.hpp"
     #include "sounds_emitters.hpp"
     #include "clothing_vests.hpp"
+    #include "clothing_medical.hpp"
 };
 
 class CfgAmmo
