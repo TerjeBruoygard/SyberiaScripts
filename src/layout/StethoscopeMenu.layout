@@ -1,0 +1,57 @@
+FrameWidgetClass rootFrame {
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass BackgroundPanel {
+   ignorepointer 1
+   position 0 0
+   size 800 800
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   image0 "SyberiaScripts/data/medical/stethoscope/background.paa"
+   mode blend
+   "src alpha" 1
+   "no wrap" 0
+   stretch 1
+   {
+    PanelWidgetClass ContentPanel {
+     ignorepointer 1
+     position 0.175 0.08
+     size 0.6 0.87
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style rover_sim_blackbox
+     {
+      TextListboxWidgetClass StatesWidget {
+       color 0.4588 0.4588 0.4588 1
+       position 0.05 0.02
+       size 0.93 0.96
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       scaled 1
+       style NoScrollBar
+       "title visible" 0
+       colums " ;50; ;50;"
+       lines 1
+       "highlight row" 0
+       font "gui/fonts/etelkatextpro16"
+      }
+     }
+    }
+   }
+  }
+ }
+}

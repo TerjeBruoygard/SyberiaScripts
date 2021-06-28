@@ -1,6 +1,6 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
 const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.45";
+const string Syberia_Version = "OPEN BETA 0.46";
 
 void SybLog(string message)
 {
@@ -62,7 +62,8 @@ enum SyberiaRPC {
 	SYBRPC_ADMINTOOL_TELEPORT_TO_PLAYER,
 	SYBRPC_ADMINTOOL_TELEPORT_PLAYER_TO_ME,	
 	SYBRPC_SKILLS_UPDATE,
-	SYBRPC_SKILLS_ACTIVATE
+	SYBRPC_SKILLS_ACTIVATE,
+	SYBRPC_STETHOSCOPE_INSPECT
 };
 
 enum SyberiaScreenEquipPages {

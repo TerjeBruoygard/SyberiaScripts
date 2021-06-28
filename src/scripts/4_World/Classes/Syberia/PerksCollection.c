@@ -243,12 +243,12 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_MEDICINE_SEPSIS_CHANCE_DEC, "%").AddUnlockValue(9, 5).AddUnlockValue(23, 10).AddUnlockValue(55, 25).AddUnlockValue(95, 50).AddUnlockValue(100, 75);
         Register(SyberiaPerkType.SYBPERK_MEDICINE_TOOLS_DEGRADATION_DEC, "%").AddUnlockValue(12, 10).AddUnlockValue(27, 25).AddUnlockValue(65, 50);
 
+		Register(SyberiaPerkType.SYBPERK_MEDICINE_SHOW_PLAYER_STATE).AddUnlockValue(20, 1);
         Register(SyberiaPerkType.SYBPERK_MEDICINE_TABLETS_RESEARCH).AddUnlockValue(25, 1);
         Register(SyberiaPerkType.SYBPERK_MEDICINE_BRING_FROM_UNCUNSION).AddUnlockValue(40, 1);
         Register(SyberiaPerkType.SYBPERK_MEDICINE_AMPOULES_RESEARCH).AddUnlockValue(50, 1);
-        //Register(SyberiaPerkType.SYBPERK_MEDICINE_DEATH_CAUSE).AddUnlockValue(60, 1);
-        Register(SyberiaPerkType.SYBPERK_MEDICINE_INJECTORS_RESEARCH).AddUnlockValue(75, 1);
-        //Register(SyberiaPerkType.SYBPERK_MEDICINE_SHOW_PLAYER_STATE).AddUnlockValue(80, 1);
+        Register(SyberiaPerkType.SYBPERK_MEDICINE_DEATH_CAUSE).AddUnlockValue(60, 1);
+        Register(SyberiaPerkType.SYBPERK_MEDICINE_INJECTORS_RESEARCH).AddUnlockValue(75, 1);     
         Register(SyberiaPerkType.SYBPERK_MEDICINE_START_LOADOUT).AddUnlockValue(100, 1);
         
         /*

@@ -3,6 +3,8 @@ class PluginSyberiaLogin extends PluginBase
 	autoptr ScreenBase m_screenBase;
 	bool m_isRespawnCommited = false;
 	
+	autoptr StethoscopeMenu m_stethoscopeMenu;
+	
 	void ~PluginSyberiaLogin()
 	{
 		if (m_screenBase) m_screenBase.Close();
@@ -15,6 +17,7 @@ class PluginSyberiaLogin extends PluginBase
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_EQUIP_SCREEN_OPEN, this, "EquipScreen_Open");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_CREATENEWCHAR_ERROR, this, "NewcharScreen_Error");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_SKILLS_UPDATE, this, "OnSkillsUpdate");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_STETHOSCOPE_INSPECT, this, "OnStethoscopeInspect");
 	}
 	
 	override void OnUpdate(float delta_time)
@@ -152,6 +155,37 @@ class PluginSyberiaLogin extends PluginBase
 					mission.ShowScreenMessage("#syb_skill_up_part1 '#syb_skill" + changedSkill + "' #syb_skill_up_part2 " + newSkills.GetSkillValueInt(changedSkill), 5 );
 				}
 			}
+		}
+	}
+	
+	void OnStethoscopeInspect(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	{
+		Param1<ref ActionStethoscopeInspect_Data> clientData;
+		if ( !ctx.Read( clientData ) ) return;	
+		
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());		
+		if (player)
+		{
+			if (m_stethoscopeMenu && m_stethoscopeMenu.m_active)
+			{
+				m_stethoscopeMenu.m_active = false;
+			}
+			
+			if (GetGame().GetUIManager().GetMenu() != NULL || !player || !player.CanOpenSyberiaUI())
+			{
+				return;
+			}
+			
+			m_stethoscopeMenu = new StethoscopeMenu(clientData.param1);
+			GetGame().GetUIManager().ShowScriptedMenu( m_stethoscopeMenu, NULL );
+		}
+	}
+	
+	void CloseStethoscopeMenu()
+	{
+		if (m_stethoscopeMenu && m_stethoscopeMenu.m_active)
+		{
+			m_stethoscopeMenu.m_active = false;
 		}
 	}
 };
