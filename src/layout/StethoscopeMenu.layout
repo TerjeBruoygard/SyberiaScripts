@@ -25,8 +25,8 @@ FrameWidgetClass rootFrame {
    {
     PanelWidgetClass ContentPanel {
      ignorepointer 1
-     position 0.175 0.08
-     size 0.6 0.87
+     position 0.175 0.14
+     size 0.6 0.8
      hexactpos 0
      vexactpos 0
      hexactsize 0
