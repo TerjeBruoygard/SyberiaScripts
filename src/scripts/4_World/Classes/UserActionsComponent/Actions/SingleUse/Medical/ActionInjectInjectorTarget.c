@@ -14,7 +14,15 @@ class ActionInjectInjectorTarget: ActionSingleUseBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 	}
-		
+	
+    override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+        if (player.IsInteractionWithPlayersBlocked())
+            return false;
+        
+		return super.ActionCondition(player, target, item);
+	}
+    
 	override string GetText()
 	{
 		return "#syb_syringe_use_action";

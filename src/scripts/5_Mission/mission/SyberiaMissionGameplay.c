@@ -126,6 +126,7 @@ modded class MissionGameplay
 						
 			OnUpdateAdvMedicineGUI(player, timeslice);
 			OnUpdateMindstateGUI(player, timeslice);
+			OnUpdatePveIntruderState(player, timeslice);
 		}
 		
 		if (!player || !player.IsAlive())
@@ -197,6 +198,15 @@ modded class MissionGameplay
 					}
 				}				 
 			}
+		}
+	}
+	
+	private void OnUpdatePveIntruderState(PlayerBase player, float deltaTime)
+	{
+		if (player.m_isPveIntruder && !player.m_isPveIntruderLast)
+		{
+			player.m_isPveIntruderLast = true;
+			ShowScreenMessage("#syb_pve_intrude", 10);
 		}
 	}
 	
