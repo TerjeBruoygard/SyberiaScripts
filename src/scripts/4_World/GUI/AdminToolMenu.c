@@ -535,6 +535,7 @@ class AdminToolMenu extends UIScriptedMenu
 			m_playersDataInfo.SetItem(m_playersDataInfo.AddItem("Nickname:", null, 0), m_playerContext.m_nickname, null, 1);
 			m_playersDataInfo.SetItem(m_playersDataInfo.AddItem("Souls:", null, 0), m_playerContext.m_souls.ToString(), null, 1);
 			m_playersDataInfo.SetItem(m_playersDataInfo.AddItem("Respawns:", null, 0), m_playerContext.m_respawnCounter.ToString(), null, 1);
+			m_playersDataInfo.SetItem(m_playersDataInfo.AddItem("Position:", null, 0), m_playerContext.m_position.ToString(), null, 1);
 			
 			if (m_playerContext.m_stats)
 			{

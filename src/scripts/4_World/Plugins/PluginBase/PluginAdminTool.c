@@ -368,6 +368,7 @@ class PluginAdminTool_PlayerContextDetails : PluginAdminTool_PlayerContextBase
 {
 	int m_souls;
 	int m_respawnCounter;
+    vector m_position;
 	
 	ref array<ref PluginAdminTool_PlayerStatContext> m_stats;
 	
