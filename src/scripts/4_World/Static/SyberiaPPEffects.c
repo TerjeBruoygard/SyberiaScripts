@@ -1,7 +1,9 @@
 class SyberiaPPEffects
 {
 	static Material m_MatChroma;
+	static Material m_MatColors;
 	static EffectSound m_hearthbitSound;
+	static EffectSound m_psiEffectSound;
 	static float m_matChromaOffsetLast;
 	static float m_camShake;
 	
@@ -21,6 +23,14 @@ class SyberiaPPEffects
 	static float m_SleepingValue;
 	static float m_SleepingOffset;
 	
+	static float m_psiEffectColors[4];
+	static float m_psiLastEffectOffset;
+	static float m_psiEffectOffset;
+	static bool m_psiEffectValue;
+	
+	static float m_nvgEffectColors[4];
+	static bool m_colorsMarkDirty;
+	
 	static void Init()
 	{
 		// Fix game options
@@ -38,6 +48,8 @@ class SyberiaPPEffects
 		m_MatChroma = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/chromaber");
 		m_blurEffect = PPEffects.RegisterBlurEffect();
 		
+		m_MatColors = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/glow");
+		
 		m_OverdosedOffset = 0;
 		m_OverdosedValue = 0;
 				
@@ -51,6 +63,21 @@ class SyberiaPPEffects
 		m_SleepingOffset = 0;
 		m_SleepingCurrent = 0;
 		m_VignetteSleeping = PPEffects.RegisterVignetteEffect();
+		
+		m_psiLastEffectOffset = 0;
+		m_psiEffectOffset = 0;
+		m_psiEffectValue = false;
+		m_psiEffectColors[0] = 1.0;
+		m_psiEffectColors[1] = 1.0;
+		m_psiEffectColors[2] = 1.0;
+		m_psiEffectColors[3] = 0.0;
+		
+		m_nvgEffectColors[0] = 1.0;
+		m_nvgEffectColors[1] = 1.0;
+		m_nvgEffectColors[2] = 1.0;
+		m_nvgEffectColors[3] = 0.0;
+		m_MatColors.SetParam("ColorizationColor", m_nvgEffectColors);
+		m_colorsMarkDirty = false;
 	}
 	
 	static void Update(float dt)
@@ -58,6 +85,68 @@ class SyberiaPPEffects
 		float matChromaOffset = 0;
 		float blurEffect = 0;
 		float sinusVal = 0;
+		
+		if (m_psiEffectValue)
+		{
+			m_psiEffectOffset = m_psiEffectOffset + (dt * 0.1);
+			if (m_psiEffectOffset >= 1)
+			{
+				m_psiEffectOffset = 1;				
+			}
+		}
+		else
+		{
+			m_psiEffectOffset = m_psiEffectOffset - (dt * 0.2);
+			if (m_psiEffectOffset < 0)
+			{
+				m_psiEffectOffset = 0;				
+			}
+		}
+		
+		if (m_psiLastEffectOffset != m_psiEffectOffset)
+		{
+			if (m_psiEffectOffset > 0 && m_psiLastEffectOffset == 0)
+			{
+				if (!m_psiEffectSound)
+				{
+					GetGame().GetPlayer().PlaySoundSet(m_psiEffectSound, "psieffect_SoundSet", 5.0, 2.0, true);
+				}
+				else
+				{
+					m_psiEffectSound.SoundPlay();
+				}
+			}
+			else if (m_psiEffectOffset == 0 && m_psiLastEffectOffset > 0)
+			{
+				m_psiEffectSound.SoundStop();
+			}
+			
+			m_psiLastEffectOffset = m_psiEffectOffset;
+			m_psiEffectColors[0] = 1.0 - (m_psiEffectOffset * 0.8);
+			m_psiEffectColors[1] = 1.0 - (m_psiEffectOffset * 0.8);
+			m_psiEffectColors[2] = 1.0;
+			m_psiEffectColors[3] = 0.0;
+			m_colorsMarkDirty = true;
+		}
+		
+		if (m_colorsMarkDirty)
+		{
+			m_colorsMarkDirty = false;
+			float color[4];
+			color[0] = m_psiEffectColors[0];
+			color[1] = m_psiEffectColors[1];
+			color[2] = m_psiEffectColors[2];
+			color[3] = 0.0;
+			
+			if (m_nvgEffectColors[0] != 0 || m_nvgEffectColors[1] != 0 || m_nvgEffectColors[2] != 0)
+			{
+				color[0] = color[0] * m_nvgEffectColors[0];
+				color[1] = color[1] * m_nvgEffectColors[1];
+				color[2] = color[2] * m_nvgEffectColors[2];
+			}
+			
+			m_MatColors.SetParam("ColorizationColor", color);
+		}
 		
 		if (m_OverdosedValue > 0)
 		{
@@ -167,6 +256,19 @@ class SyberiaPPEffects
 		m_ConcussionValue = value;
 	}
 	
+	static void SetPsiEffect(bool value)
+	{
+		m_psiEffectValue = value;
+	}
+	
+	static void SetColorizationNV(float r, float g, float b)
+	{
+		m_nvgEffectColors[0] = r;
+		m_nvgEffectColors[1] = g;
+		m_nvgEffectColors[2] = b;
+		m_colorsMarkDirty = true;
+	}
+	
 	static void ResetAllEffects()
 	{
 		m_OverdosedValue = 0;
@@ -177,6 +279,27 @@ class SyberiaPPEffects
 		m_SleepingValue = 0;
 		m_SleepingOffset = 0;
 		m_SleepingCurrent = 0;
+		
+		m_psiEffectValue = false;
+		m_psiEffectOffset = 0;
+		m_psiLastEffectOffset = 0;
+		
+		m_psiEffectColors[0] = 1.0;
+		m_psiEffectColors[1] = 1.0;
+		m_psiEffectColors[2] = 1.0;
+		m_psiEffectColors[3] = 0.0;
+		
+		m_nvgEffectColors[0] = 1.0;
+		m_nvgEffectColors[1] = 1.0;
+		m_nvgEffectColors[2] = 1.0;
+		m_nvgEffectColors[3] = 0.0;
+		m_MatColors.SetParam("ColorizationColor", m_nvgEffectColors);
+		m_colorsMarkDirty = false;
+		
+		if (m_psiEffectSound) 
+		{
+			m_psiEffectSound.SoundStop();
+		}
 		
 		Update(0);
 	}
