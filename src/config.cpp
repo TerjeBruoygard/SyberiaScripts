@@ -48,6 +48,7 @@ class CfgVehicles
     #include "sleeping_bags.hpp"
     #include "sounds_emitters.hpp"
     #include "clothing_vests.hpp"
+    #include "clothing_masks.hpp"
     #include "clothing_medical.hpp"
 };
 
@@ -74,6 +75,11 @@ class CfgSoundSets
 class CfgSyberia
 {
     #include "syberia_config.hpp"
+};
+
+class CfgSlots
+{
+    #include "slots.hpp"
 };
 
 #include "map_settings.hpp"
