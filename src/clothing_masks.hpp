@@ -42,4 +42,5 @@ class GP5GasMask_Filter: Inventory_Base
     varQuantityInit=100;
     varQuantityMin=0;
     varQuantityMax=100;
+    varQuantityDestroyOnMin=0;
 };
