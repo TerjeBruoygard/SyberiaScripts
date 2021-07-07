@@ -302,6 +302,7 @@ modded class PlayerBase
 		if (m_influenzaLevel > 2) return true;
 		if (m_stomatchpoisonLevel > 1) return true;
 		if (m_overdosedValue > 2) return true;
+		if (GetRadiationSicknessLevel() > 0) return true;
 		if (m_mindStateValue < GetSyberiaConfig().m_mindstateLevel4) return true;
 		if (GetStatWater().Get() < PlayerConstants.SL_WATER_LOW) return true;
 		if (GetStatEnergy().Get() < PlayerConstants.SL_ENERGY_LOW) return true;
