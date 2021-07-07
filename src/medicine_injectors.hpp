@@ -151,3 +151,17 @@ class InjectorNovichek : InjectorBase
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
     INJECTOR_ANIM_EVENTS;
 };
+
+class InjectorRadioprotector : InjectorBase
+{
+    scope=2;
+    displayName="#syb_radioprotector";
+    model="\dz\gear\medical\morphine.p3d";
+    medRadioprotectionLevel=2;
+    medRadioprotectionTimer=350;
+    overdosedIncrement=0.7;
+    hiddenSelections[] = {"zbytek"};
+    hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_yellow_co.paa" };
+    ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
+    INJECTOR_ANIM_EVENTS;
+};
