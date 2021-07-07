@@ -8,25 +8,25 @@ modded class DayZPlayerCameraBase
 			case NVTypes.NONE:
 				PPEffects.SetEVValuePP(0);
 				SyberiaPPEffects.SetColorizationNV(1.0, 1.0, 1.0);
-				PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
+				SyberiaPPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 			break;
 			
 			case NVTypes.NV_OPTICS_ON:
 				PPEffects.SetEVValuePP(7);
 				SyberiaPPEffects.SetColorizationNV(0.0, 1.0, 0.0);
-				PPEffects.SetNVParams(3.0, 2.0, 9.0, 1.0);
+				SyberiaPPEffects.SetNVParams(3.0, 2.0, 9.0, 1.0);
 			break;
 			
 			case NVTypes.NV_OPTICS_OFF:
 				PPEffects.SetEVValuePP(-10);
 				SyberiaPPEffects.SetColorizationNV(0.0, 0.0, 0.0);
-				PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
+				SyberiaPPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 			break;
 			
 			case NVTypes.NV_GOGGLES:
 				PPEffects.SetEVValuePP(7);
 				SyberiaPPEffects.SetColorizationNV(0.0, 1.0, 0.0);
-				PPEffects.SetNVParams(2.0, 1.0, 10.0, 1.0);
+				SyberiaPPEffects.SetNVParams(2.0, 1.0, 10.0, 1.0);
 			break;
 		}
 		

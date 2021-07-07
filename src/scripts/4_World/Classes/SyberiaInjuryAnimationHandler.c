@@ -7,6 +7,7 @@ modded class InjuryAnimationHandler
 		eInjuryHandlerLevels painState = CalculatePainState();
 		eInjuryHandlerLevels overdoseState = CalculateOverdoseState();
 		eInjuryHandlerLevels waterEnergy = CalculateLowEnergyWaterState();
+		eInjuryHandlerLevels radiationSickness = CalculateRadiationState();
 		
 		if (InjuryLevelToValue(result) < InjuryLevelToValue(sleepingState))
 		{
@@ -26,6 +27,11 @@ modded class InjuryAnimationHandler
 		if (InjuryLevelToValue(result) < InjuryLevelToValue(waterEnergy))
 		{
 			result = waterEnergy;
+		}
+		
+		if (InjuryLevelToValue(result) < InjuryLevelToValue(radiationSickness))
+		{
+			result = radiationSickness;
 		}
 		
 		if (m_Player.m_concussionHit && InjuryLevelToValue(result) < 2)
@@ -129,5 +135,26 @@ modded class InjuryAnimationHandler
 		{
 			return 4;
 		}
+	}
+	
+	private eInjuryHandlerLevels CalculateRadiationState()
+	{
+		int painLevel = m_Player.GetRadiationSicknessLevel();
+		if (painLevel == 1)
+		{
+			return eInjuryHandlerLevels.WORN;
+		}
+		
+		if (painLevel == 2)
+		{
+			return eInjuryHandlerLevels.BADLY_DAMAGED;
+		}
+		
+		if (painLevel == 3)
+		{
+			return eInjuryHandlerLevels.RUINED;
+		}
+		
+		return eInjuryHandlerLevels.PRISTINE;
 	}
 };
