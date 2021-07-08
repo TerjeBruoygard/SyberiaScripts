@@ -31,7 +31,7 @@ FrameWidgetClass rootFrame {
        ignorepointer 1
        color 1 0.6745 0.0235 0.2392
        position 18 96
-       size 160 25
+       size 200 25
        halign right_ref
        hexactpos 1
        vexactpos 1
