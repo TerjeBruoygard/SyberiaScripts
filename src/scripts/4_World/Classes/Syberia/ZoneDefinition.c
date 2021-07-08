@@ -13,4 +13,5 @@ class ZoneDefinition
 	float m_radiation;
     float m_psi;
     float m_gas;
+	float m_spawnChance;
 };
