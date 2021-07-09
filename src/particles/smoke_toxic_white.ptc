@@ -1,0 +1,60 @@
+EffectDef {
+ MinFPS 30
+ Emitors {
+  EmitorDef smoke_toxic_green_base {
+   ShapeType Box
+   ShapeSize 12 22 22
+   ConeAngle 0 0 970
+   MaxNum 750
+   BirthRate 10
+   Offset 0 1.98 0
+   Angles 60 271 50
+   LocalTransform 0
+   Material "{E5E389220151D838}graphics/particles/materials/smoke/smoke_cloud_01_b_trans_m18_05.emat"
+   SizeMultiplier 32
+   SizeRND 11
+   RandomRotDir 0
+   RotMultiplier 0
+   StreakFullUV 0
+   VelAngle 0
+   RandomAngle 0
+   Sort 0
+   Velocity 1
+   VelocityRND 1
+   AirResistance 0
+   AirResistanceRND 0
+   GravityMultiply 0
+   GravityMultiplyRND 0
+   Wind 0
+   RandomFrame 1
+   LifeTime 18
+   LifeTimeRND 10
+   Color {
+    0 1 1 1 1 0.97 0.94 0.98
+   }
+   Alpha {
+    0 0 0.22 1 0.72 0.98 1 0.11
+   }
+   RotationSpeed {
+    0 0.2 1 0.59
+   }
+   Size {
+    0 0.47 1 1
+   }
+   EffectTime 10
+   Repeat 1
+   ColorMast {
+    0 0.75 0.75 0.77 1 0.75 0.75 0.73
+   }
+   AlphaMast {
+    0 0.34 1 0.36
+   }
+   SizeMast {
+    0 1 1 1
+   }
+   BRateMast {
+    0 1 1 1
+   }
+  }
+ }
+}

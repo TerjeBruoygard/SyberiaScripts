@@ -398,7 +398,7 @@ modded class MissionGameplay
 		{
 			foreach (ref ToxicZone zone : toxicZonesInfo)
 			{
-				m_toxicZonesView.Insert(new ToxicZoneView(zone.m_position, zone.m_radius));
+				m_toxicZonesView.Insert(new ToxicZoneView(zone.m_position, zone.m_radius, zone.m_color));
 			}
 		}
 	}
