@@ -1,3 +1,24 @@
+modded class PPEffects
+{
+	static void SetColorizationNV(float r, float g, float b)
+	{
+		SyberiaPPEffects.SetColorizationNV(r, g, b);
+	}
+	
+	static void SetNVParams(float light_mult, float noise_intensity, float sharpness, float grain_size)
+	{
+		SyberiaPPEffects.SetNVParams(light_mult, noise_intensity, sharpness, grain_size);
+	}
+	
+	static void SetNVParams2(float light_mult, float noise_intensity, float sharpness, float grain_size)
+	{
+		Material matHDR = GetGame().GetWorld().GetMaterial("Graphics/Materials/postprocess/filmgrainNV");
+		g_Game.NightVissionLightParams(light_mult, noise_intensity);
+		matHDR.SetParam("Sharpness", sharpness);
+		matHDR.SetParam("GrainSize", grain_size);
+	}
+};
+
 class SyberiaPPEffects
 {
 	static Material m_MatChroma;
@@ -165,7 +186,7 @@ class SyberiaPPEffects
 		if (newRadValue != m_RadiationValue)
 		{
 			m_RadiationValue = newRadValue;
-			PPEffects.SetNVParams(1.0, 1.0, 10.0, 1.0);
+			PPEffects.SetNVParams2(1.0, 1.0, 10.0, 1.0);
 			
 			float radColorValue = Math.Clamp(m_RadiationValue, 0, 1);
 			m_RadEffectColors[0] = 1.0 - (radColorValue * 0.2);
@@ -209,7 +230,7 @@ class SyberiaPPEffects
 			float noiseIntensity = Math.Min(2, m_noiseIntensity + m_RadiationValue);
 			float sharpness = Math.Min(10, m_sharpness + (m_RadiationValue * 10));
 			float grainSize = Math.Max(1, m_grainSize - m_RadiationValue);
-			PPEffects.SetNVParams(lightMul, noiseIntensity, sharpness, grainSize);		
+			PPEffects.SetNVParams2(lightMul, noiseIntensity, sharpness, grainSize);		
 		}
 		
 		if (m_OverdosedValue > 0)

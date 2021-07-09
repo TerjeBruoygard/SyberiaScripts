@@ -7,8 +7,8 @@ class ToxicZone
 
 class ToxicZoneView
 {
-	static const float SPAWN_PARTICLE_DISTANCE = 500;
-	static const float DESPAWN_PARTICLE_DISTANCE = 550;
+	static const float SPAWN_PARTICLE_DISTANCE = 800;
+	static const float DESPAWN_PARTICLE_DISTANCE = 900;
 	static const float SMOKE_EFFECT_SIZE = 50;
 	
 	private ref array<Particle> m_particles;
@@ -30,11 +30,11 @@ class ToxicZoneView
 		
 		vector ppos = player.GetPosition();
 		float distance = vector.Distance(ppos, m_position);
-		if (distance < SPAWN_PARTICLE_DISTANCE && m_particles.Count() == 0)
+		if (distance < SPAWN_PARTICLE_DISTANCE + m_radius && m_particles.Count() == 0)
 		{
 			SpawnParticles();
 		}
-		else if (distance > DESPAWN_PARTICLE_DISTANCE && m_particles.Count() > 0)
+		else if (distance > DESPAWN_PARTICLE_DISTANCE + m_radius && m_particles.Count() > 0)
 		{
 			DestroyParticles();
 		}
