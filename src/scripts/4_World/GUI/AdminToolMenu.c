@@ -611,19 +611,21 @@ class AdminToolMenu extends UIScriptedMenu
 	
 	private void RefreshObjectsList()
 	{
+		int lastSelected = m_toolsObjectsList.GetSelectedRow();
+		
 		m_toolsObjectsList.ClearItems();
 		
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if (player)
 		{
 			array<Object> objects = new array<Object>;
-			GetGame().GetObjectsAtPosition3D(player.GetPosition(), 10, objects, null);
+			GetGame().GetObjectsAtPosition3D(player.GetPosition(), 15, objects, null);
 			foreach (Object obj : objects)
 			{
-				if (obj.IsBuilding() || obj.IsBush() || obj.IsTree() || obj.IsRock())
+				if (!obj.HasNetworkID())
 					continue;
 				
-				if (!obj.HasNetworkID())
+				if (obj.IsBush() || obj.IsTree() || obj.IsRock())
 					continue;
 				
 				if (obj == player)
@@ -632,8 +634,18 @@ class AdminToolMenu extends UIScriptedMenu
 				if (obj.GetType() == "")
 					continue;
 				
-				m_toolsObjectsList.AddItem(obj.GetType(), obj, 0);
+				int dist = (int)vector.Distance(player.GetPosition(), obj.GetPosition())
+				m_toolsObjectsList.AddItem(obj.GetType() + " (" + dist + "m)", obj, 0);
 			}
+		}
+		
+		if (lastSelected >= 0 && lastSelected < m_toolsObjectsList.GetNumItems())
+		{
+			m_toolsObjectsList.SelectRow(lastSelected);
+		}
+		else if (m_toolsObjectsList.GetNumItems() > 0)
+		{
+			m_toolsObjectsList.SelectRow(0);
 		}
 	}
 	
