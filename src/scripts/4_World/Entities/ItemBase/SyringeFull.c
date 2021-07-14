@@ -8,4 +8,9 @@ class SyringeFull extends Inventory_Base
 		AddAction(ActionInjectSyringeSelf);
 		AddAction(ActionInjectSyringeTarget);
 	}
+	
+	override bool CanBeDisinfected()
+	{
+		return false;
+	}
 };

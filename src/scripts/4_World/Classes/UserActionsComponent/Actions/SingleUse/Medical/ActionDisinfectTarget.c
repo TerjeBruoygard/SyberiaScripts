@@ -1,3 +1,19 @@
+modded class ActionDisinfectSelf
+{
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if (player.GetItemOnSlot("Gloves"))
+			return false;
+		
+		return true;
+	}
+	
+	override string GetText()
+	{
+		return "#syb_disinfect_hands";
+	}
+};
+
 modded class ActionDisinfectTarget
 {
     override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
@@ -5,6 +21,20 @@ modded class ActionDisinfectTarget
         if (player.IsInteractionWithPlayersBlocked())
             return false;
 
-		return super.ActionCondition(player, target, item);
+		if (target && target.GetObject())
+		{
+			PlayerBase other = PlayerBase.Cast( target.GetObject() );
+			if (other.GetItemOnSlot("Gloves"))
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	override string GetText()
+	{
+		return "#syb_disinfect_hands";
 	}
 }

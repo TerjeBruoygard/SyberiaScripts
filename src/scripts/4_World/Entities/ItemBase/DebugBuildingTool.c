@@ -64,6 +64,11 @@ class DebugBuildingManager
 		vector relPos = m_linkedHouse.WorldToModel(pos);
 		GetGame().CopyToClipboard("[" + relPos[0] + ", " + relPos[1] + ", " + relPos[2] + "]");
 	}
+	
+	static void SwitchProxies(Object proxy)
+	{
+
+	}
 };
 
 class DebugBuildingTool : ItemBase
@@ -86,12 +91,13 @@ class DebugBuildingTool : ItemBase
 		AddAction(ActionDebugBuildingToolLink);
 		AddAction(ActionDebugBuildingToolMarker);
 		AddAction(ActionDebugBuildingToolObjPos);
+		AddAction(ActionDebugBuildingToolSwitchProxies);
 	}
 	
 	void NextAction()
 	{
 		m_currentAction = m_currentAction + 1;
-		if (m_currentAction >= 3)
+		if (m_currentAction >= 4)
 		{
 			m_currentAction = 0;
 		}

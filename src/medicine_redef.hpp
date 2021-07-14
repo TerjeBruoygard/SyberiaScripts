@@ -66,4 +66,5 @@ class Rag: Inventory_Base
 class SurgicalGloves_ColorBase: Clothing
 {
     medGloves=1;
+    varCleannessInit=1;
 };

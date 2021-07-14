@@ -1,6 +1,6 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
-const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.47g";
+const bool Syberia_DebugMode = true;
+const string Syberia_Version = "OPEN BETA 0.48";
 
 void SybLog(string message)
 {
@@ -142,6 +142,7 @@ const int NTFKEY_INFLUENZA = 1118;
 const int NTFKEY_STOMATCHPOISONING = 1119;
 const int NTFKEY_RADIATIONSICKNESS = 1120;
 const int NTFKEY_RADIOPROTECTION = 1121;
+const int NTFKEY_DISINFECTED = 1122;
 
 const int LEVELED_NTFKEY_BADGES_COUNT = 10;
 const int LEVELED_NTFKEY_BADGES[LEVELED_NTFKEY_BADGES_COUNT] = { 

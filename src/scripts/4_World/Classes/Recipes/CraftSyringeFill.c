@@ -25,7 +25,6 @@ class CraftSyringeFill extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 		InsertIngredient(0,"SyringeEmpty");//you can insert multiple ingredients this way
-		InsertIngredient(0,"SyringeDirty");//you can insert multiple ingredients this way
 
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
@@ -53,9 +52,8 @@ class CraftSyringeFill extends RecipeBase
 	{
 		ItemBase syringeItem = ingredients[0];
 		ItemBase ampouleItem = ingredients[1]; 
-		bool isSyringeDirty = syringeItem.IsInherited(SyringeDirty);		
 		TurnSyringeFillLambda lambda = new TurnSyringeFillLambda(syringeItem, "SyringeFull", player);
-		lambda.InitValues(ampouleItem, isSyringeDirty);
+		lambda.InitValues(ampouleItem);
 		MiscGameplayFunctions.TurnItemIntoItemEx(player, lambda);
 	}
 };

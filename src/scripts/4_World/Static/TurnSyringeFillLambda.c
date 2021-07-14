@@ -1,11 +1,9 @@
 class TurnSyringeFillLambda : TurnItemIntoItemLambda
 {
-    bool m_dirty;
     ItemBase m_medSolutionItem;
 	
-	void InitValues(ItemBase medSolutionItem, bool dirty)
+	void InitValues(ItemBase medSolutionItem)
 	{
-		m_dirty = dirty;
         m_medSolutionItem = medSolutionItem;
 	}
 };

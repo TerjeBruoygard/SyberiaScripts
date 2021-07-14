@@ -89,6 +89,7 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_STOMATCHPOISONING, badgets, "Stomatchpoison");
 				m_Hud.InitBadgetWidget(NTFKEY_RADIATIONSICKNESS, badgets, "RadiationSickness");
 				m_Hud.InitBadgetWidget(NTFKEY_RADIOPROTECTION, badgets, "Radioprotection");
+				m_Hud.InitBadgetWidget(NTFKEY_DISINFECTED, badgets, "Disinfected");
 			}
 		}
 		
@@ -152,6 +153,7 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_STOMATCHPOISONING, player.m_stomatchpoisonLevel);
 				m_Hud.DisplayBadge(NTFKEY_RADIATIONSICKNESS, player.GetRadiationSicknessLevel());
 				m_Hud.DisplayBadge(NTFKEY_RADIOPROTECTION, player.GetRadioprotectionLevel());
+				m_Hud.DisplayBadge(NTFKEY_DISINFECTED, player.HasDisinfectedHands());
 			}
 						
 			OnUpdateAdvMedicineGUI(player, timeslice);

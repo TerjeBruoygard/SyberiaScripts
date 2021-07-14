@@ -12,20 +12,6 @@ class SyringeEmpty : Inventory_Base
     ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\syringe_destruct.rvmat");
 };
 
-class SyringeDirty : Inventory_Base
-{
-    scope=2;
-    displayName="#syb_syringe_dirty_name";
-    descriptionShort="#syb_syringe_dirty_desc";
-    model="SyberiaScripts\data\medical\syringe_empty.p3d";
-    rotationFlags=17;
-    itemSize[]={2,1};
-    weight=50;
-    absorbency=0;
-    varTemperatureMax=100;
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\syringe_destruct.rvmat");
-};
-
 class SyringeFull : Inventory_Base
 {
     scope=2;
@@ -90,6 +76,7 @@ class BandageHemostatic: BandageDressing
     absorbency=0.0;
     itemSize[]={1,1};
     medBloodStop=3;
+    varCleannessInit=1;
     ITEM_DAMAGE_SYSTEM(80, "DZ\gear\medical\data\bandage.rvmat", "DZ\gear\medical\data\bandage_damage.rvmat", "DZ\gear\medical\data\bandage_destruct.rvmat");
     class AnimEvents
     {
@@ -131,13 +118,15 @@ class SurgicalKit: Inventory_Base
     descriptionShort="#syb_surgical_kit_once_desc";
     model="SyberiaScripts\data\medical\surgical_kit.p3d";
     rotationFlags=17;
-    varQuantityInit=3;
+    varQuantityInit=100;
     varQuantityMin=0;
-    varQuantityMax=3;
+    varQuantityMax=100;
     quantityBar=1;
+    stackedUnit="percentage";
     varQuantityDestroyOnMin=1;
     weight=300;
     absorbency=0.0;
     itemSize[]={1,2};
+    varCleannessInit=1;
     ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\surgical_kit.rvmat", "SyberiaScripts\data\medical\surgical_kit_damage.rvmat", "SyberiaScripts\data\medical\surgical_kit_destruct.rvmat");
 };
