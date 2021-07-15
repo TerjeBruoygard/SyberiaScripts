@@ -1,5 +1,5 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
-const bool Syberia_DebugMode = false;
+const bool Syberia_DebugMode = true;
 const string Syberia_Version = "OPEN BETA 0.48";
 
 void SybLog(string message)

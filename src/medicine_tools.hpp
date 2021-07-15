@@ -9,6 +9,7 @@ class SyringeEmpty : Inventory_Base
     weight=50;
     absorbency=0;
     varTemperatureMax=100;
+    medicalItem=1;
     ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\syringe_destruct.rvmat");
 };
 
@@ -23,6 +24,7 @@ class SyringeFull : Inventory_Base
     weight=100;
     absorbency=0;
     varTemperatureMax=100;
+    medicalItem=1;
     hiddenSelections[]=
     {
         "camo"
@@ -77,6 +79,7 @@ class BandageHemostatic: BandageDressing
     itemSize[]={1,1};
     medBloodStop=3;
     varCleannessInit=1;
+    medicalItem=1;
     ITEM_DAMAGE_SYSTEM(80, "DZ\gear\medical\data\bandage.rvmat", "DZ\gear\medical\data\bandage_damage.rvmat", "DZ\gear\medical\data\bandage_destruct.rvmat");
     class AnimEvents
     {
@@ -128,5 +131,6 @@ class SurgicalKit: Inventory_Base
     absorbency=0.0;
     itemSize[]={1,2};
     varCleannessInit=1;
+    medicalItem=1;
     ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\surgical_kit.rvmat", "SyberiaScripts\data\medical\surgical_kit_damage.rvmat", "SyberiaScripts\data\medical\surgical_kit_destruct.rvmat");
 };

@@ -11,6 +11,7 @@ class SalveBase : Inventory_Base
     varQuantityDestroyOnMin=1;
     absorbency=0;
     overdosedIncrement=0.01;
+    medicalItem=1;
 };
 
 class SalveKapsikam : SalveBase
