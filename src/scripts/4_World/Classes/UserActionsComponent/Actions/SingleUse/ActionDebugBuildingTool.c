@@ -187,9 +187,9 @@ class ActionDebugBuildingToolObjPos extends ActionSingleUseBase
 	}
 };
 
-class ActionDebugBuildingToolSwitchProxies extends ActionSingleUseBase
+class ActionDebugBuildingToolObjRot extends ActionSingleUseBase
 {
-	void ActionDebugBuildingToolSwitchProxies()
+	void ActionDebugBuildingToolObjRot()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
@@ -198,12 +198,12 @@ class ActionDebugBuildingToolSwitchProxies extends ActionSingleUseBase
 	override void CreateConditionComponents()  
 	{	
 		m_ConditionItem = new CCINonRuined;
-		m_ConditionTarget = new CCTNone;
+		m_ConditionTarget = new CCTCursor;
 	}
 
 	override string GetText()
 	{
-		return "Proxies";
+		return "Relative Rot";
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
@@ -214,10 +214,10 @@ class ActionDebugBuildingToolSwitchProxies extends ActionSingleUseBase
 		if ( !target ) 
 			return false;
 		
-		if ( !target.IsProxy() ) 
+		if ( !target.GetObject() ) 
 			return false;
 		
-		if ( !DebugBuildingManager.IsHouseSame(target.GetParent()) ) 
+		if ( DebugBuildingManager.IsHouseSame(target.GetObject()) ) 
 			return false;
 
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
@@ -232,6 +232,104 @@ class ActionDebugBuildingToolSwitchProxies extends ActionSingleUseBase
 	
 	override void OnExecuteClient( ActionData action_data )
 	{
-		DebugBuildingManager.SwitchProxies(action_data.m_Target.GetObject());
+		vector rot = action_data.m_Target.GetObject().GetLocalYawPitchRoll();
+		DebugBuildingManager.RelativeRot(rot);
+	}
+};
+
+class ActionDebugBuildingToolDoorID extends ActionSingleUseBase
+{
+	void ActionDebugBuildingToolDoorID()
+	{
+		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+	}
+	
+	override void CreateConditionComponents()  
+	{	
+		m_ConditionItem = new CCINonRuined;
+		m_ConditionTarget = new CCTNone;
+	}
+
+	override string GetText()
+	{
+		return "Get Door ID";
+	}
+
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if (GetGame().IsServer())
+			return true;
+		
+		if ( !target ) 
+			return false;
+		
+		if ( !DebugBuildingManager.IsHouseSame(target.GetObject()) ) 
+			return false;
+
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
+		if (!dbt)
+			return false;
+		
+		if (dbt.GetActionID() != 4)
+			return false;
+		
+
+		int doorIndex = DebugBuildingManager.GetLinkedHouse().GetDoorIndex(target.GetComponentIndex());
+		if ( doorIndex != -1 )
+		{
+			return true;
+		}
+
+		return true;
+	}
+	
+	override void OnExecuteClient( ActionData action_data )
+	{
+		DebugBuildingManager.GetDoorID(action_data.m_Target.GetComponentIndex());
+	}
+};
+
+class ActionDebugBuildingToolSizer extends ActionSingleUseBase
+{
+	void ActionDebugBuildingToolSizer()
+	{
+		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+	}
+	
+	override void CreateConditionComponents()  
+	{	
+		m_ConditionItem = new CCINonRuined;
+		m_ConditionTarget = new CCTNone;
+	}
+
+	override string GetText()
+	{
+		return "Ruler";
+	}
+
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if (GetGame().IsServer())
+			return true;
+		
+		if ( !target ) 
+			return false;
+
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
+		if (!dbt)
+			return false;
+		
+		if (dbt.GetActionID() != 5)
+			return false;
+
+		return true;
+	}
+	
+	override void OnExecuteClient( ActionData action_data )
+	{
+		vector hitPos = action_data.m_Target.GetCursorHitPos();
+		DebugBuildingManager.Ruler(hitPos);
 	}
 };
