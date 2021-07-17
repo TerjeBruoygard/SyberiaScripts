@@ -1,0 +1,3 @@
+class BuildingHomeBook extends BuildingSuper
+{
+};

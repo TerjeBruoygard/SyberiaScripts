@@ -26,6 +26,7 @@ class Clothing;
 class Container_Base;
 class BaseBuildingBase;
 class House;
+class HouseNoDestruct;
 class Transmitter_Base;
 
 // Characters
