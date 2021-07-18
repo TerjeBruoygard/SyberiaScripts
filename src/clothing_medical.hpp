@@ -6,6 +6,7 @@ class Stethoscope: Clothing
     model="SyberiaScripts\data\medical\Stethoscope_g.p3d";
     vehicleClass="Clothing";
     simulation="clothing";
+    medicalItem=1;
     inventorySlot[]=
     {
         "Eyewear"

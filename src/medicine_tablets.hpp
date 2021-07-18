@@ -789,3 +789,93 @@ class TabletsMexamine : TabletsBase
     ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS;
 };
+
+class TabletsAgteminol : TabletsBase
+{
+    scope=2;
+    displayName="#syb_agteminol";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medAntidepresantLevel=1;
+    medAntidepresantTimer=60;
+    overdosedIncrement=0.2;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_white_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};
+
+class TabletsAdepress : TabletsBase
+{
+    scope=2;
+    displayName="#syb_adepress";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medAntidepresantLevel=1;
+    medAntidepresantTimer=70;
+    overdosedIncrement=0.2;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_sepia_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};
+
+class TabletsActaparoxetine : TabletsBase
+{
+    scope=2;
+    displayName="#syb_aktaparoksetyn";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medAntidepresantLevel=1;
+    medAntidepresantTimer=40;
+    overdosedIncrement=0.2;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_green_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};
+
+class TabletsAmitriptyline : TabletsBase
+{
+    scope=2;
+    displayName="#syb_amitriptilin";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medAntidepresantLevel=1;
+    medAntidepresantTimer=100;
+    overdosedIncrement=0.2;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_brown_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};
+
+class TabletsVenlafaxine : TabletsBase
+{
+    scope=2;
+    displayName="#syb_venlafaxyn";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medAntidepresantLevel=1;
+    medAntidepresantTimer=90;
+    overdosedIncrement=0.2;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_blue_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};

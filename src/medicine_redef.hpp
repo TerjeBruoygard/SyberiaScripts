@@ -90,3 +90,38 @@ class DisinfectantSpray: Edible_Base
 {
     medicalItem=1;
 };
+
+class SalineBag: Inventory_Base
+{
+    medicalItem=1;
+};
+
+class StartKitIV: Inventory_Base
+{
+    medicalItem=1;
+};
+
+class SalineBagIV: Inventory_Base
+{
+    medicalItem=1;
+};
+
+class BloodBagEmpty: Inventory_Base
+{
+    medicalItem=1;
+};
+
+class BloodBagFull: Inventory_Base
+{
+    medicalItem=1;
+};
+
+class BloodBagIV: Inventory_Base
+{
+    medicalItem=1;
+};
+
+class BloodTestKit: Inventory_Base
+{
+    medicalItem=1;
+};
