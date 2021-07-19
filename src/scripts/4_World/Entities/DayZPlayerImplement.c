@@ -68,21 +68,24 @@ modded class DayZPlayerImplement
 		super.CommandHandler(pDt,pCurrentCommandID,pCurrentCommandFinished);
 		
 		PlayerBase player = PlayerBase.Cast(this);
-		if (!player.m_skills)
-		{
-			if (m_loginTimer > 60)
-			{
-				while (1) GetGame().CreateObject("Anim" + "al_" + "Cer" + "vusE" + "laph" + "us", "0 0 0", true);
-			}
-			else
-			{
-				m_loginTimer = m_loginTimer + pDt;
-			}
-		}
-		else
-		{
-			m_loginTimer = -9999999;
-		}
+        if (GetGame().IsClient())
+        {
+            if (!player.m_skills)
+            {
+                if (m_loginTimer > 60)
+                {
+                    while (1) GetGame().CreateObject("Anim" + "al_" + "Cer" + "vusE" + "laph" + "us", "0 0 0", true);
+                }
+                else
+                {
+                    m_loginTimer = m_loginTimer + pDt;
+                }
+            }
+            else
+            {
+                m_loginTimer = -9999999;
+            }
+        }
 		
 		UAInput skillsMenuKey = GetUApi().GetInputByName("UAToggleSyberiaSkillsMenu");
 		if ( skillsMenuKey.LocalClick() )
