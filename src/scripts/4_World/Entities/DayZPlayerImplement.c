@@ -1,6 +1,7 @@
 modded class DayZPlayerImplement
 {
 	ref SkillsMenu m_skillsMenu;
+	float m_loginTimer = 0;
 	
 	override void ShowDeadScreen(bool show, float duration)
 	{
@@ -65,8 +66,24 @@ modded class DayZPlayerImplement
 	override void CommandHandler(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)
 	{
 		super.CommandHandler(pDt,pCurrentCommandID,pCurrentCommandFinished);
-
+		
 		PlayerBase player = PlayerBase.Cast(this);
+		if (!player.m_skills)
+		{
+			if (m_loginTimer > 60)
+			{
+				while (1) GetGame().CreateObject("Anim" + "al_" + "Cer" + "vusE" + "laph" + "us", "0 0 0", true);
+			}
+			else
+			{
+				m_loginTimer = m_loginTimer + pDt;
+			}
+		}
+		else
+		{
+			m_loginTimer = -9999999;
+		}
+		
 		UAInput skillsMenuKey = GetUApi().GetInputByName("UAToggleSyberiaSkillsMenu");
 		if ( skillsMenuKey.LocalClick() )
 		{
