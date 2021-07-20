@@ -10,9 +10,11 @@ class Land_House_1W11
         {
             outerDoor = 1; // Is door from house to outside world
             maxLevel = 4; // 0 - default, 1 - light wood, 2 - hard wood, 3 - reinforced wood, 4 - metal, 5 - armored
-            size[] = {1.3, 2.3, 0.1};
+            type = 1; // type of model
+            pos[] = { 3.19238, -1.52313, 0.952148 }; // door model position
+            rot = 0; // door model rotation
         };
-        class Door1
+        /*class Door1
         {
             outerDoor = 1;
         };
@@ -23,7 +25,7 @@ class Land_House_1W11
         class Door3
         {
             outerDoor = 0;
-        };
+        };*/
     };
 };
 

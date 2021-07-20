@@ -54,6 +54,7 @@ class DebugBuildingManager
 		GetGame().CopyToClipboard(house.GetType());
 		
 		// Creation
+		vector rot;
 		string configPath = "CfgBuildingInfo " + house.GetType();
 		if (GetGame().ConfigIsExisting(configPath))
 		{
@@ -68,11 +69,31 @@ class DebugBuildingManager
 				Object homebook = GetGame().CreateObjectEx("BuildingHomeBook", house.ModelToWorld(GetGame().ConfigGetVector(livespacePath + " homeBookPos")), ECE_KEEPHEIGHT | ECE_LOCAL);
 				if (homebook)
 				{
-					vector rot = house.GetLocalYawPitchRoll();
+					rot = house.GetLocalYawPitchRoll();
 					rot[0] = rot[0] + GetGame().ConfigGetFloat(livespacePath + " homeBookRot");
 					homebook.SetYawPitchRoll(rot);
 					m_previewObjects.Insert(homebook);
 					DrawObjectLine(homebook, m_previewShapes);
+				}
+				
+				int doorId = 0;
+				while ( GetGame().ConfigIsExisting(livespacePath + " Door" + doorId) )
+				{
+					string doorPath = livespacePath + " Door" + doorId;
+					int doorType = GetGame().ConfigGetInt(doorPath + " type");
+					vector doorPos = GetGame().ConfigGetVector(doorPath + " pos");
+					float doorRot = GetGame().ConfigGetFloat(doorPath + " rot");
+					Object doorObj = GetGame().CreateObjectEx("BuildingDoor_T" + doorType + "_L1", house.ModelToWorld(doorPos), ECE_KEEPHEIGHT | ECE_LOCAL);
+					if (doorObj)
+					{
+						rot = house.GetLocalYawPitchRoll();
+						rot[0] = rot[0] + doorRot;
+						doorObj.SetYawPitchRoll(rot);
+						m_previewObjects.Insert(doorObj);
+						DrawObjectLine(doorObj, m_previewShapes);
+					}
+					
+					doorId = doorId + 1;
 				}
 				
 				livespaceId = livespaceId + 1;
