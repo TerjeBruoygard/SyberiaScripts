@@ -28,5 +28,6 @@ modded class ActionConstructor
 		actions.Insert(ActionDebugBuildingToolObjRot);
 		actions.Insert(ActionDebugBuildingToolDoorID);
 		actions.Insert(ActionDebugBuildingToolSizer);
+		actions.Insert(ActionDebugBuildingToolUpgrade);
 	}
 };

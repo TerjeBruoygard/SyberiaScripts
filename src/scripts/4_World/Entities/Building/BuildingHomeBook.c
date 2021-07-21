@@ -1,3 +1,3 @@
-class BuildingHomeBook extends BuildingSuper
+class BuildingHomeBook extends BuildingElement
 {
 };

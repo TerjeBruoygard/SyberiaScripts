@@ -31,10 +31,7 @@ class ActionDebugBuildingToolNext extends ActionContinuousBase
 	override void OnFinishProgressServer( ActionData action_data )
 	{
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
-		if (dbt)
-		{
-			dbt.NextAction();
-		}
+		if (dbt) dbt.NextAction();
 	}
 };
 
@@ -68,11 +65,11 @@ class ActionDebugBuildingToolLink extends ActionSingleUseBase
 		if (!House.Cast(target.GetObject()))
 			return false;
 		
-		if ( DebugBuildingManager.IsHouseSame(target.GetObject()) ) 
-			return false;
-		
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
 		if (!dbt)
+			return false;
+		
+		if ( dbt.IsHouseSame(House.Cast(target.GetObject())) ) 
 			return false;
 		
 		if (dbt.GetActionID() != 0)
@@ -83,13 +80,20 @@ class ActionDebugBuildingToolLink extends ActionSingleUseBase
 	
 	override void OnExecuteClient( ActionData action_data )
 	{
-		DebugBuildingManager.LinkHouse( House.Cast(action_data.m_Target.GetObject()) );
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.LinkHouse( House.Cast(action_data.m_Target.GetObject()) );
 	}
 
 	override void OnExecuteServer( ActionData action_data )
 	{
-		string message = "Linked to '" + action_data.m_Target.GetObject().GetType() + "'";
-		GetSyberiaRPC().SendToClient(SyberiaRPC.SYBRPC_SCREEN_MESSAGE, action_data.m_Player.GetIdentity(), new Param1<string>(message));
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) 
+		{
+			dbt.LinkHouse( House.Cast(action_data.m_Target.GetObject()) );
+			
+			string message = "Linked to '" + action_data.m_Target.GetObject().GetType() + "'";
+			GetSyberiaRPC().SendToClient(SyberiaRPC.SYBRPC_SCREEN_MESSAGE, action_data.m_Player.GetIdentity(), new Param1<string>(message));
+		}
 	}
 };
 
@@ -133,7 +137,9 @@ class ActionDebugBuildingToolMarker extends ActionSingleUseBase
 	override void OnExecuteClient( ActionData action_data )
 	{
 		vector hitPos = action_data.m_Target.GetCursorHitPos();
-		DebugBuildingManager.AddMarker(hitPos);
+		
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.AddMarker(hitPos);
 	}
 };
 
@@ -167,13 +173,13 @@ class ActionDebugBuildingToolObjPos extends ActionSingleUseBase
 		if ( !target.GetObject() ) 
 			return false;
 		
-		if ( DebugBuildingManager.IsHouseSame(target.GetObject()) ) 
-			return false;
-
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
 		if (!dbt)
 			return false;
 		
+		if ( dbt.IsHouseSame(House.Cast(target.GetObject())) ) 
+			return false;
+
 		if (dbt.GetActionID() != 2)
 			return false;
 
@@ -183,7 +189,8 @@ class ActionDebugBuildingToolObjPos extends ActionSingleUseBase
 	override void OnExecuteClient( ActionData action_data )
 	{
 		vector hitPos = action_data.m_Target.GetObject().GetPosition();
-		DebugBuildingManager.RelativePos(hitPos);
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.RelativePos(hitPos);
 	}
 };
 
@@ -217,11 +224,11 @@ class ActionDebugBuildingToolObjRot extends ActionSingleUseBase
 		if ( !target.GetObject() ) 
 			return false;
 		
-		if ( DebugBuildingManager.IsHouseSame(target.GetObject()) ) 
-			return false;
-
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
 		if (!dbt)
+			return false;
+		
+		if ( dbt.IsHouseSame(House.Cast(target.GetObject())) ) 
 			return false;
 		
 		if (dbt.GetActionID() != 3)
@@ -233,7 +240,8 @@ class ActionDebugBuildingToolObjRot extends ActionSingleUseBase
 	override void OnExecuteClient( ActionData action_data )
 	{
 		vector rot = action_data.m_Target.GetObject().GetLocalYawPitchRoll();
-		DebugBuildingManager.RelativeRot(rot);
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.RelativeRot(rot);
 	}
 };
 
@@ -264,18 +272,18 @@ class ActionDebugBuildingToolDoorID extends ActionSingleUseBase
 		if ( !target ) 
 			return false;
 		
-		if ( !DebugBuildingManager.IsHouseSame(target.GetObject()) ) 
-			return false;
-
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
 		if (!dbt)
+			return false;
+		
+		if ( !dbt.IsHouseSame(House.Cast(target.GetObject())) ) 
 			return false;
 		
 		if (dbt.GetActionID() != 4)
 			return false;
 		
 
-		int doorIndex = DebugBuildingManager.GetLinkedHouse().GetDoorIndex(target.GetComponentIndex());
+		int doorIndex = dbt.GetLinkedHouse().GetDoorIndex(target.GetComponentIndex());
 		if ( doorIndex != -1 )
 		{
 			return true;
@@ -286,7 +294,8 @@ class ActionDebugBuildingToolDoorID extends ActionSingleUseBase
 	
 	override void OnExecuteClient( ActionData action_data )
 	{
-		DebugBuildingManager.GetDoorID(action_data.m_Target.GetComponentIndex());
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.GetDoorID(action_data.m_Target.GetComponentIndex());
 	}
 };
 
@@ -330,6 +339,61 @@ class ActionDebugBuildingToolSizer extends ActionSingleUseBase
 	override void OnExecuteClient( ActionData action_data )
 	{
 		vector hitPos = action_data.m_Target.GetCursorHitPos();
-		DebugBuildingManager.Ruler(hitPos);
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.Ruler(hitPos);
+	}
+};
+
+class ActionDebugBuildingToolUpgrade extends ActionSingleUseBase
+{
+	void ActionDebugBuildingToolSizer()
+	{
+		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+	}
+	
+	override void CreateConditionComponents()  
+	{	
+		m_ConditionItem = new CCINonRuined;
+		m_ConditionTarget = new CCTNone;
+	}
+
+	override string GetText()
+	{
+		return "Upgrade";
+	}
+
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if (GetGame().IsServer())
+			return true;
+		
+		if ( !target ) 
+			return false;
+
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
+		if (!dbt)
+			return false;
+		
+		if (dbt.GetActionID() != 6)
+			return false;
+		
+		if ( !target.GetObject() )
+			return false;
+		
+		BuildingLeveledElement element = BuildingLeveledElement.Cast(target.GetObject());
+		if ( !element )
+			return false;
+		
+		if ( element.GetNextLevel() == "" )
+			return false;
+
+		return true;
+	}
+	
+	override void OnExecuteServer( ActionData action_data )
+	{
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.UpgradeElement(BuildingLeveledElement.Cast(action_data.m_Target.GetObject()));
 	}
 };
