@@ -122,7 +122,7 @@ class DebugBuildingTool : ItemBase
 				while ( GetGame().ConfigIsExisting(livespacePath + " Door" + doorId) )
 				{
 					string doorPath = livespacePath + " Door" + doorId;
-					vector doorPos = GetGame().ConfigGetVector(doorPath + " pos");
+					vector doorPos = house.ModelToWorld(GetGame().ConfigGetVector(doorPath + " pos"));
 					DrawObjectLine(doorPos, m_previewShapes);
 					doorId = doorId + 1;
 				}
@@ -187,9 +187,13 @@ class DebugBuildingTool : ItemBase
 		GetGame().CopyToClipboard(relPos[0].ToString() + ", " + relPos[1].ToString() + ", " + relPos[2].ToString());
 	}
 	
-	void RelativePos(vector pos)
+	void RelativePos(Object object, vector pos)
 	{
 		vector relPos = m_linkedHouse.WorldToModel(pos);
+		vector offset = object.ConfigGetVector("indoorOffset");
+		relPos[0] = relPos[0] - offset[0];
+		relPos[1] = relPos[1] - offset[1];
+		relPos[2] = relPos[2] - offset[2];
 		GetGame().CopyToClipboard(relPos[0].ToString() + ", " + relPos[1].ToString() + ", " + relPos[2].ToString());
 	}
 	

@@ -8,10 +8,11 @@ class Land_House_1W11
         homeBookRot = 255; // BuildingHomeBook yaw rotation
         class Door0
         {
+            id = 0; // ID of vanilla house door. -1 if not exist.
             outerDoor = 1; // Is door from house to outside world
-            maxLevel = 4; // 0 - default, 1 - light wood, 2 - hard wood, 3 - reinforced wood, 4 - metal, 5 - armored
+            maxLevel = 2; // 0 - default, 1 - light wood, 2 - hard wood, 3 - reinforced wood, 4 - metal, 5 - armored
             type = 1; // type of model
-            pos[] = { 3.19238, -1.52313, 0.952148 }; // door model position
+            pos[] = { 3.18066, -1.50098, 0.936523 }; // door model position
             rot = 0; // door model rotation
         };
         /*class Door1

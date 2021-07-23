@@ -634,7 +634,7 @@ class AdminToolMenu extends UIScriptedMenu
 				if (obj.GetType() == "")
 					continue;
 				
-				int dist = (int)vector.Distance(player.GetPosition(), obj.GetPosition())
+				int dist = (int)vector.Distance(player.GetPosition(), obj.GetPosition());
 				m_toolsObjectsList.AddItem(obj.GetType() + " (" + dist + "m)", obj, 0);
 			}
 		}

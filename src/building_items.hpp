@@ -1,11 +1,15 @@
+class BuildingLivespace : HouseNoDestruct
+{
+    scope=1;
+    model="SyberiaScripts\data\building\building_livespace.p3d";
+};
+
 class BuildingElement : HouseNoDestruct
 {
 };
 
 class BuildingLeveledElement : BuildingElement
 {
-    prevLevel = "";
-    nextLevel = "";
 };
 
 class BuildingHomeBook : BuildingElement
@@ -14,11 +18,14 @@ class BuildingHomeBook : BuildingElement
     model="SyberiaScripts\data\building\homebook\homebook.p3d";
 };
 
-class BuildingDoor_T1_L1 : BuildingLeveledElement
+class BuildingDoorBase : BuildingLeveledElement
+{
+};
+
+class BuildingDoor_T1_L1 : BuildingDoorBase
 {
     scope=1;
-    prevLevel = "";
-    nextLevel = "BuildingDoor_T1_L2";
+    indoorOffset[] = { 0.0, 0.0, 0.0 };
     model="SyberiaScripts\data\building\doors\door_t1_l1.p3d";
     class Doors
     {
@@ -38,11 +45,10 @@ class BuildingDoor_T1_L1 : BuildingLeveledElement
     };
 };
 
-class BuildingDoor_T1_L2 : BuildingLeveledElement
+class BuildingDoor_T1_L2 : BuildingDoorBase
 {
     scope=1;
-    prevLevel = "BuildingDoor_T1_L1";
-    nextLevel = "";
+    indoorOffset[] = { 0.0, -0.00402, -0.049804 };
     model="SyberiaScripts\data\building\doors\door_t1_l2.p3d";
     class Doors
     {
