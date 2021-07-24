@@ -67,3 +67,26 @@ class BuildingDoor_T1_L2 : BuildingDoorBase
         };
     };
 };
+
+class BuildingDoor_T1_L3 : BuildingDoorBase
+{
+    scope=1;
+    indoorOffset[] = { 0.0, -0.00402, -0.049804 };
+    model="SyberiaScripts\data\building\doors\door_t1_l3.p3d";
+    class Doors
+    {
+        class Doors1
+        {
+            displayName="door 1";
+            component="Doors1";
+            soundPos="doors1_action";
+            animPeriod=1;
+            initPhase=0;
+            initOpened=0;
+            soundOpen="doorWoodFrontOpen";
+            soundClose="doorWoodFrontClose";
+            soundLocked="doorWoodFrontRattle";
+            soundOpenABit="doorWoodFrontOpenABit";
+        };
+    };
+};
