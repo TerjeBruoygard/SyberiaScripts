@@ -190,7 +190,7 @@ class DebugBuildingTool : ItemBase
 	void RelativePos(Object object, vector pos)
 	{
 		vector relPos = m_linkedHouse.WorldToModel(pos);
-		vector offset = object.ConfigGetVector("indoorOffset");
+		vector offset = object.ConfigGetVector("placeOffset");
 		relPos[0] = relPos[0] - offset[0];
 		relPos[1] = relPos[1] - offset[1];
 		relPos[2] = relPos[2] - offset[2];

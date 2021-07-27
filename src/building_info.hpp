@@ -10,7 +10,7 @@ class Land_House_1W11
         {
             id = 0; // ID of vanilla house door. -1 if not exist.
             outerDoor = 1; // Is door from house to outside world
-            maxLevel = 3; // 0 - default, 1 - light wood, 2 - hard wood, 3 - reinforced wood, 4 - metal, 5 - armored
+            maxLevel = 5; // 0 - default, 1 - light wood, 2 - hard wood, 3 - reinforced wood, 4 - metal, 5 - armored
             type = 1; // type of model
             pos[] = { 3.18066, -1.50098, 0.936523 }; // door model position
             rot = 0; // door model rotation
@@ -27,6 +27,12 @@ class Land_House_1W11
         {
             outerDoor = 0;
         };*/
+        
+        class Window0
+        {
+            pos[] = { 3.69824, -1.03848, -2.28906 };
+            rot = 0;
+        };
     };
 };
 

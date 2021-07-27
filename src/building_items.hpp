@@ -6,10 +6,12 @@ class BuildingLivespace : HouseNoDestruct
 
 class BuildingElement : HouseNoDestruct
 {
+    scope=0;
 };
 
 class BuildingLeveledElement : BuildingElement
 {
+    scope=0;
 };
 
 class BuildingHomeBook : BuildingElement
@@ -20,12 +22,13 @@ class BuildingHomeBook : BuildingElement
 
 class BuildingDoorBase : BuildingLeveledElement
 {
+    scope=0;
 };
 
 class BuildingDoor_T1_L1 : BuildingDoorBase
 {
     scope=1;
-    indoorOffset[] = { 0.0, 0.0, 0.0 };
+    placeOffset[] = { 0.0, 0.0, 0.0 };
     model="SyberiaScripts\data\building\doors\door_t1_l1.p3d";
     class Doors
     {
@@ -48,7 +51,7 @@ class BuildingDoor_T1_L1 : BuildingDoorBase
 class BuildingDoor_T1_L2 : BuildingDoorBase
 {
     scope=1;
-    indoorOffset[] = { 0.0, -0.00402, -0.049804 };
+    placeOffset[] = { 0.0, -0.00402, -0.049804 };
     model="SyberiaScripts\data\building\doors\door_t1_l2.p3d";
     class Doors
     {
@@ -71,7 +74,7 @@ class BuildingDoor_T1_L2 : BuildingDoorBase
 class BuildingDoor_T1_L3 : BuildingDoorBase
 {
     scope=1;
-    indoorOffset[] = { 0.0, -0.00402, -0.049804 };
+    placeOffset[] = { 0.0, -0.00402, -0.049804 };
     model="SyberiaScripts\data\building\doors\door_t1_l3.p3d";
     class Doors
     {
@@ -89,4 +92,76 @@ class BuildingDoor_T1_L3 : BuildingDoorBase
             soundOpenABit="doorWoodFrontOpenABit";
         };
     };
+};
+
+class BuildingDoor_T1_L4 : BuildingDoorBase
+{
+    scope=1;
+    placeOffset[] = { 0.0, -0.00402, -0.049804 };
+    model="SyberiaScripts\data\building\doors\door_t1_l4.p3d";
+    class Doors
+    {
+        class Doors1
+        {
+            displayName="door 1";
+            component="Doors1";
+            soundPos="doors1_action";
+            animPeriod=1;
+            initPhase=0;
+            initOpened=0;
+            soundOpen="doorWoodFrontOpen";
+            soundClose="doorWoodFrontClose";
+            soundLocked="doorWoodFrontRattle";
+            soundOpenABit="doorWoodFrontOpenABit";
+        };
+    };
+};
+
+class BuildingDoor_T1_L5 : BuildingDoorBase
+{
+    scope=1;
+    placeOffset[] = { 0.0, -0.00402, 0.0 };
+    model="SyberiaScripts\data\building\doors\door_t1_l5.p3d";
+    class Doors
+    {
+        class Doors1
+        {
+            displayName="door 1";
+            component="Doors1";
+            soundPos="doors1_action";
+            animPeriod=1;
+            initPhase=0;
+            initOpened=0;
+            soundOpen="doorWoodFrontOpen";
+            soundClose="doorWoodFrontClose";
+            soundLocked="doorWoodFrontRattle";
+            soundOpenABit="doorWoodFrontOpenABit";
+        };
+    };
+};
+
+class BuildingWindowBase : BuildingLeveledElement
+{
+    scope=0;
+};
+
+class BuildingWindow_T1_L1 : BuildingWindowBase
+{
+    scope=1;
+    placeOffset[] = { 0.0, 0.0, 0.0 };
+    model="SyberiaScripts\data\building\windows\window_t1_l1.p3d";
+};
+
+class BuildingWindow_T1_L2 : BuildingWindowBase
+{
+    scope=1;
+    placeOffset[] = { 0.0, 0.0, 0.0 };
+    model="SyberiaScripts\data\building\windows\window_t1_l2.p3d";
+};
+
+class BuildingWindow_T1_L3 : BuildingWindowBase
+{
+    scope=1;
+    placeOffset[] = { 0.0, 0.0, 0.0 };
+    model="SyberiaScripts\data\building\windows\window_t1_l3.p3d";
 };
