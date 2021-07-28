@@ -9,8 +9,8 @@ class BuildingLivespace extends BuildingSuper
 	int m_houseNetId1, m_houseNetId2;
 	int m_homebookNetId1, m_homebookNetId2;
 	ref array<int> m_doorLevels = new array<int>;
-	
-	
+	ref array<int> m_windowLevels = new array<int>;
+		
 	override void EEInit()
 	{
 		super.EEInit();
@@ -128,5 +128,6 @@ class BuildingLivespace extends BuildingSuper
 		super.EEDelete(parent);
 		
 		delete m_doorLevels;
+		delete m_windowLevels;
 	}
 };

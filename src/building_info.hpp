@@ -15,23 +15,63 @@ class Land_House_1W11
             pos[] = { 3.18066, -1.50098, 0.936523 }; // door model position
             rot = 0; // door model rotation
         };
-        /*class Door1
+        class Door1
         {
+            id = 1;
             outerDoor = 1;
+            maxLevel = 5;
+            type = 1;
+            pos[] = { -6.28418, -1.64005, 2.31543 };
+            rot = -90;
         };
-        class Door2
-        {
-            outerDoor = 0;
-        };
-        class Door3
-        {
-            outerDoor = 0;
-        };*/
-        
         class Window0
         {
-            pos[] = { 3.69824, -1.03848, -2.28906 };
+            maxLevel = 5; // 1 - light wood, 2 - hard wood, 3 - reinforced wood, 4 - metal, 5 - armored
+            type = 2; // type of model
+            pos[] = { 3.70969, -1.0728, -3.19629 }; // model position
+            rot = 0; // model rotation
+        };
+        class Window1
+        {
+            maxLevel = 5;
+            type = 1;
+            pos[] = { 3.69797, -1.0728, -5.69434 };
             rot = 0;
+        };
+        class Window2
+        {
+            maxLevel = 5;
+            type = 2;
+            pos[] = { -3.08496, -1.05, -6.63672 };
+            rot = 90;
+        };
+        class Window3
+        {
+            maxLevel = 5;
+            type = 1;
+            pos[] = { -0.636719, -1.05, -6.63379 };
+            rot = 90;
+        };
+        class Window4
+        {
+            maxLevel = 5;
+            type = 2;
+            pos[] = { 1.82422, -1.05, -6.62793 };
+            rot = 90;
+        };
+        class Window5
+        {
+            maxLevel = 5;
+            type = 2;
+            pos[] = { -7.88477, -1.34639, -3.74707 };
+            rot = 180;
+        };
+        class Window6
+        {
+            maxLevel = 5;
+            type = 2;
+            pos[] = { -7.88477, -1.34639, 0.207031 };
+            rot = 180;
         };
     };
 };

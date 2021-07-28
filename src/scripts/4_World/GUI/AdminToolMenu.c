@@ -615,28 +615,26 @@ class AdminToolMenu extends UIScriptedMenu
 		
 		m_toolsObjectsList.ClearItems();
 		
-		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-		if (player)
+		DayZPlayer player = GetGame().GetPlayer();
+		vector pos = GetGame().GetCurrentCameraPosition();
+		array<Object> objects = new array<Object>;
+		GetGame().GetObjectsAtPosition3D(pos, 15, objects, null);
+		foreach (Object obj : objects)
 		{
-			array<Object> objects = new array<Object>;
-			GetGame().GetObjectsAtPosition3D(player.GetPosition(), 15, objects, null);
-			foreach (Object obj : objects)
-			{
-				if (!obj.HasNetworkID())
-					continue;
-				
-				if (obj.IsBush() || obj.IsTree() || obj.IsRock())
-					continue;
-				
-				if (obj == player)
-					continue;
-				
-				if (obj.GetType() == "")
-					continue;
-				
-				int dist = (int)vector.Distance(player.GetPosition(), obj.GetPosition());
-				m_toolsObjectsList.AddItem(obj.GetType() + " (" + dist + "m)", obj, 0);
-			}
+			if (!obj.HasNetworkID())
+				continue;
+			
+			if (obj.IsBush() || obj.IsTree() || obj.IsRock())
+				continue;
+			
+			if (obj == player)
+				continue;
+			
+			if (obj.GetType() == "")
+				continue;
+			
+			int dist = (int)vector.Distance(pos, obj.GetPosition());
+			m_toolsObjectsList.AddItem(obj.GetType() + " (" + dist + "m)", obj, 0);
 		}
 		
 		if (lastSelected >= 0 && lastSelected < m_toolsObjectsList.GetNumItems())

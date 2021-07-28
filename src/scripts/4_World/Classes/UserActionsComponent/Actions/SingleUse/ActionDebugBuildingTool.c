@@ -97,9 +97,9 @@ class ActionDebugBuildingToolLink extends ActionSingleUseBase
 	}
 };
 
-class ActionDebugBuildingToolMarker extends ActionSingleUseBase
+class ActionDebugBuildingToolUpgrade extends ActionSingleUseBase
 {
-	void ActionDebugBuildingToolMarker()
+	void ActionDebugBuildingToolUpgrade()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
@@ -113,7 +113,7 @@ class ActionDebugBuildingToolMarker extends ActionSingleUseBase
 
 	override string GetText()
 	{
-		return "Marker";
+		return "Upgrade";
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
@@ -130,16 +130,21 @@ class ActionDebugBuildingToolMarker extends ActionSingleUseBase
 		
 		if (dbt.GetActionID() != 1)
 			return false;
+		
+		if ( !target.GetObject() )
+			return false;
+		
+		BuildingLeveledElement element = BuildingLeveledElement.Cast(target.GetObject());
+		if ( !element )
+			return false;
 
 		return true;
 	}
 	
-	override void OnExecuteClient( ActionData action_data )
+	override void OnExecuteServer( ActionData action_data )
 	{
-		vector hitPos = action_data.m_Target.GetCursorHitPos();
-		
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
-		if (dbt) dbt.AddMarker(hitPos);
+		if (dbt) dbt.UpgradeElement(BuildingLeveledElement.Cast(action_data.m_Target.GetObject()));
 	}
 };
 
@@ -299,6 +304,103 @@ class ActionDebugBuildingToolDoorID extends ActionSingleUseBase
 	}
 };
 
+class ActionDebugBuildingToolElementID extends ActionSingleUseBase
+{
+	void ActionDebugBuildingToolElementID()
+	{
+		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+	}
+	
+	override void CreateConditionComponents()  
+	{	
+		m_ConditionItem = new CCINonRuined;
+		m_ConditionTarget = new CCTNone;
+	}
+
+	override string GetText()
+	{
+		return "Element ID";
+	}
+
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if (GetGame().IsServer())
+			return true;
+		
+		if ( !target ) 
+			return false;
+
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
+		if (!dbt)
+			return false;
+		
+		if (dbt.GetActionID() != 5)
+			return false;
+		
+		if ( !target.GetObject() )
+			return false;
+		
+		BuildingElement element = BuildingElement.Cast(target.GetObject());
+		if ( !element )
+			return false;
+
+		return true;
+	}
+	
+	override void OnExecuteClient( ActionData action_data )
+	{
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.GetElementID(BuildingElement.Cast(action_data.m_Target.GetObject()));
+	}
+};
+
+class ActionDebugBuildingToolMarker extends ActionSingleUseBase
+{
+	void ActionDebugBuildingToolMarker()
+	{
+		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+	}
+	
+	override void CreateConditionComponents()  
+	{	
+		m_ConditionItem = new CCINonRuined;
+		m_ConditionTarget = new CCTNone;
+	}
+
+	override string GetText()
+	{
+		return "Marker";
+	}
+
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if (GetGame().IsServer())
+			return true;
+		
+		if ( !target ) 
+			return false;
+
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
+		if (!dbt)
+			return false;
+		
+		if (dbt.GetActionID() != 6)
+			return false;
+
+		return true;
+	}
+	
+	override void OnExecuteClient( ActionData action_data )
+	{
+		vector hitPos = action_data.m_Target.GetCursorHitPos();
+		
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.AddMarker(hitPos);
+	}
+};
+
 class ActionDebugBuildingToolSizer extends ActionSingleUseBase
 {
 	void ActionDebugBuildingToolSizer()
@@ -330,7 +432,7 @@ class ActionDebugBuildingToolSizer extends ActionSingleUseBase
 		if (!dbt)
 			return false;
 		
-		if (dbt.GetActionID() != 5)
+		if (dbt.GetActionID() != 7)
 			return false;
 
 		return true;
@@ -341,56 +443,5 @@ class ActionDebugBuildingToolSizer extends ActionSingleUseBase
 		vector hitPos = action_data.m_Target.GetCursorHitPos();
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
 		if (dbt) dbt.Ruler(hitPos);
-	}
-};
-
-class ActionDebugBuildingToolUpgrade extends ActionSingleUseBase
-{
-	void ActionDebugBuildingToolSizer()
-	{
-		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
-		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
-	}
-	
-	override void CreateConditionComponents()  
-	{	
-		m_ConditionItem = new CCINonRuined;
-		m_ConditionTarget = new CCTNone;
-	}
-
-	override string GetText()
-	{
-		return "Upgrade";
-	}
-
-	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
-	{
-		if (GetGame().IsServer())
-			return true;
-		
-		if ( !target ) 
-			return false;
-
-		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
-		if (!dbt)
-			return false;
-		
-		if (dbt.GetActionID() != 6)
-			return false;
-		
-		if ( !target.GetObject() )
-			return false;
-		
-		BuildingLeveledElement element = BuildingLeveledElement.Cast(target.GetObject());
-		if ( !element )
-			return false;
-
-		return true;
-	}
-	
-	override void OnExecuteServer( ActionData action_data )
-	{
-		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
-		if (dbt) dbt.UpgradeElement(BuildingLeveledElement.Cast(action_data.m_Target.GetObject()));
 	}
 };

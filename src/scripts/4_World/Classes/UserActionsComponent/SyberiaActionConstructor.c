@@ -23,11 +23,12 @@ modded class ActionConstructor
 		actions.Insert(ActionStethoscopeInspect);
 		actions.Insert(ActionDebugBuildingToolNext);
 		actions.Insert(ActionDebugBuildingToolLink);
-		actions.Insert(ActionDebugBuildingToolMarker);
+		actions.Insert(ActionDebugBuildingToolUpgrade);
 		actions.Insert(ActionDebugBuildingToolObjPos);
 		actions.Insert(ActionDebugBuildingToolObjRot);
 		actions.Insert(ActionDebugBuildingToolDoorID);
+		actions.Insert(ActionDebugBuildingToolElementID);
+		actions.Insert(ActionDebugBuildingToolMarker);
 		actions.Insert(ActionDebugBuildingToolSizer);
-		actions.Insert(ActionDebugBuildingToolUpgrade);
 	}
 };

@@ -17,7 +17,7 @@ FrameWidgetClass rootFrame {
    vexactpos 1
    hexactsize 0
    vexactsize 0
-   style rover_sim_blackbox
+   style blank
    {
     PanelWidgetClass TabsHeaderPanel {
      ignorepointer 1
@@ -157,6 +157,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 0
+       style rover_sim_blackbox
        {
         TextListboxWidgetClass PlayersListBox {
          position 0 0
@@ -475,6 +476,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 0
+       style rover_sim_blackbox
        {
         TextListboxWidgetClass SpawnerCategoryListBox {
          position 0 0
@@ -740,6 +742,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 0
+       style blank
        {
         CheckBoxWidgetClass ToolsEspToggle {
          visible 0
@@ -2447,6 +2450,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 0
+       style rover_sim_blackbox
        {
         MapWidgetClass MapPreview {
          position 0 0
