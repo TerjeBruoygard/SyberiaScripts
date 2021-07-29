@@ -1,6 +1,6 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
 const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.48d";
+const string Syberia_Version = "OPEN BETA 0.48c";
 
 void SybLog(string message)
 {
@@ -122,6 +122,15 @@ enum SyberiaSkillType {
 	
 	// Total count of all skills (internal use only)
 	SYBSKILL_TOTALCOUNT = 18
+};
+
+const int SYBERIA_ENABLED_SKILLS_COUNT = 5;
+const int SYBERIA_ENABLED_SKILLS_LIST[SYBERIA_ENABLED_SKILLS_COUNT] = {
+	SyberiaSkillType.SYBSKILL_IMMUNITY,
+	SyberiaSkillType.SYBSKILL_MEDICINE,
+	SyberiaSkillType.SYBSKILL_ATHLETICS,
+	SyberiaSkillType.SYBSKILL_STRENGTH,
+	SyberiaSkillType.SYBSKILL_HUNTING
 };
 
 const int NTFKEY_SLEEPING = 1000;

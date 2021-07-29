@@ -36,10 +36,10 @@ class GameHelpers
 		if (medAdrenalinLevel > 0) effects.Insert("#syb_med_adrenalin " + medAdrenalinLevel + " #syb_skill_level3"); 
 		
 		int medAntiradLevel = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medRadioprotectionLevel" );
-		if (medAdrenalinLevel > 0) effects.Insert("#syb_med_antirad " + medAntiradLevel + " #syb_skill_level3"); 
+		if (medAntiradLevel > 0) effects.Insert("#syb_med_antirad " + medAntiradLevel + " #syb_skill_level3"); 
 		
 		int medAntidepLevel = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medAntidepresantLevel" );
-		if (medAdrenalinLevel > 0) effects.Insert("#syb_med_antidepresant " + medAntidepLevel + " #syb_skill_level3"); 
+		if (medAntidepLevel > 0) effects.Insert("#syb_med_antidepresant " + medAntidepLevel + " #syb_skill_level3"); 
 	}
 	
 	static Transport GetPlayerVehicle(PlayerBase player)

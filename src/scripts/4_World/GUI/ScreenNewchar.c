@@ -74,8 +74,9 @@ class ScreenNewchar extends ScreenBase
 		
 		int currentSelection = m_skillsList.GetSelectedRow();		
 		m_skillsList.ClearItems();
-		for (int i = 0; i < SyberiaSkillType.SYBSKILL_TOTALCOUNT; ++i)
+		for (int q = 0; q < SYBERIA_ENABLED_SKILLS_COUNT; ++q)
 		{
+			int i = SYBERIA_ENABLED_SKILLS_LIST[q];
 			int currentSkillValue = (int)m_metadata.m_skills.GetSkillValue(i);
 			int rowId = m_skillsList.AddItem("#syb_skill" + i, null, 0);
 			m_skillsList.SetItem(rowId, currentSkillValue.ToString(), null, 1);
@@ -83,13 +84,13 @@ class ScreenNewchar extends ScreenBase
 		
 		if (currentSelection < 0)
 		{
-			currentSelection = SyberiaSkillType.SYBSKILL_IMMUNITY;
+			currentSelection = 0;
 		}
 		
-		int selectedSkillValue = (int)m_metadata.m_skills.GetSkillValue(currentSelection);
+		int selectedSkillValue = (int)m_metadata.m_skills.GetSkillValue(SYBERIA_ENABLED_SKILLS_LIST[currentSelection]);
 		m_skillsList.SelectRow(currentSelection);
-		m_currentSkillName.SetText( "#syb_skill" + currentSelection + ": " + selectedSkillValue );
-		m_currentSkillDesc.SetText( "#syb_skill_desc" + currentSelection );
+		m_currentSkillName.SetText( "#syb_skill" + SYBERIA_ENABLED_SKILLS_LIST[currentSelection] + ": " + selectedSkillValue );
+		m_currentSkillDesc.SetText( "#syb_skill_desc" + SYBERIA_ENABLED_SKILLS_LIST[currentSelection] );
 		m_currentSkillInc.GetParent().Show( currentScore > 0 && selectedSkillValue < 100 );
 		m_currentSkillDec.GetParent().Show( selectedSkillValue > 0 );
 	}
@@ -205,13 +206,13 @@ class ScreenNewchar extends ScreenBase
 			}
 			if (w == m_currentSkillInc && m_skillsList.GetSelectedRow() >= 0)
 			{
-				m_metadata.m_skills.AddSkillValue( m_skillsList.GetSelectedRow(), 1 );
+				m_metadata.m_skills.AddSkillValue( SYBERIA_ENABLED_SKILLS_LIST[m_skillsList.GetSelectedRow()], 1 );
 				m_updateSkills = true;
 				return true;
 			}
 			if (w == m_currentSkillDec && m_skillsList.GetSelectedRow() >= 0)
 			{
-				m_metadata.m_skills.AddSkillValue( m_skillsList.GetSelectedRow(), -1 );
+				m_metadata.m_skills.AddSkillValue( SYBERIA_ENABLED_SKILLS_LIST[m_skillsList.GetSelectedRow()], -1 );
 				m_updateSkills = true;
 				return true;
 			}
