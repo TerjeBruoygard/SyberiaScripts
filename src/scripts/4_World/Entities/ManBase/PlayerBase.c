@@ -445,4 +445,14 @@ modded class PlayerBase
 	{
 		return m_antidepresantLevel;
 	}
+	
+	override void OnUnconsciousUpdate(float pDt, int last_command)
+	{
+		super.OnUnconsciousUpdate(pDt, last_command);
+		
+		if( GetGame().IsClient() )
+		{
+			GetGame().GetMission().GetHud().ShowHudUI( true );
+		}
+	}
 };
