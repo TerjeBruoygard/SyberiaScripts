@@ -201,8 +201,8 @@ class PerksCollection
         //
         // ATHLETICS
         //
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, "%").AddUnlockValue(1, 5).AddUnlockValue(12, 10).AddUnlockValue(30, 15).AddUnlockValue(50, 20).AddUnlockValue(70, 30).AddUnlockValue(90, 40).AddUnlockValue(100, 80);
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, "%").AddUnlockValue(1, 10).AddUnlockValue(12, 20).AddUnlockValue(30, 30).AddUnlockValue(50, 40).AddUnlockValue(70, 50).AddUnlockValue(90, 50).AddUnlockValue(100, 100);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, "%").AddUnlockValue(1, 5).AddUnlockValue(12, 10).AddUnlockValue(30, 20).AddUnlockValue(50, 30).AddUnlockValue(70, 40).AddUnlockValue(90, 50).AddUnlockValue(100, 80);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, "%").AddUnlockValue(1, 10).AddUnlockValue(12, 20).AddUnlockValue(30, 30).AddUnlockValue(50, 40).AddUnlockValue(70, 50).AddUnlockValue(90, 70).AddUnlockValue(100, 100);
         
         Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_SPRINT_DEC, "%").AddUnlockValue(3, 10).AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 40).AddUnlockValue(75, 80);
         Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_INC, "%").AddUnlockValue(3, 10).AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 40).AddUnlockValue(75, 80);

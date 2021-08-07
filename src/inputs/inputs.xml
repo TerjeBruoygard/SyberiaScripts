@@ -5,6 +5,7 @@
 		<actions>
 			<input name="UAToggleSyberiaSkillsMenu" loc="syb_input_skillsmenu" />
             <input name="UAToggleSyberiaHideItem" loc="syb_input_hideitem" />
+            <input name="UAToggleSyberiaUseBackpack" loc="syb_input_usebackpack" />
 		</actions>
 	</inputs>
 
@@ -13,9 +14,11 @@
         <input name="UAToggleSyberiaSkillsMenu">
             <btn name="kO" />
         </input>
-		
         <input name="UAToggleSyberiaHideItem">
             <btn name="kV" />
+        </input>
+        <input name="UAToggleSyberiaUseBackpack">
+            <btn name="kB" />
         </input>
 	</preset>
 </modded_inputs>
