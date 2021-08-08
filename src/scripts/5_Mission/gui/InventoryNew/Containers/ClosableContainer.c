@@ -4,11 +4,24 @@ modded class ClosableContainer
 	{
 		if (m_Entity)
 		{
-			ItemBase item = ItemBase.Cast( m_Entity );
-			if (item && item.IsInventoryBlocked())
+			if (m_Entity.IsInherited(ItemBase))
 			{
-				super.HideContent(force_show);
-				return;
+				ItemBase item = ItemBase.Cast( m_Entity );
+				if (item && item.IsInventoryBlocked())
+				{
+					super.HideContent(force_show);
+					return;
+				}
+			}
+			
+			if (m_Entity.IsInherited(ZombieBase))
+			{
+				ZombieBase zombie = ZombieBase.Cast( m_Entity );
+				if (zombie && zombie.IsInventoryBlocked())
+				{
+					super.HideContent(force_show);
+					return;
+				}
 			}
 		}
 		
