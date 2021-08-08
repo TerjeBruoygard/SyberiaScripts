@@ -3,7 +3,7 @@ FrameWidgetClass GearPDAMenu {
  clipchildren 1
  color 0 0 0 0
  position 0 0
- size 1024 1024
+ size 1600 800
  halign center_ref
  valign center_ref
  hexactpos 1
@@ -28,8 +28,8 @@ FrameWidgetClass GearPDAMenu {
    {
     TextListboxWidgetClass contact_list {
      color 0.1255 0.1451 0.0706 0.8235
-     position 85 220
-     size 280 315
+     position 240.545 165
+     size 324.91 270
      halign left_ref
      valign top_ref
      hexactpos 1
@@ -49,8 +49,8 @@ FrameWidgetClass GearPDAMenu {
     TextListboxWidgetClass messages_txt {
      ignorepointer 0
      color 0.1255 0.1451 0.0706 0.7843
-     position 385 190
-     size 550 490
+     position 566 165
+     size 650 394
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -76,8 +76,8 @@ FrameWidgetClass GearPDAMenu {
     }
     TextWidgetClass your_id_text {
      color 0.1961 0.2157 0.1137 1
-     position 85 190
-     size 280 26
+     position 238.94499 127.20599
+     size 320 26
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -92,8 +92,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass add_contact_back {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.8627
-     position 85 685
-     size 280 40
+     position 240 560
+     size 325 42
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -103,7 +103,7 @@ FrameWidgetClass GearPDAMenu {
       EditBoxWidgetClass add_contact_txt {
        color 0.5882 0.6627 0.3412 1
        position 10 0
-       size 270 1
+       size 311.87997 1
        hexactpos 1
        vexactpos 1
        hexactsize 1
@@ -123,8 +123,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass add_contact_btnback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 85 655
-     size 280 30
+     position 240 535
+     size 323 25
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -165,8 +165,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass delete_contact_btnback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 85 625
-     size 280 30
+     position 240 510
+     size 323 25
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -207,8 +207,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass rename_contact_btnback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 85 595
-     size 280 30
+     position 240 485
+     size 323 25
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -249,8 +249,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass ban_contact_btnback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 85 565
-     size 280 30
+     position 240 460
+     size 323 25
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -291,8 +291,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass send_msg_txtback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.8627
-     position 385 685
-     size 450 40
+     position 566 562
+     size 546.27203 40
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -302,7 +302,7 @@ FrameWidgetClass GearPDAMenu {
       EditBoxWidgetClass send_msg_txt {
        color 0.5882 0.6627 0.3412 1
        position 10 0
-       size 440 1
+       size 535.87 1
        hexactpos 1
        vexactpos 1
        hexactsize 1
@@ -322,8 +322,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass semd_msg_btnback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 835 685
-     size 100 40
+     position 1113 562
+     size 101 40
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -364,8 +364,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass mute_btnback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 85 535
-     size 280 30
+     position 240 435
+     size 323 25
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -424,8 +424,8 @@ FrameWidgetClass GearPDAMenu {
    {
     PanelWidgetClass map_widget_panel {
      clipchildren 1
-     position 77 184
-     size 865 548
+     position 240.24199 163.24899
+     size 974.79224 440
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -465,8 +465,8 @@ FrameWidgetClass GearPDAMenu {
    {
     TextListboxWidgetClass group_members {
      color 0.1255 0.1451 0.0706 0.8235
-     position 85 185
-     size 555 540
+     position 386.43201 166.16101
+     size 646.50598 436
      halign right_ref
      hexactpos 1
      vexactpos 1
@@ -484,8 +484,8 @@ FrameWidgetClass GearPDAMenu {
     TextWidgetClass group_info {
      ignorepointer 0
      color 0.1961 0.2157 0.1137 1
-     position 85 190
-     size 280 48
+     position 241.099 164.43199
+     size 323.06201 48
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -498,8 +498,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass member_id_txtback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.8627
-     position 85 685
-     size 280 40
+     position 241 562
+     size 324 40
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -509,7 +509,7 @@ FrameWidgetClass GearPDAMenu {
       EditBoxWidgetClass member_id_txt {
        color 0.5882 0.6627 0.3412 1
        position 10 0
-       size 270 1
+       size 314.40698 1
        hexactpos 1
        vexactpos 1
        hexactsize 1
@@ -529,8 +529,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass add_member_btnback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 85 645
-     size 280 40
+     position 241 522
+     size 324 40
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -571,8 +571,8 @@ FrameWidgetClass GearPDAMenu {
     PanelWidgetClass del_member_btnback {
      ignorepointer 1
      color 0.1255 0.1451 0.0706 0.6745
-     position 85 605
-     size 280 40
+     position 241.099 482
+     size 324 40
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -615,8 +615,8 @@ FrameWidgetClass GearPDAMenu {
   PanelWidgetClass PagesBtnsPanel {
    ignorepointer 0
    color 1 1 1 0
-   position 75 228
-   size 870 58
+   position 240.481 155
+   size 975.13898 40
    valign bottom_ref
    hexactpos 1
    vexactpos 1

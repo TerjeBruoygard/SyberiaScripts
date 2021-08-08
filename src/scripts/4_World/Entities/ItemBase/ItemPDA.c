@@ -1,4 +1,4 @@
-class ItemPDA : ItemBase
+class ItemPDA : Clothing
 {	
 	override void EEInit()
 	{
