@@ -127,7 +127,8 @@ modded class PlayerBase
 	override void SetActions(out TInputActionMap InputActionMap)
 	{
 		super.SetActions(InputActionMap);
-		AddAction(ActionSearchTargetInventory, InputActionMap);	
+		AddAction(ActionSearchTargetInventory, InputActionMap);
+		AddAction(ActionTraderInteract, InputActionMap);	
 	}
 	
 	override void SetActionsRemoteTarget(out TInputActionMap InputActionMap)

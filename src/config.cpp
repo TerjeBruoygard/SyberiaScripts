@@ -52,6 +52,7 @@ class CfgVehicles
     #include "clothing_medical.hpp"
     #include "clothing_nbc.hpp"
     #include "building_items.hpp"
+    #include "trading_objects.hpp"
     #include "debug_items.hpp"
 };
 
