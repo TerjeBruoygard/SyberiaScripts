@@ -1,0 +1,27 @@
+FrameWidgetClass rootFrame {
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass BackgroundPanel {
+   ignorepointer 1
+   position 0 0
+   size 2048 1024
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   image0 "SyberiaScripts/data/trading/gui_background.paa"
+   mode blend
+   "src alpha" 1
+   "no wrap" 0
+   stretch 1
+  }
+ }
+}

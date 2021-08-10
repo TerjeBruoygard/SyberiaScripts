@@ -23,6 +23,8 @@ class ActionTraderInteract: ActionInteractBase
 		if (GetGame().IsServer())
 			return true;
 		
+		if (GetGame().GetUIManager().GetMenu() != NULL) return false;
+		if (!player.CanOpenSyberiaUI()) return false;				
 		if (target && target.GetObject())
 		{
 			TraderPoint traderPoint = FindTraderPoint(target.GetObject().GetPosition());

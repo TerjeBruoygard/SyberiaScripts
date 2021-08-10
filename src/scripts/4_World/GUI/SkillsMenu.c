@@ -355,4 +355,4 @@ class SkillsMenu extends UIScriptedMenu
 		
 		Close();
 	}
-}
+};

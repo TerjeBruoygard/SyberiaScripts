@@ -309,6 +309,7 @@ modded class MissionGameplay
 		
 		PluginGearPDA pluginGearPDA;
 		PluginSyberiaLogin pluginSyberiaLogin;
+		PluginTrader pluginSyberiaTrader;
 		if ( key == KeyCode.KC_ESCAPE )
 		{	
 			Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));
@@ -321,6 +322,12 @@ modded class MissionGameplay
 			if (pluginSyberiaLogin)
 			{
 				pluginSyberiaLogin.CloseStethoscopeMenu();
+			}
+			
+			Class.CastTo(pluginSyberiaTrader, GetPlugin(PluginTrader));
+			if (pluginSyberiaTrader)
+			{
+				pluginSyberiaTrader.CloseTraderMenu();
 			}
 		}
 		else if ( key == KeyCode.KC_RETURN )
