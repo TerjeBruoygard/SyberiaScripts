@@ -22,6 +22,147 @@ FrameWidgetClass rootFrame {
    "src alpha" 1
    "no wrap" 0
    stretch 1
+   {
+    PanelWidgetClass LeftPanel {
+     ignorepointer 1
+     position -365 100
+     size 700 750
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_black
+     {
+      TextWidgetClass TextWidget1 {
+       ignorepointer 1
+       position 20 10
+       size 0.5 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       text "For buy:"
+       font "gui/fonts/etelkatextpro22"
+      }
+     }
+    }
+    PanelWidgetClass RightPanel {
+     ignorepointer 1
+     position 365 100
+     size 700 750
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_black
+     {
+      ScrollWidgetClass SellItemsPanel {
+       ignorepointer 1
+       position 20 50
+       size 680 700
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style blank
+       "Scrollbar V" 1
+      }
+      TextWidgetClass TextWidget0 {
+       ignorepointer 1
+       position 20 10
+       size 0.5 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       text "For sale:"
+       font "gui/fonts/etelkatextpro22"
+      }
+     }
+    }
+    PanelWidgetClass ActionPanel {
+     ignorepointer 1
+     color 0.098 0.098 0.098 0.7843
+     position 0 100
+     size 1430 60
+     halign center_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      ButtonWidgetClass TradeButton {
+       color 0.0627 0.0627 0.0627 0.3216
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style EmptyHighlight
+       {
+        TextWidgetClass TradeButtonText {
+         ignorepointer 1
+         position 0 0
+         size 1 45
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         text "BARTER"
+         font "gui/fonts/etelkatextpro28"
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass ProgressPanel {
+       ignorepointer 1
+       color 0.098 0.098 0.098 0.3255
+       position 0 0
+       size 1 15
+       halign center_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        SimpleProgressBarWidgetClass ProgressPositive {
+         ignorepointer 1
+         color 0.2392 0.2745 0.1098 0.7843
+         position 0.25 0
+         size 0.5 1
+         halign center_ref
+         valign bottom_ref
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+        }
+        SimpleProgressBarWidgetClass ProgressNegative {
+         ignorepointer 1
+         color 0.6196 0 0 0.7843
+         position -0.25 0
+         size 0.5 1
+         halign center_ref
+         valign bottom_ref
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         flipped 1
+        }
+       }
+      }
+     }
+    }
+   }
   }
  }
 }

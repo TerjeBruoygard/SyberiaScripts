@@ -45,6 +45,9 @@ modded class PlayerBase
 	bool m_isPveIntruder;
 	bool m_isPveIntruderLast;
 	
+	// Misc
+	bool m_isNPC;
+	
 	override void Init()
 	{
 		super.Init();
@@ -122,6 +125,10 @@ modded class PlayerBase
 		m_isPveIntruderLast = false;
 		m_isPveIntruder = false;
 		RegisterNetSyncVariableBool("m_isPveIntruder");
+		
+		// Misc
+		m_isNPC = false;
+		RegisterNetSyncVariableBool("m_isNPC");
 	}
 	
 	override void SetActions(out TInputActionMap InputActionMap)
@@ -330,6 +337,11 @@ modded class PlayerBase
 	bool IsGhostBody()
 	{
 		return (GetType().Contains("_Ghost"));
+	}
+	
+	bool IsNPC()
+	{
+		return m_isNPC;
 	}
 	
 	bool CanOpenSyberiaUI()

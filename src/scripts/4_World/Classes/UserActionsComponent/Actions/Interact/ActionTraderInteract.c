@@ -37,6 +37,11 @@ class ActionTraderInteract: ActionInteractBase
 		return false;
 	}
 	
+	override bool SyberiaActionCondition(PlayerBase player, ActionTarget target, ItemBase item)
+	{
+		return true;
+	}
+	
 	TraderPoint FindTraderPoint(vector pos)
 	{
 		TraderPoint result = null;
