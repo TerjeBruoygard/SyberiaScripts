@@ -34,6 +34,17 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      style rover_sim_black
      {
+      ScrollWidgetClass BuyItemsPanel {
+       ignorepointer 1
+       position 20 50
+       size 680 700
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style blank
+       "Scrollbar V" 1
+      }
       TextWidgetClass TextWidget1 {
        ignorepointer 1
        position 20 10
@@ -42,7 +53,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-       text "For buy:"
+       text "#syb_trader_forbuy"
        font "gui/fonts/etelkatextpro22"
       }
      }
@@ -77,7 +88,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-       text "For sale:"
+       text "#syb_trader_forsale"
        font "gui/fonts/etelkatextpro22"
       }
      }
@@ -113,7 +124,7 @@ FrameWidgetClass rootFrame {
          vexactpos 1
          hexactsize 0
          vexactsize 1
-         text "BARTER"
+         text "#syb_trader_barter"
          font "gui/fonts/etelkatextpro28"
          "text halign" center
          "text valign" center

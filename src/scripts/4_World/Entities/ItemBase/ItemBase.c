@@ -20,16 +20,4 @@ modded class ItemBase
 	{
 		return false;
 	}
-	
-	string GetDisplayPrice()
-	{
-		float price = GetPrice();
-		int intPrice = (int)(price * 100.0);
-		return intPrice.ToString();
-	}
-	
-	float GetPrice()
-	{
-		return 2.4;
-	}
 };

@@ -7,18 +7,22 @@ class SybTraderMenu extends UIScriptedMenu
 	bool m_dirty = false;
 	
 	int m_traderId;
-	ref PluginTrader_Traider m_traderData;
-	ref PluginTrader_Storage m_storageData;
+	ref PluginTrader_Trader m_traderInfo;
+	ref PluginTrader_Data m_traderData;
 	
 	ref ScrollWidget m_sellItemsPanel;
+	ref ScrollWidget m_buyItemsPanel;
+	
 	ref SimpleProgressBarWidget m_progressPositive;
 	ref SimpleProgressBarWidget m_progressNegative;
 	
-	void InitMetadata(int traderId, ref PluginTrader_Traider traderData, ref PluginTrader_Storage storageData)
+	ref array<EntityAI> m_previewItemsCache = new array<EntityAI>;
+	
+	void InitMetadata(int traderId, ref PluginTrader_Trader traderInfo, ref PluginTrader_Data traderData)
 	{
 		m_traderId = traderId;
+		m_traderInfo = traderInfo;
 		m_traderData = traderData;
-		m_storageData = storageData;
 	}
 	
 	void InitInventorySell()
@@ -66,7 +70,7 @@ class SybTraderMenu extends UIScriptedMenu
 		
 		WidgetSetWidth(itemSell, "ItemNameWidget", contentWidth - 220);
 		WidgetTrySetText(itemSell, "ItemNameWidget", item.GetDisplayName());
-		WidgetTrySetText(itemSell, "ItemPriceWidget", item.GetDisplayPrice());		
+		WidgetTrySetText(itemSell, "ItemPriceWidget", "0");		
 		UpdateItemInfoDamage(itemSell, item);
 		UpdateItemInfoQuantity(itemSell, item);
 		
@@ -98,6 +102,56 @@ class SybTraderMenu extends UIScriptedMenu
 		return index;
 	}
 	
+	void InitInventoryBuy()
+	{
+		if (!m_traderData || !m_traderData.m_items)
+			return;
+		
+		int nextItemIndex = -1;
+		foreach ( string classname, float quantity : m_traderData.m_items )
+		{
+			ItemBase item = ItemBase.Cast( GetGame().CreateObject(classname, "0 0 0", true, false, false) );
+			if (item)
+			{
+				nextItemIndex = InitItemBuy(nextItemIndex + 1, item, quantity);
+			}
+		}
+	}
+	
+	int InitItemBuy(int index, ItemBase item, float quantity)
+	{
+		ref Widget itemBuy = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/TraderMenuItemBuy.layout" );		
+		m_buyItemsPanel.AddChild(itemBuy);
+				
+		float w, h;
+		float contentWidth = m_sellItemsPanel.GetContentWidth();
+		itemBuy.GetSize(w, h);
+		itemBuy.SetPos(0, (h + SELL_ITEM_HEIGHT_OFFSET) * index);
+		itemBuy.SetSize(contentWidth, h);
+		
+		ref ButtonWidget actionButton = ButtonWidget.Cast( itemBuy.FindAnyWidget( "ItemActionButton" ) );
+		actionButton.SetUserData(new Param2<string, float>(item.GetType(), quantity));
+		actionButton.SetUserID(2001);
+		
+		ref ItemPreviewWidget previewWidget = ItemPreviewWidget.Cast( itemBuy.FindAnyWidget( "ItemPreviewWidget" ) );		
+		previewWidget.SetItem(item);
+		previewWidget.SetView(item.GetViewIndex());
+		previewWidget.SetModelPosition(Vector(0,0,1));
+		m_previewItemsCache.Insert(item);
+		
+		WidgetSetWidth(itemBuy, "ItemNameWidget", contentWidth - 220);
+		WidgetTrySetText(itemBuy, "ItemNameWidget", item.GetDisplayName());
+		WidgetTrySetText(itemBuy, "ItemPriceWidget", "0");
+		
+		int quantityInt = (int)(quantity * 10.0);
+		string quantityStr = quantityInt.ToString();
+		if (quantityInt % 10 != 0) 
+			quantityStr = quantityStr.Substring(0, quantityStr.Length() - 1) + "." + quantityStr.Substring(quantityStr.Length() - 1, 1);
+		WidgetTrySetText(itemBuy, "ItemQuantityWidget", quantityStr);		
+		
+		return index;
+	}
+	
 	void SetCurrentPriceProgress(float value)
 	{
 		if (value > 0)
@@ -122,6 +176,7 @@ class SybTraderMenu extends UIScriptedMenu
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/TraderMenu.layout" );
 		
 		m_sellItemsPanel = ScrollWidget.Cast( layoutRoot.FindAnyWidget( "SellItemsPanel" ) );
+		m_buyItemsPanel = ScrollWidget.Cast( layoutRoot.FindAnyWidget( "BuyItemsPanel" ) );
 		m_progressPositive = SimpleProgressBarWidget.Cast( layoutRoot.FindAnyWidget( "ProgressPositive" ) );
 		m_progressNegative = SimpleProgressBarWidget.Cast( layoutRoot.FindAnyWidget( "ProgressNegative" ) );
 		
@@ -171,6 +226,21 @@ class SybTraderMenu extends UIScriptedMenu
 		player.GetInputController().SetDisabled(false);
 		player.GetActionManager().EnableActions(true);
 		
+		if (m_traderInfo)
+		{
+			delete m_traderInfo;
+		}
+		
+		if (m_traderData)
+		{
+			delete m_traderData;
+		}
+		
+		foreach (EntityAI item : m_previewItemsCache)
+		{
+			GetGame().ObjectDelete(item);
+		}
+		
 		Close();
 	}
 	
@@ -197,6 +267,24 @@ class SybTraderMenu extends UIScriptedMenu
 				{
 					parent.SetColor(ARGB(200, 25, 25, 25));
 					w.SetUserID(1001);
+				}
+			}
+			else if (w.GetUserID() == 2001) // buy item select
+			{
+				parent = w.GetParent();
+				if (parent)
+				{
+					parent.SetColor(ARGB(200, 16, 87, 20));
+					w.SetUserID(2002);
+				}
+			}
+			else if (w.GetUserID() == 2002) // buy item unselect
+			{
+				parent = w.GetParent();
+				if (parent)
+				{
+					parent.SetColor(ARGB(200, 25, 25, 25));
+					w.SetUserID(2001);
 				}
 			}
 		}
