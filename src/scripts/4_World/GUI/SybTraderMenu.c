@@ -2,6 +2,7 @@ class SybTraderMenu extends UIScriptedMenu
 {
 	const float SELL_ITEM_DEPTH_OFFSET = 30;
 	const float SELL_ITEM_HEIGHT_OFFSET = 2;
+	const float PROGRESS_BAR_PRICE_DIVIDER = 25;
 	
 	bool m_active = false;
 	bool m_dirty = false;
@@ -16,6 +17,10 @@ class SybTraderMenu extends UIScriptedMenu
 	ref SimpleProgressBarWidget m_progressPositive;
 	ref SimpleProgressBarWidget m_progressNegative;
 	
+	ref ButtonWidget m_barterBtn;
+	
+	ref array<ref Widget> m_sellWidgetsCache = new array<ref Widget>;
+	ref array<ref Widget> m_buyWidgetsCache = new array<ref Widget>;
 	ref array<EntityAI> m_previewItemsCache = new array<EntityAI>;
 	
 	void InitMetadata(int traderId, ref PluginTrader_Trader traderInfo, ref PluginTrader_Data traderData)
@@ -23,10 +28,47 @@ class SybTraderMenu extends UIScriptedMenu
 		m_traderId = traderId;
 		m_traderInfo = traderInfo;
 		m_traderData = traderData;
+		m_dirty = true;
+	}
+	
+	void UpdateMetadata(ref PluginTrader_Data traderData)
+	{
+		if (m_traderData)
+		{
+			delete m_traderData;
+		}
+		
+		m_traderData = traderData;
+		m_dirty = true;
+	}
+	
+	void CleanupUI()
+	{
+		foreach (ref Widget w1 : m_sellWidgetsCache)
+		{
+			w1.Unlink();
+		}		
+		m_sellWidgetsCache.Clear();
+		
+		foreach (ref Widget w2 : m_buyWidgetsCache)
+		{
+			w2.Unlink();
+		}
+		m_buyWidgetsCache.Clear();
+		
+		foreach (EntityAI item : m_previewItemsCache)
+		{
+			GetGame().ObjectDelete(item);
+		}
+		m_previewItemsCache.Clear();
 	}
 	
 	void InitInventorySell()
 	{
+		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
+		if (!pluginTrader)
+			return;
+		
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
 		if (!player || !player.IsAlive())
 			return;
@@ -35,7 +77,7 @@ class SybTraderMenu extends UIScriptedMenu
 		ItemBase item = ItemBase.Cast( player.GetItemInHands() );
 		if (item)
 		{
-			nextItemIndex = InitItemSell(nextItemIndex + 1, 0, item);
+			nextItemIndex = InitItemSell(nextItemIndex + 1, 0, item, pluginTrader);
 		}
 		
 		for ( int i = 0; i < player.GetInventory().GetAttachmentSlotsCount(); ++i )
@@ -43,13 +85,13 @@ class SybTraderMenu extends UIScriptedMenu
 			item = ItemBase.Cast( player.GetInventory().FindAttachment(player.GetInventory().GetAttachmentSlotId(i)) );
 			if ( item )
 			{
-				nextItemIndex = InitItemSell(nextItemIndex + 1, 0, item);
+				nextItemIndex = InitItemSell(nextItemIndex + 1, 0, item, pluginTrader);
 			}
 		}
 	}
 	
-	int InitItemSell(int index, int depth, ItemBase item)
-	{
+	int InitItemSell(int index, int depth, ItemBase item, PluginTrader pluginTrader)
+	{		
 		ref Widget itemSell = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/TraderMenuItemSell.layout" );		
 		m_sellItemsPanel.AddChild(itemSell);
 				
@@ -62,6 +104,7 @@ class SybTraderMenu extends UIScriptedMenu
 		ref ButtonWidget actionButton = ButtonWidget.Cast( itemSell.FindAnyWidget( "ItemActionButton" ) );
 		actionButton.SetUserData(item);
 		actionButton.SetUserID(1001);
+		actionButton.GetParent().SetUserID(depth);
 		
 		ref ItemPreviewWidget previewWidget = ItemPreviewWidget.Cast( itemSell.FindAnyWidget( "ItemPreviewWidget" ) );		
 		previewWidget.SetItem(item);
@@ -70,9 +113,10 @@ class SybTraderMenu extends UIScriptedMenu
 		
 		WidgetSetWidth(itemSell, "ItemNameWidget", contentWidth - 220);
 		WidgetTrySetText(itemSell, "ItemNameWidget", item.GetDisplayName());
-		WidgetTrySetText(itemSell, "ItemPriceWidget", "0");		
+		WidgetTrySetText(itemSell, "ItemPriceWidget", pluginTrader.CalculateSellPrice(m_traderInfo, m_traderData, item).ToString());		
 		UpdateItemInfoDamage(itemSell, item);
-		UpdateItemInfoQuantity(itemSell, item);
+		UpdateItemInfoQuantity(itemSell, item);		
+		m_sellWidgetsCache.Insert(itemSell);
 		
 		if (item.GetInventory() && depth < 8)
 		{
@@ -82,7 +126,7 @@ class SybTraderMenu extends UIScriptedMenu
 				ItemBase attachment = ItemBase.Cast( item.GetInventory().FindAttachment(item.GetInventory().GetAttachmentSlotId(i)) );
 				if ( attachment )
 				{
-					index = InitItemSell(index + 1, depth + 1, attachment);
+					index = InitItemSell(index + 1, depth + 1, attachment, pluginTrader);
 				}
 			}
 			
@@ -93,7 +137,7 @@ class SybTraderMenu extends UIScriptedMenu
 					ItemBase cargo = ItemBase.Cast( item.GetInventory().GetCargo().GetItem(i) );
 					if ( cargo )
 					{
-						index = InitItemSell(index + 1, depth + 1, cargo);
+						index = InitItemSell(index + 1, depth + 1, cargo, pluginTrader);
 					}
 				}
 			}
@@ -104,6 +148,10 @@ class SybTraderMenu extends UIScriptedMenu
 	
 	void InitInventoryBuy()
 	{
+		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
+		if (!pluginTrader)
+			return;
+		
 		if (!m_traderData || !m_traderData.m_items)
 			return;
 		
@@ -113,12 +161,12 @@ class SybTraderMenu extends UIScriptedMenu
 			ItemBase item = ItemBase.Cast( GetGame().CreateObject(classname, "0 0 0", true, false, false) );
 			if (item)
 			{
-				nextItemIndex = InitItemBuy(nextItemIndex + 1, item, quantity);
+				nextItemIndex = InitItemBuy(nextItemIndex + 1, item, classname, quantity, pluginTrader);
 			}
 		}
 	}
 	
-	int InitItemBuy(int index, ItemBase item, float quantity)
+	int InitItemBuy(int index, ItemBase item, string classname, float quantity, PluginTrader pluginTrader)
 	{
 		ref Widget itemBuy = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/TraderMenuItemBuy.layout" );		
 		m_buyItemsPanel.AddChild(itemBuy);
@@ -130,7 +178,7 @@ class SybTraderMenu extends UIScriptedMenu
 		itemBuy.SetSize(contentWidth, h);
 		
 		ref ButtonWidget actionButton = ButtonWidget.Cast( itemBuy.FindAnyWidget( "ItemActionButton" ) );
-		actionButton.SetUserData(new Param2<string, float>(item.GetType(), quantity));
+		actionButton.SetUserData(new Param2<string, float>(classname, quantity));
 		actionButton.SetUserID(2001);
 		
 		ref ItemPreviewWidget previewWidget = ItemPreviewWidget.Cast( itemBuy.FindAnyWidget( "ItemPreviewWidget" ) );		
@@ -141,33 +189,79 @@ class SybTraderMenu extends UIScriptedMenu
 		
 		WidgetSetWidth(itemBuy, "ItemNameWidget", contentWidth - 220);
 		WidgetTrySetText(itemBuy, "ItemNameWidget", item.GetDisplayName());
-		WidgetTrySetText(itemBuy, "ItemPriceWidget", "0");
+		WidgetTrySetText(itemBuy, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, classname, quantity).ToString());		
+		WidgetTrySetText(itemBuy, "ItemQuantityWidget", FormatBuyQuantityStr(quantity));		
 		
-		int quantityInt = (int)(quantity * 10.0);
-		string quantityStr = quantityInt.ToString();
-		if (quantityInt % 10 != 0) 
-			quantityStr = quantityStr.Substring(0, quantityStr.Length() - 1) + "." + quantityStr.Substring(quantityStr.Length() - 1, 1);
-		WidgetTrySetText(itemBuy, "ItemQuantityWidget", quantityStr);		
-		
+		m_buyWidgetsCache.Insert(itemBuy);
 		return index;
 	}
 	
-	void SetCurrentPriceProgress(float value)
+	string FormatBuyQuantityStr(float quantity)
 	{
+		int quantityInt = (int)(quantity * 10.0);
+		string quantityStr = quantityInt.ToString();
+		if (quantityInt % 10 != 0)
+		{
+			quantityStr = quantityStr.Substring(0, quantityStr.Length() - 1) + "." + quantityStr.Substring(quantityStr.Length() - 1, 1);
+		}
+		else
+		{
+			quantityStr = quantityStr.Substring(0, quantityStr.Length - 1);
+		}
+		
+		return quantityStr;
+	}
+	
+	void UpdateCurrentPriceProgress()
+	{
+		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
+		if (!pluginTrader)
+			return;
+		
+		float value = 0;
+		ref array<ItemBase> result = new array<ItemBase>;
+		GetSelectedSellItems(result);
+		foreach (ItemBase item : result)
+		{
+			value = value + pluginTrader.CalculateSellPrice(m_traderInfo, m_traderData, item);
+		}
+		delete result;
+		
+		value = value / PROGRESS_BAR_PRICE_DIVIDER;
 		if (value > 0)
 		{
 			m_progressPositive.SetCurrent(Math.Min(100, value));
 			m_progressNegative.SetCurrent(0);
+			m_barterBtn.Enable(true);
 		}
 		else if (value < 0)
 		{
 			m_progressPositive.SetCurrent(0);
 			m_progressNegative.SetCurrent(Math.Min(100, value));
+			m_barterBtn.Enable(false);
 		}
 		else
 		{
 			m_progressPositive.SetCurrent(0);
 			m_progressNegative.SetCurrent(0);
+			m_barterBtn.Enable(true);
+		}
+	}
+	
+	void GetSelectedSellItems(ref array<ItemBase> result)
+	{
+		foreach (ref Widget w : m_sellWidgetsCache)
+		{
+			ref Widget btn = w.FindAnyWidget("ItemActionButton");
+			if (btn.GetUserID() == 1002)
+			{
+				ItemBase item;
+				btn.GetUserData(item);
+				if (item)
+				{
+					result.Insert(item);
+				}
+			}
 		}
 	}
 	
@@ -179,12 +273,9 @@ class SybTraderMenu extends UIScriptedMenu
 		m_buyItemsPanel = ScrollWidget.Cast( layoutRoot.FindAnyWidget( "BuyItemsPanel" ) );
 		m_progressPositive = SimpleProgressBarWidget.Cast( layoutRoot.FindAnyWidget( "ProgressPositive" ) );
 		m_progressNegative = SimpleProgressBarWidget.Cast( layoutRoot.FindAnyWidget( "ProgressNegative" ) );
-		
-		SetCurrentPriceProgress(0);
-		InitInventorySell();
+		m_barterBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "TradeButton" ) );
 		
 		m_active = true;
-		m_dirty = true;
         return layoutRoot;
 	}
 	
@@ -194,6 +285,10 @@ class SybTraderMenu extends UIScriptedMenu
 		
 		if (m_dirty)
 		{
+			CleanupUI();
+			UpdateCurrentPriceProgress();
+			InitInventorySell();
+			InitInventoryBuy();
 			m_dirty = false;
 		}
 
@@ -226,6 +321,8 @@ class SybTraderMenu extends UIScriptedMenu
 		player.GetInputController().SetDisabled(false);
 		player.GetActionManager().EnableActions(true);
 		
+		CleanupUI();
+		
 		if (m_traderInfo)
 		{
 			delete m_traderInfo;
@@ -235,13 +332,118 @@ class SybTraderMenu extends UIScriptedMenu
 		{
 			delete m_traderData;
 		}
-		
-		foreach (EntityAI item : m_previewItemsCache)
+
+		delete m_sellWidgetsCache;
+		delete m_buyWidgetsCache;
+				
+		Close();
+	}
+	
+	private void SelectSellItem(ref ButtonWidget btn, bool enable)
+	{
+		ref Widget back = btn.GetParent();
+		if (back)
 		{
-			GetGame().ObjectDelete(item);
+			int depth = back.GetUserID();
+			int itemId = m_sellWidgetsCache.Find(back.GetParent());
+			
+			if (itemId != -1)
+			{
+				int index = itemId - 1;
+				if (btn.GetUserID() == 1002)
+				{
+					while (index >= 0)
+					{
+						ref Widget prevItem = m_sellWidgetsCache.Get(index);
+						ref ButtonWidget prevBtn = ButtonWidget.Cast( prevItem.FindAnyWidget("ItemActionButton") );
+						ref Widget prevBack = prevBtn.GetParent();
+						
+						if (prevBack.GetUserID() < depth)
+						{
+							if (prevBtn.GetUserID() == 1002)
+							{
+								prevBack.SetColor(ARGB(200, 25, 25, 25));
+								prevBtn.SetUserID(1001);
+							}
+							break;	
+						}
+						
+						index--;
+					}
+				}
+				
+				if (enable)
+				{
+					back.SetColor(ARGB(200, 16, 87, 20));
+					btn.SetUserID(1002);					
+				}
+				else
+				{
+					back.SetColor(ARGB(200, 25, 25, 25));
+					btn.SetUserID(1001);
+				}			
+
+				index = itemId + 1;				
+				while (index < m_sellWidgetsCache.Count())
+				{
+					ref Widget nextItem = m_sellWidgetsCache.Get(index);
+					ref ButtonWidget nextBtn = ButtonWidget.Cast( nextItem.FindAnyWidget("ItemActionButton") );
+					ref Widget nextBack = nextBtn.GetParent();
+					
+					if (depth >= nextBack.GetUserID())
+					{
+						break;	
+					}
+					
+					if (enable)
+					{
+						nextBack.SetColor(ARGB(200, 16, 87, 20));
+						nextBtn.SetUserID(1002);
+					}
+					else
+					{
+						nextBack.SetColor(ARGB(200, 25, 25, 25));
+						nextBtn.SetUserID(1001);
+					}
+										
+					index++;
+				}
+			}
 		}
 		
-		Close();
+		UpdateCurrentPriceProgress();
+	}
+	
+	private void SelectBuyItem(ref ButtonWidget btn, bool enable)
+	{
+		ref Widget back = btn.GetParent();
+		if (back)
+		{
+			if (enable)
+			{
+				back.SetColor(ARGB(200, 16, 87, 20));
+				btn.SetUserID(1002);
+			}
+			else
+			{
+				back.SetColor(ARGB(200, 25, 25, 25));
+				btn.SetUserID(1001);
+			}
+		}
+		
+		UpdateCurrentPriceProgress();
+	}
+	
+	private void DoBarter()
+	{
+		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
+		if (!pluginTrader)
+			return;
+		
+		ref array<ItemBase> sellItems = new array<ItemBase>;
+		GetSelectedSellItems(sellItems);
+		pluginTrader.DoBarter(m_traderId, sellItems);
+		delete sellItems;
 	}
 	
 	override bool OnClick( Widget w, int x, int y, int button )
@@ -249,43 +451,26 @@ class SybTraderMenu extends UIScriptedMenu
 		super.OnClick(w, x, y, button);	
 
 		if (button == MouseState.LEFT)
-		{			
-			ref Widget parent;
+		{					
 			if (w.GetUserID() == 1001) // sell item select
-			{
-				parent = w.GetParent();
-				if (parent)
-				{
-					parent.SetColor(ARGB(200, 16, 87, 20));
-					w.SetUserID(1002);
-				}
+			{				
+				SelectSellItem(ButtonWidget.Cast(w), true);
 			}
 			else if (w.GetUserID() == 1002) // sell item unselect
 			{
-				parent = w.GetParent();
-				if (parent)
-				{
-					parent.SetColor(ARGB(200, 25, 25, 25));
-					w.SetUserID(1001);
-				}
+				SelectSellItem(ButtonWidget.Cast(w), false);
 			}
 			else if (w.GetUserID() == 2001) // buy item select
 			{
-				parent = w.GetParent();
-				if (parent)
-				{
-					parent.SetColor(ARGB(200, 16, 87, 20));
-					w.SetUserID(2002);
-				}
+				SelectBuyItem(ButtonWidget.Cast(w), true);
 			}
 			else if (w.GetUserID() == 2002) // buy item unselect
 			{
-				parent = w.GetParent();
-				if (parent)
-				{
-					parent.SetColor(ARGB(200, 25, 25, 25));
-					w.SetUserID(2001);
-				}
+				SelectBuyItem(ButtonWidget.Cast(w), false);
+			}
+			else if (w == m_barterBtn)
+			{
+				DoBarter();
 			}
 		}
 		
@@ -347,34 +532,24 @@ class SybTraderMenu extends UIScriptedMenu
 			string quantity_str;
 			if( item_base.ConfigGetString("stackedUnit") == "pc." )
 			{
-				if( item_quantity == 1 )
-				{
-					WidgetTrySetText( root_widget, "ItemQuantityWidget", item_quantity.ToString() + " " + "#inv_inspect_piece" );
-				}
-				else
-				{
-					WidgetTrySetText( root_widget, "ItemQuantityWidget", item_quantity.ToString() + " " + "#inv_inspect_pieces" );
-				}		
+				WidgetTrySetText( root_widget, "ItemQuantityWidget", item_quantity.ToString() + "/" + max_quantity.ToString() + " " + "#inv_inspect_pieces" );		
 			}
 			else if( item_base.ConfigGetString("stackedUnit") == "percentage" )
 			{
-				quantity_ratio = Math.Round( ( item_quantity / max_quantity ) * 100 );
-				
-				quantity_str = "#inv_inspect_remaining " + quantity_ratio.ToString() + "#inv_inspect_percent";
+				quantity_ratio = Math.Round( ( item_quantity / max_quantity ) * 100 );				
+				quantity_str = quantity_ratio.ToString() + "#inv_inspect_percent";
 				WidgetTrySetText( root_widget, "ItemQuantityWidget", quantity_str );			
 			}
 			else if( item_base.ConfigGetString("stackedUnit") == "g" )
 			{
-				quantity_ratio = Math.Round( ( item_quantity / max_quantity ) * 100 );
-				
-				quantity_str = "#inv_inspect_remaining " + quantity_ratio.ToString() + "#inv_inspect_percent";
+				quantity_ratio = Math.Round( ( item_quantity / max_quantity ) * 100 );				
+				quantity_str = quantity_ratio.ToString() + "#inv_inspect_percent";
 				WidgetTrySetText( root_widget, "ItemQuantityWidget", quantity_str );			
 			}
 			else if( item_base.ConfigGetString("stackedUnit") == "ml" )
 			{
-				quantity_ratio = Math.Round( ( item_quantity / max_quantity ) * 100 );
-				
-				quantity_str = "#inv_inspect_remaining " + quantity_ratio.ToString() + "#inv_inspect_percent";
+				quantity_ratio = Math.Round( ( item_quantity / max_quantity ) * 100 );				
+				quantity_str = quantity_ratio.ToString() + "#inv_inspect_percent";
 				WidgetTrySetText( root_widget, "ItemQuantityWidget", quantity_str );
 			}
 			else if ( item_base.IsInherited( Magazine ) )
@@ -382,14 +557,7 @@ class SybTraderMenu extends UIScriptedMenu
 				Magazine magazine_item;
 				Class.CastTo(magazine_item, item_base);
 				
-				if( magazine_item.GetAmmoCount() == 1 )
-				{
-					WidgetTrySetText( root_widget, "ItemQuantityWidget",  magazine_item.GetAmmoCount().ToString() + " " + "#inv_inspect_piece" );
-				}
-				else
-				{
-					WidgetTrySetText( root_widget, "ItemQuantityWidget",  magazine_item.GetAmmoCount().ToString() + " " + "#inv_inspect_pieces" );
-				}
+				WidgetTrySetText( root_widget, "ItemQuantityWidget",  magazine_item.GetAmmoCount().ToString() + "/" + magazine_item.GetAmmoMax().ToString() + " " + "#inv_inspect_pieces" );
 			}
 			else
 			{
