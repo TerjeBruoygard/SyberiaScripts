@@ -86,14 +86,27 @@ class PluginTrader extends PluginBase
 	{
 		float itemMaxQuantity = CalculateTraiderItemQuantityMax(trader, classname);		
 		quantity = Math.Min(quantity, itemMaxQuantity);
-		float resultPrice = 1;//CalculateDumping(trader.m_dumpingByAmountAlgorithm, trader.m_dumpingByAmountModifier, (int)quantity, (int)itemMaxQuantity);
-		resultPrice = 1000 * resultPrice;	
+		float resultPrice = CalculateDumping(trader.m_dumpingByAmountAlgorithm, trader.m_dumpingByAmountModifier, (int)quantity, (int)itemMaxQuantity);
+		resultPrice = 1000 * resultPrice;
 		return (int)Math.Max(1, Math.Floor(resultPrice));
 	}
 	
 	float CalculateTraiderItemQuantityMax(ref PluginTrader_Trader trader, string classname)
 	{
-		vector itemSize = GetGame().ConfigGetVector( CFG_VEHICLESPATH + " " + classname + " itemSize" );
+		vector itemSize = "1 1 0";
+		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
+		{
+			itemSize = GetGame().ConfigGetVector( CFG_VEHICLESPATH + " " + classname + " itemSize" );
+		}
+		else if (GetGame().ConfigIsExisting(CFG_MAGAZINESPATH + " " + classname))
+		{
+			itemSize = GetGame().ConfigGetVector( CFG_MAGAZINESPATH + " " + classname + " itemSize" );
+		}
+		else if (GetGame().ConfigIsExisting(CFG_WEAPONSPATH + " " + classname))
+		{
+			itemSize = GetGame().ConfigGetVector( CFG_WEAPONSPATH + " " + classname + " itemSize" );
+		}
+		
 		int itemCapacity = (int)Math.Max(1, itemSize[0] * itemSize[1]);
 		return Math.Round(((float)trader.m_storageMaxSize) / itemCapacity);
 	}
@@ -104,11 +117,15 @@ class PluginTrader extends PluginBase
 		int max_quantity = item.GetQuantityMax();
 		if (max_quantity > 0)
 		{
-			if ( item.IsInherited( Magazine ) )
+			if ( item.IsInherited( Ammunition_Base ))
 			{
 				Magazine magazine_item;
 				Class.CastTo(magazine_item, item);
 				return (float)magazine_item.GetAmmoCount() / (float)magazine_item.GetAmmoMax();
+			}
+			else if ( item.IsInherited( Magazine ) )
+			{
+				return 1;
 			}
 			else
 			{
