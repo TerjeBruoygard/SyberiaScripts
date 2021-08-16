@@ -136,6 +136,56 @@ class PluginTrader extends PluginBase
 		return 1;
 	}
 	
+	float CalculateBuyMaxQuantity(ref PluginTrader_Trader traderInfo, string classname)
+	{
+		return Math.Max(1, CalculateTraiderItemQuantityMax(traderInfo, classname) * traderInfo.m_buyMaxQuantityPercent);
+	}
+	
+	float CalculateItemSelectedQuantityStep(string classname)
+	{		
+		int maxStackSize = 0;		
+		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
+		{
+			maxStackSize = GetGame().ConfigGetInt( CFG_VEHICLESPATH + " " + classname + " varQuantityMax" );
+		}
+		else if (GetGame().ConfigIsExisting(CFG_MAGAZINESPATH + " " + classname))
+		{
+			maxStackSize = GetGame().ConfigGetInt( CFG_MAGAZINESPATH + " " + classname + " count" );
+		}
+		else if (GetGame().ConfigIsExisting(CFG_WEAPONSPATH + " " + classname))
+		{
+			maxStackSize = GetGame().ConfigGetInt( CFG_WEAPONSPATH + " " + classname + " varQuantityMax" );
+		}
+		
+		if ( maxStackSize > 0 )
+		{
+			string stackedUnits = "";
+			if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
+			{
+				stackedUnits = GetGame().ConfigGetTextOut( CFG_VEHICLESPATH + " " + classname + " stackedUnit" );
+			}
+			else if (GetGame().ConfigIsExisting(CFG_MAGAZINESPATH + " " + classname))
+			{
+				stackedUnits = GetGame().ConfigGetTextOut( CFG_MAGAZINESPATH + " " + classname + " stackedUnit" );
+			}
+			else if (GetGame().ConfigIsExisting(CFG_WEAPONSPATH + " " + classname))
+			{
+				stackedUnits = GetGame().ConfigGetTextOut( CFG_WEAPONSPATH + " " + classname + " stackedUnit" );
+			}
+			
+			if ( stackedUnits == "pc." )
+			{
+				return 1 / maxStackSize;
+			}
+			else if ( GetGame().IsKindOf(classname, "Ammunition_Base") )
+			{
+				return 1 / maxStackSize;
+			}
+		}
+		
+		return 1;
+	}
+	
 	float CalculateDumping(string algorithm, float modifier, float value, float max)
 	{
 		return Math.Lerp(1, modifier, (value / max));
@@ -162,6 +212,8 @@ class PluginTrader_Trader
     string m_dumpingByAmountAlgorithm;
     float m_dumpingByAmountModifier;
     float m_dumpingByBadQuality;
+	float m_saleMaxQuantityPercent;
+	float m_buyMaxQuantityPercent;
 	
 	void ~PluginTrader_Trader()
 	{
