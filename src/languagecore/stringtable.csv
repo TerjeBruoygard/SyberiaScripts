@@ -1,4 +1,16 @@
 Language,original,english,czech,german,russian,polish,hungarian,italian,spanish,french,chinese,japanese,portuguese,chinesesimp
+syb_trader_filter_tools,Tools,Tools,Tools,Tools,Инструменты,Tools,Tools,Tools,Tools,Tools,Tools,Tools,Tools,Tools
+syb_trader_filter_weapons,Weapons,Weapons,Weapons,Weapons,Оружие,Weapons,Weapons,Weapons,Weapons,Weapons,Weapons,Weapons,Weapons,Weapons
+syb_trader_filter_magazines,Magazines,Magazines,Magazines,Magazines,Магазины,Magazines,Magazines,Magazines,Magazines,Magazines,Magazines,Magazines,Magazines,Magazines
+syb_trader_filter_attachments,Attachments,Attachments,Attachments,Attachments,Обвесы,Attachments,Attachments,Attachments,Attachments,Attachments,Attachments,Attachments,Attachments,Attachments
+syb_trader_filter_ammo,Ammo,Ammo,Ammo,Ammo,Патроны,Ammo,Ammo,Ammo,Ammo,Ammo,Ammo,Ammo,Ammo,Ammo
+syb_trader_filter_food,Food,Food,Food,Food,Продукты,Food,Food,Food,Food,Food,Food,Food,Food,Food
+syb_trader_filter_clothing,Clothing,Clothing,Clothing,Clothing,Одежда,Clothing,Clothing,Clothing,Clothing,Clothing,Clothing,Clothing,Clothing,Clothing
+syb_trader_filter_medical,Medicine,Medicine,Medicine,Medicine,Медицина,Medicine,Medicine,Medicine,Medicine,Medicine,Medicine,Medicine,Medicine,Medicine
+syb_trader_filter_electronic,Electronics,Electronics,Electronics,Electronics,Электроника,Electronics,Electronics,Electronics,Electronics,Electronics,Electronics,Electronics,Electronics,Electronics
+syb_trader_filter_base_building,Construction,Construction,Construction,Construction,Стройка,Construction,Construction,Construction,Construction,Construction,Construction,Construction,Construction,Construction
+syb_trader_filter_vehicle_parts,Vehicle parts,Vehicle parts,Vehicle parts,Vehicle parts,Автозапчасти,Vehicle parts,Vehicle parts,Vehicle parts,Vehicle parts,Vehicle parts,Vehicle parts,Vehicle parts,Vehicle parts,Vehicle parts
+syb_trader_filter_other,Other,Other,Other,Other,Прочее,Other,Other,Other,Other,Other,Other,Other,Other,Other
 syb_trader_forbuy,Trader items:,Trader items:,Trader items:,Trader items:,Товары торговца:,Trader items:,Trader items:,Trader items:,Trader items:,Trader items:,Trader items:,Trader items:,Trader items:,Trader items:
 syb_trader_forsale,Your items:,Your items:,Your items:,Your items:,Ваши товары:,Your items:,Your items:,Your items:,Your items:,Your items:,Your items:,Your items:,Your items:,Your items:
 syb_trader_barter,BARTER,BARTER,BARTER,BARTER,БАРТЕР,BARTER,BARTER,BARTER,BARTER,BARTER,BARTER,BARTER,BARTER,BARTER

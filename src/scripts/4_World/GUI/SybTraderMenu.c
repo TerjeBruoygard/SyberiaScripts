@@ -24,6 +24,11 @@ class SybTraderMenu extends UIScriptedMenu
 	ref array<ref SybTraderMenu_BuyData> m_buyData = new array<ref SybTraderMenu_BuyData>;
 	ref array<EntityAI> m_previewItemsCache = new array<EntityAI>;
 	
+	ref array<string> m_filterData = new array<string>;
+	static ref array<bool> m_filterMemory = new array<bool>;
+	
+	float m_currentBarterProgress = 0;
+	
 	void InitMetadata(int traderId, ref PluginTrader_Trader traderInfo, ref PluginTrader_Data traderData)
 	{
 		m_traderId = traderId;
@@ -43,31 +48,36 @@ class SybTraderMenu extends UIScriptedMenu
 		m_dirty = true;
 	}
 	
-	void CleanupUI()
+	void CleanupBuyUI()
 	{
-		foreach (ref SybTraderMenu_BuyData buyData : m_buyData)
-		{
-			delete buyData;
-		}
-		m_buyData.Clear();
-		
-		foreach (ref Widget w1 : m_sellWidgetsCache)
-		{
-			w1.Unlink();
-		}		
-		m_sellWidgetsCache.Clear();
-		
 		foreach (ref Widget w2 : m_buyWidgetsCache)
 		{
 			w2.Unlink();
 		}
 		m_buyWidgetsCache.Clear();
 		
+		foreach (ref SybTraderMenu_BuyData buyData : m_buyData)
+		{
+			delete buyData;
+		}
+		m_buyData.Clear();
+		
 		foreach (EntityAI item : m_previewItemsCache)
 		{
 			GetGame().ObjectDelete(item);
 		}
 		m_previewItemsCache.Clear();
+	}
+	
+	void CleanupUI()
+	{
+		CleanupBuyUI();
+		
+		foreach (ref Widget w1 : m_sellWidgetsCache)
+		{
+			w1.Unlink();
+		}		
+		m_sellWidgetsCache.Clear();
 	}
 	
 	void InitInventorySell()
@@ -155,6 +165,8 @@ class SybTraderMenu extends UIScriptedMenu
 	
 	void InitInventoryBuy()
 	{
+		CleanupBuyUI();
+		
 		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
 		if (!pluginTrader)
 			return;
@@ -165,10 +177,13 @@ class SybTraderMenu extends UIScriptedMenu
 		int nextItemIndex = -1;
 		foreach ( string classname, float quantity : m_traderData.m_items )
 		{
-			ItemBase item = ItemBase.Cast( GetGame().CreateObject(classname, "0 0 0", true, false, false) );
-			if (item)
+			if (pluginTrader.FilterByCategories(m_filterData, m_filterMemory, classname))
 			{
-				nextItemIndex = InitItemBuy(nextItemIndex + 1, item, classname, quantity, pluginTrader);
+				ItemBase item = ItemBase.Cast( GetGame().CreateObject(classname, "0 0 0", true, false, false) );
+				if (item)
+				{
+					nextItemIndex = InitItemBuy(nextItemIndex + 1, item, classname, quantity, pluginTrader);
+				}
 			}
 		}
 	}
@@ -250,13 +265,21 @@ class SybTraderMenu extends UIScriptedMenu
 			return;
 		
 		float value = 0;
-		ref array<ItemBase> result = new array<ItemBase>;
-		GetSelectedSellItems(result);
-		foreach (ItemBase item : result)
+		ref array<ItemBase> sellResult = new array<ItemBase>;
+		GetSelectedSellItems(sellResult);
+		foreach (ItemBase sellItem : sellResult)
 		{
-			value = value + pluginTrader.CalculateSellPrice(m_traderInfo, m_traderData, item);
+			value = value + pluginTrader.CalculateSellPrice(m_traderInfo, m_traderData, sellItem);
 		}
-		delete result;
+		delete sellResult;
+		
+		ref map<string, float> buyResult = new map<string, float>;
+		GetSelectedBuyItems(buyResult);
+		foreach (string buyClassname, float buyQuantity : buyResult)
+		{
+			value = value - pluginTrader.CalculateBuyPrice(m_traderInfo, buyClassname, buyQuantity);
+		}
+		delete buyResult;
 		
 		value = value / PROGRESS_BAR_PRICE_DIVIDER;
 		if (value > 0)
@@ -268,7 +291,7 @@ class SybTraderMenu extends UIScriptedMenu
 		else if (value < 0)
 		{
 			m_progressPositive.SetCurrent(0);
-			m_progressNegative.SetCurrent(Math.Min(100, value));
+			m_progressNegative.SetCurrent(Math.Min(100, value * -1));
 			m_barterBtn.Enable(false);
 		}
 		else
@@ -277,6 +300,8 @@ class SybTraderMenu extends UIScriptedMenu
 			m_progressNegative.SetCurrent(0);
 			m_barterBtn.Enable(true);
 		}
+		
+		m_currentBarterProgress = value;
 	}
 	
 	void GetSelectedSellItems(ref array<ItemBase> result)
@@ -296,6 +321,39 @@ class SybTraderMenu extends UIScriptedMenu
 		}
 	}
 	
+	void GetSelectedBuyItems(ref map<string, float> result)
+	{
+		int index;
+		ref SybTraderMenu_BuyData buyData;
+		foreach (ref Widget w : m_buyWidgetsCache)
+		{
+			ref Widget btn = w.FindAnyWidget("ItemActionButton");
+			if (btn.GetUserID() == 2002)
+			{
+				index = w.GetUserID();
+				buyData = m_buyData.Get(index);
+				result.Insert(buyData.m_classname, buyData.m_selectedQuantity);
+			}
+		}
+	}
+	
+	void InitializeFilter(ref Widget root, string name)
+	{
+		int id = m_filterData.Insert(name);
+		ref ButtonWidget btn = ButtonWidget.Cast( root.FindAnyWidget("FilterActionBtn" + id) );		
+		btn.SetUserID(5000 + id);
+		
+		ref TextWidget btnText = TextWidget.Cast( btn.GetChildren() );
+		btnText.SetText("#syb_trader_filter_" + name);
+		
+		if (m_filterMemory.Count() <= id)
+		{
+			m_filterMemory.Insert(true);
+		}
+		
+		SelectFilterItem(btn, m_filterMemory.Get(id));
+	}
+	
 	override Widget Init()
     {
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/TraderMenu.layout" );
@@ -305,6 +363,22 @@ class SybTraderMenu extends UIScriptedMenu
 		m_progressPositive = SimpleProgressBarWidget.Cast( layoutRoot.FindAnyWidget( "ProgressPositive" ) );
 		m_progressNegative = SimpleProgressBarWidget.Cast( layoutRoot.FindAnyWidget( "ProgressNegative" ) );
 		m_barterBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "TradeButton" ) );
+		
+		m_filterData.Clear();
+		InitializeFilter(layoutRoot, "weapons");
+		InitializeFilter(layoutRoot, "magazines");
+		InitializeFilter(layoutRoot, "attachments");			
+		InitializeFilter(layoutRoot, "ammo");	
+		
+		InitializeFilter(layoutRoot, "tools");		
+		InitializeFilter(layoutRoot, "food");			
+		InitializeFilter(layoutRoot, "clothing");
+		InitializeFilter(layoutRoot, "medical");
+		
+		InitializeFilter(layoutRoot, "electronic");			
+		InitializeFilter(layoutRoot, "base_building");
+		InitializeFilter(layoutRoot, "vehicle_parts");
+		InitializeFilter(layoutRoot, "other");
 		
 		m_active = true;
         return layoutRoot;
@@ -367,6 +441,7 @@ class SybTraderMenu extends UIScriptedMenu
 		delete m_buyData;
 		delete m_sellWidgetsCache;
 		delete m_buyWidgetsCache;
+		delete m_filterData;
 				
 		Close();
 	}
@@ -466,6 +541,45 @@ class SybTraderMenu extends UIScriptedMenu
 		UpdateCurrentPriceProgress();
 	}
 	
+	private void SwitchFilterItem(ref ButtonWidget btn)
+	{
+		ref Widget back = btn.GetParent();
+		if (back)
+		{
+			int value = back.GetUserID();
+			if (value == 0)
+			{
+				SelectFilterItem(btn, true);
+			}
+			else
+			{
+				SelectFilterItem(btn, false);
+			}
+		}
+		
+		InitInventoryBuy();
+		UpdateCurrentPriceProgress();
+	}
+	
+	private void SelectFilterItem(ref ButtonWidget btn, bool enable)
+	{
+		m_filterMemory.Set( btn.GetUserID() - 5000, enable );
+		ref Widget back = btn.GetParent();
+		if (back)
+		{
+			if (enable)
+			{
+				back.SetColor(ARGB(200, 16, 87, 20));
+				back.SetUserID(1);
+			}
+			else
+			{
+				back.SetColor(ARGB(200, 25, 25, 25));
+				back.SetUserID(0);
+			}
+		}
+	}
+	
 	private void ChangeBuyQuantity(ref ButtonWidget btn, float value)
 	{
 		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
@@ -496,18 +610,28 @@ class SybTraderMenu extends UIScriptedMenu
 			mainParam.m_selectedQuantity = Math.Min(mainParam.m_selectedQuantity, mainParam.m_maxBuyQuantity);
 			UpdateItemInfoSelectedQuantity(mainWidget, mainParam.m_classname, mainParam.m_selectedQuantity, mainParam.m_maxBuyQuantity);
 		}
+		
+		UpdateCurrentPriceProgress();
 	}
 	
 	private void DoBarter()
 	{
+		if (m_currentBarterProgress < 0)
+			return;
+		
 		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
 		if (!pluginTrader)
 			return;
 		
 		ref array<ItemBase> sellItems = new array<ItemBase>;
 		GetSelectedSellItems(sellItems);
-		pluginTrader.DoBarter(m_traderId, sellItems);
+		
+		ref map<string, float> buyItems = new map<string, float>;
+		GetSelectedBuyItems(buyItems);
+		
+		pluginTrader.DoBarter(m_traderId, sellItems, buyItems);
 		delete sellItems;
+		delete buyItems;
 	}
 	
 	override bool OnClick( Widget w, int x, int y, int button )
@@ -539,6 +663,10 @@ class SybTraderMenu extends UIScriptedMenu
 			else if (w.GetUserID() == 3002) // plus buy quantity
 			{
 				ChangeBuyQuantity(ButtonWidget.Cast(w), 1);
+			}
+			else if (w.GetUserID() >= 5000 && w.GetUserID() < 6000) // switch filter
+			{
+				SwitchFilterItem(ButtonWidget.Cast(w));
 			}
 			else if (w == m_barterBtn)
 			{

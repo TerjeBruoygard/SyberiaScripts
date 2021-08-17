@@ -191,9 +191,79 @@ class PluginTrader extends PluginBase
 		return Math.Lerp(1, modifier, (value / max));
 	}
 	
-	void DoBarter(int traderId, ref array<ItemBase> sellItems)
+	void DoBarter(int traderId, ref array<ItemBase> sellItems, ref map<string, float> buyItems)
 	{
-		GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_ACTION_TRADER, new Param2<int, ref array<ItemBase>>(traderId, sellItems));
+		GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_ACTION_TRADER, new Param3<int, ref array<ItemBase>, ref map<string, float>>(traderId, sellItems, buyItems));
+	}
+	
+	bool FilterByCategories(ref array<string> categories, ref array<bool> enabledCategories, string classname)
+	{
+		TStringArray inventorySlots = new TStringArray;
+						
+		if (GetGame().ConfigIsExisting(CFG_WEAPONSPATH + " " + classname))
+		{
+			return enabledCategories.Get(categories.Find("weapons"));
+		}
+		
+		if (GetGame().IsKindOf(classname, "Ammunition_Base"))
+		{
+			return enabledCategories.Get(categories.Find("ammo"));
+		}
+		
+		if (GetGame().IsKindOf(classname, "Magazine_Base"))
+		{
+			return enabledCategories.Get(categories.Find("magazines"));
+		}
+		
+		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname + " inventorySlot"))
+		{
+			inventorySlots.Clear();
+			GetGame().ConfigGetTextArray(CFG_VEHICLESPATH + " " + classname + " inventorySlot", inventorySlots);
+			foreach (string inventorySlot : inventorySlots)
+			{
+				inventorySlot.ToLower();
+				if (inventorySlot.IndexOf("weapon") == 0)
+				{
+					return enabledCategories.Get(categories.Find("attachments"));
+				}
+				else if (inventorySlot == "melee")
+				{
+					return enabledCategories.Get(categories.Find("tools"));
+				}
+			}
+		}
+		
+		if (GetGame().ConfigGetInt(CFG_VEHICLESPATH + " " + classname + " medicalItem") == 1)
+		{
+			return enabledCategories.Get(categories.Find("medical"));
+		}
+		
+		if (GetGame().IsKindOf(classname, "Edible_Base"))
+		{
+			return enabledCategories.Get(categories.Find("food"));
+		}
+		
+		if (GetGame().IsKindOf(classname, "Clothing_Base"))
+		{
+			return enabledCategories.Get(categories.Find("clothing"));
+		}
+		
+		if (GetGame().ConfigGetInt(CFG_VEHICLESPATH + " " + classname + " vehiclePartItem") == 1)
+		{
+			return enabledCategories.Get(categories.Find("vehicle_parts"));
+		}
+		
+		if (GetGame().IsKindOf(classname, "BaseBuildingBase") || GetGame().IsKindOf(classname, "Container_Base") || GetGame().ConfigGetInt(CFG_VEHICLESPATH + " " + classname + " baseBuildingItem") == 1)
+		{
+			return enabledCategories.Get(categories.Find("base_building"));
+		}
+		
+		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname + " EnergyManager"))
+		{
+			return enabledCategories.Get(categories.Find("electronic"));
+		}
+		
+		return enabledCategories.Get(categories.Find("other"));
 	}
 	
 	override void OnDestroy()

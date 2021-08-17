@@ -54,6 +54,7 @@ class CfgVehicles
     #include "building_items.hpp"
     #include "trading_objects.hpp"
     #include "debug_items.hpp"
+    #include "vehicle_parts_redef.hpp"
 };
 
 class CfgAmmo
