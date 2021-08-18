@@ -10,6 +10,7 @@ class SybTraderMenu extends UIScriptedMenu
 	int m_traderId;
 	ref PluginTrader_Trader m_traderInfo;
 	ref PluginTrader_Data m_traderData;
+	bool m_isAdmin = false;
 	
 	ref ScrollWidget m_sellItemsPanel;
 	ref ScrollWidget m_buyItemsPanel;
@@ -31,11 +32,12 @@ class SybTraderMenu extends UIScriptedMenu
 	float m_currentBarterProgress = 0;
 	bool m_blockBarter = true;
 	
-	void InitMetadata(int traderId, ref PluginTrader_Trader traderInfo, ref PluginTrader_Data traderData)
+	void InitMetadata(int traderId, ref PluginTrader_Trader traderInfo, ref PluginTrader_Data traderData, bool isAdmin)
 	{
 		m_traderId = traderId;
 		m_traderInfo = traderInfo;
 		m_traderData = traderData;
+		m_isAdmin = isAdmin;
 		m_dirty = true;
 	}
 	
@@ -341,7 +343,7 @@ class SybTraderMenu extends UIScriptedMenu
 		{
 			m_progressPositive.SetCurrent(0);
 			m_progressNegative.SetCurrent(Math.Min(100, value * -1));
-			m_barterBtn.Enable(false);
+			m_barterBtn.Enable(m_isAdmin);
 		}
 		else
 		{
@@ -693,12 +695,15 @@ class SybTraderMenu extends UIScriptedMenu
 	
 	private void DoBarter()
 	{
-		if (m_currentBarterProgress < 0)
-			return;
+		if (!m_isAdmin)
+		{
+			if (m_currentBarterProgress < 0)
+				return;
+			
+			if (m_blockBarter)
+				return;
+		}
 		
-		if (m_blockBarter)
-			return;
-
 		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
 		if (!pluginTrader)
 			return;
@@ -706,7 +711,7 @@ class SybTraderMenu extends UIScriptedMenu
 		ref map<string, float> buyItems = new map<string, float>;
 		ref array<ItemBase> sellItems = new array<ItemBase>;
 		GetSelectedSellItems(sellItems);
-		if (sellItems.Count() > 0)
+		if (m_isAdmin || sellItems.Count() > 0)
 		{			
 			GetSelectedBuyItems(buyItems);			
 			pluginTrader.DoBarter(m_traderId, sellItems, buyItems);

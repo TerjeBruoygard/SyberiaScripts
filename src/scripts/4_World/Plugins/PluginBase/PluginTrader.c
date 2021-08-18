@@ -30,11 +30,11 @@ class PluginTrader extends PluginBase
 			return;
 		}
 		
-		Param3<int, ref PluginTrader_Trader, ref PluginTrader_Data> clientData;
+		Param4<int, ref PluginTrader_Trader, ref PluginTrader_Data, bool> clientData;
        	if ( !ctx.Read( clientData ) ) return;
 		
 		m_traderMenu = new SybTraderMenu;
-		m_traderMenu.InitMetadata(clientData.param1, clientData.param2, clientData.param3);
+		m_traderMenu.InitMetadata(clientData.param1, clientData.param2, clientData.param3, clientData.param4);
 		GetGame().GetUIManager().ShowScriptedMenu( m_traderMenu, NULL );
 	}
 	
@@ -225,6 +225,9 @@ class PluginTrader extends PluginBase
 	
 	void DoBarter(int traderId, ref array<ItemBase> sellItems, ref map<string, float> buyItems)
 	{
+		if (sellItems.Count() == 0 && buyItems.Count() == 0)
+			return;
+		
 		GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_ACTION_TRADER, new Param3<int, ref array<ItemBase>, ref map<string, float>>(traderId, sellItems, buyItems));
 	}
 	

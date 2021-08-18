@@ -1,0 +1,1 @@
+class TraderVest extends PressVest_ColorBase {};
