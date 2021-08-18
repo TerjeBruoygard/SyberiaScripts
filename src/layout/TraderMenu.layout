@@ -651,6 +651,24 @@ FrameWidgetClass rootFrame {
         }
        }
       }
+      MultilineTextWidgetClass TradeButtonInfo {
+       ignorepointer 1
+       color 0.451 0 0 1
+       size 0.3 1
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       font "gui/fonts/etelkatextpro16"
+       "exact text" 1
+       "size to text h" 0
+       "size to text v" 0
+       "text halign" right
+       wrap 1
+       "condense whitespace" 1
+       "strip newlines" 1
+      }
      }
     }
    }
