@@ -357,7 +357,7 @@ class SybTraderMenu extends UIScriptedMenu
 			m_tradeButtonInfo.SetText("#syb_trader_block_baditems");
 			m_blockBarter = true;
 		}
-		else if (pluginTrader.HasOversizedSellItems(m_traderInfo, sellCounter))
+		else if (pluginTrader.HasOversizedSellItems(m_traderInfo, m_traderData, sellCounter))
 		{
 			m_tradeButtonInfo.SetText("#syb_trader_block_toomany");
 			m_blockBarter = true;
@@ -467,6 +467,16 @@ class SybTraderMenu extends UIScriptedMenu
 			m_dirty = false;
 		}
 
+		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
+		if (!player || !player.IsAlive() || player.IsUnconscious() || player.IsRestrained())
+		{
+			m_active = false;
+		}
+		else if (m_traderInfo && vector.Distance(m_traderInfo.m_position, player.GetPosition()) > 5)
+		{
+			m_active = false;
+		}
+		
 		if (!m_active)
 		{
 			GetGame().GetUIManager().Back();
@@ -495,6 +505,8 @@ class SybTraderMenu extends UIScriptedMenu
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		player.GetInputController().SetDisabled(false);
 		player.GetActionManager().EnableActions(true);
+		
+		GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_CLOSE_TRADER_MENU, new Param1<int>(m_traderId));
 		
 		CleanupUI();
 		
