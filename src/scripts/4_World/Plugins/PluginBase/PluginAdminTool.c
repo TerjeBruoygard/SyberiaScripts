@@ -32,6 +32,7 @@ class PluginAdminTool extends PluginBase
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_KICK, this, "PlayerKick");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT_TO_PLAYER, this, "PlayerTeleportToPlayer");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT_PLAYER_TO_ME, this, "PlayerTeleportToMe");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_MESSAGE, this, "PlayerMessage");
 	}
 	
 	override void OnUpdate(float delta_time)
@@ -211,6 +212,15 @@ class PluginAdminTool extends PluginBase
 	void PlayerTeleportToPlayer( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
 	
 	void PlayerTeleportToMe( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	
+	void PlayerMessage( ref ParamsReadContext ctx, ref PlayerIdentity sender ) 
+	{
+		Param1< string > serverData;
+        if ( !ctx.Read( serverData ) ) return;
+		
+		GetGame().GetUIManager().CloseAll();
+		GetGame().GetUIManager().ShowScriptedMenu(new AdminMessageBox(serverData.param1), NULL);
+	}
 	
 	bool HasAdminPermissions()
 	{
