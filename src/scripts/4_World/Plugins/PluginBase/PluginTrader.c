@@ -348,7 +348,8 @@ class PluginTrader extends PluginBase
 			{
 				return false;
 			}
-			else if (edibleBase.GetFoodStage() != null)
+			
+			if (edibleBase.GetFoodStage() != null)
 			{
 				if (edibleBase.GetFoodStage().GetFoodStageType() == FoodStageType.BAKED)
 				{
@@ -371,7 +372,13 @@ class PluginTrader extends PluginBase
 					return false;
 				}
 			}
-			else if (edibleBase.GetType().IndexOf("_Opened") != -1)
+			
+			if (edibleBase.GetType().IndexOf("_Opened") != -1)
+			{
+				return false;
+			}
+			
+			if (item.GetLiquidTypeInit() == 0 && edibleBase.GetQuantity() != edibleBase.GetQuantityMax())
 			{
 				return false;
 			}
