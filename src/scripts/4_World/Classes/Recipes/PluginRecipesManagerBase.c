@@ -5,5 +5,6 @@ modded class PluginRecipesManagerBase
         super.RegisterRecipies();
         RegisterRecipe(new CraftSyringeFill);
         RegisterRecipe(new CraftCombineSyb);
+        RegisterRecipe(new WashFruits);
     }
 };
