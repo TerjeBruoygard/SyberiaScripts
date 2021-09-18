@@ -358,7 +358,7 @@ modded class GameConstants
 	
 	const int 	STAMINA_GAIN_JOG_PER_SEC = 1.0; //in units (how much of stamina units is gained while jogging)
 	const int 	STAMINA_GAIN_WALK_PER_SEC = 1.5; //in units (how much of stamina units is gained while walking)
-	const int 	STAMINA_GAIN_IDLE_PER_SEC = 3; //in units (how much of stamina units is gained while iddling)
+	const int 	STAMINA_GAIN_IDLE_PER_SEC = 4; //in units (how much of stamina units is gained while iddling)
 	const int	STAMINA_GAIN_SWIM_PER_SEC = 0.8; //in units (how much of stamina units is gained while slowly swim)
 	const int	STAMINA_GAIN_LADDER_PER_SEC = 0.8; //in units (how much of stamina units is gained while slowly swim)
 	const float STAMINA_GAIN_BONUS_CAP = 0.01; //in units (tells how much extra units can be added at best to stamina regain)
