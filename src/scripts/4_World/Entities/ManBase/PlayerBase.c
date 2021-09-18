@@ -168,7 +168,10 @@ modded class PlayerBase
 	
 	override float GetPlayerLoad()
 	{
-		return super.GetPlayerLoad() * (1.0 - GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0));
+		float result = super.GetPlayerLoad();
+		result = result * (1.0 - GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0));
+		result = result * (1.0 - (GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, 0, 0) * 0.25));
+		return result;
 	}
 	
 	override void OnBleedingSourceRemovedEx(ItemBase item)

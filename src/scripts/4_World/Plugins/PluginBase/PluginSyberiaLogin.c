@@ -167,7 +167,21 @@ class PluginSyberiaLogin extends PluginBase
 				MissionBaseWorld mission = MissionBaseWorld.Cast( GetGame().GetMission() );
 				if (mission)
 				{
-					mission.ShowScreenMessage("#syb_skill_up_part1 '#syb_skill" + changedSkill + "' #syb_skill_up_part2 " + newSkills.GetSkillValueInt(changedSkill), 5 );
+					string keyName = "<not set>";
+					UAInput i1 = GetUApi().GetInputByName("UAToggleSyberiaSkillsMenu");
+					GetDayZGame().GetBacklit().HintShow(i1);
+					
+					i1.SelectAlternative(0); //! select first alternative (which is the primary bind)
+					for ( int c = 0; c < i1.BindKeyCount(); c++ )
+					{
+					  	int _hc = i1.GetBindKey(0);
+					  	keyName = GetUApi().GetButtonName(_hc);
+					}
+
+					
+					string message = "#syb_skill_up_part1 '#syb_skill" + changedSkill + "' #syb_skill_up_part2 " + newSkills.GetSkillValueInt(changedSkill) + ". ";
+					message = message + "#syb_skill_up_part3 '" + keyName + "' #syb_skill_up_part4";
+					mission.ShowScreenMessage(message, 15 );
 				}
 			}
 		}
