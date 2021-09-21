@@ -2,14 +2,13 @@ class ToxicZone
 {
 	vector m_position;
 	float m_radius;
-	string m_color;
 };
 
 class ToxicZoneView
 {
 	static const float SPAWN_PARTICLE_DISTANCE = 600;
 	static const float DESPAWN_PARTICLE_DISTANCE = 650;
-	static const float SMOKE_EFFECT_SIZE = 50;
+	static const float SMOKE_EFFECT_SIZE = 25;
 	
 	private ref array<Particle> m_particles;
 	
@@ -17,19 +16,12 @@ class ToxicZoneView
 	float m_radius;
 	int m_particleId;
 	
-	void ToxicZoneView(vector pos, float radius, string color)
+	void ToxicZoneView(vector pos, float radius)
 	{
 		m_particles = new array<Particle>;
 		m_position = pos;
-		m_radius = radius;
-		
-		if (color == "green") m_particleId = ParticleList.SYBERIA_SMOKE_TOXIC_PARTICLE_GREEN;
-		else if (color == "black") m_particleId = ParticleList.SYBERIA_SMOKE_TOXIC_PARTICLE_BLACK;
-		else if (color == "gray") m_particleId = ParticleList.SYBERIA_SMOKE_TOXIC_PARTICLE_GREY;
-		else if (color == "blue") m_particleId = ParticleList.SYBERIA_SMOKE_TOXIC_PARTICLE_BLUE;
-		else if (color == "red") m_particleId = ParticleList.SYBERIA_SMOKE_TOXIC_PARTICLE_RED;
-		else if (color == "yellow") m_particleId = ParticleList.SYBERIA_SMOKE_TOXIC_PARTICLE_YELLOW;
-		else m_particleId = ParticleList.SYBERIA_SMOKE_TOXIC_PARTICLE_WHITE;
+		m_radius = radius;		
+		m_particleId = ParticleList.CONTAMINATED_AREA_GAS_BIGASS;
 	}
 	
 	void Update(PlayerBase player)
