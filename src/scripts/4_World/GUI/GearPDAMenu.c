@@ -589,7 +589,7 @@ class GearPDAMenu extends UIScriptedMenu
 	{
 		super.OnShow();
 
-		PPEffects.SetBlurMenu(0.5);
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_INVENTORYBLUR).Start();
 
 		GetGame().GetInput().ChangeGameFocus(1);
 
@@ -604,7 +604,7 @@ class GearPDAMenu extends UIScriptedMenu
 	{
 		super.OnHide();
 
-		PPEffects.SetBlurMenu(0);
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_INVENTORYBLUR).Stop();
 
 		GetGame().GetInput().ResetGameFocus();
 		

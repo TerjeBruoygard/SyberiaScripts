@@ -11,9 +11,15 @@ modded class MissionGameplay
 	{
 		SybLog("MissionGameplay OnMissionStart");
 		super.OnMissionStart();
-		SyberiaPPEffects.ResetAllEffects();
 		m_pressedKeys = new array<int>;
 		m_toxicZoneUpdateTimer = 0;
+		
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CONCUSSION).Start();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE).Start();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PAIN).Start();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PSI).Start();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_RADIATION).Start();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_SLEEPING).Start();
 	}
 	
 	override void OnMissionFinish()
@@ -21,10 +27,16 @@ modded class MissionGameplay
 		SybLog("MissionGameplay OnMissionStart");
 		super.OnMissionFinish();
 		
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CONCUSSION).Stop();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE).Stop();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PAIN).Stop();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PSI).Stop();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_RADIATION).Stop();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_SLEEPING).Stop();
+		
 		delete m_AdditionHudRootWidget;
 		delete m_SyberiaAdditionalHud;
 		delete m_pressedKeys;
-		SyberiaPPEffects.ResetAllEffects();
 		
 		if (m_toxicZonesView)
 		{
@@ -41,7 +53,6 @@ modded class MissionGameplay
 		super.OnInit();
 		
 		m_watermarkHandler = new WatermarkHandler();
-		SyberiaPPEffects.Init();
 		
 		if (!m_AdditionHudRootWidget)
 		{
@@ -118,8 +129,6 @@ modded class MissionGameplay
 				}
 			}
 			
-			SyberiaPPEffects.Update(timeslice);
-			
 			UIScriptedMenu menu = m_UIManager.GetMenu();
 			
 			if (m_SyberiaAdditionalHud && m_LifeState == EPlayerStates.ALIVE && !player.IsUnconscious() )
@@ -175,15 +184,14 @@ modded class MissionGameplay
 	private void OnUpdateAdvMedicineGUI(PlayerBase player, float deltaTime)
 	{		
 		float overdosedEffect = Math.Clamp((player.m_overdosedValue - 1.0) * 0.1, 0, 0.3);
-		SyberiaPPEffects.SetOverdosedEffect(overdosedEffect);
+		PPERequester_SybOverdose.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE)).SetOverdosedEffect(overdosedEffect);
 		
 		float painEffect = Math.Clamp(player.GetCurrentPainLevel() * 0.1, 0, 0.3);
-		SyberiaPPEffects.SetPainEffect(painEffect);
-		
-		SyberiaPPEffects.SetRadiationEffect(player.GetRadiationSicknessLevel());
+		PPERequester_SybPain.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PAIN)).SetPainEffect(painEffect);	
+		PPERequester_SybRadiation.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_RADIATION)).SetRadiationEffect(player.GetRadiationSicknessLevel());
 		
 		float concussionEffect = Math.Clamp(((int)player.m_concussionHit) * 0.1, 0, 0.1);
-		SyberiaPPEffects.SetConcussionEffect(concussionEffect);
+		PPERequester_SybConcussion.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CONCUSSION)).SetConcussionEffect(concussionEffect);
 		
 		SyberiaSleepingLevel sleepingLevel = player.GetSleepingProcessLevel();
 		float sleepingValue = Math.Clamp((int)sleepingLevel, 0, 1);
@@ -191,9 +199,9 @@ modded class MissionGameplay
 		{
 			sleepingValue = 1;
 		}
-		SyberiaPPEffects.SetSleepingEffect(sleepingValue);
 		
-		SyberiaPPEffects.SetPsiEffect(player.m_zone != null && player.m_zone.m_psi > 0);
+		PPERequester_SybSleeping.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_SLEEPING)).SetSleepingEffect(sleepingValue);	
+		PPERequester_SybPSI.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PSI)).SetPsiEffect(player.m_zone != null && player.m_zone.m_psi > 0);
 		
 		if (sleepingLevel == SyberiaSleepingLevel.SYBSL_ENERGED)
 		{
