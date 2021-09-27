@@ -79,3 +79,83 @@ class Animal_UrsusArctos: AnimalBase
         openable=0;
     };
 };
+
+class DeadChicken_ColorBase: Edible_Base
+{
+    storageCategory=3;
+    class Cargo
+    {
+        itemsCargoSize[]={10,4};
+        allowOwnedCargoManipulation=1;
+        openable=0;
+    };
+    class Skinning
+    {
+        class ObtainedSteaks
+        {
+            item="ChickenBreastMeat";
+            count=2;
+            quantityMinMaxCoef[]={0.5,1};
+        };
+        class ObtainedFeathers
+        {
+            item="ChickenFeather";
+            count=0;
+            quantityMinMaxCoef[]={0.5,1};
+            transferToolDamageCoef=1;
+        };
+        class ObtainedGuts
+        {
+            item="SmallGuts";
+            count=0;
+            quantityMinMaxCoef[]={0.5,0.80000001};
+        };
+        class ObtainedBones
+        {
+            item="Bone";
+            count=1;
+            quantityMinMaxCoef[]={0.2,0.30000001};
+            transferToolDamageCoef=1;
+        };
+    };
+};
+
+class DeadRabbit: Edible_Base
+{
+    storageCategory=3;
+    class Cargo
+    {
+        itemsCargoSize[]={10,4};
+        allowOwnedCargoManipulation=1;
+        openable=0;
+    };
+    class Skinning
+    {
+        class ObtainedSteaks
+        {
+            item="RabbitLegMeat";
+            count=2;
+            quantityMinMaxCoef[]={0.5,1};
+        };
+        class ObtainedPelt
+        {
+            item="RabbitPelt";
+            count=1;
+            quantityMinMaxCoef[]={0.5,1};
+            transferToolDamageCoef=1;
+        };
+        class ObtainedGuts
+        {
+            item="SmallGuts";
+            count=0;
+            quantityMinMaxCoef[]={0.5,0.80000001};
+        };
+        class ObtainedBones
+        {
+            item="Bone";
+            count=1;
+            quantityMinMaxCoef[]={0.2,0.30000001};
+            transferToolDamageCoef=1;
+        };
+    };
+};
