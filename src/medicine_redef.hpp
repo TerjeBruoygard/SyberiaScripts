@@ -43,6 +43,11 @@ class TetracyclineAntibiotics: Edible_Base
     scope=0;
 };
 
+class AntiChemInjector: Inventory_Base
+{
+    scope=0;
+};
+
 class BandageDressing: Inventory_Base
 {
     medBloodStop=2;
