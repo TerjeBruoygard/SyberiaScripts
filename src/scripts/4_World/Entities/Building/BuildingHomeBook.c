@@ -1,3 +1,0 @@
-class BuildingHomeBook extends BuildingElement
-{
-};

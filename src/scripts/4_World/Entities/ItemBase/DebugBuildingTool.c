@@ -116,18 +116,6 @@ class DebugBuildingTool : ItemBase
 				vector bbend = GetGame().ConfigGetVector(livespacePath + " bboxEnd");
 				DrawBBox(bbstart, bbend, m_previewShapes);
 				
-				vector homeBookPos = house.ModelToWorld(GetGame().ConfigGetVector(livespacePath + " homeBookPos"));
-				DrawObjectLine(homeBookPos, m_previewShapes);
-				
-				int doorId = 0;
-				while ( GetGame().ConfigIsExisting(livespacePath + " Door" + doorId) )
-				{
-					string doorPath = livespacePath + " Door" + doorId;
-					vector doorPos = house.ModelToWorld(GetGame().ConfigGetVector(doorPath + " pos"));
-					DrawObjectLine(doorPos, m_previewShapes);
-					doorId = doorId + 1;
-				}
-				
 				livespaceId = livespaceId + 1;
 			}
 		}
@@ -207,7 +195,7 @@ class DebugBuildingTool : ItemBase
 		GetGame().CopyToClipboard(doorIndex.ToString());
 	}
 	
-	void GetElementID(BuildingElement element)
+	/*void GetElementID(BuildingElement element)
 	{
 		int result = -1;
 		if (element)
@@ -225,7 +213,7 @@ class DebugBuildingTool : ItemBase
 		}
 		
 		GetGame().CopyToClipboard( result.ToString() );
-	}
+	}*/
 	
 	void Ruler(vector pos)
 	{
@@ -266,7 +254,7 @@ class DebugBuildingTool : ItemBase
 		}
 	}
 	
-	void UpgradeElement(BuildingLeveledElement element)
+	void UpgradeElement(BuildingLivespace livespace, int componentId)
 	{
 	
 	}
