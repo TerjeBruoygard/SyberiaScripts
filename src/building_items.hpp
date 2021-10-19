@@ -88,4 +88,62 @@ class Land_Barn_Wood2_Livespace0: BuildingLivespace
             soundOpenABit="doorWoodNolatchOpenABit";
         };
     };
+    class DamageSystem
+    {
+        class GlobalHealth
+        {
+            class Health
+            {
+                hitpoints=1000;
+            };
+        };
+        class GlobalArmor
+        {
+            class Projectile
+            {
+                class Health
+                {
+                    damage=0;
+                };
+                class Blood
+                {
+                    damage=0;
+                };
+                class Shock
+                {
+                    damage=0;
+                };
+            };
+            class Melee
+            {
+                class Health
+                {
+                    damage=0;
+                };
+                class Blood
+                {
+                    damage=0;
+                };
+                class Shock
+                {
+                    damage=0;
+                };
+            };
+            class FragGrenade
+            {
+                class Health
+                {
+                    damage=0;
+                };
+                class Blood
+                {
+                    damage=0;
+                };
+                class Shock
+                {
+                    damage=0;
+                };
+            };
+        };
+    };
 };

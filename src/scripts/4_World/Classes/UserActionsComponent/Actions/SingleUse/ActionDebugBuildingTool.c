@@ -344,17 +344,20 @@ class ActionDebugBuildingToolElementID extends ActionSingleUseBase
 		if ( !target.GetObject() )
 			return false;
 		
-		//BuildingElement element = BuildingElement.Cast(target.GetObject());
-		//if ( !element )
-		//	return false;
+		if ( !target.GetObject().IsInherited(BuildingLivespace) )
+			return false;
 
-		return false;
+		int componentIndex = target.GetComponentIndex();
+		if ( componentIndex == -1 )
+			return false;
+
+		return true;
 	}
 	
-	override void OnExecuteClient( ActionData action_data )
+	override void OnExecuteServer( ActionData action_data )
 	{
-		//DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
-		//if (dbt) dbt.GetElementID(BuildingElement.Cast(action_data.m_Target.GetObject()));
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		if (dbt) dbt.GetElementID(BuildingLivespace.Cast(action_data.m_Target.GetObject()), action_data.m_Target.GetComponentIndex());
 	}
 };
 

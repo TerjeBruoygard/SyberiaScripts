@@ -195,25 +195,24 @@ class DebugBuildingTool : ItemBase
 		GetGame().CopyToClipboard(doorIndex.ToString());
 	}
 	
-	/*void GetElementID(BuildingElement element)
+	void GetElementID(BuildingLivespace livespace, int componentId)
 	{
-		int result = -1;
-		if (element)
+		TStringArray names = new TStringArray;
+		livespace.GetActionComponentNameList(componentId, names);
+		
+		string result = "";
+		for (int i = 0; i < names.Count(); i++)
 		{
-			if (element.IsInherited(BuildingDoorBase))
+			if (i > 0)
 			{
-				BuildingDoorBase door = BuildingDoorBase.Cast( element );
-				result = door.GetDoorId();
-			}	
-			else if (element.IsInherited(BuildingWindowBase))
-			{
-				BuildingWindowBase window = BuildingWindowBase.Cast( element );
-				result = window.GetWindowId();
+				result = result + ", ";
 			}
+			
+			result = result + names[i];
 		}
 		
-		GetGame().CopyToClipboard( result.ToString() );
-	}*/
+		GetGame().CopyToClipboard( result );
+	}
 	
 	void Ruler(vector pos)
 	{
@@ -254,7 +253,7 @@ class DebugBuildingTool : ItemBase
 		}
 	}
 	
-	void UpgradeElement(BuildingLivespace livespace, int componentId)
+	void UpgradeElement(BuildingLivespace livespace, int componentIndex)
 	{
 	
 	}
