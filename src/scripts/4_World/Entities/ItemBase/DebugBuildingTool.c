@@ -189,9 +189,8 @@ class DebugBuildingTool : ItemBase
 		GetGame().CopyToClipboard(yaw.ToString());
 	}
 	
-	void GetDoorID(int componentIndex)
+	void GetDoorID(int doorIndex)
 	{
-		int doorIndex = m_linkedHouse.GetDoorIndex(componentIndex);
 		GetGame().CopyToClipboard(doorIndex.ToString());
 	}
 	

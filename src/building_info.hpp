@@ -162,28 +162,28 @@ class Land_Barn_Wood2
         bboxStart[] = {-100, -100, -100}; // Bounding box min
         bboxEnd[] = {100, 100, 100}; // Bounding box max
         classname = "Land_Barn_Wood2_Livespace0"; // Classname of livespace object
-        offset[] = { -0.487305, -3.10001, -0.00976563 }; // Livespace object offset on spawn
+        offset[] = { -0.487305, -3.10001, 0.00976563 }; // Livespace object offset on spawn
         homebook = "homebook";
         class Door0
         {
-            linkedDoorIds[] = { 2, 3 }; // ID of vanilla house doors. Empty if not exist.
-            outerDoor = 1; // Is door from house to outside world
-            levels[] = { "d12_l1", "d12_l2", "d12_l3" }; // Selection in p3d relative to this door for each level
-            components[] = { "doors1", "doors2" }; // Components in p3d relative to this door
-        };
-        class Door1
-        {
+            selfDoorId = 0; // ID of this door of livespace. (Check by DebugBuildingTool)
             linkedDoorIds[] = { 0, 1 }; // ID of vanilla house doors. Empty if not exist.
             outerDoor = 1; // Is door from house to outside world
             levels[] = { "d34_l1", "d34_l2", "d34_l3" }; // Selection in p3d relative to this door for each level
-            components[] = { "doors3", "doors4" }; // Components in p3d relative to this door
+        };
+        class Door1
+        {
+            selfDoorId = 1; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 2, 3 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            levels[] = { "d12_l1", "d12_l2", "d12_l3" }; // Selection in p3d relative to this door for each level
         };
         class Door2
         {
+            selfDoorId = 2; // ID of this door of livespace. (Check by DebugBuildingTool)
             linkedDoorIds[] = { 4 }; // ID of vanilla house doors. Empty if not exist.
             outerDoor = 1; // Is door from house to outside world
             levels[] = { "d5_l1", "d5_l2", "d5_l3" }; // Selection in p3d relative to this door for each level
-            components[] = { "doors5" }; // Components in p3d relative to this door
         };
         class Barricade0
         {

@@ -11,7 +11,6 @@ class BuildingLivespace extends BuildingSuper
 	protected ref array<int> m_doorLevels = new array<int>;
 	protected ref array<int> m_barricadeLevels = new array<int>;
 	protected ref array<string> m_simpleSelections = new array<string>;
-	protected ref map<string, int> m_actionComponents = new map<string, int>;
 	
 	static BuildingLivespace Find(House house, vector pos)
 	{
@@ -59,22 +58,6 @@ class BuildingLivespace extends BuildingSuper
 		super.EEInit();
 		
 		ConfigGetTextArray("simpleHiddenSelections", m_simpleSelections);
-		
-		int componentIndex = 0;
-		TStringArray componentNames = new TStringArray;
-		while ( GetActionComponentNameList(componentIndex, componentNames) != -1 )
-		{
-			foreach (string componentName : componentNames)
-			{
-				if (componentName.Length() > 0 && !m_actionComponents.Contains(componentName))
-				{
-					m_actionComponents.Insert(componentName, componentIndex);
-				}
-			}
-			
-			componentIndex = componentIndex + 1;
-			componentNames.Clear();
-		}
 		
 		if (GetGame().IsClient())
 		{
@@ -204,7 +187,6 @@ class BuildingLivespace extends BuildingSuper
 		delete m_doorLevels;
 		delete m_barricadeLevels;
 		delete m_simpleSelections;
-		delete m_actionComponents;
 		
 		if (m_data != null)
 		{
@@ -266,27 +248,25 @@ class LivespaceData
 
 class LivespaceDoorData
 {
+	int m_selfDoorId;
 	ref array<int> m_linkedDoorIds;
     bool m_outerDoor;
     ref array<string> m_levels;
-    ref array<string> m_components;
 	
 	void LivespaceDoorData(string configPath)
 	{
 		m_linkedDoorIds = new array<int>;
 		m_levels = new array<string>;
-		m_components = new array<string>;
+		m_selfDoorId = GetGame().ConfigGetInt(configPath + " selfDoorId");
 		m_outerDoor = GetGame().ConfigGetInt(configPath + " outerDoor") == 1;
 		GetGame().ConfigGetIntArray(configPath + " linkedDoorIds", m_linkedDoorIds);
 		GetGame().ConfigGetTextArray(configPath + " levels", m_levels);
-		GetGame().ConfigGetTextArray(configPath + " components", m_components);
 	}
 	
 	void ~LivespaceDoorData()
 	{
 		delete m_linkedDoorIds;
 		delete m_levels;
-		delete m_components;
 	}
 };
 
