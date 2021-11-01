@@ -90,6 +90,12 @@ class BuildingLivespace extends BuildingSuper
 				m_data = new LivespaceData(m_livespacePath);
 			}
 			
+			int marcSelectionId = FindSimpleHidenSelectionId("marc");
+			if (marcSelectionId != -1)
+			{
+				SetSimpleHiddenSelectionState(marcSelectionId, m_data.m_debug);
+			}
+			
 			SetupDoors();
 			SetupBarricades();
 			
@@ -202,6 +208,7 @@ class LivespaceData
 	string m_classname;
 	vector m_offset;
 	string m_homebook;
+	bool m_debug;
 	ref array<ref LivespaceDoorData> m_doors;
 	ref array<ref LivespaceBarricadeData> m_barricades;
 	
@@ -212,6 +219,7 @@ class LivespaceData
 		m_classname = GetGame().ConfigGetTextOut(configPath + " classname");
 		m_offset = GetGame().ConfigGetVector(configPath + " offset");
 		m_homebook = GetGame().ConfigGetTextOut(configPath + " homebook");
+		m_debug = (GetGame().ConfigGetInt(configPath + " debug") == 1);
 		
 		m_doors = new array<ref LivespaceDoorData>;
 		int doorId = 0;
