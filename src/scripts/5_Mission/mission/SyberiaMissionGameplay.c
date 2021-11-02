@@ -201,7 +201,7 @@ modded class MissionGameplay
 		}
 		
 		PPERequester_SybSleeping.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_SLEEPING)).SetSleepingEffect(sleepingValue);	
-		PPERequester_SybPSI.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PSI)).SetPsiEffect(player.m_zone != null && player.m_zone.m_psi > 0);
+		PPERequester_SybPSI.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PSI)).SetPsiEffect(player.IsInsidePsiZone());
 		
 		if (sleepingLevel == SyberiaSleepingLevel.SYBSL_ENERGED)
 		{

@@ -12,6 +12,46 @@ class BuildingLivespace extends BuildingSuper
 	protected ref array<int> m_barricadeLevels = new array<int>;
 	protected ref array<string> m_simpleSelections = new array<string>;
 	
+	static BuildingLivespace FindByVanillaDoorIndex(House house, int doorIndex)
+	{
+		BuildingLivespace result = null;
+		BuildingLivespace iter = null;
+		vector offset;
+		ref array<Object> objects = new array<Object>;
+		string configPath = "CfgBuildingInfo " + house.GetType();
+		int livespaceId = 0;
+		
+		while ( result == null && GetGame().ConfigIsExisting(configPath + " Livespace" + livespaceId) )
+		{
+			offset = GetGame().ConfigGetVector(configPath + " Livespace" + livespaceId + " offset");
+			offset = house.ModelToWorld(offset);
+			
+			objects.Clear();
+			GetGame().GetObjectsAtPosition3D(offset, 0.1, objects, NULL);
+			
+			foreach (Object obj : objects)
+			{
+				iter = BuildingLivespace.Cast(obj);
+				if (iter)
+				{
+					if (iter.m_ready && iter.GetHouse() == house)
+					{
+						if (iter.GetDoorIdByVanillaDoorId(doorIndex) != -1)
+						{
+							result = iter;
+							break;
+						}
+					}
+				}
+			}
+			
+			livespaceId = livespaceId + 1;
+		}
+		
+		delete objects;
+		return result;
+	}
+	
 	static BuildingLivespace Find(House house, vector pos)
 	{
 		BuildingLivespace result = null;
@@ -41,6 +81,10 @@ class BuildingLivespace extends BuildingSuper
 						{
 							result = iter;
 							break;
+						}
+						else
+						{
+							SybLog("WARNING! LIVESPACE POINT MISSING INTERSECTION WITH BBOX " + house.GetType());
 						}
 					}
 				}
@@ -174,12 +218,12 @@ class BuildingLivespace extends BuildingSuper
 		if (!m_ready) return -1;
 		if (id == -1) return -1;
 		
-		foreach (ref LivespaceDoorData doorData : m_data.m_doors)
+		for (int i = 0; i < m_data.m_doors.Count(); i++)
 		{
-			int equalId = doorData.m_linkedDoorIds.Find(id);			
-			if (equalId != -1)
+			ref LivespaceDoorData doorData = m_data.m_doors[i];	
+			if (doorData.m_linkedDoorIds.Find(id) != -1)
 			{
-				return doorData.m_linkedDoorIds[equalId];
+				return i;
 			}
 		}
 		

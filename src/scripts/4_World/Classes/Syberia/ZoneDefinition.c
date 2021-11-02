@@ -16,3 +16,15 @@ class ZoneDefinition
     float m_gas;
 	float m_spawnChance;
 };
+
+class ZoneImplementation
+{
+	ref ZoneDefinition m_zone;
+	float m_zoneLeaveTimer;
+	
+	void ZoneImplementation(ref ZoneDefinition zone)
+	{
+		m_zone = zone;
+		m_zoneLeaveTimer = 0;
+	}
+};

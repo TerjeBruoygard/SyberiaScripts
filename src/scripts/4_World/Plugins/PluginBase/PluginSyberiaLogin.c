@@ -220,7 +220,7 @@ class PluginSyberiaLogin extends PluginBase
 	
 	void OnCurrentZoneSync(ref ParamsReadContext ctx, ref PlayerIdentity sender)
 	{
-		Param1<ref ZoneDefinition> clientData;
+		Param1<ref array<ref ZoneImplementation>> clientData;
 		if ( !ctx.Read( clientData ) ) return;	
 		
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());		
