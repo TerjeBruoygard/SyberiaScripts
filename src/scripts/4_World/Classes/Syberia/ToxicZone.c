@@ -76,7 +76,10 @@ class ToxicZoneView
 	{
 		foreach (Particle p : m_particles)
 		{
-			p.Stop();
+			if (p != null)
+			{
+				p.Stop();
+			}
 		}
 		m_particles.Clear();
 	}
