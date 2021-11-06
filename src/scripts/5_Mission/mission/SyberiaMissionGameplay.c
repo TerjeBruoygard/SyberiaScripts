@@ -118,7 +118,7 @@ modded class MissionGameplay
 		super.OnUpdate(timeslice);
 				
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
-		if (player)
+		if (player && player.GetSybStats())
 		{
 			if (m_toxicZonesView)
 			{
@@ -271,6 +271,11 @@ modded class MissionGameplay
 		{
 			m_isPveIntruderLast = true;
 			ShowScreenMessage("#syb_pve_intrude", 10);
+		}
+		
+		if (!player.GetSybStats().m_isPveIntruder && m_isPveIntruderLast)
+		{
+			m_isPveIntruderLast = false;
 		}
 	}
 	
