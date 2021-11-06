@@ -69,7 +69,7 @@ modded class DayZPlayerImplement
 		PlayerBase player = PlayerBase.Cast(this);
 		if (player)
 		{
-			m_soundWaveMasterVolume = player.m_skillsStealthStepVolume * 2;
+			m_soundWaveMasterVolume = player.GetSybStats().m_skillsStealthStepVolume * 2;
 		}
 		
 		super.OnStepEvent(pEventType, pUserString, pUserInt);
@@ -83,26 +83,26 @@ modded class DayZPlayerImplement
 		{
 			if (pEventType == "SoundVoice")
 			{
-				m_soundWaveMasterVolume = player.m_skillsStealthVoiceVolume * 2;
+				m_soundWaveMasterVolume = player.GetSybStats().m_skillsStealthVoiceVolume * 2;
 			}
 			else if (pEventType == "Sound")
 			{
 				if ( pUserInt >= 400 && pUserInt <= 405 )
 				{
-					m_soundWaveMasterVolume = player.m_skillsStealthWeaponsVolume * 2;
+					m_soundWaveMasterVolume = player.GetSybStats().m_skillsStealthWeaponsVolume * 2;
 				}
 				else if ( pUserInt >= 250 && pUserInt < 270 )
 				{
-					m_soundWaveMasterVolume = player.m_skillsStealthWeaponsVolume * 2;
+					m_soundWaveMasterVolume = player.GetSybStats().m_skillsStealthWeaponsVolume * 2;
 				}
 				else if ( pUserInt == 893 || pUserInt == 1201 || pUserInt == 798 || pUserInt == 1200 )
 				{
-					m_soundWaveMasterVolume = player.m_skillsStealthWeaponsVolume * 2;
+					m_soundWaveMasterVolume = player.GetSybStats().m_skillsStealthWeaponsVolume * 2;
 				}
 			}
 			else if (pEventType == "SoundAttachment" || pEventType == "SoundWeapon")
 			{
-				m_soundWaveMasterVolume = player.m_skillsStealthEquipmentVolume * 3;
+				m_soundWaveMasterVolume = player.GetSybStats().m_skillsStealthEquipmentVolume * 3;
 			}
 		}
 		

@@ -3,7 +3,7 @@ class ActionUseSalveBase: ActionContinuousBase
 	void ApplyUseSalve( ItemBase item, PlayerBase player, bool self) {}
 	bool ConditionUseSalve( ItemBase item, PlayerBase player, bool self)
 	{
-		return player.m_hematomaHits > 0;
+		return player.GetSybStats().m_hematomaHits > 0;
 	}
 	
 	override string ActionBlockerText( PlayerBase player, ActionTarget target, ItemBase item )
