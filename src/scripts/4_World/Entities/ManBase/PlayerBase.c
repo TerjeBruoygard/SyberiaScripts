@@ -447,4 +447,48 @@ modded class PlayerBase
 			GetGame().GetMission().GetHud().ShowHudUI( true );
 		}
 	}
+	
+	override void OnCommandVehicleStart()
+	{
+		super.OnCommandVehicleStart();
+		TryHideShoulders(true);
+	}
+	
+	override void OnCommandVehicleFinish()
+	{
+		super.OnCommandVehicleFinish();
+		TryHideShoulders(false);
+	}
+	
+	void TryHideShoulders(bool state)
+	{
+		EntityAI weaponMelee = GetItemOnSlot("Melee");
+		EntityAI weaponShoulder = GetItemOnSlot("Shoulder");
+		
+		if (weaponMelee)
+		{
+			if (state)
+			{
+				SetSimpleHiddenSelectionState(DayZPlayer.SIMPLE_SELECTION_MELEE_RIFLE,false);
+				SetSimpleHiddenSelectionState(DayZPlayer.SIMPLE_SELECTION_MELEE_MELEE,false);
+			}
+			else
+			{
+				UpdateShoulderProxyVisibility(weaponMelee, "Melee");
+			}
+		}
+		
+		if (weaponShoulder)
+		{
+			if (state)
+			{
+				SetSimpleHiddenSelectionState(SIMPLE_SELECTION_SHOULDER_RIFLE,false);
+				SetSimpleHiddenSelectionState(SIMPLE_SELECTION_SHOULDER_MELEE,false);
+			}
+			else
+			{
+				UpdateShoulderProxyVisibility(weaponShoulder, "Shoulder");
+			}
+		}
+	}
 };

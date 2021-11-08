@@ -42,3 +42,43 @@ class MeleeFist_Heavy: MeleeFist
         };
     };
 };
+
+class MeleeBrassKnuckles: MeleeDamage
+{
+    class DamageApplied
+    {
+        type="Melee";
+        class Health
+        {
+            damage=5;
+        };
+        class Blood
+        {
+            damage=0;
+        };
+        class Shock
+        {
+            damage=10;
+        };
+    };
+};
+
+class MeleeBrassKnuckles_Heavy: MeleeBrassKnuckles
+{
+    class DamageApplied
+    {
+        type="Melee";
+        class Health
+        {
+            damage=10;
+        };
+        class Blood
+        {
+            damage=0;
+        };
+        class Shock
+        {
+            damage=15;
+        };
+    };
+};
