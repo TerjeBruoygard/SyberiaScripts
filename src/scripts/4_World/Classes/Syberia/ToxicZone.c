@@ -6,8 +6,8 @@ class ToxicZone
 
 class ToxicZoneView
 {
-	static const float SPAWN_PARTICLE_DISTANCE = 600;
-	static const float DESPAWN_PARTICLE_DISTANCE = 650;
+	static const float SPAWN_PARTICLE_DISTANCE = 1000;
+	static const float DESPAWN_PARTICLE_DISTANCE = 1100;
 	static const float SMOKE_EFFECT_SIZE = 25;
 	
 	private ref array<Particle> m_particles;

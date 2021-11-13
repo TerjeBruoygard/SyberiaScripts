@@ -268,8 +268,7 @@ class PerksCollection
         //Register(SyberiaPerkType.SYBPERK_STEALTH_MASK_ITEMS).AddUnlockValue(75, 1);
         // 70 and 80 levels are empty and reserver for future perks
 		
-        
-        /*       
+      
         //
         // SURVIVAL
         //
@@ -289,7 +288,8 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_START_LOADOUT).AddUnlockValue(100, 1);
 		// Make Traps with grenades
         
-        
+		
+        /*
         //
         // FARMING
         //
