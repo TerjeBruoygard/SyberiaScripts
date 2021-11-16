@@ -59,7 +59,7 @@ enum SyberiaPerkType
     SYBPERK_STEALTH_CAT_VISSION = 4004,
     SYBPERK_STEALTH_STEPS_SOUND_DEC = 4005,
     SYBPERK_STEALTH_KNIFE_CRIT = 4006,
-    SYBPERK_STEALTH_MASK_ITEMS = 4007,
+    SYBPERK_STEALTH_START_LOADOUT = 4007,
 	SYBPERK_STEALTH_TWOHANDED_CRIT = 4008,
     
     SYBPERK_SURVIVAL_MAKEFIRE_INC = 5000,
@@ -70,7 +70,7 @@ enum SyberiaPerkType
     SYBPERK_SURVIVAL_CUTHIT_LEGS_DEC = 5005,
     SYBPERK_SURVIVAL_TOOLS_DEGRADATION_DEC = 5006,
     SYBPERK_SURVIVAL_DIG_ITEMS = 5007,
-    SYBPERK_SURVIVAL_HEAT_WATER_IN_FIRE = 5008,
+    SYBPERK_SURVIVAL_KEEPING_FIRE = 5008,
     SYBPERK_SURVIVAL_FROST_RESIST = 5009,
     SYBPERK_SURVIVAL_START_LOADOUT = 5010,
     
@@ -265,8 +265,8 @@ class PerksCollection
 		
 		Register(SyberiaPerkType.SYBPERK_STEALTH_TWOHANDED_CRIT).AddUnlockValue(25, 1);
 		Register(SyberiaPerkType.SYBPERK_STEALTH_KNIFE_CRIT).AddUnlockValue(50, 1);
-        //Register(SyberiaPerkType.SYBPERK_STEALTH_MASK_ITEMS).AddUnlockValue(75, 1);
-        // 70 and 80 levels are empty and reserver for future perks
+        Register(SyberiaPerkType.SYBPERK_STEALTH_START_LOADOUT).AddUnlockValue(100, 1);
+        // 75, 70 and 80 levels are empty and reserver for future perks
 		
       
         //
@@ -275,16 +275,17 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_MAKEFIRE_INC, "%").AddUnlockValue(5, 10).AddUnlockValue(30, 20).AddUnlockValue(45, 30).AddUnlockValue(65, 40).AddUnlockValue(85, 50).AddUnlockValue(100, 80);
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_FROST_RESIST, "%").AddUnlockValue(5, 5).AddUnlockValue(30, 10).AddUnlockValue(45, 15).AddUnlockValue(65, 20).AddUnlockValue(85, 30).AddUnlockValue(100, 50);
 
-        Register(SyberiaPerkType.SYBPERK_SURVIVAL_CUTHIT_HANDS_DEC, "%").AddUnlockValue(15, 10).AddUnlockValue(35, 20).AddUnlockValue(55, 30).AddUnlockValue(70, 50).AddUnlockValue(90, 80);
-        Register(SyberiaPerkType.SYBPERK_SURVIVAL_CUTHIT_LEGS_DEC, "%").AddUnlockValue(15, 10).AddUnlockValue(35, 20).AddUnlockValue(55, 30).AddUnlockValue(70, 50).AddUnlockValue(90, 80);
+        Register(SyberiaPerkType.SYBPERK_SURVIVAL_CUTHIT_HANDS_DEC, "%").AddUnlockValue(15, 10).AddUnlockValue(35, 20).AddUnlockValue(55, 30).AddUnlockValue(70, 50).AddUnlockValue(90, 80).AddUnlockValue(100, 100);
+        Register(SyberiaPerkType.SYBPERK_SURVIVAL_CUTHIT_LEGS_DEC, "%").AddUnlockValue(15, 10).AddUnlockValue(35, 20).AddUnlockValue(55, 30).AddUnlockValue(70, 50).AddUnlockValue(90, 80).AddUnlockValue(100, 100);
         
-        Register(SyberiaPerkType.SYBPERK_SURVIVAL_TOOLS_DEGRADATION_DEC, "%").AddUnlockValue(20, 10).AddUnlockValue(40, 20).AddUnlockValue(60, 30).AddUnlockValue(80, 40).AddUnlockValue(95, 50);
-        
-        Register(SyberiaPerkType.SYBPERK_SURVIVAL_BERRIES_RESEARCH).AddUnlockValue(10, 1);
-        Register(SyberiaPerkType.SYBPERK_SURVIVAL_MUSHROOMS_RESEARCH).AddUnlockValue(10, 1);
+        Register(SyberiaPerkType.SYBPERK_SURVIVAL_TOOLS_DEGRADATION_DEC, " #syb_perk_info_times_longer").AddUnlockValue(40, 2).AddUnlockValue(60, 3).AddUnlockValue(80, 4).AddUnlockValue(100, 5);
+        Register(SyberiaPerkType.SYBPERK_SURVIVAL_KEEPING_FIRE, "%").AddUnlockValue(40, 10).AddUnlockValue(60, 25).AddUnlockValue(80, 50).AddUnlockValue(100, 75);
+		
+        //Register(SyberiaPerkType.SYBPERK_SURVIVAL_BERRIES_RESEARCH).AddUnlockValue(10, 1);
+        //Register(SyberiaPerkType.SYBPERK_SURVIVAL_MUSHROOMS_RESEARCH).AddUnlockValue(10, 1);
+		
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_HANDDRILL_USE).AddUnlockValue(25, 1);
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_DIG_ITEMS).AddUnlockValue(50, 1);
-        Register(SyberiaPerkType.SYBPERK_SURVIVAL_HEAT_WATER_IN_FIRE).AddUnlockValue(75, 1);
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_START_LOADOUT).AddUnlockValue(100, 1);
 		// Make Traps with grenades
         
