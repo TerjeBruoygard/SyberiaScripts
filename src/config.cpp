@@ -49,6 +49,7 @@ class CfgVehicles
     #include "sounds_emitters.hpp"
     #include "clothing_vests.hpp"
     #include "clothing_masks.hpp"
+    #include "clothing_helmets.hpp"
     #include "clothing_medical.hpp"
     #include "clothing_nbc.hpp"
     #include "building_items.hpp"
