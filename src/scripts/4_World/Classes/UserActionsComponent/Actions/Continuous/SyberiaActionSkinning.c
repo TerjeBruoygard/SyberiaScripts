@@ -25,12 +25,18 @@ modded class ActionSkinning
 		if (result)
 		{
 			AnimalBase animal = AnimalBase.Cast(target.GetObject());
-			if (animal.IsSkinned())
+			if (animal && !animal.IsSkinned())
 			{
-				return false;
+				return true;
+			}
+			
+			Edible_Base edibleBase = Edible_Base.Cast(target.GetObject());
+			if (edibleBase && edibleBase.CanBeSkinned() && !edibleBase.IsSkinned())
+			{
+				return true;
 			}
 		}
 		
-		return result;
+		return false;
 	}
 };

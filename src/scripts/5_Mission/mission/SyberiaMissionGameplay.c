@@ -202,9 +202,9 @@ modded class MissionGameplay
 		
 		SyberiaSleepingLevel sleepingLevel = player.GetSleepingProcessLevel();
 		float sleepingValue = Math.Clamp((int)sleepingLevel, 0, 1);
-		if (player.GetSleepingValue() == 0)
+		if (sleepingValue < 0.8 && player.GetSleepingValue() < 1)
 		{
-			sleepingValue = 1;
+			sleepingValue = 0.8;
 		}
 		
 		PPERequester_SybSleeping.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_SLEEPING)).SetSleepingEffect(sleepingValue);	
