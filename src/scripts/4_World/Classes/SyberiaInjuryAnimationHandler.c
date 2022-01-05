@@ -8,6 +8,7 @@ modded class InjuryAnimationHandler
 		eInjuryHandlerLevels overdoseState = CalculateOverdoseState();
 		eInjuryHandlerLevels waterEnergy = CalculateLowEnergyWaterState();
 		eInjuryHandlerLevels radiationSickness = CalculateRadiationState();
+		eInjuryHandlerLevels zVirusSickness = CalculateVirusZState();
 		
 		if (InjuryLevelToValue(result) < InjuryLevelToValue(sleepingState))
 		{
@@ -32,6 +33,11 @@ modded class InjuryAnimationHandler
 		if (InjuryLevelToValue(result) < InjuryLevelToValue(radiationSickness))
 		{
 			result = radiationSickness;
+		}
+		
+		if (InjuryLevelToValue(result) < InjuryLevelToValue(zVirusSickness))
+		{
+			result = zVirusSickness;
 		}
 		
 		if (m_Player.GetSybStats().m_concussionHit && InjuryLevelToValue(result) < 2)
@@ -153,6 +159,16 @@ modded class InjuryAnimationHandler
 		if (painLevel == 3)
 		{
 			return eInjuryHandlerLevels.RUINED;
+		}
+		
+		return eInjuryHandlerLevels.PRISTINE;
+	}
+	
+	private eInjuryHandlerLevels CalculateVirusZState()
+	{
+		if (m_Player.HasVisibleZVirus())
+		{
+			return eInjuryHandlerLevels.BADLY_DAMAGED;
 		}
 		
 		return eInjuryHandlerLevels.PRISTINE;
