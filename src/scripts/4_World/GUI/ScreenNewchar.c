@@ -99,18 +99,15 @@ class ScreenNewchar extends ScreenBase
 	{
 		bool isMale = (m_genderSelector.GetCurrentItem() == 0);
 		int faceId = m_faceSelector.GetCurrentItem();
-		string prefix = "";
-		
+
 		ref array<ref CharacterMetadata> faces;
 		if (isMale) 
 		{
 			faces = m_metadata.m_maleCharsMetadata;
-			prefix = "m";
 		}
 		else 
 		{
 			faces = m_metadata.m_femaleCharsMetadata;
-			prefix = "f";
 		}
 		
 		if (faceId >= faces.Count())
@@ -125,8 +122,8 @@ class ScreenNewchar extends ScreenBase
 			m_faceSelector.AddItem("" + visuaId);
 		}
 		
-		string texPath = "SyberiaScripts\\data\\faces\\" + prefix + faceId + ".paa";
-		m_playerPreview.LoadImageFile(0, texPath);
+		ref CharacterMetadata currentFace = faces.Get(faceId);
+		m_playerPreview.LoadImageFile(0, currentFace.m_facelogo);
 		m_faceSelector.SetCurrentItem(faceId);
 	}
 	
