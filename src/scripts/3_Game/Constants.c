@@ -1,6 +1,6 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
 const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.49g";
+const string Syberia_Version = "OPEN BETA 0.49h";
 
 void SybLog(string message)
 {
@@ -196,11 +196,6 @@ class SyberiaConfig
 	float m_mindstateLevel3;
 	float m_mindstateLevel2;
 	
-	// Wetness
-	float m_clothingDrenchedHeatDrain;
-	float m_clothingWetHeatDrain;
-	float m_temperatureHeightReduction;
-
 	protected void ConfigGetTextArray(string path, out array<string> result, int count)
 	{
 		if (!GetGame().ConfigIsExisting(path))
@@ -249,9 +244,6 @@ class SyberiaConfig
 	
 	void Init()
 	{
-		string worldName;
-		GetGame().GetWorldName(worldName);
-		
 		// Auth
 		ConfigGetTextArray("CfgSyberia AuthSystem allowedLettersInName", m_allowedLettersInName, -1);
 		
@@ -268,11 +260,6 @@ class SyberiaConfig
 	    m_mindstateLevel4 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel4");
 	    m_mindstateLevel3 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel3");
 	    m_mindstateLevel2 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel2");
-		
-		// Wetness
-		m_clothingDrenchedHeatDrain = ConfigGetFloat("CfgWorlds " + worldName + " clothingDrenchedHeatDrain");
-		m_clothingWetHeatDrain = ConfigGetFloat("CfgWorlds " + worldName + " clothingWetHeatDrain");
-		m_temperatureHeightReduction = ConfigGetFloat("CfgWorlds " + worldName + " temperatureHeightReduction");
 	}
 };
 
@@ -297,7 +284,7 @@ modded class PlayerConstants
 	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.05;
 	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.003;
 	
-	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC = -2;
+	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC = -0.5;
 	static const float BLOOD_REGEN_RATE_PER_SEC	= 0.05; //base amount of blood regenerated per second 
 	
 	static const float LOW_ENERGY_DAMAGE_PER_SEC			= 0.03;	//health loss per second while low on energy
