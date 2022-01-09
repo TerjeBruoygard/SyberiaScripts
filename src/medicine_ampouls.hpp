@@ -282,8 +282,10 @@ class AmpouleDiklofenak : SyberiaMedicineAmpoule
     scope=2;
     displayName="#syb_diklofenak_name";
     model="\dz\gear\medical\injectionvial.p3d";
-    medStomatchhealLevel=2;
-    medStomatchhealTimeSec=1000;
+    medAntibioticLevel=2;
+    medAntibioticsTimeSec=1100;
+    medAntibioticsStrength=2.5;
+    overdosedIncrement=0.4;
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_co.paa" };
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");

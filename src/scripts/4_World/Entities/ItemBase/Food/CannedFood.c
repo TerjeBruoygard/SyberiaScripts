@@ -1,15 +1,3 @@
-modded class DogFoodCan_Opened
-{
-	override void EEInit()
-    {
-        super.EEInit();
-        if (GetGame().IsServer() && Math.RandomFloat01() < 0.5)
-        {
-            InsertAgent(eAgents.FOOD_POISON, 1);
-        }
-    }
-};
-
 class BakedBeansCan_OpenedRotten : BakedBeansCan_Opened
 {
     override void EEInit()
