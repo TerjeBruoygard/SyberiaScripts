@@ -7,18 +7,16 @@ modded class Hologram
         if (m_Player.IsBuildingModeBlocked())
             SetIsColliding( true );
     }
-    
-	string GetProjectionName(ItemBase item)
-	{
-		if( !item )
-			return "";
-		
+	
+	override string ProjectionBasedOnParent()
+    {
 		string holoName;
-		if (GetGame().ConfigGetText("CfgVehicles " + item.GetType() + " hologramName", holoName))
+        ItemBase item = ItemBase.Cast(m_Player.GetHumanInventory().GetEntityInHands());
+		if (item && GetGame().ConfigGetText("CfgVehicles " + item.GetType() + " hologramName", holoName))
 		{
 			return holoName;
-		}
+		} 
 		
-		return super.GetProjectionName(item);
+		return super.ProjectionBasedOnParent();
 	}
 };

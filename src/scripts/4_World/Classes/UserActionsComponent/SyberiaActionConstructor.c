@@ -12,8 +12,6 @@ modded class ActionConstructor
 		actions.Insert(ActionSurgerySelf);
 		actions.Insert(ActionUseSalveTarget);
 		actions.Insert(ActionUseSalveSelf);
-		actions.Insert(SyberiaActionPlacementPreview);
-		actions.Insert(SyberiaActionPlacementApply);
 		actions.Insert(ActionOpenPDA);
 		actions.Insert(ActionCheckName);
 		actions.Insert(ActionSayName);
