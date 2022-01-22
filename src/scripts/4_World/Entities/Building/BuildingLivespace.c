@@ -159,6 +159,11 @@ class BuildingLivespace extends BuildingSuper
 		return House.Cast( GetGame().GetObjectByNetworkId(m_houseNetId1, m_houseNetId2) );
 	}
 	
+	int GetLivespaceId()
+	{
+		return m_livespaceId;
+	}
+	
 	int FindSimpleHidenSelectionId(string name)
 	{
 		return m_simpleSelections.Find(name);
