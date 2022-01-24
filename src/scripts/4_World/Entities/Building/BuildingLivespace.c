@@ -205,6 +205,69 @@ class BuildingLivespace extends BuildingSuper
 			delete m_data;
 		}
 	}
+	
+	static BuildingLivespace FindLivespace(House house, vector pos)
+	{
+		BuildingLivespace result = null;
+		BuildingLivespace iter = null;
+		vector localPos = house.WorldToModel(pos);
+		vector offset;
+		array<Object> objects = new array<Object>;
+		string configPath = "CfgBuildingInfo " + house.GetType();
+		int livespaceId = 0;
+		
+		while ( result == null && GetGame().ConfigIsExisting(configPath + " Livespace" + livespaceId) )
+		{
+			offset = GetGame().ConfigGetVector(configPath + " Livespace" + livespaceId + " offset");
+			offset = house.ModelToWorld(offset);
+			
+			objects.Clear();
+			GetGame().GetObjectsAtPosition3D(offset, 0.1, objects, NULL);
+			
+			foreach (Object obj : objects)
+			{
+				iter = BuildingLivespace.Cast(obj);
+				if (iter)
+				{
+					if (iter.m_ready && iter.GetHouse() == house)
+					{
+						if (GameHelpers.IntersectBBox(iter.m_data.m_bboxStart, iter.m_data.m_bboxEnd, localPos))
+						{
+							result = iter;
+							break;
+						}
+					}
+				}
+			}
+			
+			livespaceId = livespaceId + 1;
+		}
+		
+		return result;
+	}
+	
+	static int CheckPossibleLivespaceId(House house, vector pos)
+	{
+		vector localPos = house.WorldToModel(pos);
+		vector bbMin, bbMax;
+		string configPath = "CfgBuildingInfo " + house.GetType();
+		int livespaceId = 0;
+		
+		while ( GetGame().ConfigIsExisting(configPath + " Livespace" + livespaceId) )
+		{
+			bbMin = GetGame().ConfigGetVector(configPath + " Livespace" + livespaceId + " bboxStart");
+			bbMax = GetGame().ConfigGetVector(configPath + " Livespace" + livespaceId + " bboxEnd");
+			
+			if (GameHelpers.IntersectBBox(bbMin, bbMax, localPos))
+			{
+				return livespaceId;
+			}
+			
+			livespaceId = livespaceId + 1;
+		}
+		
+		return -1;
+	}
 };
 
 class LivespaceSynchData

@@ -32,5 +32,6 @@ modded class ActionConstructor
 		actions.Insert(ActionTraderInteract);
         actions.Insert(ActionWashFruitsWell);
 		actions.Insert(ActionWashFruitsWater);
+        actions.Insert(ActionHomebookClaimOwnership);
 	}
 };
