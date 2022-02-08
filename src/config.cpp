@@ -92,7 +92,7 @@ class CfgSlots
 
 class CfgBuildingInfo
 {
-    #include "building_info.hpp"
+
 };
 
 #include "map_settings.hpp"
