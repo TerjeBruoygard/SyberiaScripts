@@ -342,6 +342,7 @@ modded class MissionGameplay
 			if (pluginSyberiaLogin)
 			{
 				pluginSyberiaLogin.CloseStethoscopeMenu();
+				pluginSyberiaLogin.CloseHomebookMenu();
 			}
 			
 			Class.CastTo(pluginSyberiaTrader, GetPlugin(PluginTrader));

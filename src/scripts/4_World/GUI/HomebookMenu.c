@@ -2,10 +2,13 @@ class HomebookMenu extends UIScriptedMenu
 {
 	bool m_active = false;
 	bool m_dirty = false;
+	BuildingLivespace m_livespace;
+	ref LivespaceHomebookData m_data;
 
-	void HomebookMenu()
+	void HomebookMenu(BuildingLivespace livespace, ref LivespaceHomebookData data)
 	{
-
+		m_livespace = livespace;
+		m_data = data;
 	}
 	
 	void ~HomebookMenu()

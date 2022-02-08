@@ -23,31 +23,21 @@ class ActionOpenHomebook: ActionInteractBase
 		if (GetGame().IsServer())
 			return true;
 		
-		SybLog("ActionOpenHomebook 1");
-		
 		if (GetGame().GetUIManager().GetMenu() != NULL) return false;
 		if (!player.CanOpenSyberiaUI()) return false;				
 		if (!target) return false;
 		if (!target.GetObject()) return false;
 		
-		SybLog("ActionOpenHomebook 2");
-		
 		BuildingLivespace livepsace;
 		if (!BuildingLivespace.CastTo(livepsace, target.GetObject())) return false;
 		if (!livepsace.IsReady()) return false;
 		
-		SybLog("ActionOpenHomebook 3");
-		
 		array<string> selections = new array<string>;
 		livepsace.GetActionComponentNameList(target.GetComponentIndex(), selections);
-		
-		SybLog("ActionOpenHomebook 4: " + selections.Count() + " : " + target.GetComponentIndex());
 		for (int s = 0; s < selections.Count(); s++)
 		{
-			SybLog("ActionOpenHomebook 5: " + selections[s]);
 			if ( selections[s] == livepsace.GetData().m_homebook )
 			{
-				SybLog("ActionOpenHomebook 6 OK");
 				return IsInReach(player, target, UAMaxDistances.DEFAULT);
 			}
 		}

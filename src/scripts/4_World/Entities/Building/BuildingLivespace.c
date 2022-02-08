@@ -285,6 +285,12 @@ class LivespaceSynchData
 	}
 };
 
+class LivespaceHomebookData
+{
+	ref array<string> m_owners;
+	ref array<string> m_members;
+};
+
 class LivespaceData
 {
 	vector m_bboxStart;
