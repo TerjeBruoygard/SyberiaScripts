@@ -16,7 +16,7 @@ class SybCustomRecipe extends RecipeBase
 			m_IngredientAddHealth[i] = data.m_IngredientAddHealth[i];
 			m_IngredientSetHealth[i] = data.m_IngredientSetHealth[i];
 			m_IngredientAddQuantity[i] = data.m_IngredientAddQuantity[i];
-			m_IngredientDestroy[i] = (data.m_IngredientDestroy[i] == 1);
+			m_IngredientDestroy[i] = data.m_IngredientDestroy[i];
 			m_IngredientUseSoftSkills[i] = false;
 			
 			ref array<string> tempArray = data.m_Ingredients[i];
@@ -29,7 +29,7 @@ class SybCustomRecipe extends RecipeBase
 		for (int r = 0; r < data.m_ItemsToCreate.Count() && r < MAXIMUM_RESULTS; r++)
 		{
 			AddResult(data.m_ItemsToCreate[r]);
-			m_ResultSetFullQuantity[r] = (data.m_ResultSetFullQuantity[r] == 1);
+			m_ResultSetFullQuantity[r] = data.m_ResultSetFullQuantity[r];
 			m_ResultSetQuantity[r] = data.m_ResultSetQuantity[r];
 			m_ResultSetHealth[r] = data.m_ResultSetHealth[r];
 			m_ResultInheritsHealth[r] = data.m_ResultInheritsHealth[r];
