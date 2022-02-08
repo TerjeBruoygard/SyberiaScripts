@@ -1,0 +1,352 @@
+FrameWidgetClass rootFrame {
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass BackgroundPanel {
+   ignorepointer 1
+   position 0 0
+   size 2048 1024
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   scaled 1
+   image0 "SyberiaScripts/data/gui/Homebook/gui_background.paa"
+   mode blend
+   "src alpha" 1
+   "no wrap" 0
+   stretch 1
+   {
+    PanelWidgetClass Panel {
+     ignorepointer 1
+     color 0.098 0.098 0.098 0.7529
+     position 20 -15
+     size 1200 950
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      PanelWidgetClass MenuButtons {
+       ignorepointer 1
+       position 0 0
+       size 1 70
+       halign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 1
+       style blank
+       {
+        PanelWidgetClass MenuGeneralBackground {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.7843
+         position 0 0
+         size 0.25 1
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass MenuGeneralBtn {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            PanelWidgetClass PanelWidget0 {
+             ignorepointer 1
+             size 150 50
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             {
+              ImageWidgetClass ImageWidget0 {
+               ignorepointer 1
+               position 0 0
+               size 48 50
+               hexactpos 1
+               vexactpos 1
+               hexactsize 1
+               vexactsize 1
+               image0 "SyberiaScripts/data/gui/Homebook/icon_general.paa"
+               mode blend
+               "src alpha" 1
+               "no wrap" 0
+               stretch 1
+               "flip u" 0
+               filter 1
+               "Transition width" 0
+              }
+              TextWidgetClass TextWidget12 {
+               ignorepointer 1
+               size 1 1
+               halign right_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               text "GENERAL"
+               font "gui/fonts/etelkatextpro22"
+               "exact text" 1
+               "text halign" right
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass MenuDoorsBackground {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.7843
+         position 0.25 0
+         size 0.25 1
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass MenuDoorsBtn {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            PanelWidgetClass PanelWidget1 {
+             ignorepointer 1
+             size 130 50
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             {
+              ImageWidgetClass ImageWidget1 {
+               ignorepointer 1
+               position 0 0
+               size 48 50
+               hexactpos 1
+               vexactpos 1
+               hexactsize 1
+               vexactsize 1
+               image0 "SyberiaScripts/data/gui/Homebook/icon_door.paa"
+               mode blend
+               "src alpha" 1
+               "no wrap" 0
+               stretch 1
+               "flip u" 0
+               filter 1
+               "Transition width" 0
+              }
+              TextWidgetClass TextWidget10 {
+               ignorepointer 1
+               size 1 1
+               halign right_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               text "DOORS"
+               font "gui/fonts/etelkatextpro22"
+               "exact text" 1
+               "text halign" right
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass MenuBarricadesBackground {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.7843
+         position 0.5 0
+         size 0.25 1
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass MenuBarricadesBtn {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            PanelWidgetClass PanelWidget3 {
+             ignorepointer 1
+             size 180 50
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             {
+              ImageWidgetClass ImageWidget3 {
+               ignorepointer 1
+               position 0 0
+               size 48 50
+               hexactpos 1
+               vexactpos 1
+               hexactsize 1
+               vexactsize 1
+               image0 "SyberiaScripts/data/gui/Homebook/icon_guard.paa"
+               mode blend
+               "src alpha" 1
+               "no wrap" 0
+               stretch 1
+               "flip u" 0
+               filter 1
+               "Transition width" 0
+              }
+              TextWidgetClass TextWidget13 {
+               ignorepointer 1
+               size 1 1
+               halign right_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               text "BARRICADES"
+               font "gui/fonts/etelkatextpro22"
+               "exact text" 1
+               "text halign" right
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass MenuMembersBackground {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.7843
+         position 0.75 0
+         size 0.25 1
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass MenuMembersBtn {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            PanelWidgetClass PanelWidget2 {
+             ignorepointer 1
+             size 160 50
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             {
+              ImageWidgetClass ImageWidget2 {
+               ignorepointer 1
+               position 0 0
+               size 48 50
+               hexactpos 1
+               vexactpos 1
+               hexactsize 1
+               vexactsize 1
+               image0 "SyberiaScripts/data/gui/Homebook/icon_members.paa"
+               mode blend
+               "src alpha" 1
+               "no wrap" 0
+               stretch 1
+               "flip u" 0
+               filter 1
+               "Transition width" 0
+              }
+              TextWidgetClass TextWidget11 {
+               ignorepointer 1
+               size 1 1
+               halign right_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               text "MEMBERS"
+               font "gui/fonts/etelkatextpro22"
+               "exact text" 1
+               "text halign" right
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+      PanelWidgetClass ContentPanel {
+       ignorepointer 1
+       color 0.0549 0.0549 0.0549 0.8824
+       size 1 880
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        PanelWidgetClass ContentGeneral {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
