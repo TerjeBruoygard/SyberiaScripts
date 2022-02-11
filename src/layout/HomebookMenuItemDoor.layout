@@ -1,0 +1,83 @@
+FrameWidgetClass rootFrame {
+ size 400 60
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass ItemBackground {
+   ignorepointer 1
+   color 0.098 0.098 0.098 0.7843
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    ButtonWidgetClass ItemActionButton {
+     color 0.0627 0.0627 0.0627 0.3216
+     position 0 0
+     size 1 1
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style EmptyHighlight
+     {
+      ImageWidgetClass ItemIcon {
+       ignorepointer 1
+       position 10 5
+       size 50 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       image0 "SyberiaScripts/data/gui/Homebook/icon_door.paa"
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      TextWidgetClass ItemNameWidget {
+       ignorepointer 1
+       position 70 5
+       size 230 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "TEST ITEM NAME"
+       font "gui/fonts/etelkatextpro22"
+      }
+      TextWidgetClass ItemHealthWidget {
+       ignorepointer 1
+       position 20 35
+       size 150 20
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "50%"
+       font "gui/fonts/etelkatextpro16"
+       "text halign" right
+      }
+      TextWidgetClass ItemLevelWidget {
+       ignorepointer 1
+       position 70 35
+       size 150 20
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "50%"
+       font "gui/fonts/etelkatextpro16"
+      }
+     }
+    }
+   }
+  }
+ }
+}
