@@ -1,4 +1,4 @@
-class MeleeDamage;
+class MeleeDamage; 
 
 class MeleeFist: MeleeDamage
 {
