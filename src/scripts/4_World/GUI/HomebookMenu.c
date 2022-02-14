@@ -4,9 +4,12 @@ class HomebookMenu extends UIScriptedMenu
 	bool m_dirty = false;
 	ref array<string> m_tabsMapping;
 	int m_currentTab = 0;
+	int m_currentDoor = 0;
 	
-	ref ScrollWidget m_doorsListPanel;
+	ref ScrollWidget m_doorsListPanel, m_doorsItemsPanel;
 	ref array<ref Widget> m_doorWidgetsCache = new array<ref Widget>;
+	ref array<ref Widget> m_doorItemsWidgetsCache = new array<ref Widget>;
+	ref TextWidget m_doorsSelectedName, m_doorsSelectedState, m_doorsSelectedLevel, m_doorsSelectedHealth;
 	
 	BuildingLivespace m_livespace;
 	ref LivespaceHomebookData m_data;
@@ -24,6 +27,7 @@ class HomebookMenu extends UIScriptedMenu
 		player.GetInputController().SetDisabled(false);
 		delete m_tabsMapping;
 		delete m_doorWidgetsCache;
+		delete m_doorItemsWidgetsCache;
 	}
 
     override Widget Init()
@@ -36,6 +40,11 @@ class HomebookMenu extends UIScriptedMenu
 		m_tabsMapping.Insert("Members");
 		
 		m_doorsListPanel = ScrollWidget.Cast(layoutRoot.FindAnyWidget( "DoorsListPanel" ));
+		m_doorsSelectedName = TextWidget.Cast(layoutRoot.FindAnyWidget( "DoorsSelectedName" ));
+		m_doorsSelectedState = TextWidget.Cast(layoutRoot.FindAnyWidget( "DoorsSelectedState" ));
+		m_doorsSelectedLevel = TextWidget.Cast(layoutRoot.FindAnyWidget( "DoorsSelectedLevel" ));
+		m_doorsSelectedHealth = TextWidget.Cast(layoutRoot.FindAnyWidget( "DoorsSelectedHealth" ));
+		m_doorsItemsPanel = ScrollWidget.Cast(layoutRoot.FindAnyWidget( "DoorsItemsPanel" ));
 		
 		m_active = true;
 		m_dirty = true;
@@ -67,6 +76,10 @@ class HomebookMenu extends UIScriptedMenu
 			if (i == m_currentTab) {
 				buttonBack.SetColor(GetColorTabActive());
 				contentPanel.Show(true);
+				
+				if (name == "Doors") {
+					InitDoorsTab();
+				}
 			}
 			else {
 				buttonBack.SetColor(GetColorTabInactive());
@@ -75,20 +88,20 @@ class HomebookMenu extends UIScriptedMenu
 		}
 	}
 	
-	private void InitDoors()
+	private void InitDoorsTab()
 	{
 		foreach (ref Widget w1 : m_doorWidgetsCache)
 		{
 			w1.Unlink();
 		}
 		m_doorWidgetsCache.Clear();
-		m_buyItemsPanel.VScrollToPos01(0);
+		m_doorsListPanel.VScrollToPos01(0);
 		
-		ref array<ref LivespaceDoorData> doorsData = livespace.GetData().m_doors;
+		ref array<ref LivespaceDoorData> doorsData = m_livespace.GetData().m_doors;
 		for (int i = 0; i < doorsData.Count(); i++)
 		{
 			ref LivespaceDoorData doorData = doorsData.Get(i);
-			int doorLevel = livespace.GetDoorLevel(i);
+			int doorLevel = m_livespace.GetDoorLevel(i);
 			InitDoorItem(i, doorData, doorLevel);
 		}
 	}
@@ -105,14 +118,53 @@ class HomebookMenu extends UIScriptedMenu
 		itemWidget.SetSize(contentWidth, h);
 		
 		ref ButtonWidget actionButton = ButtonWidget.Cast( itemWidget.FindAnyWidget( "ItemActionButton" ) );
-		//actionButton.SetUserData(item);
-		//actionButton.SetUserID(1001);
+		actionButton.SetUserID(1000 + index);
 		
-		ref ImageWidget widgetIcon = ImageWidget.Cast( itemWidget.FindAnyWidget( "ItemIcon" ) );		
-		widgetIcon.LoadImageFile(0, "SyberiaScripts/data/gui/Homebook/icon_door.paa");
+		string doorState;
+		ref ImageWidget widgetIcon = ImageWidget.Cast( itemWidget.FindAnyWidget( "ItemIcon" ) );
+		if (m_livespace.IsDoorOpen(doorData.m_selfDoorId)) {
+			widgetIcon.LoadImageFile(0, "SyberiaScripts/data/gui/Homebook/icon_unlocked.paa");
+			doorState = "State: Opened";		
+		}
+		else {
+			widgetIcon.LoadImageFile(0, "SyberiaScripts/data/gui/Homebook/icon_locked.paa");
+			doorState = "State: Closed";		
+		}		
+
+		string doorName = "Door " + (index + 1);
+		if (doorData.m_outerDoor) {
+			doorName = " (Outer)";
+		}
+		else {
+			doorName = " (Inner)";
+		}
 		
-		ref TextWidget widgetText = TextWidget.Cast( itemWidget.FindAnyWidget( "ItemNameWidget" ) );	
-		widgetText.SetText("Outer door " + (index + 1));	
+		string doorHealth = "100%";
+				
+		ref TextWidget widgetTextName = TextWidget.Cast( itemWidget.FindAnyWidget( "ItemNameWidget" ) );
+		widgetTextName.SetText(doorName);	
+		
+		ref TextWidget widgetTextLevel = TextWidget.Cast( itemWidget.FindAnyWidget( "ItemLevelWidget" ) );
+		widgetTextLevel.SetText("Level " + doorLevel);	
+		
+		ref TextWidget widgetTextHealth = TextWidget.Cast( itemWidget.FindAnyWidget( "ItemHealthWidget" ) );
+		widgetTextHealth.SetColor(ARGB(255, 0, 200, 0));
+		widgetTextHealth.SetText("100%");
+		
+		if (m_currentDoor == index)
+		{
+			m_doorsSelectedName.SetText(doorName);
+			m_doorsSelectedLevel.SetText("Level: " + doorLevel);
+			m_doorsSelectedState.SetText(doorState);
+			m_doorsSelectedHealth.SetText("Health: " + doorHealth);
+			
+			foreach (ref Widget w1 : m_doorItemsWidgetsCache)
+			{
+				w1.Unlink();
+			}
+			m_doorItemsWidgetsCache.Clear();
+			m_doorsItemsPanel.VScrollToPos01(0);
+		}
 	}
 	
 	private int GetColorTabInactive()
@@ -134,6 +186,12 @@ class HomebookMenu extends UIScriptedMenu
 				m_currentTab = i;
 				m_dirty = true;
 			}
+		}
+		
+		int userId = w.GetUserID();
+		if (userId >= 1000 && userId < 2000) {
+			m_currentDoor = userId - 1000;
+			m_dirty = true;
 		}
 		
 		/*if (w == m_activatePerkBtn)

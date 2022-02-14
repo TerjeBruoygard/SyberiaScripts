@@ -154,21 +154,6 @@ class BuildingLivespace extends BuildingSuper
 		}
 	}
 	
-	bool CanOpenDoor(PlayerBase player, int vanilaDoorIndex)
-	{
-		if (!m_ready) return false;
-		int doorId = GetDoorIdByVanillaDoorId(vanilaDoorIndex);
-		if (doorId == -1) return true;
-		
-		int level = m_synchData.m_doorLevels[doorId];		
-		return level == 0;
-	}
-	
-	bool CanCloseDoor(PlayerBase player, int vanilaDoorIndex)
-	{
-		return CanOpenDoor(player, vanilaDoorIndex);
-	}
-	
 	int GetBarricadeLevel(int id)
 	{
 		return m_synchData.m_barricadeLevels[id];

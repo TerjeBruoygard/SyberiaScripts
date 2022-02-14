@@ -1,0 +1,20 @@
+FrameWidgetClass rootFrame {
+ size 400 50
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  TextWidgetClass ParagrapthName {
+   ignorepointer 1
+   position 5 10
+   size 400 30
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "TEST ITEM NAME"
+   font "gui/fonts/etelkatextpro22"
+  }
+ }
+}

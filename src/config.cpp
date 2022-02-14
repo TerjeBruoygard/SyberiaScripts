@@ -58,6 +58,7 @@ class CfgVehicles
     #include "debug_items.hpp"
     #include "vehicle_parts_redef.hpp"
     #include "containers.hpp"
+    #include "objective_zones.hpp"
 };
 
 class CfgAmmo
@@ -93,6 +94,11 @@ class CfgSlots
 class CfgBuildingInfo
 {
 
+};
+
+class CfgBuildingResources
+{
+    #include "building_resources.hpp"
 };
 
 #include "map_settings.hpp"

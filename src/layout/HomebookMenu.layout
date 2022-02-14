@@ -9,8 +9,8 @@ FrameWidgetClass rootFrame {
  {
   ImageWidgetClass BackgroundPanel {
    ignorepointer 1
-   position 0 0
-   size 2048 1024
+   position 0 -50
+   size 1800 900
    halign center_ref
    valign center_ref
    hexactpos 1
@@ -27,8 +27,8 @@ FrameWidgetClass rootFrame {
     PanelWidgetClass Panel {
      ignorepointer 1
      color 0.098 0.098 0.098 0.7529
-     position 20 -15
-     size 1200 950
+     position 20 -10
+     size 1100 850
      halign center_ref
      valign center_ref
      hexactpos 1
@@ -325,7 +325,7 @@ FrameWidgetClass rootFrame {
       PanelWidgetClass ContentPanel {
        ignorepointer 1
        color 0.0549 0.0549 0.0549 0.8824
-       size 1 880
+       size 1 780
        valign bottom_ref
        hexactpos 1
        vexactpos 1
@@ -355,13 +355,154 @@ FrameWidgetClass rootFrame {
           ScrollWidgetClass DoorsListPanel {
            ignorepointer 0
            position 20 20
-           size 400 840
+           size 400 740
            hexactpos 1
            vexactpos 1
            hexactsize 1
            vexactsize 1
            style blank
            "Scrollbar V" 1
+          }
+          TextWidgetClass DoorsSelectedName {
+           ignorepointer 1
+           position 450 20
+           size 600 30
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           text "Door 1 (Outer)"
+           font "gui/fonts/etelkatextpro28"
+           "exact text" 1
+          }
+          TextWidgetClass DoorsSelectedState {
+           ignorepointer 1
+           position 460 60
+           size 600 30
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           text "Open"
+           font "gui/fonts/etelkatextpro22"
+           "exact text" 1
+          }
+          TextWidgetClass DoorsSelectedLevel {
+           ignorepointer 1
+           position 460 90
+           size 600 30
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           text "Level 1"
+           font "gui/fonts/etelkatextpro22"
+           "exact text" 1
+          }
+          TextWidgetClass DoorsSelectedHealth {
+           ignorepointer 1
+           position 460 120
+           size 600 30
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           text "Health: 100%"
+           font "gui/fonts/etelkatextpro22"
+           "exact text" 1
+          }
+          TextWidgetClass DoorsSelectedItems {
+           ignorepointer 1
+           position 450 160
+           size 600 30
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           text "Upgrade requirments:"
+           font "gui/fonts/etelkatextpro28"
+           "exact text" 1
+          }
+          ScrollWidgetClass DoorsItemsPanel {
+           ignorepointer 0
+           position 450 190
+           size 630 480
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style blank
+           "Scrollbar V" 1
+          }
+          PanelWidgetClass DoorsSelectedUpgradeBack {
+           ignorepointer 1
+           color 0.1255 0.1765 0.2039 0.7843
+           position 40 20
+           size 600 70
+           halign right_ref
+           valign bottom_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style rover_sim_colorable
+           {
+            ButtonWidgetClass DoorsSelectedUpgradeBtn {
+             color 0.0627 0.0627 0.0627 0.3294
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style EmptyHighlight
+             {
+              PanelWidgetClass PanelWidget4 {
+               ignorepointer 1
+               size 150 50
+               halign center_ref
+               valign center_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 1
+               vexactsize 1
+               {
+                ImageWidgetClass ImageWidget4 {
+                 ignorepointer 1
+                 position 0 5
+                 size 40 40
+                 hexactpos 1
+                 vexactpos 1
+                 hexactsize 1
+                 vexactsize 1
+                 image0 "SyberiaScripts/data/gui/Homebook/icon_upgrade.paa"
+                 mode blend
+                 "src alpha" 1
+                 "no wrap" 0
+                 stretch 1
+                 "flip u" 0
+                 filter 1
+                 "Transition width" 0
+                }
+                TextWidgetClass TextWidget14 {
+                 ignorepointer 1
+                 size 1 1
+                 halign right_ref
+                 hexactpos 1
+                 vexactpos 1
+                 hexactsize 0
+                 vexactsize 0
+                 text "UPGRADE"
+                 font "gui/fonts/etelkatextpro22"
+                 "exact text" 1
+                 "text halign" right
+                 "text valign" center
+                }
+               }
+              }
+             }
+            }
+           }
           }
          }
         }
