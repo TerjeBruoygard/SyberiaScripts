@@ -84,7 +84,7 @@ class PluginSyberiaLogin extends PluginBase
 		}
 	}
 	
-	void RespawnScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void RespawnScreen_Open(ParamsReadContext ctx, PlayerIdentity sender)
     {   
 		SybLog("PluginSyberiaLogin SYBRPC_RESPAWN_SCREEN_OPEN RPC Received.");
 				
@@ -95,7 +95,7 @@ class PluginSyberiaLogin extends PluginBase
 		m_screenBase = new ScreenRespawn(clientData.param1, clientData.param2, clientData.param3, clientData.param4);
 	}
 	
-	void NewcharScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void NewcharScreen_Open(ParamsReadContext ctx, PlayerIdentity sender)
     {   
 		SybLog("PluginSyberiaLogin SYBRPC_NEWCHAR_SCREEN_OPEN RPC Received.");
 		
@@ -107,7 +107,7 @@ class PluginSyberiaLogin extends PluginBase
 		m_screenBase = new ScreenNewchar(clientData.param1);
 	}
 	
-	void EquipScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void EquipScreen_Open(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		SybLog("PluginSyberiaLogin SYBRPC_EQUIP_SCREEN_OPEN RPC Received.");
 		
@@ -118,7 +118,7 @@ class PluginSyberiaLogin extends PluginBase
 		m_screenBase = new ScreenEquip(clientData.param1);
 	}
 	
-	void NewcharScreen_Error(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void NewcharScreen_Error(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		SybLog("PluginSyberiaLogin SYBRPC_CREATENEWCHAR_ERROR RPC Received.");
 		
@@ -129,7 +129,7 @@ class PluginSyberiaLogin extends PluginBase
 		}
 	}
 	
-	void OnSkillsUpdate(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void OnSkillsUpdate(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		SybLog("PluginSyberiaLogin SYBRPC_SKILLS_UPDATE RPC Received.");
 		
@@ -189,7 +189,7 @@ class PluginSyberiaLogin extends PluginBase
 		}
 	}
 	
-	void OnStethoscopeInspect(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void OnStethoscopeInspect(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		Param1<ref ActionStethoscopeInspect_Data> clientData;
 		if ( !ctx.Read( clientData ) ) return;	
@@ -220,7 +220,7 @@ class PluginSyberiaLogin extends PluginBase
 		}
 	}
 	
-	void OnHomebookOpen(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void OnHomebookOpen(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		Param2<BuildingLivespace, ref LivespaceHomebookData> clientData;
 		if ( !ctx.Read( clientData ) ) return;	
@@ -261,7 +261,7 @@ class PluginSyberiaLogin extends PluginBase
 		}
 	}
 	
-	void OnCurrentZoneSync(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void OnCurrentZoneSync(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		Param1<ref array<ref ZoneImplementation>> clientData;
 		if ( !ctx.Read( clientData ) ) return;	

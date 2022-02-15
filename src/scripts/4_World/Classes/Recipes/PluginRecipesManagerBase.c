@@ -22,7 +22,7 @@ modded class PluginRecipesManager
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_SYNC_CRAFTS, this, "OnReceiveSettings");
 	}
 	
-	protected void OnReceiveSettings(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	protected void OnReceiveSettings(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		Param2<ref array<string>, ref array<ref PluginRecipesManager_CustomRecipeData>> clientData;
        	if ( !ctx.Read( clientData ) ) return;	

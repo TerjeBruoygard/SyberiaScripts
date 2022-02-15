@@ -394,7 +394,7 @@ modded class MissionGameplay
 		}
 	}
 
-	protected void OnScreenMessageRpc(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	protected void OnScreenMessageRpc(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		if (!m_SyberiaAdditionalHud) return;
 		
@@ -430,7 +430,7 @@ modded class MissionGameplay
 		}
 	}
 	
-	void OnSyncToxicZone(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void OnSyncToxicZone(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		Param1<ref array<ref ToxicZone>> clientData;
 		if ( !ctx.Read( clientData ) ) return;
