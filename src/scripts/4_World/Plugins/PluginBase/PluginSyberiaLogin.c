@@ -151,8 +151,6 @@ class PluginSyberiaLogin extends PluginBase
 						break;
 					}
 				}
-				
-				delete player.m_skills;
 			}
 			
 			player.m_skills = newSkills;

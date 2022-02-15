@@ -445,17 +445,13 @@ modded class MissionGameplay
 		}
 		
 		ref array<ref ToxicZone> toxicZonesInfo = clientData.param1;
-		m_toxicZonesView = new array<ref ToxicZoneView>;		
+		m_toxicZonesView = new array<ref ToxicZoneView>;
 		if (toxicZonesInfo)
 		{
 			foreach (ref ToxicZone zone : toxicZonesInfo)
 			{
 				m_toxicZonesView.Insert(new ToxicZoneView(zone.m_position, zone.m_radius));
-				delete zone;
 			}
-			
-			delete toxicZonesInfo;
-			clientData.param1 = null;	
 		}
 	}
 };

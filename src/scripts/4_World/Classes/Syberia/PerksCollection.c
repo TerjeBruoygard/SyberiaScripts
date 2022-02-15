@@ -553,7 +553,6 @@ class PerkInfo
 			result = keys.Get(curIndex - 1);
 		}
 		
-		delete keys;
 		return result;
 	}
 	
