@@ -1,9 +1,9 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
 const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.49L";
+const string Syberia_Version = "OPEN BETA 0.49M";
 
 class SyberiaVersionChecker {
-	void CLIENT_AND_SERVER_MODS_VERSION_MISSMATCH_0_49L() {}
+	void CLIENT_AND_SERVER_MODS_VERSION_MISSMATCH_0_49M() {}
 }
 
 void SybLog(string message)
