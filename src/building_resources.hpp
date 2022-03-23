@@ -5,7 +5,7 @@ class Doors
         class Level1
         {
             consumablesClass[] = {"WoodenPlank", "Nail"};
-            consumablesCount[] = {5, 12};
+            consumablesQuantity[] = {5, 12};
             toolsClass[] = {"Hammer"};
             toolsDammage[] = {0.1};
         };

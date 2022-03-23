@@ -181,6 +181,13 @@ class BuildingLivespace extends BuildingSuper
 		return -1;
 	}
 	
+	void GetDoorUpgradeProfile(int doorId, ref LivespaceUpgradeProfile profile)
+	{
+		int doorLevel = GetDoorLevel(doorId);
+		string doorUpgradeProfile = GetData().m_doors.Get(doorId).m_upgradeProfile;
+		profile.Init("CfgBuildingResources Doors " + doorUpgradeProfile + " Level" + doorLevel.ToString());
+	}
+	
 	override void EEDelete(EntityAI parent)
 	{
 		super.EEDelete(parent);
@@ -345,6 +352,7 @@ class LivespaceDoorData
 	ref array<int> m_linkedDoorIds;
     bool m_outerDoor;
     ref array<string> m_levels;
+	string m_upgradeProfile;
 	
 	void LivespaceDoorData(string configPath)
 	{
@@ -354,6 +362,11 @@ class LivespaceDoorData
 		m_outerDoor = GetGame().ConfigGetInt(configPath + " outerDoor") == 1;
 		GetGame().ConfigGetIntArray(configPath + " linkedDoorIds", m_linkedDoorIds);
 		GetGame().ConfigGetTextArray(configPath + " levels", m_levels);
+		
+		if (!GetGame().ConfigGetText(configPath + " upgradeProfile", m_upgradeProfile))
+		{
+			m_upgradeProfile = "Default";
+		}
 	}
 	
 	void ~LivespaceDoorData()
@@ -376,5 +389,65 @@ class LivespaceBarricadeData
 	void ~LivespaceBarricadeData()
 	{
 		delete m_levels;
+	}
+};
+
+class LivespaceUpgradeProfile
+{
+	private ref TStringArray m_consumablesClass = new TStringArray;
+	private ref TFloatArray m_consumablesQuantity = new TFloatArray;
+
+	private ref TStringArray m_toolsClass = new TStringArray;	
+	private ref TFloatArray m_toolsDammage = new TFloatArray;
+	
+	void Init(string cfgPath)
+	{
+		m_consumablesClass.Clear();
+		m_consumablesQuantity.Clear();
+
+		m_toolsClass.Clear();
+		m_toolsDammage.Clear();
+		
+		if (!GetGame().ConfigIsExisting(cfgPath))
+		{
+			return;
+		}
+		
+		GetGame().ConfigGetTextArray(cfgPath + " consumablesClass", m_consumablesClass);
+		GetGame().ConfigGetFloatArray(cfgPath + " consumablesQuantity", m_consumablesQuantity);
+
+		GetGame().ConfigGetTextArray(cfgPath + " toolsClass", m_toolsClass);
+		GetGame().ConfigGetFloatArray(cfgPath + " toolsDammage", m_toolsDammage);
+	}
+	
+	void ~LivespaceUpgradeProfile()
+	{
+		delete m_consumablesClass;
+		delete m_consumablesQuantity;
+		
+		delete m_toolsClass;
+		delete m_toolsDammage;
+	}
+	
+	int GetConsumablesCount()
+	{
+		return m_consumablesClass.Count();
+	}
+	
+	void GetConsumable(int index, out string className, out float quantity)
+	{
+		className = m_consumablesClass.Get(index);
+		quantity = m_consumablesQuantity.Get(index);
+	}
+	
+	int GetToolsCount()
+	{
+		return m_toolsClass.Count();
+	}
+	
+	void GetTool(int index, out string className, out float damage)
+	{
+		className = m_toolsClass.Get(index);
+		damage = m_toolsDammage.Get(index);
 	}
 };

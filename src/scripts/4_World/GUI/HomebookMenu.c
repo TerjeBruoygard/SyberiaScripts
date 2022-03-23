@@ -11,6 +11,9 @@ class HomebookMenu extends UIScriptedMenu
 	ref array<ref Widget> m_doorItemsWidgetsCache = new array<ref Widget>;
 	ref TextWidget m_doorsSelectedName, m_doorsSelectedState, m_doorsSelectedLevel, m_doorsSelectedHealth;
 	
+	ref LivespaceUpgradeProfile m_upgradeProfile = new LivespaceUpgradeProfile;
+	ref array<ItemBase> m_previewItemsCache = new array<ItemBase>;
+	
 	BuildingLivespace m_livespace;
 	ref LivespaceHomebookData m_data;
 
@@ -28,6 +31,8 @@ class HomebookMenu extends UIScriptedMenu
 		delete m_tabsMapping;
 		delete m_doorWidgetsCache;
 		delete m_doorItemsWidgetsCache;
+		delete m_previewItemsCache;
+		delete m_upgradeProfile;
 	}
 
     override Widget Init()
@@ -110,6 +115,7 @@ class HomebookMenu extends UIScriptedMenu
 	{		
 		ref Widget itemWidget = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/HomebookMenuItemDoor.layout" );		
 		m_doorsListPanel.AddChild(itemWidget);
+		m_doorWidgetsCache.Insert(itemWidget);
 				
 		float w, h;
 		float contentWidth = m_doorsListPanel.GetContentWidth();
@@ -153,7 +159,9 @@ class HomebookMenu extends UIScriptedMenu
 		
 		if (m_currentDoor == index)
 		{
-			m_doorsSelectedName.SetText(doorName);
+			m_livespace.GetDoorUpgradeProfile(index, m_upgradeProfile);
+			
+			m_doorsSelectedName.SetText("Name: " + doorName);
 			m_doorsSelectedLevel.SetText("Level: " + doorLevel);
 			m_doorsSelectedState.SetText(doorState);
 			m_doorsSelectedHealth.SetText("Health: " + doorHealth);
@@ -164,7 +172,79 @@ class HomebookMenu extends UIScriptedMenu
 			}
 			m_doorItemsWidgetsCache.Clear();
 			m_doorsItemsPanel.VScrollToPos01(0);
+			
+			string className;
+			float numberValue;
+			ClearPreviewItemsCache();
+			int offset = AddParagraphToScrollPanel(m_doorsItemsPanel, m_doorItemsWidgetsCache, 2, "Consumables:") + 2;
+			/*for (int cid = 0; cid < m_upgradeProfile.GetConsumablesCount(); cid++)
+			{
+				m_upgradeProfile.GetConsumable(cid, className, numberValue);
+				offset = offset + 2 + AddConsumableToScrollPanel(m_doorsItemsPanel, m_doorItemsWidgetsCache, offset + 2, className, numberValue);
+			}*/
 		}
+	}
+	
+	private int AddConsumableToScrollPanel(ref ScrollWidget scrollWidget, ref array<ref Widget> cache, int offset, string className, float quantity)
+	{
+		ref Widget itemWidget = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/HomebookMenuConsumable.layout" );		
+		scrollWidget.AddChild(itemWidget);
+		cache.Insert(itemWidget);
+				
+		float w, h;
+		float contentWidth = scrollWidget.GetContentWidth();
+		itemWidget.GetSize(w, h);
+		itemWidget.SetPos(0, offset);
+		itemWidget.SetSize(contentWidth, h);
+		
+		ref TextWidget nameWidget = TextWidget.Cast( itemWidget.FindAnyWidget( "ItemNameWidget" ) );
+		ref ItemPreviewWidget itemPreviewWidget = ItemPreviewWidget.Cast( itemWidget.FindAnyWidget( "ItemPreview" ) );
+		ItemBase previewItem = ItemBase.Cast(GetGame().CreateObject(className, vector.Zero, true, false, false));
+		if (previewItem)
+		{
+			nameWidget.SetText(previewItem.GetDisplayName());
+			itemPreviewWidget.SetItem(previewItem);
+			itemPreviewWidget.SetView(previewItem.GetViewIndex());
+			itemPreviewWidget.SetModelPosition(Vector(0,0,1));		
+			m_previewItemsCache.Insert(previewItem);
+		}
+		else
+		{
+			nameWidget.SetText(className);
+		}
+		
+		ref TextWidget quantityWidget = TextWidget.Cast( itemWidget.FindAnyWidget( "ItemQuantityWidget" ) );
+		quantityWidget.SetText(quantity.ToString() + " #inv_inspect_piece");
+		
+		return offset + h;
+	}
+	
+	private int AddParagraphToScrollPanel(ref ScrollWidget scrollWidget, ref array<ref Widget> cache, int offset, string text)
+	{
+		ref Widget itemWidget = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/HomebookManuParagraph.layout" );		
+		scrollWidget.AddChild(itemWidget);
+		cache.Insert(itemWidget);
+				
+		/*float w, h;
+		float contentWidth = scrollWidget.GetContentWidth();
+		itemWidget.GetSize(w, h);
+		itemWidget.SetPos(0, offset + 2);
+		itemWidget.SetSize(contentWidth, h);
+		
+		ref TextWidget textWidget = TextWidget.Cast( itemWidget.FindAnyWidget( "ParagrapthName" ) );
+		textWidget.SetText(text);*/
+		
+		return offset + h + 2;
+	}
+	
+	private void ClearPreviewItemsCache()
+	{
+		for (int i = 0; i < m_previewItemsCache.Count(); i++)
+		{
+			GetGame().ObjectDelete(m_previewItemsCache.Get(i));
+		}
+		
+		m_previewItemsCache.Clear();
 	}
 	
 	private int GetColorTabInactive()
