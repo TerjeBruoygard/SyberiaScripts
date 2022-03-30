@@ -221,20 +221,7 @@ class HomebookMenu extends UIScriptedMenu
 	
 	private int AddParagraphToScrollPanel(ref ScrollWidget scrollWidget, ref array<ref Widget> cache, int offset, string text)
 	{
-		ref Widget itemWidget = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/HomebookManuParagraph.layout" );		
-		scrollWidget.AddChild(itemWidget);
-		cache.Insert(itemWidget);
-				
-		/*float w, h;
-		float contentWidth = scrollWidget.GetContentWidth();
-		itemWidget.GetSize(w, h);
-		itemWidget.SetPos(0, offset + 2);
-		itemWidget.SetSize(contentWidth, h);
-		
-		ref TextWidget textWidget = TextWidget.Cast( itemWidget.FindAnyWidget( "ParagrapthName" ) );
-		textWidget.SetText(text);*/
-		
-		return offset + h + 2;
+		return 0;
 	}
 	
 	private void ClearPreviewItemsCache()
