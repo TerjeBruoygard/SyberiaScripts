@@ -17,6 +17,6 @@ modded class Cooking
 			}
 		}		
 		
-		super.ProcessItemToCook(pItem,  cookingEquip, pCookingMethod, pStateFlags); // сохраняем любые другие модификации метода ProcessItemToCook
+		super.ProcessItemToCook(pItem,  cookingEquip, pCookingMethod, pStateFlags);
 	}
 };
