@@ -253,9 +253,9 @@ modded class MissionGameplay
 				}
 				else
 				{
-					int emotesCount = player.GetEmoteManager().m_NameEmoteMap.Count();
+					int emotesCount = player.GetEmoteManager().GetTotalEmotesCount();
 					int emoteId = Math.RandomInt(0, emotesCount);
-					int emoteKey = player.GetEmoteManager().m_NameEmoteMap.GetKey(emoteId);
+					int emoteKey = player.GetEmoteManager().GetEmoteKeyById(emoteId);
 					if (player.GetEmoteManager().CanPlayEmote(emoteKey))
 					{
 						player.GetEmoteManager().CreateEmoteCBFromMenu(emoteKey);
