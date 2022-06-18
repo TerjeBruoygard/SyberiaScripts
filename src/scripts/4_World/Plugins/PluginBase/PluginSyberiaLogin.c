@@ -37,12 +37,6 @@ class PluginSyberiaLogin extends PluginBase
 		{
 			if (!player.IsAlive() && !m_isRespawnCommited)
 			{
-				if (m_screenBase) m_screenBase.Close();
-				
-				m_screenBase = new ScreenBlack();
-				GetGame().GetUIManager().CloseAll();
-				GetGame().GetUIManager().ShowScriptedMenu( m_screenBase, NULL );
-				
 				GetGame().RespawnPlayer();
 				m_isRespawnCommited = true;
 				
@@ -57,29 +51,6 @@ class PluginSyberiaLogin extends PluginBase
 					GetGame().GetUIManager().ShowScriptedMenu( m_screenBase, NULL );
 					m_isRespawnCommited = false;
 				}
-			}
-		}
-		else if (!player.m_skills)
-		{
-			if (m_screenBase && !m_screenBase.IsInherited(ScreenBlack)) 
-			{
-				m_screenBase.Close();
-			}
-			
-			if (!m_screenBase)
-			{
-				m_screenBase = new ScreenBlack();
-				GetGame().GetUIManager().CloseAll();
-				GetGame().GetUIManager().ShowScriptedMenu( m_screenBase, NULL );
-			}
-		}
-		else
-		{
-			if (m_screenBase) 
-			{
-				m_screenBase.Close();
-				m_screenBase = null;
-				m_isRespawnCommited = false;
 			}
 		}
 	}

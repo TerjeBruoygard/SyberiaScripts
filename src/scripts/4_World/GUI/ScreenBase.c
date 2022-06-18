@@ -39,7 +39,6 @@ class ScreenBase extends UIScriptedMenu
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if (player) player.GetInputController().SetDisabled(false);
 
-		super.Close();
 		m_isClosed = true;
 		
 		SybLog("Hide " + this);
