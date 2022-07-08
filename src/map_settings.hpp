@@ -5,21 +5,21 @@ class CfgWorlds
         winterWorld=0;
         airDayTemperatureMin=10;
         airDayTemperatureMax=15;
-        airNightTemperatureMin=5;
-        airNightTemperatureMax=10;
-        clothingHeatIsolationGlobal=0.5;
+        airNightTemperatureMin=8;
+        airNightTemperatureMax=12;
+        clothingHeatIsolationGlobal=0.8;
         
         temperatureHighConsumeItemsMod = 0.02;
-        temperatureLowConsumeItemsMod = -0.1;
-        temperatureDrinkPondPenalty = -0.05;
-        temperatureDrinkWellPenalty = -0.1;
-        temperatureFillWaterBottleTotal = 12;
+        temperatureLowConsumeItemsMod = -0.01;
+        temperatureDrinkPondPenalty = -0.005;
+        temperatureDrinkWellPenalty = -0.01;
+        temperatureFillWaterBottleTotal = 15;
         temperatureFillWaterBottleMod = 0.1;
         temperatureIceDrain = 0;
         temperatureSnowDrain = 0;
         
-        clothingDrenchedHeatDrain = -10;
-        clothingWetHeatDrain = -3;
+        clothingDrenchedHeatDrain = -5;
+        clothingWetHeatDrain = -2;
 	};
 	class CAWorld;
 	class namalsk: CAWorld
