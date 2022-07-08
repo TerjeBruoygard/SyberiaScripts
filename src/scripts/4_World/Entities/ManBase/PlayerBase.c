@@ -41,7 +41,7 @@ modded class PlayerBase
 	ref SkillsContainer m_skills;
 	
 	// Current zone
-	ref ZoneDefinition m_zone;
+	ref array<ref ZoneImplementation> m_zones = new array<ref ZoneImplementation>;
 	bool m_isPveIntruder;
 	bool m_isPveIntruderLast;
 	
@@ -400,52 +400,70 @@ modded class PlayerBase
 	
 	bool IsBuildingModeBlocked()
 	{
-		if (m_zone == null)
+		foreach (ref ZoneImplementation zoneImpl : m_zones)
 		{
-			return true;
+			if (zoneImpl.m_zone.m_blockBuildingMode == 1)
+			{
+				return true;
+			}
 		}
 		
-		return m_zone.m_blockBuildingMode == 1;
+		return false;
 	}
 	
 	bool IsInteractionWithPlayersBlocked()
 	{
-		if (m_zone == null)
+		foreach (ref ZoneImplementation zoneImpl : m_zones)
 		{
-			return true;
+			if (zoneImpl.m_zone.m_blockInteractionWithPlayers == 1)
+			{
+				return true;
+			}
 		}
 		
-		return m_zone.m_blockInteractionWithPlayers == 1;
+		return false;
 	}
 	
 	bool IsInversedDammageEnabled()
 	{
-		if (m_zone == null)
+		foreach (ref ZoneImplementation zoneImpl : m_zones)
 		{
-			return false;
+			if (zoneImpl.m_zone.m_inverseDammage == 1)
+			{
+				return true;
+			}
 		}
 		
-		return m_zone.m_inverseDammage == 1;
+		return false;
 	}
 	
-	void OnZoneChanged(ref ZoneDefinition zone)
+	bool IsInsidePsiZone()
 	{
-		MissionBaseWorld mission = MissionBaseWorld.Cast(GetGame().GetMission());
-		if (m_zone != null)
-		{			
-			if (mission && m_zone.m_leaveMessage && m_zone.m_leaveMessage.LengthUtf8() > 0)
+		foreach (ref ZoneImplementation zoneImpl : m_zones)
+		{
+			if (zoneImpl.m_zone.m_psi > 0)
 			{
-				mission.ShowScreenMessage(m_zone.m_leaveMessage, 3.0);
+				return true;
 			}
-			
-			delete m_zone;
 		}
 		
-		m_zone = zone;
-		if (mission && m_zone.m_enterMessage && m_zone.m_enterMessage.LengthUtf8() > 0)
+		return false;
+	}
+	
+	void OnZoneChanged(ref array<ref ZoneImplementation> zones)
+	{
+		if (m_zones != null)
 		{
-			mission.ShowScreenMessage(m_zone.m_enterMessage, 3.0);
+			foreach (ref ZoneImplementation zoneImpl : m_zones)
+			{
+				delete zoneImpl.m_zone;
+				delete zoneImpl;
+			}
+			
+			delete m_zones;
 		}
+		
+		m_zones = zones;
 	}
 	
 	int GetRadiationSicknessLevel()

@@ -154,8 +154,8 @@ class Land_Barn_Wood1
 {
     class Livespace0
     {
-        bboxStart[] = {-7.23926, -3.93669, 20.4473}; // Bounding box min 
-        bboxEnd[] = {7.5791, 3.66328, -20.5605}; // Bounding box max
+        bboxStart[] = {-7.43926, -3.93669, 20.5473}; // Bounding box min 
+        bboxEnd[] = {8.7791, 3.66328, -20.6605}; // Bounding box max
         classname = "Land_Barn_Wood1_Livespace0"; // Classname of livespace object
         offset[] = { 0.161133, -3.16653, -0.078125 }; // Livespace object offset on spawn
         homebook = "homebook";
@@ -198,8 +198,8 @@ class Land_Barn_Wood2
 {
     class Livespace0
     {
-        bboxStart[] = {5.93555, -2.73677, -7.6543}; // Bounding box min 
-        bboxEnd[] = {-6.75293, 2.20354, 7.8916}; // Bounding box max
+        bboxStart[] = {6.13555, -2.73677, -7.8543}; // Bounding box min 
+        bboxEnd[] = {-6.95293, 2.20354, 7.9916}; // Bounding box max
         classname = "Land_Barn_Wood2_Livespace0"; // Classname of livespace object
         offset[] = { -0.487305, -3.10001, 0.00976563 }; // Livespace object offset on spawn
         homebook = "homebook";
@@ -590,7 +590,6 @@ class Land_House_2W02
         classname = "Land_House_2W02_Livespace0"; // Classname of livespace object
         offset[] = { 3.24902, -1.91812, 0.0898438 }; // Livespace object offset on spawn
         homebook = "homebook";
-        debug = 1;
         class Door0
         {
             selfDoorId = 0; // ID of this door of livespace. (Check by DebugBuildingTool)
