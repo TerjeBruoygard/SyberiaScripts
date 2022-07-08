@@ -154,4 +154,10 @@ class SkillsExperienceSystem
     skillsExpStrengthLightAttackChance = 0.1;
     skillsExpStrengthHeavyAttackValue = 40;
     skillsExpStrengthHeavyAttackChance = 0.2;
+    
+    skillsExpMedicineBandage = 5;
+    skillsExpMedicineTablets = 5;
+    skillsExpMedicineAmpoule = 10;
+    skillsExpMedicineInjector = 20;
+    skillsExpMedicineSurgery = 400;
 };
