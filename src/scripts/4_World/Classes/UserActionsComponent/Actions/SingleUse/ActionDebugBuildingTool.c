@@ -190,7 +190,7 @@ class ActionDebugBuildingToolObjPos extends ActionSingleUseBase
 	{
 		vector hitPos = action_data.m_Target.GetObject().GetPosition();
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
-		if (dbt) dbt.RelativePos(hitPos);
+		if (dbt) dbt.RelativePos(action_data.m_Target.GetObject(), hitPos);
 	}
 };
 
@@ -383,9 +383,6 @@ class ActionDebugBuildingToolUpgrade extends ActionSingleUseBase
 		
 		BuildingLeveledElement element = BuildingLeveledElement.Cast(target.GetObject());
 		if ( !element )
-			return false;
-		
-		if ( element.GetNextLevel() == "" )
 			return false;
 
 		return true;

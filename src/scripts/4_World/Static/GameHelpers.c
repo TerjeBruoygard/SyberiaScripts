@@ -209,4 +209,11 @@ class GameHelpers
 		result = "0 0 0";
         return false;
 	}
+	
+	static bool IntersectBBox(vector min, vector max, vector point)
+	{
+		vector trueMin = Vector(Math.Min(min[0], max[0]), Math.Min(min[1], max[1]), Math.Min(min[2], max[2]));
+		vector trueMax = Vector(Math.Max(min[0], max[0]), Math.Max(min[1], max[1]), Math.Max(min[2], max[2]));
+		return point[0] >= trueMin[0] && point[0] <= trueMax[0] && point[1] >= trueMin[1] && point[1] <= trueMax[1] && point[2] >= trueMin[2] && point[2] <= trueMax[2];
+	}
 };
