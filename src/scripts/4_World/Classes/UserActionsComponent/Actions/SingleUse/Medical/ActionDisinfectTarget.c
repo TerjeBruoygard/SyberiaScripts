@@ -12,6 +12,12 @@ modded class ActionDisinfectSelf
 	{
 		return "#syb_disinfect_hands";
 	}
+	
+	override void OnFinishProgressServer( ActionData action_data )
+	{
+		action_data.m_Player.SetBloodyHands(false);
+		super.OnFinishProgressServer(action_data);
+	}
 };
 
 modded class ActionDisinfectTarget
@@ -36,5 +42,16 @@ modded class ActionDisinfectTarget
 	override string GetText()
 	{
 		return "#syb_disinfect_hands";
+	}
+	
+	override void OnFinishProgressServer( ActionData action_data )
+	{
+		PlayerBase target = PlayerBase.Cast(action_data.m_Target.GetObject());		
+		if( target )
+		{
+			target.SetBloodyHands(false);
+		}
+		
+		super.OnFinishProgressServer(action_data);
 	}
 }
