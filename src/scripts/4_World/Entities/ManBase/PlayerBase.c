@@ -129,6 +129,32 @@ modded class PlayerBase
 		return super.IsBleeding() || (m_bulletHits > (m_bulletBandage1 + m_bulletBandage2)) || (m_knifeHits > (m_knifeBandage1 + m_knifeBandage2));
 	}
 	
+	override float GetPlayerLoad()
+	{
+		return super.GetPlayerLoad() * (1.0 - GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0));
+	}
+	
+	override void EEItemIntoHands(EntityAI item)
+	{
+		super.EEItemIntoHands(item);
+		
+		if (item && item.IsHeavyBehaviour() && CanDropEntity(item) && GetHumanInventory().CanRemoveEntityInHands())
+		{
+			if (GetPerkBoolValue(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ITEMS) == false)
+			{
+				PredictiveDropEntity(item);
+				if (GetGame().IsClient())
+				{
+					MissionBaseWorld mission = MissionBaseWorld.Cast( GetGame().GetMission() );
+					if (mission)
+					{
+						mission.ShowScreenMessage("#syb_skill_overweight_item #syb_perk_name_" + SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ITEMS, 4 );
+					}
+				}
+			}
+		}	
+	}
+	
 	int GetSleepingValue()
 	{
 		return m_sleepingValue; 
