@@ -139,4 +139,79 @@ class CfgVehicles
             };
         };
     };
+    
+    class Edible_Base;
+    class PainkillerTablets : Edible_Base
+    {
+        scope=0;
+    };
+    
+    class SyberiaMedicineBase : Edible_Base {
+        medPainkillerLevel=0;
+        medPainkillerTimeSec=0;
+    }
+    class TabletsBase : SyberiaMedicineBase {
+        descriptionShort="#syb_tablets_common_desc";
+        rotationFlags=0;
+        itemSize[]={1,2};
+        varQuantityInit=10;
+        varQuantityMin=0;
+        varQuantityMax=10;
+        varQuantityDestroyOnMin=1;
+        weight=20;
+        stackedUnit="pills";
+        quantityBar=0;
+        absorbency=0.69999999;
+    };
+    class TabletsAnalgin : TabletsBase
+    {
+        scope=2;
+        displayName="#syb_analgin_name";
+        model="SyberiaScripts\data\medical\tablets_green.p3d";
+        varQuantityInit=10;
+        varQuantityMax=10;
+        medPainkillerLevel=1;
+        medPainkillerTimeSec=900; // 15 minutes
+        class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=30;
+				};
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class Tablets_open
+				{
+					soundSet="Tablets_open_SoundSet";
+					id=201;
+				};
+				class Tablets_catch
+				{
+					soundSet="Tablets_catch_SoundSet";
+					id=202;
+				};
+				class Tablets_close
+				{
+					soundSet="Tablets_close_SoundSet";
+					id=203;
+				};
+				class pickup
+				{
+					soundSet="purificationtablets_pickup_SoundSet";
+					id=797;
+				};
+				class drop
+				{
+					soundset="purificationtablets_drop_SoundSet";
+					id=898;
+				};
+			};
+		};
+    };
 };

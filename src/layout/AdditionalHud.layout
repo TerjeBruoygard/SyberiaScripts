@@ -328,7 +328,7 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass Badgets {
    ignorepointer 1
    position 50 30
-   size 200 38
+   size 400 38
    halign right_ref
    valign bottom_ref
    hexactpos 1
@@ -500,6 +500,78 @@ FrameWidgetClass rootFrame {
      stretch 1
      filter 1
      nocache 0
+    }
+    ImageWidgetClass Pain {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 200 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/Pain.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
+     {
+      TextWidgetClass PainCount {
+       visible 1
+       color 0.8627 0.8627 0.8627 1
+       position -2 -2
+       size 17 15
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "10"
+       font "gui/fonts/sdf_MetronLight24"
+       "text halign" center
+      }
+     }
+    }
+    ImageWidgetClass MedicinInuse {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 240 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/MedicinInuse.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
+     {
+      TextWidgetClass MedicinInuseCount {
+       visible 1
+       color 0.8627 0.8627 0.8627 1
+       position -2 -2
+       size 17 15
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "10"
+       font "gui/fonts/sdf_MetronLight24"
+       "text halign" center
+      }
+     }
     }
    }
   }
