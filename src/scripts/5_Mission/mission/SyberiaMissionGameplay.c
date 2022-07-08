@@ -255,6 +255,12 @@ modded class MissionGameplay
 				pluginAdminTool.Close();
 			}
 		}
+		
+		DayZPlayerImplement playerClient = DayZPlayerImplement.Cast(GetGame().GetPlayer());
+		if (key == KeyCode.KC_ESCAPE && playerClient && playerClient.m_skillsMenu && playerClient.m_skillsMenu.m_active)
+		{
+			playerClient.m_skillsMenu.m_active = false;
+		}
 	}
 
 	protected void OnScreenMessageRpc(ref ParamsReadContext ctx, ref PlayerIdentity sender)

@@ -33,6 +33,9 @@ modded class PlayerBase
 	float m_mindStateValue;
 	float m_mindStateLast;
 	
+	// Skills container
+	ref SkillsContainer m_skills;
+	
 	override void Init()
 	{
 		super.Init();

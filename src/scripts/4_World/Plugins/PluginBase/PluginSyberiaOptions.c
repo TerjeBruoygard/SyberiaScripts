@@ -27,6 +27,8 @@ class PluginSyberiaOptions_Client
 {
 	int m_checkIdentityMode = 1;
 	bool m_operateVisceraHimself = 0;
+	int m_skillLevelSize = 1000;
+	int m_skillLevelModifier = 200;
 };
 
 PluginSyberiaOptions GetSyberiaOptions() 

@@ -1,5 +1,5 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
-const bool Syberia_DebugMode = false;
+const bool Syberia_DebugMode = true;
 
 void SybLog(string message)
 {
@@ -47,7 +47,9 @@ enum SyberiaRPC {
 	SYBRPC_CLIENT_OPTIONS,
 	SYBRPC_ADMINTOOL_OPEN,
 	SYBRPC_ADMINTOOL_PLAYERINFO,
-	SYBRPC_ADMINTOOL_PLAYERUPDATE
+	SYBRPC_ADMINTOOL_PLAYERUPDATE,
+	SYBRPC_ADMINTOOL_SPAWNITEM,
+	SYBRPC_SKILLS_UPDATE
 };
 
 enum SyberiaScreenEquipPages {

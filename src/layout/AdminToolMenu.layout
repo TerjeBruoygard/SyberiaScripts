@@ -31,8 +31,8 @@ FrameWidgetClass rootFrame {
       PanelWidgetClass EspTabBtnBack {
        ignorepointer 1
        color 0.098 0.1373 0.1569 1
-       position 0.66 0
-       size 0.34 1
+       position 0.75 0
+       size 0.25 1
        hexactpos 0
        vexactpos 1
        hexactsize 0
@@ -59,7 +59,7 @@ FrameWidgetClass rootFrame {
        ignorepointer 1
        color 0.098 0.1373 0.1569 1
        position 0 0
-       size 0.33 1
+       size 0.25 1
        hexactpos 0
        vexactpos 1
        hexactsize 0
@@ -84,8 +84,8 @@ FrameWidgetClass rootFrame {
       PanelWidgetClass SpawnerTabBtnBack {
        ignorepointer 1
        color 0.098 0.1373 0.1569 1
-       position 0.33 0
-       size 0.33 1
+       position 0.25 0
+       size 0.25 1
        hexactpos 0
        vexactpos 1
        hexactsize 0
@@ -108,6 +108,33 @@ FrameWidgetClass rootFrame {
         }
        }
       }
+      PanelWidgetClass MapTabBtnBack {
+       ignorepointer 1
+       color 0.098 0.1373 0.1569 1
+       position 0.5 0
+       size 0.25 1
+       hexactpos 0
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_blackbox
+       {
+        ButtonWidgetClass MapTabBtn {
+         color 0.0588 0.0588 0.0588 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style EmptyHighlight
+         "no focus" 1
+         text "MAP"
+         font "gui/fonts/etelkatextpro22"
+         switch normal
+        }
+       }
+      }
      }
     }
     PanelWidgetClass TabsBodyPanel {
@@ -122,7 +149,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      {
       PanelWidgetClass PlayersTabBody {
-       visible 1
+       visible 0
        ignorepointer 1
        position 0 0
        size 1 1
@@ -337,7 +364,7 @@ FrameWidgetClass rootFrame {
        }
       }
       PanelWidgetClass SpawnerTabBody {
-       visible 0
+       visible 1
        ignorepointer 1
        position 0 0
        size 1 1
@@ -346,17 +373,198 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        {
-        TextWidgetClass TextWidget1 {
-         ignorepointer 1
-         size 400 48
-         halign center_ref
-         valign center_ref
+        TextListboxWidgetClass SpawnerCategoryListBox {
+         position 0 0
+         size 0.3 0.3
+         halign left_ref
+         valign top_ref
          hexactpos 1
          vexactpos 1
-         hexactsize 1
-         vexactsize 1
-         text "SPAWNER TAB"
-         "text halign" center
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         style Default
+         "title visible" 1
+         colums "Categories;100;"
+         lines 1
+         "highlight row" 1
+         font "gui/fonts/etelkatextpro14"
+        }
+        TextListboxWidgetClass SpawnerItemsListBox {
+         position 0 0.37
+         size 0.3 0.63
+         halign left_ref
+         valign top_ref
+         hexactpos 1
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         style Default
+         "title visible" 1
+         colums "Class;60;Name;40;"
+         lines 1
+         "highlight row" 1
+         font "gui/fonts/etelkatextpro14"
+        }
+        PanelWidgetClass SpawnerFilterEditBack {
+         ignorepointer 1
+         position 0 0.32
+         size 0.3 0.05
+         hexactpos 1
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_blackbox
+         {
+          TextWidgetClass SpawnerFilterEditText {
+           ignorepointer 1
+           size 0.98 1
+           halign right_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           font "gui/fonts/etelkatextpro16"
+           "exact text" 0
+           "text valign" center
+          }
+          EditBoxWidgetClass SpawnerFilterEditBox {
+           clipchildren 1
+           ignorepointer 0
+           keepsafezone 0
+           position 0 0
+           size 0.98 1
+           halign right_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           scaled 0
+           style Default
+           "limit visible" 0
+           "Default text color" 0.6 0.6 0.6 1
+           "Use default text" 1
+           "exact text" 1
+           font "gui/fonts/etelkatextpro16"
+          }
+         }
+        }
+        FrameWidgetClass SpawnerContentFrame {
+         ignorepointer 1
+         size 0.68 1
+         halign right_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          SliderWidgetClass SpawnerSliderHealth {
+           color 0.0627 0.0627 0.0627 1
+           size 0.49 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style Default
+           current 100
+           {
+            TextWidgetClass SpawnerTextHealth {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "Health: 100"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+          SliderWidgetClass SpawnerSliderQuantity {
+           color 0.0627 0.0627 0.0627 1
+           size 0.49 50
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style Default
+           current 100
+           {
+            TextWidgetClass SpawnerTextQuantity {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "Quantity: 100"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+          CheckBoxWidgetClass SpawnerFillProxies {
+           position 0 80
+           size 0.5 50
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style Default
+           text "Spawn items in proxy slots"
+           font "gui/fonts/etelkatextpro16"
+           checked 1
+          }
+          PanelWidgetClass SpawnerActionBack {
+           ignorepointer 1
+           color 0.098 0.1373 0.1569 1
+           position 0 160
+           size 0.5 60
+           halign center_ref
+           hexactpos 0
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style rover_sim_blackbox
+           {
+            ButtonWidgetClass SpawnerAction {
+             color 0.0588 0.0588 0.0588 1
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style EmptyHighlight
+             "no focus" 1
+             text "SPAWN ITEM"
+             font "gui/fonts/etelkatextpro22"
+             switch normal
+            }
+           }
+          }
+          XComboBoxWidgetClass SpawnerTypeSelect {
+           position 0 80
+           size 0.49 50
+           halign right_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           font "gui/fonts/etelkatextpro22"
+           items "In Inventory;On Ground;At Crosshair"
+          }
+         }
         }
        }
       }
@@ -380,6 +588,30 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "ESP TAB"
+         "text halign" center
+        }
+       }
+      }
+      PanelWidgetClass MapTabBody {
+       visible 0
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       {
+        TextWidgetClass TextWidget0 {
+         ignorepointer 1
+         size 400 48
+         halign center_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "MAP TAB"
          "text halign" center
         }
        }

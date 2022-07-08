@@ -1,5 +1,7 @@
 modded class DayZPlayerImplement
 {
+	ref SkillsMenu m_skillsMenu;
+	
 	override void ShowDeadScreen(bool show, float duration)
 	{
 	#ifdef PLATFORM_PS4
@@ -64,16 +66,26 @@ modded class DayZPlayerImplement
 	{
 		super.CommandHandler(pDt,pCurrentCommandID,pCurrentCommandFinished);
 
+		PlayerBase player = PlayerBase.Cast(this);
 		UAInput skillsMenuKey = GetUApi().GetInputByName("UAToggleSyberiaSkillsMenu");
 		if ( skillsMenuKey.LocalClick() )
 		{
-		
+			if (m_skillsMenu && m_skillsMenu.m_active) 
+			{
+				m_skillsMenu.m_dirty = true;
+				return;
+			}
+				
+			if (GetGame().GetUIManager().GetMenu() != NULL) return;		
+			if (!player.m_skills) return;		
+	        if (!m_skillsMenu) m_skillsMenu = new SkillsMenu;
+
+			GetGame().GetUIManager().ShowScriptedMenu( m_skillsMenu, NULL );
 		}
 		
         UAInput hideItemKey = GetUApi().GetInputByName("UAToggleSyberiaHideItem");
 		if ( hideItemKey.LocalClick() )
 		{
-			PlayerBase player = PlayerBase.Cast(this);
 			if ( !player.GetInventory().IsInventoryLocked() && player.GetHumanInventory().CanRemoveEntityInHands() )
 			{
 				player.PredictiveMoveItemFromHandsToInventory();
