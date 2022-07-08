@@ -228,7 +228,7 @@ FrameWidgetClass rootFrame {
            "no focus" 1
            text "#syb_perk_activate"
            font "gui/fonts/etelkatextpro22"
-           switch once
+           switch normal
           }
          }
         }

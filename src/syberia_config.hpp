@@ -20,7 +20,7 @@ class SleepingSystem
     sleepingIncPerSleepingLvl1Sec = 10;
     sleepingIncPerSleepingLvl2Sec = 20;
     sleepingHealPerSec01 = 0.002;
-    sleepingHealInfluenzaChance = 0.0025;
+    sleepingHealInfluenzaChance = 0.01;
 };
 
 class MindstateSystem
@@ -41,20 +41,20 @@ class MedicineSystem
     sepsisZombieHitChance = 0.04;
     sepsisKnifeHitChance = 0.04;
     sepsisBulletHitChance = 0.05;
-    sepsisDirtySyringeChance = 0.6;
-    sepsisDitryHandsBandageChance = 0.2;
-    sepsisDitryHandsSyrgeryChance = 0.8;
+    sepsisDirtySyringeChance = 0.75;
+    sepsisDitryHandsBandageChance = 0.4;
+    sepsisDitryHandsSyrgeryChance = 0.9;
     zvirusStage1TimeSec = 1200; // 20 min
     zvirusStage2TimeSec = 3600; // zvirusStage1TimeSec + 40 min
     zvirusDeathTimeSec = 900;
     zvirusBloodRegenPerSec = 4;
-    zvirusZombieHitChance = 0.25;
-    zvirusZombieBloodTransferChance = 0.25;
+    zvirusZombieHitChance = 0.2;
+    zvirusZombieBloodTransferChance = 0.1;
     zvirusAntidotBloodDmg01 = 0.15;
     zvirusAntidotHealthDmg01 = 0.2;
-    painLvl1TimeSec = 180;
-    painLvl2TimeSec = 600;
-    painLvl3TimeSec = 1200;
+    painLvl1TimeSec = 300;
+    painLvl2TimeSec = 900;
+    painLvl3TimeSec = 1800;
     painMaxDurationSec = 2400;
     bleedingBullethitHealthlosePerSecond = 0.003;
     bleedingBullethitOpenPerSecond = 5;
@@ -75,15 +75,15 @@ class MedicineSystem
     hematomaZombieHitChance = 0.7;
     hematomaRegenTimerSec = 600;
     hematomaRegenTimeBoostOnSalve = 8;
+    hematomaPainChance = 0.5;
     cuthitRegenTimerSec = 300;
     visceraKnifehitTorsoChance = 0.4;
     visceraBullethitTorsoChance = 0.3;
     concussionRegenTimeSec = 1800; //30 min
     hemostaticEffectModifier = 0.4; // 40% of total bloodlose
     hematopoiesisEffectBloodPerSec = 5;
-    adrenalinEffectShock01Lvl1PerSec = 0.01666;
-    adrenalinEffectShock01Lvl2PerSec = 0.03333;
-    adrenalinEffectShock01Lvl3PerSec = 0.2;
+    adrenalinEffectShockUpPerSec[] = { 0.01666, 0.03333, 0.2 };
+    adrenalinEffectStaminaDepletionMod[] = { 0.5, 0.25, 0.1 };
     overdoseDecrementPerSec = 0.001;
     overdoseUnconChangePerSec = 0.025;
     mindstateHealPerSec = 0.04;
