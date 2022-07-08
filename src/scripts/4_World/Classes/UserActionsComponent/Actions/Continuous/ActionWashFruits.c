@@ -22,7 +22,12 @@ class ActionWashFruitsWell: ActionContinuousBase
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		Edible_Base fruit = Edible_Base.Cast(item);
-		if (!fruit || !fruit.IsFruit())
+		if (!fruit)
+		{
+			return false;
+		}
+        
+        if (!fruit.IsFruit() && !fruit.IsMushroom())
 		{
 			return false;
 		}
@@ -60,7 +65,12 @@ class ActionWashFruitsWater: ActionContinuousBase
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		Edible_Base fruit = Edible_Base.Cast(item);
-		if (!fruit || !fruit.IsFruit())
+		if (!fruit)
+		{
+			return false;
+		}
+        
+        if (!fruit.IsFruit() && !fruit.IsMushroom())
 		{
 			return false;
 		}
