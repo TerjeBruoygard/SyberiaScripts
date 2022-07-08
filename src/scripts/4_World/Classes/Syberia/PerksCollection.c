@@ -228,7 +228,7 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_STRENGTH_FAST_ATTACK_STAMINA_DEC, "%").AddUnlockValue(5, 20).AddUnlockValue(28, 30).AddUnlockValue(43, 40).AddUnlockValue(58, 50).AddUnlockValue(70, 60).AddUnlockValue(82, 70).AddUnlockValue(93, 80);
         Register(SyberiaPerkType.SYBPERK_STRENGTH_FAST_ATTACK_STRENGTH, "%").AddUnlockValue(5, 20).AddUnlockValue(28, 30).AddUnlockValue(43, 40).AddUnlockValue(58, 50).AddUnlockValue(70, 60).AddUnlockValue(82, 70).AddUnlockValue(93, 80);
         
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC, "%").AddUnlockValue(12, 20).AddUnlockValue(32, 30).AddUnlockValue(47, 40).AddUnlockValue(62, 50).AddUnlockValue(73, 640).AddUnlockValue(85, 70).AddUnlockValue(97, 80);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC, "%").AddUnlockValue(12, 20).AddUnlockValue(32, 30).AddUnlockValue(47, 40).AddUnlockValue(62, 50).AddUnlockValue(73, 60).AddUnlockValue(85, 70).AddUnlockValue(97, 80);
         Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STRENGTH, "%").AddUnlockValue(12, 20).AddUnlockValue(32, 30).AddUnlockValue(47, 40).AddUnlockValue(62, 50).AddUnlockValue(73, 60).AddUnlockValue(85, 70).AddUnlockValue(97, 80);
         
         Register(SyberiaPerkType.SYBPERK_STRENGTH_KNOCKOUT_HEAVY_ITEMS).AddUnlockValue(100, 1);
