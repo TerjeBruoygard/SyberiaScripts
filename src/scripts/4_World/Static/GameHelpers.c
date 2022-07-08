@@ -87,7 +87,7 @@ class GameHelpers
 		{
 			if (GetGame().ConfigGetChildName(preffix, i, classname))
 			{
-				if (GetGame().ConfigGetInt(preffix + " " + classname + " scope") == 2)
+				if (GetGame().ConfigGetInt(preffix + " " + classname + " scope") != 0)
 				{
 					output.Insert(classname);
 				}

@@ -51,6 +51,7 @@ class CfgVehicles
     #include "clothing_masks.hpp"
     #include "clothing_medical.hpp"
     #include "clothing_nbc.hpp"
+    #include "debug_items.hpp"
 };
 
 class CfgAmmo

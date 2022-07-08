@@ -21,5 +21,9 @@ modded class ActionConstructor
         actions.Insert(ActionCutBookPage);
 		actions.Insert(ActionPlugStethoscope);
 		actions.Insert(ActionStethoscopeInspect);
+		actions.Insert(ActionDebugBuildingToolNext);
+		actions.Insert(ActionDebugBuildingToolLink);
+		actions.Insert(ActionDebugBuildingToolMarker);
+		actions.Insert(ActionDebugBuildingToolObjPos);
 	}
 };
