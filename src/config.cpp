@@ -56,3 +56,8 @@ class CfgSoundSets
 {
     #include "sounds_sets.hpp"
 };
+
+class CfgWorldInfo
+{
+    #include "world_info.hpp"
+};

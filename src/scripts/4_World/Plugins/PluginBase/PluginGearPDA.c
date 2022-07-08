@@ -14,6 +14,8 @@ class PluginGearPDA extends PluginBase
 	
 	bool m_enableGlobalChat;
 	
+	bool m_enableMapPage;
+	
 	ref array<ref Param2<string, string>> m_globalMessages;
 	
 	const string contactsBinFilename = "contacts.bin";
@@ -175,7 +177,6 @@ class PluginGearPDA extends PluginBase
 		}
 		
 		m_GearPDAMenu = new GearPDAMenu;
-		m_GearPDAMenu.Init();
 		GetGame().GetUIManager().ShowScriptedMenu( m_GearPDAMenu, NULL );
 	}
 	
