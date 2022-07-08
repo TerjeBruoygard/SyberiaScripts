@@ -28,6 +28,7 @@ class BaseBuildingBase;
 class House;
 class HouseNoDestruct;
 class Transmitter_Base;
+class EffectArea;
 
 // Characters
 class SurvivorM_Mirek;
@@ -60,3 +61,13 @@ class SurvivorF_Keiko;
 class SurvivorF_Linda;
 class SurvivorF_Maria;
 class SurvivorF_Naomi;
+
+// Areas
+class ContaminatedArea_Static: EffectArea
+{
+    scope=0;
+};
+class ContaminatedArea_Dynamic: EffectArea
+{
+    scope=0;
+};
