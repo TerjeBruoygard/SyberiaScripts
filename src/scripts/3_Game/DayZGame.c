@@ -27,6 +27,6 @@ modded class DayZGame
 {
 	override void OnRespawnEvent(int time)
 	{
-
+		PPEffects.SetDeathDarkening(1);
 	}
 };
