@@ -13,6 +13,6 @@ class ZoneDefinition
 	int m_blockInteractionWithPlayers;
 	float m_radiation;
     float m_psi;
-    string m_gas;
+    float m_gas;
 	float m_spawnChance;
 };
