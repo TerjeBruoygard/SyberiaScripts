@@ -68,6 +68,12 @@ modded class DayZPlayerImplement
 		super.CommandHandler(pDt,pCurrentCommandID,pCurrentCommandFinished);
 		
 		PlayerBase player = PlayerBase.Cast(this);
+		if (!player)
+			return;
+		
+		if (player.IsGhostBody())
+			return;
+		
         if (GetGame().IsClient())
         {
             if (!player.m_skills)

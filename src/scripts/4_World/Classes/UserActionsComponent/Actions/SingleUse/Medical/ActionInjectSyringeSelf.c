@@ -58,7 +58,6 @@ class ActionInjectSyringeSelf: ActionSingleUseBase
 	
 	override void OnExecuteClient( ActionData action_data )
 	{
-        action_data.m_MainItem.SetCleanness(0);
 		action_data.m_Player.LocalReplaceItemWithNew(new ReplaceItemWithNewLambda(action_data.m_MainItem, "SyringeEmpty", action_data.m_Player));
 	}
 };
