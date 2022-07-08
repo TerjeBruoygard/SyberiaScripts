@@ -435,6 +435,15 @@ modded class MissionGameplay
 		Param1<ref array<ref ToxicZone>> clientData;
 		if ( !ctx.Read( clientData ) ) return;
 		
+		if (m_toxicZonesView)
+		{
+			foreach (ref ToxicZoneView zoneToDelete : m_toxicZonesView)
+			{
+				delete zoneToDelete;
+			}
+			delete m_toxicZonesView;
+		}
+		
 		ref array<ref ToxicZone> toxicZonesInfo = clientData.param1;
 		m_toxicZonesView = new array<ref ToxicZoneView>;		
 		if (toxicZonesInfo)
@@ -442,7 +451,11 @@ modded class MissionGameplay
 			foreach (ref ToxicZone zone : toxicZonesInfo)
 			{
 				m_toxicZonesView.Insert(new ToxicZoneView(zone.m_position, zone.m_radius));
+				delete zone;
 			}
+			
+			delete toxicZonesInfo;
+			clientData.param1 = null;	
 		}
 	}
 };
