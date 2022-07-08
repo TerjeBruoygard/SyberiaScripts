@@ -620,7 +620,31 @@ class Land_House_2W02
         };
         class Barricade0
         {
-            levels[] = { "barricade_l1", "barricade_l2", "barricade_l3", "barricade_l4" }; // Selection in p3d relative to this barricade for each level
+            levels[] = { "w1_l1", "w1_l2", "w1_l3", "w1_l4" }; // Selection in p3d relative to this barricade for each level
+        };
+        class Barricade1
+        {
+            levels[] = { "w2_l1", "w2_l2", "w2_l3", "w2_l4" }; // Selection in p3d relative to this barricade for each level
+        };
+        class Barricade2
+        {
+            levels[] = { "w3_l1", "w3_l2", "w3_l3", "w3_l4" }; // Selection in p3d relative to this barricade for each level
+        };
+        class Barricade3
+        {
+            levels[] = { "w4_l1", "w4_l2", "w4_l3", "w4_l4" }; // Selection in p3d relative to this barricade for each level
+        };
+        class Barricade4
+        {
+            levels[] = { "w5_l1", "w5_l2", "w5_l3", "w5_l4" }; // Selection in p3d relative to this barricade for each level
+        };
+        class Barricade5
+        {
+            levels[] = { "w6_l1", "w6_l2", "w6_l3", "w6_l4" }; // Selection in p3d relative to this barricade for each level
+        };
+        class Barricade6
+        {
+            levels[] = { "w7_l1", "w7_l2", "w7_l3", "w7_l4" }; // Selection in p3d relative to this barricade for each level
         };
     };
 };

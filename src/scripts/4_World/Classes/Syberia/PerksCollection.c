@@ -60,6 +60,7 @@ enum SyberiaPerkType
     SYBPERK_STEALTH_STEPS_SOUND_DEC = 4005,
     SYBPERK_STEALTH_KNIFE_CRIT = 4006,
     SYBPERK_STEALTH_MASK_ITEMS = 4007,
+	SYBPERK_STEALTH_BAIT_CRIT = 4008,
     
     SYBPERK_SURVIVAL_MAKEFIRE_INC = 5000,
     SYBPERK_SURVIVAL_HANDDRILL_USE = 5001,
@@ -251,7 +252,7 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_MEDICINE_INJECTORS_RESEARCH).AddUnlockValue(75, 1);     
         Register(SyberiaPerkType.SYBPERK_MEDICINE_START_LOADOUT).AddUnlockValue(100, 1);
         
-        /*
+
         //
         // STEALTH
         //
@@ -265,7 +266,7 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_STEALTH_MASK_ITEMS).AddUnlockValue(75, 1);
         Register(SyberiaPerkType.SYBPERK_STEALTH_KNIFE_CRIT).AddUnlockValue(100, 1);
         
-        
+        /*       
         //
         // SURVIVAL
         //
@@ -283,6 +284,7 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_DIG_ITEMS).AddUnlockValue(50, 1);
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_HEAT_WATER_IN_FIRE).AddUnlockValue(75, 1);
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_START_LOADOUT).AddUnlockValue(100, 1);
+		// Make Traps with grenades
         
         
         //
