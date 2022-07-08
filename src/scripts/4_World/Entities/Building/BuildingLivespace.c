@@ -169,6 +169,16 @@ class BuildingLivespace extends BuildingSuper
 		return CanOpenDoor(player, vanilaDoorIndex);
 	}
 	
+	int GetBarricadeLevel(int id)
+	{
+		return m_synchData.m_barricadeLevels[id];
+	}
+	
+	int GetDoorLevel(int id)
+	{
+		return m_synchData.m_doorLevels[id];
+	}
+	
 	int GetDoorIdByVanillaDoorId(int id)
 	{
 		if (!m_ready) return -1;

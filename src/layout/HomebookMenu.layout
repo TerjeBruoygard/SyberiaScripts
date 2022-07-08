@@ -334,6 +334,49 @@ FrameWidgetClass rootFrame {
        style rover_sim_colorable
        {
         PanelWidgetClass ContentGeneral {
+         visible 0
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+        }
+        PanelWidgetClass ContentDoors {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         {
+          ScrollWidgetClass DoorsListPanel {
+           ignorepointer 0
+           position 20 20
+           size 400 840
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style blank
+           "Scrollbar V" 1
+          }
+         }
+        }
+        PanelWidgetClass ContentBarricades {
+         visible 0
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+        }
+        PanelWidgetClass ContentMembers {
+         visible 0
          ignorepointer 1
          position 0 0
          size 1 1
