@@ -290,4 +290,36 @@ modded class PlayerBase
 	{
 		return (GetType().Contains("_Ghost"));
 	}
+	
+	int GetPerkIntValue(int perkId, int defaultValue = 0)
+	{
+		if (IsAlive() && m_skills)
+		{
+			int result = m_skills.GetPerkValue(perkId);
+			if (result != -1)
+			{
+				return result;
+			}
+		}
+		
+		return defaultValue;
+	}
+	
+	float GetPerkFloatValue(int perkId, float defaultValue, float additionValue)
+	{
+		float result = defaultValue;
+		int value = GetPerkIntValue(perkId, -1);
+		if (value != -1) 
+		{
+			result = additionValue + ((float)value * 0.01);		
+		}
+		
+		return result;
+	}
+	
+	bool GetPerkBoolValue(int perkId)
+	{
+		int value = GetPerkIntValue(perkId, -1);
+		return value == 1;
+	}
 };

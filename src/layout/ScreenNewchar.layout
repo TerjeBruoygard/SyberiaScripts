@@ -326,7 +326,7 @@ FrameWidgetClass rootFrame {
           }
           MultilineTextWidgetClass NameHintBox {
            ignorepointer 1
-           color 0.6196 0 0 1
+           color 0.7412 0.502 0.0196 1
            position 10 50
            size 0.98 70
            valign bottom_ref

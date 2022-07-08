@@ -43,14 +43,17 @@ class SkillsContainer
 		
 		if (m_skills.Contains(id))
 		{
-			m_skills.Set(id, value);
+			if (m_skills.Get(id) != value)
+			{
+				m_skills.Set(id, value);
+				m_dirty = true;
+			}
 		}
 		else
 		{
 			m_skills.Insert(id, value);
+			m_dirty = true;
 		}
-		
-		m_dirty = true;
 	}
 	
 	void AddSkillValue(int id, float value)

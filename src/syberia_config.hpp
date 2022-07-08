@@ -143,4 +143,7 @@ class SkillsExperienceSystem
     skillsExpImmunityZVirus = 250;
     skillsExpImmunitySepsis = 200;
     skillsExpImmunityOverdose = 10;
+    
+    skillsExpAthleticsSprintTime = 60;
+    skillsExpAthleticsSprintIncrement = 10;
 };

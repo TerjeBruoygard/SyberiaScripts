@@ -26,6 +26,7 @@ enum SyberiaPerkType
     SYBPERK_ATHLETICS_IDDLE_INC = 1007,
     SYBPERK_ATHLETICS_LADDER_FAST_DOWN = 1008,
     SYBPERK_ATHLETICS_INFINITE_SPRINT = 1009,
+	SYBPERK_ATHLETICS_COLDOWN_DEC = 1010,
     
     SYBPERK_STRENGTH_STAMINA_KG_TO = 2000,
     SYBPERK_STRENGTH_STAMINA_MAX = 2001,
@@ -200,22 +201,20 @@ class PerksCollection
         //
         // ATHLETICS
         //
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, "%").AddUnlockValue(1, 5).AddUnlockValue(12, 10).AddUnlockValue(30, 15).AddUnlockValue(50, 20).AddUnlockValue(70, 25).AddUnlockValue(90, 30);
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, "%").AddUnlockValue(1, 5).AddUnlockValue(12, 10).AddUnlockValue(30, 15).AddUnlockValue(50, 20).AddUnlockValue(70, 25).AddUnlockValue(90, 30);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, "%").AddUnlockValue(1, 5).AddUnlockValue(12, 10).AddUnlockValue(30, 15).AddUnlockValue(50, 20).AddUnlockValue(70, 30).AddUnlockValue(90, 40).AddUnlockValue(100, 80);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, "%").AddUnlockValue(1, 10).AddUnlockValue(12, 20).AddUnlockValue(30, 30).AddUnlockValue(50, 40).AddUnlockValue(70, 50).AddUnlockValue(90, 50).AddUnlockValue(100, 100);
         
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_SPRINT_DEC, "%").AddUnlockValue(3, 10).AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 40).AddUnlockValue(75, 50);
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_INC, "%").AddUnlockValue(3, 10).AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 40).AddUnlockValue(75, 50);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_SPRINT_DEC, "%").AddUnlockValue(3, 10).AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 40).AddUnlockValue(75, 80);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_INC, "%").AddUnlockValue(3, 10).AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 40).AddUnlockValue(75, 80);
         
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_SPRINT_DEC, "%").AddUnlockValue(6, 5).AddUnlockValue(18, 10).AddUnlockValue(40, 15).AddUnlockValue(60, 20).AddUnlockValue(80, 25);
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_INC, "%").AddUnlockValue(6, 5).AddUnlockValue(18, 10).AddUnlockValue(40, 15).AddUnlockValue(60, 20).AddUnlockValue(80, 25);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_SPRINT_DEC, "%").AddUnlockValue(6, 10).AddUnlockValue(18, 20).AddUnlockValue(40, 30).AddUnlockValue(60, 40).AddUnlockValue(80, 80);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_INC, "%").AddUnlockValue(6, 10).AddUnlockValue(18, 20).AddUnlockValue(40, 30).AddUnlockValue(60, 40).AddUnlockValue(80, 80);
         
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_BREATH_DEC, "%").AddUnlockValue(9, 5).AddUnlockValue(22, 10).AddUnlockValue(45, 15).AddUnlockValue(65, 20).AddUnlockValue(85, 25).AddUnlockValue(95, 30).AddUnlockValue(100, 50);
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_IDDLE_INC, "%").AddUnlockValue(9, 5).AddUnlockValue(22, 10).AddUnlockValue(45, 15).AddUnlockValue(65, 20).AddUnlockValue(85, 25).AddUnlockValue(95, 30).AddUnlockValue(100, 50);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_BREATH_DEC, "%").AddUnlockValue(9, 10).AddUnlockValue(22, 20).AddUnlockValue(45, 30).AddUnlockValue(65, 40).AddUnlockValue(85, 50).AddUnlockValue(95, 80).AddUnlockValue(100, 120);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_IDDLE_INC, "%").AddUnlockValue(9, 10).AddUnlockValue(22, 20).AddUnlockValue(45, 30).AddUnlockValue(65, 40).AddUnlockValue(85, 50).AddUnlockValue(95, 80).AddUnlockValue(100, 120);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_COLDOWN_DEC, "%").AddUnlockValue(9, 10).AddUnlockValue(22, 20).AddUnlockValue(45, 30).AddUnlockValue(65, 40).AddUnlockValue(85, 50).AddUnlockValue(95, 60).AddUnlockValue(100, 90);
         
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_FAST_DOWN).AddUnlockValue(25, 1);
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_INFINITE_SPRINT).AddUnlockValue(100, 1);
-        
-        
+        /*
         //
         // STRENGTH
         //
@@ -424,6 +423,7 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_SEAMSTRESS_DISASSEMBLY_STATE_INC, "%").AddUnlockValue(15, 10).AddUnlockValue(45, 30).AddUnlockValue(75, 50).AddUnlockValue(100, 80);
         Register(SyberiaPerkType.SYBPERK_SEAMSTRESS_REPAIR_STATE_INC, "%").AddUnlockValue(20, 40).AddUnlockValue(50, 60).AddUnlockValue(80, 80).AddUnlockValue(100, 100);
         Register(SyberiaPerkType.SYBPERK_SEAMSTRESS_TOOLS_DEGRADATION_DEC, "%").AddUnlockValue(25, 10).AddUnlockValue(55, 20).AddUnlockValue(90, 30).AddUnlockValue(100, 50);
+		*/
 	}
 	
 	protected ref PerkInfo Register(int perkId, string unitsType = "")

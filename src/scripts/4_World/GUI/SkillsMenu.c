@@ -27,6 +27,9 @@ class SkillsMenu extends UIScriptedMenu
 	ref ButtonWidget m_activatePerkBtn;
 	ref Widget m_activatePerkBack;
 	
+	ref Widget m_panelSkillEditing;
+	ref Widget m_panelSkillDisabled;
+	
 	void SkillsMenu()
 	{
 
@@ -57,6 +60,9 @@ class SkillsMenu extends UIScriptedMenu
 		m_perkErr = MultilineTextWidget.Cast(layoutRoot.FindAnyWidget("PerkErr"));
 		m_activatePerkBtn = ButtonWidget.Cast(layoutRoot.FindAnyWidget("PerkSelectBtn"));
 		m_activatePerkBack = layoutRoot.FindAnyWidget("PerkSelectBack");
+		
+		m_panelSkillEditing = layoutRoot.FindAnyWidget("PanelSkillEditing");
+		m_panelSkillDisabled = layoutRoot.FindAnyWidget("PanelSkillDisabled");
 		
 		UpdateSkillsList();
 		
@@ -91,11 +97,19 @@ class SkillsMenu extends UIScriptedMenu
 		m_skillsList.SelectRow(currentSelection);
 		m_totalLvlText.SetText("#syb_skill" + currentSelection + ": " + currentValue);
 		m_totalLvlDesc.SetText("#syb_skill_desc" + currentSelection);
-		
+				
 		int curLvlValue = (int)player.m_skills.GetSkillLevelValue(currentSelection);
 		int maxLvlValue = (int)player.m_skills.GetSkillLevelSize(currentSelection);
-		m_currentLvlText.SetText( curLvlValue.ToString() + "/" + maxLvlValue.ToString() );
-		m_currentLvlProgress.SetCurrent( (curLvlValue / maxLvlValue) * 100.0 );
+		if (currentValue != player.m_skills.GetSkillMax(currentSelection))
+		{
+			m_currentLvlText.SetText( curLvlValue.ToString() + "/" + maxLvlValue.ToString() );
+			m_currentLvlProgress.SetCurrent( (curLvlValue / maxLvlValue) * 100.0 );
+		}
+		else
+		{
+			m_currentLvlText.SetText( "MAX" );
+			m_currentLvlProgress.SetCurrent( 100 );
+		}
 		
 		int selectedLevelRow = -1;
 		int selectedLevelValue = -1;
@@ -103,6 +117,11 @@ class SkillsMenu extends UIScriptedMenu
 		PerksCollection.m_Instance.GetUnlockLevelsOfSkill(currentSelection, perkUnlockLevels);
 		perkUnlockLevels.Sort();
 		m_skillLevelsList.ClearItems();
+		
+		// TODO REMOVE AFTER ALL SKILLS IS READY
+		m_panelSkillEditing.Show( perkUnlockLevels.Count() > 0 );
+		m_panelSkillDisabled.Show( perkUnlockLevels.Count() == 0 );
+		
 		foreach (int perkUnlockLevel : perkUnlockLevels)
 		{			
 			rowId = m_skillLevelsList.AddItem("#syb_skill_level " + perkUnlockLevel, new Param1<int>(perkUnlockLevel), 0);
