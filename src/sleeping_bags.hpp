@@ -17,7 +17,7 @@ class SleepingBag_BaseColor : Inventory_Base {
     };
 };
 
-class SleepingBagPlaced_Base : BaseBuildingBase {
+class SleepingBagPlaced_BaseColor : BaseBuildingBase {
     displayName="#syb_sbag_packed_name";
     descriptionShort="#syb_sbag_packed_desc";
     model="SyberiaScripts\data\sleeping\sbag_placed.p3d";
@@ -33,9 +33,6 @@ class SleepingBagPlaced_Base : BaseBuildingBase {
     {
         "body"
     };
-};
-
-class SleepingBagPlaced_BaseColor : SleepingBagPlaced_Base {
     placedSound="SleepingBagPlaced_SoundEmitter";
     foldingSound="SleepingBagPlaced_SoundEmitter";
     sleepingSound="SleepingBagPlaced_SoundEmitter";
@@ -46,11 +43,16 @@ class SleepingBagPlaced_BaseColor : SleepingBagPlaced_Base {
     varTemperatureMax=25;
 };
 
-class SleepingBagPlacing : SleepingBagPlaced_Base {
-    scope=2;
+class SleepingBagPlacing : BaseBuildingBase {
+    scope=1;
     hologramMaterial="tent_medium";
     hologramMaterialPath="dz\gear\camping\data";
     alignHologramToTerain=1;
+    model="SyberiaScripts\data\sleeping\sbag_placed.p3d";
+    hiddenSelections[]=
+    {
+        "body"
+    };
 };
 
 // BLUE
