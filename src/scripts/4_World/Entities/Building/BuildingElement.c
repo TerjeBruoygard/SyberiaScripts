@@ -1,0 +1,3 @@
+class BuildingElement extends BuildingSuper
+{
+};

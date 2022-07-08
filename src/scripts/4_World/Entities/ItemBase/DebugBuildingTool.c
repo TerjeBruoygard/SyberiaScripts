@@ -1,36 +1,79 @@
-class DebugBuildingManager
-{
-	static House m_linkedHouse;
-	static Shape m_marker;
-	static ref array<Object> m_previewObjects = new array<Object>;
-	static ref array<Shape> m_previewShapes = new array<Shape>;
-	static ref array<Shape> m_rulerShapes = new array<Shape>;
-	static vector m_rulerCache;
+class DebugBuildingTool : ItemBase
+{	
+	int m_currentAction;
+	House m_linkedHouse;
+	Shape m_marker;
+	ref array<Shape> m_previewShapes = new array<Shape>;
+	ref array<Shape> m_rulerShapes = new array<Shape>;
+	vector m_rulerCache;
 	
-	static House GetLinkedHouse()
+	override void EEDelete(EntityAI parent)
+	{
+		super.EEDelete(parent);
+		CleanupDebugShapes();
+	}
+	
+	override void InitItemVariables()
+	{
+		super.InitItemVariables();
+		
+		m_currentAction = 0;
+		RegisterNetSyncVariableInt("m_currentAction", 0, 99);
+	}
+	
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionDebugBuildingToolNext);
+		AddAction(ActionDebugBuildingToolLink);
+		AddAction(ActionDebugBuildingToolMarker);
+		AddAction(ActionDebugBuildingToolObjPos);
+		AddAction(ActionDebugBuildingToolObjRot);
+		AddAction(ActionDebugBuildingToolDoorID);
+		AddAction(ActionDebugBuildingToolSizer);
+		AddAction(ActionDebugBuildingToolUpgrade);
+	}
+	
+	void NextAction()
+	{
+		m_currentAction = m_currentAction + 1;
+		if (m_currentAction >= 7)
+		{
+			m_currentAction = 0;
+		}
+		
+		SetSynchDirty();
+	}
+	
+	int GetActionID()
+	{
+		return m_currentAction;
+	}
+	
+	override bool NameOverride(out string output)
+	{
+		output = "DBT MOD " + GetActionID();		
+		return true;
+	}
+	
+	House GetLinkedHouse()
 	{
 		return m_linkedHouse;
 	}
 	
-	static bool IsHouseLinked()
+	bool IsHouseLinked()
 	{
 		return m_linkedHouse != null;
 	}
 	
-	static bool IsHouseSame(House house)
+	bool IsHouseSame(House house)
 	{
 		return m_linkedHouse == house;
 	}
 	
-	static void LinkHouse(House house)
+	private void CleanupDebugShapes()
 	{
-		// Cleanup
-		while (m_previewObjects.Count() > 0)
-		{
-			GetGame().ObjectDelete(m_previewObjects.Get(0));
-			m_previewObjects.Remove(0);
-		}
-		
 		while (m_previewShapes.Count() > 0)
 		{
 			m_previewShapes.Get(0).Destroy();
@@ -46,7 +89,13 @@ class DebugBuildingManager
 		if (m_marker)
 		{
 			m_marker.Destroy();
-		}
+		}	
+	}
+	
+	void LinkHouse(House house)
+	{
+		// Cleanup
+		CleanupDebugShapes();				
 		
 		// Misc
 		m_rulerCache = "0 0 0";
@@ -64,35 +113,17 @@ class DebugBuildingManager
 				string livespacePath = configPath + " Livespace" + livespaceId;
 				vector bbstart = GetGame().ConfigGetVector(livespacePath + " bboxStart");
 				vector bbend = GetGame().ConfigGetVector(livespacePath + " bboxEnd");
-				DebugBuildingManager.DrawBBox(bbstart, bbend, m_previewShapes);
+				DrawBBox(bbstart, bbend, m_previewShapes);
 				
-				Object homebook = GetGame().CreateObjectEx("BuildingHomeBook", house.ModelToWorld(GetGame().ConfigGetVector(livespacePath + " homeBookPos")), ECE_KEEPHEIGHT | ECE_LOCAL);
-				if (homebook)
-				{
-					rot = house.GetLocalYawPitchRoll();
-					rot[0] = rot[0] + GetGame().ConfigGetFloat(livespacePath + " homeBookRot");
-					homebook.SetYawPitchRoll(rot);
-					m_previewObjects.Insert(homebook);
-					DrawObjectLine(homebook, m_previewShapes);
-				}
+				vector homeBookPos = house.ModelToWorld(GetGame().ConfigGetVector(livespacePath + " homeBookPos"));
+				DrawObjectLine(homeBookPos, m_previewShapes);
 				
 				int doorId = 0;
 				while ( GetGame().ConfigIsExisting(livespacePath + " Door" + doorId) )
 				{
 					string doorPath = livespacePath + " Door" + doorId;
-					int doorType = GetGame().ConfigGetInt(doorPath + " type");
 					vector doorPos = GetGame().ConfigGetVector(doorPath + " pos");
-					float doorRot = GetGame().ConfigGetFloat(doorPath + " rot");
-					Object doorObj = GetGame().CreateObjectEx("BuildingDoor_T" + doorType + "_L1", house.ModelToWorld(doorPos), ECE_KEEPHEIGHT | ECE_LOCAL);
-					if (doorObj)
-					{
-						rot = house.GetLocalYawPitchRoll();
-						rot[0] = rot[0] + doorRot;
-						doorObj.SetYawPitchRoll(rot);
-						m_previewObjects.Insert(doorObj);
-						DrawObjectLine(doorObj, m_previewShapes);
-					}
-					
+					DrawObjectLine(doorPos, m_previewShapes);
 					doorId = doorId + 1;
 				}
 				
@@ -101,16 +132,18 @@ class DebugBuildingManager
 		}
 	}
 	
-	static void DrawObjectLine(Object obj, ref array<Shape> shapes)
+	private void DrawObjectLine(vector pos, ref array<Shape> shapes)
 	{
-		Shape line = Debug.DrawLine( obj.GetPosition(), obj.ModelToWorld("0 0.25 0"), 0x994B77BE, ShapeFlags.NOZBUFFER );
+		vector upPos = pos;
+		upPos[1] = upPos[1] + 0.25;
+		Shape line = Debug.DrawLine( pos, upPos, 0x994B77BE, ShapeFlags.NOZBUFFER );
 		if (line)
 		{
 			shapes.Insert(line);
 		}
 	}
 	
-	static void DrawBBox(vector bbstart, vector bbend, ref array<Shape> shapes)
+	private void DrawBBox(vector bbstart, vector bbend, ref array<Shape> shapes)
 	{
 		ref array<vector> lines = new array<vector>;
 		lines.Insert(Vector(bbstart[0], bbstart[1], bbstart[2])); lines.Insert(Vector(bbend[0], bbstart[1], bbstart[2]));
@@ -138,7 +171,7 @@ class DebugBuildingManager
 		}
 	}
 	
-	static void AddMarker(vector pos)
+	void AddMarker(vector pos)
 	{
 		if (!m_linkedHouse)
 			return;
@@ -154,26 +187,26 @@ class DebugBuildingManager
 		GetGame().CopyToClipboard(relPos[0].ToString() + ", " + relPos[1].ToString() + ", " + relPos[2].ToString());
 	}
 	
-	static void RelativePos(vector pos)
+	void RelativePos(vector pos)
 	{
 		vector relPos = m_linkedHouse.WorldToModel(pos);
 		GetGame().CopyToClipboard(relPos[0].ToString() + ", " + relPos[1].ToString() + ", " + relPos[2].ToString());
 	}
 	
-	static void RelativeRot(vector rot)
+	void RelativeRot(vector rot)
 	{
 		vector houseRot = m_linkedHouse.GetLocalYawPitchRoll();
 		float yaw = houseRot[0] - rot[0];
 		GetGame().CopyToClipboard(yaw.ToString());
 	}
 	
-	static void GetDoorID(int componentIndex)
+	void GetDoorID(int componentIndex)
 	{
 		int doorIndex = m_linkedHouse.GetDoorIndex(componentIndex);
 		GetGame().CopyToClipboard(doorIndex.ToString());
 	}
 	
-	static void Ruler(vector pos)
+	void Ruler(vector pos)
 	{
 		if (!m_linkedHouse)
 			return;
@@ -211,52 +244,9 @@ class DebugBuildingManager
 			m_rulerCache = "0 0 0";
 		}
 	}
-};
-
-class DebugBuildingTool : ItemBase
-{	
-	int m_currentAction;
 	
-	override void InitItemVariables()
+	void UpgradeElement(BuildingLeveledElement element)
 	{
-		super.InitItemVariables();
-		
-		m_currentAction = 0;
-		RegisterNetSyncVariableInt("m_currentAction", 0, 99);
-	}
 	
-	override void SetActions()
-	{
-		super.SetActions();
-		
-		AddAction(ActionDebugBuildingToolNext);
-		AddAction(ActionDebugBuildingToolLink);
-		AddAction(ActionDebugBuildingToolMarker);
-		AddAction(ActionDebugBuildingToolObjPos);
-		AddAction(ActionDebugBuildingToolObjRot);
-		AddAction(ActionDebugBuildingToolDoorID);
-		AddAction(ActionDebugBuildingToolSizer);
-	}
-	
-	void NextAction()
-	{
-		m_currentAction = m_currentAction + 1;
-		if (m_currentAction >= 6)
-		{
-			m_currentAction = 0;
-		}
-		
-		SetSynchDirty();
-	}
-	
-	int GetActionID()
-	{
-		return m_currentAction;
-	}
-	
-	override bool NameOverride(out string output)
-	{
-		output = "DBT MOD " + GetActionID();		
-		return true;
 	}
 };
