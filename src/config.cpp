@@ -51,6 +51,7 @@ class CfgVehicles
     #include "clothing_masks.hpp"
     #include "clothing_medical.hpp"
     #include "clothing_nbc.hpp"
+    #include "building_items.hpp"
     #include "debug_items.hpp"
 };
 
@@ -82,6 +83,11 @@ class CfgSyberia
 class CfgSlots
 {
     #include "slots.hpp"
+};
+
+class CfgBuildingInfo
+{
+    #include "building_info.hpp"
 };
 
 #include "map_settings.hpp"
