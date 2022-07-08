@@ -76,7 +76,7 @@ class ScreenNewchar extends ScreenBase
 		m_skillsList.ClearItems();
 		for (int i = 0; i < SyberiaSkillType.SYBSKILL_TOTALCOUNT; ++i)
 		{
-			int currentSkillValue = (int)m_metadata.m_skills.GetValue(i);
+			int currentSkillValue = (int)m_metadata.m_skills.GetSkillValue(i);
 			int rowId = m_skillsList.AddItem("#syb_skill" + i, null, 0);
 			m_skillsList.SetItem(rowId, currentSkillValue.ToString(), null, 1);
 		}
@@ -86,13 +86,12 @@ class ScreenNewchar extends ScreenBase
 			currentSelection = SyberiaSkillType.SYBSKILL_IMMUNITY;
 		}
 		
-		int selectedSkillValue = (int)m_metadata.m_skills.GetValue(currentSelection);
-		bool isChangableItem = (currentSelection != SyberiaSkillType.SYBSKILL_HUMANITY);
+		int selectedSkillValue = (int)m_metadata.m_skills.GetSkillValue(currentSelection);
 		m_skillsList.SelectRow(currentSelection);
 		m_currentSkillName.SetText( "#syb_skill" + currentSelection + ": " + selectedSkillValue );
 		m_currentSkillDesc.SetText( "#syb_skill_desc" + currentSelection );
-		m_currentSkillInc.GetParent().Show( isChangableItem && currentScore > 0 );
-		m_currentSkillDec.GetParent().Show( isChangableItem && selectedSkillValue > 0 );
+		m_currentSkillInc.GetParent().Show( currentScore > 0 && selectedSkillValue < 100 );
+		m_currentSkillDec.GetParent().Show( selectedSkillValue > 0 );
 	}
 	
 	private void UpdatePlayerPreview()
@@ -206,13 +205,13 @@ class ScreenNewchar extends ScreenBase
 			}
 			if (w == m_currentSkillInc && m_skillsList.GetSelectedRow() >= 0)
 			{
-				m_metadata.m_skills.AddValue( m_skillsList.GetSelectedRow(), 1 );
+				m_metadata.m_skills.AddSkillValue( m_skillsList.GetSelectedRow(), 1 );
 				m_updateSkills = true;
 				return true;
 			}
 			if (w == m_currentSkillDec && m_skillsList.GetSelectedRow() >= 0)
 			{
-				m_metadata.m_skills.AddValue( m_skillsList.GetSelectedRow(), -1 );
+				m_metadata.m_skills.AddSkillValue( m_skillsList.GetSelectedRow(), -1 );
 				m_updateSkills = true;
 				return true;
 			}

@@ -1,0 +1,321 @@
+enum SyberiaPerkType
+{
+	SYBPERK_IMMUNITY_INFLUENZA_TIME = 0,
+	SYBPERK_IMMUNITY_STOMATCHPOISON_TIME = 1,
+	SYBPERK_IMMUNITY_ZVIRUS_TIME = 2,
+	SYBPERK_IMMUNITY_SEPSIS_TIME = 3,
+	SYBPERK_IMMUNITY_PAIN_STRONG = 4,
+	SYBPERK_IMMUNITY_OVERDOSE_STRONG = 5,
+	SYBPERK_IMMUNITY_HEMATOMA_CHANCE = 6,
+	SYBPERK_IMMUNITY_CUTHIT_CHANCE = 7,
+	SYBPERK_IMMUNITY_HEMATOMA_TIME = 8,
+	SYBPERK_IMMUNITY_CUTHIT_TIME = 9,
+	SYBPERK_IMMUNITY_UNCUNSION_CHANCE = 10,
+	SYBPERK_IMMUNITY_UNCUNSION_TIME = 11,
+	SYBPERK_IMMUNITY_SLEEPING_TIME = 12,
+	SYBPERK_IMMUNITY_MENTAL_TIME = 13,
+    SYBPERK_IMMUNITY_INFLUENZA_FIREPLACE_HEAL = 14,
+    
+    SYBPERK_ATHLETICS_SPRINT_DEC = 1000,
+    SYBPERK_ATHLETICS_JOG_INC = 1001,
+    SYBPERK_ATHLETICS_SWIM_SPRINT_DEC = 1002,
+    SYBPERK_ATHLETICS_SWIM_INC = 1003,
+    SYBPERK_ATHLETICS_LADDER_SPRINT_DEC = 1004,
+    SYBPERK_ATHLETICS_LADDER_INC = 1005,
+    SYBPERK_ATHLETICS_BREATH_DEC = 1006,
+    SYBPERK_ATHLETICS_IDDLE_INC = 1007,
+    SYBPERK_ATHLETICS_LADDER_FAST_DOWN = 1008,
+    SYBPERK_ATHLETICS_INFINITE_SPRINT = 1009,
+    
+    SYBPERK_STRENGTH_STAMINA_KG_TO = 2000,
+    SYBPERK_STRENGTH_STAMINA_MAX = 2001,
+    SYBPERK_STRENGTH_JUMP_STAMINA_DEC = 2002,
+    SYBPERK_STRENGTH_BLOCK_STAMINA_DEC = 2003,
+    SYBPERK_STRENGTH_FAST_ATTACK_STAMINA_DEC = 2004,
+    SYBPERK_STRENGTH_FAST_ATTACK_STRENGTH = 2005,
+    SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC = 2006,
+    SYBPERK_STRENGTH_HEAVY_ATTACK_STRENGTH = 2007,
+    SYBPERK_STRENGTH_KNOCKOUT_HEAVY_ITEMS = 2008,
+    SYBPERK_STRENGTH_HEAVY_ITEMS = 2009,
+    
+    SYBPERK_MEDICINE_TABLETS_RESEARCH = 3000,
+    SYBPERK_MEDICINE_AMPOULES_RESEARCH = 3001,
+    SYBPERK_MEDICINE_INJECTORS_RESEARCH = 3002,
+    SYBPERK_MEDICINE_SURGEON_KNIFE_HITS = 3003,
+    SYBPERK_MEDICINE_SURGEON_BULLET_HITS = 3004,
+    SYBPERK_MEDICINE_SURGEON_VISCERA_HITS = 3005,
+    SYBPERK_MEDICINE_TOOLS_DEGRADATION_DEC = 3006,
+    SYBPERK_MEDICINE_SEPSIS_CHANCE_DEC = 3007,
+    SYBPERK_MEDICINE_BRING_FROM_UNCUNSION = 3008,
+    SYBPERK_MEDICINE_SHOW_PLAYER_STATE = 3009,
+    SYBPERK_MEDICINE_START_LOADOUT = 3010,
+    SYBPERK_MEDICINE_DEATH_CAUSE = 3011,
+    
+    SYBPERK_STEALTH_TRAPS_SOUND_DEC = 4000,
+    SYBPERK_STEALTH_MAGLOAD_SOUND_DEC = 4001,
+    SYBPERK_STEALTH_MAGATTACH_SOUND_DEC = 4002,
+    SYBPERK_STEALTH_ZOMBIE_AGRO_DEC = 4003,
+    SYBPERK_STEALTH_CAT_VISSION = 4004,
+    SYBPERK_STEALTH_STEPS_SOUND_DEC = 4005,
+    SYBPERK_STEALTH_KNIFE_CRIT = 4006,
+    SYBPERK_STEALTH_MASK_ITEMS = 4007,
+    
+    SYBPERK_SURVIVAL_MAKEFIRE_INC = 5000,
+    SYBPERK_SURVIVAL_HANDDRILL_USE = 5001,
+    SYBPERK_SURVIVAL_BERRIES_RESEARCH = 5002,
+    SYBPERK_SURVIVAL_MUSHROOMS_RESEARCH = 5003,
+    SYBPERK_SURVIVAL_CUTHIT_HANDS_DEC = 5004,
+    SYBPERK_SURVIVAL_CUTHIT_LEGS_DEC = 5005,
+    SYBPERK_SURVIVAL_TOOLS_DEGRADATION_DEC = 5006,
+    SYBPERK_SURVIVAL_DIG_ITEMS = 5007,
+    SYBPERK_SURVIVAL_HEAT_WATER_IN_FIRE = 5008,
+    SYBPERK_SURVIVAL_FORST_RESIST = 5009,
+    SYBPERK_SURVIVAL_START_LOADOUT = 5010,
+    
+    SYBPERK_FARMING_CULTIVATE_GROUND = 6000,
+    SYBPERK_FARMING_CRAFT_TENT = 6001,
+    SYBPERK_FARMING_USE_FERTILIZER = 6002,
+    SYBPERK_FARMING_SEEDS_COUNT_INC = 6003,
+    SYBPERK_FARMING_PRODUCT_COUNT_INC = 6004,
+    SYBPERK_FARMING_DOMESTICATION_HEN = 6005,
+    SYBPERK_FARMING_DOMESTICATION_COW = 6006,
+    SYBPERK_FARMING_DOMESTICATION_GOAT = 6007,
+    SYBPERK_FARMING_DOMESTICATION_SHEEP = 6008,
+    
+    SYBPERK_HUNTING_MEAT_COUNT = 7000,
+    SYBPERK_HUNTING_SKINING = 7001,
+    SYBPERK_HUNTING_DECOY_USE = 7002,
+    SYBPERK_HUNTING_FEEDER_USE = 7003,
+    SYBPERK_HUNTING_USE_TRAPS = 7004,
+    SYBPERK_HUNTING_ANIMAL_STEALTH = 7005,
+    
+    SYBPERK_FISHING_CATCH_ON_BREAD = 8000,
+    SYBPERK_FISHING_CATCH_ON_SPOON = 8001,
+    SYBPERK_FISHING_CATCH_ON_MEAT = 8002,
+    SYBPERK_FISHING_NETS_USE = 8003,
+    SYBPERK_FISHING_TRAPS_USE = 8004,
+    SYBPERK_FISHING_CATCH_ON_WORM = 8005,
+    SYBPERK_FISHING_TOOLS_DEGRADATION_DEC = 8006,
+    
+    SYBPERK_MECHANICS_SETUP_PLUG = 9000,
+    SYBPERK_MECHANICS_SETUP_WHEELS = 9001,
+    SYBPERK_MECHANICS_SETUP_DOORS = 9002,
+    SYBPERK_MECHANICS_REPAIR_FUEL = 9003,
+    SYBPERK_MECHANICS_SETUP_GLASSES = 9004,
+    SYBPERK_MECHANICS_REPAIR_BODY = 9005,
+    SYBPERK_MECHANICS_SETUP_ENGINE = 9006,
+    SYBPERK_MECHANICS_DRAIN_FUEL = 9007,
+    SYBPERK_MECHANICS_DISASSEMBLY_STATE_INC = 9008,
+    SYBPERK_MECHANICS_REPAIR_STATE_INC = 9009,
+    SYBPERK_MECHANICS_TOOLS_DEGRADATION_DEC = 9010,
+    
+    SYBPERK_ELECTRONICS_DISASSEMBLY_STATE_INC = 10000,
+    SYBPERK_ELECTRONICS_REPAIR_STATE_INC = 10001,
+    SYBPERK_ELECTRONICS_TOOLS_DEGRADATION_DEC = 10002,
+    
+    SYBPERK_CARPENTRY_DISASSEMBLY_STATE_INC = 11000,
+    SYBPERK_CARPENTRY_REPAIR_STATE_INC = 11001,
+    SYBPERK_CARPENTRY_TOOLS_DEGRADATION_DEC = 11002,
+    
+    SYBPERK_METALWORKING_DISASSEMBLY_STATE_INC = 12000,
+    SYBPERK_METALWORKING_REPAIR_STATE_INC = 12001,
+    SYBPERK_METALWORKING_TOOLS_DEGRADATION_DEC = 12002,
+    
+    SYBPERK_BUILDING_LOCK_DOORS = 13000,
+    SYBPERK_BUILDING_SMALL_WOOD_DOORS = 13001,
+    SYBPERK_BUILDING_BIG_WOOD_DOORS = 13002,
+    SYBPERK_BUILDING_SMALL_METAL_DOORS = 13003,
+    SYBPERK_BUILDING_BIG_METAL_DOORS = 13004,
+    SYBPERK_BUILDING_BARICADES = 13005,
+    SYBPERK_BUILDING_TOOLS_DEGRADATION_DEC = 13006,
+    
+    SYBPERK_FIREARMS_HOTKEY_RELOAD = 14000,
+    SYBPERK_FIREARMS_CLEAR_WEAPONS = 14001,
+    SYBPERK_FIREARMS_MAKE_BULLETS = 14002,
+    SYBPERK_FIREARMS_DISASSEMBLY_STATE_INC = 14003,
+    SYBPERK_FIREARMS_REPAIR_STATE_INC = 14004,
+    SYBPERK_FIREARMS_TOOLS_DEGRADATION_DEC = 14005,
+    
+    SYBPERK_LOCKPICKING_USE_LOCKPICK = 15000,
+    SYBPERK_LOCKPICKING_BREAK_LOCKS = 15001,
+    SYBPERK_LOCKPICKING_BREAK_VEHICLES = 15002,
+    SYBPERK_LOCKPICKING_PICKPOCKETING = 15003,
+    SYBPERK_LOCKPICKING_BREAK_ROPES = 15004,
+    SYBPERK_LOCKPICKING_BREAK_HANDCUFFS = 15005,
+    SYBPERK_LOCKPICKING_FAKE_HANDCUFFS = 15006,
+    SYBPERK_LOCKPICKING_TOOLS_DEGRADATION_DEC = 15007,
+    
+    SYBPERK_HERBALISM_COLLECT_HERBS = 16000,
+    SYBPERK_HERBALISM_HERBS_RESEARCH = 16001,
+    SYBPERK_HERBALISM_TOOLS_DEGRADATION_DEC = 16002,
+    SYBPERK_HERBALISM_RESULT_STRENGTH = 16003,
+    SYBPERK_HERBALISM_RESULT_COUNT = 16004,
+    
+    SYBPERK_SEAMSTRESS_SKINS_DRESSING = 17000,
+    SYBPERK_SEAMSTRESS_SKINS_FIXING = 17001,
+    SYBPERK_SEAMSTRESS_WOOL_DRESSING = 17002,
+    SYBPERK_SEAMSTRESS_COTTON_DRESSING = 17003,
+    SYBPERK_SEAMSTRESS_DISASSEMBLY_STATE_INC = 17004,
+    SYBPERK_SEAMSTRESS_REPAIR_STATE_INC = 17005,
+    SYBPERK_SEAMSTRESS_TOOLS_DEGRADATION_DEC = 17006,
+};
+
+class PerksCollection
+{
+	private ref map<int, ref PerkInfo> m_mapIds = new map<int, ref PerkInfo>;
+	
+	void PerksCollection()
+	{
+		OnInit();
+	}
+	
+	protected void OnInit()
+	{
+        //
+        // IMMUNITY
+        //
+		Register(SyberiaPerkType.SYBPERK_IMMUNITY_INFLUENZA_TIME, "%").AddUnlockValue(1, 5).AddUnlockValue(10, 15).AddUnlockValue(20, 30).AddUnlockValue(32, 50).AddUnlockValue(47, 80).AddUnlockValue(85, 120);
+		Register(SyberiaPerkType.SYBPERK_IMMUNITY_STOMATCHPOISON_TIME, "%").AddUnlockValue(1, 5).AddUnlockValue(10, 15).AddUnlockValue(20, 30).AddUnlockValue(32, 50).AddUnlockValue(47, 80).AddUnlockValue(85, 120);
+        
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_HEMATOMA_TIME, "%").AddUnlockValue(3, 5).AddUnlockValue(12, 10).AddUnlockValue(23, 20).AddUnlockValue(34, 30).AddUnlockValue(53, 40).AddUnlockValue(90, 50);
+		Register(SyberiaPerkType.SYBPERK_IMMUNITY_CUTHIT_TIME, "%").AddUnlockValue(3, 5).AddUnlockValue(12, 10).AddUnlockValue(23, 20).AddUnlockValue(34, 30).AddUnlockValue(53, 40).AddUnlockValue(90, 50);
+        
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_SLEEPING_TIME, "%").AddUnlockValue(5, 5).AddUnlockValue(15, 10).AddUnlockValue(25, 20).AddUnlockValue(36, 30).AddUnlockValue(57, 40);
+		Register(SyberiaPerkType.SYBPERK_IMMUNITY_MENTAL_TIME, "%").AddUnlockValue(5, 5).AddUnlockValue(15, 10).AddUnlockValue(25, 20).AddUnlockValue(36, 30).AddUnlockValue(57, 40);
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_OVERDOSE_STRONG, "%").AddUnlockValue(5, 10).AddUnlockValue(15, 20).AddUnlockValue(25, 35).AddUnlockValue(36, 50).AddUnlockValue(57, 75).AddUnlockValue(100, 200);
+        
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_UNCUNSION_CHANCE, "%").AddUnlockValue(7, 2).AddUnlockValue(18, 5).AddUnlockValue(28, 10).AddUnlockValue(38, 15).AddUnlockValue(60, 20).AddUnlockValue(95, 25);
+		Register(SyberiaPerkType.SYBPERK_IMMUNITY_UNCUNSION_TIME, "%").AddUnlockValue(7, 2).AddUnlockValue(18, 5).AddUnlockValue(28, 10).AddUnlockValue(38, 15).AddUnlockValue(60, 20).AddUnlockValue(95, 25);
+        
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_HEMATOMA_CHANCE, "%").AddUnlockValue(30, 10).AddUnlockValue(43, 20).AddUnlockValue(70, 30);
+		Register(SyberiaPerkType.SYBPERK_IMMUNITY_CUTHIT_CHANCE, "%").AddUnlockValue(30, 10).AddUnlockValue(43, 20).AddUnlockValue(70, 30);
+        
+		Register(SyberiaPerkType.SYBPERK_IMMUNITY_ZVIRUS_TIME, "%").AddUnlockValue(40, 15).AddUnlockValue(65, 30).AddUnlockValue(100, 120);
+		Register(SyberiaPerkType.SYBPERK_IMMUNITY_SEPSIS_TIME, "%").AddUnlockValue(40, 15).AddUnlockValue(65, 30).AddUnlockValue(100, 120);
+        
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_INFLUENZA_FIREPLACE_HEAL).AddUnlockValue(50, 0);
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_PAIN_STRONG, "syb_skill_level2").AddUnlockValue(100, 1);
+        
+
+        
+        
+        
+        
+        
+	}
+	
+	protected ref PerkInfo Register(int perkId, string unitsType = "")
+	{
+		ref PerkInfo perk = new PerkInfo(perkId, unitsType);
+		m_mapIds.Insert(perkId, perk);
+		return perk;
+	}
+	
+	void GetFilteredPerks(int skillId, int unlockLevel, ref array<ref PerkInfo> perks)
+	{
+		foreach (int id, ref PerkInfo perk : m_mapIds)
+		{
+			if (skillId == -1 || perk.GetSkillId() == skillId)
+			{
+				if (unlockLevel == -1 || perk.HasUnlockLevel(unlockLevel))
+				{
+					perks.Insert(perk);
+				}
+			}
+		}
+	}
+	
+	void GetUnlockLevelsOfSkill(int skillId, ref array<int> levels)
+	{
+		foreach (int perkId, ref PerkInfo perk : m_mapIds)
+		{
+			if (perk.GetSkillId() != skillId)
+				continue;
+			
+			for (int i = 0; i < perk.GetUnlockLevels().Count(); i++)
+			{
+				int unlockLevel = perk.GetUnlockLevels().GetKey(i);
+				if (levels.Find(unlockLevel) == -1)
+				{
+					levels.Insert( unlockLevel );
+				}
+			}
+		}
+	}
+	
+	ref PerkInfo GetPerk(int perkId)
+	{
+		return m_mapIds.Get(perkId);
+	}
+	
+	static ref PerksCollection m_Instance = new PerksCollection();
+};
+
+class PerkInfo
+{
+	private int m_id;
+	private int m_skillId;		
+	private ref map<int, int> m_unlockValues;
+    private string m_unitsType;
+	
+	void PerkInfo(int id, string unitsType)
+	{
+		m_id = id;
+		m_skillId = CalculateSkillId(id);
+		m_unlockValues = new map<int, int>;
+        m_unitsType = unitsType;
+	}
+	
+	ref PerkInfo AddUnlockValue(int level, int value)
+	{
+		m_unlockValues.Insert(level, value);
+		return this;
+	}
+	
+	private int CalculateSkillId(int id)
+	{
+		int skill = 0;
+		while (id >= 1000)
+		{
+			skill = skill + 1;
+			id = id - 1000;
+		}
+		
+		return skill;
+	}
+	
+	int GetId()
+	{
+		return m_id;
+	}
+	
+	string GetName()
+	{
+		return "#syb_perk_name_" + GetId();
+	}
+	
+	string GetDesc()
+	{
+		return "#syb_perk_desc_" + GetId();
+	}
+	
+	int GetSkillId()
+	{
+		return m_skillId;
+	}
+	
+	bool HasUnlockLevel(int unlockLevel)
+	{
+		return m_unlockValues.Contains(unlockLevel);
+	}
+	
+	int GetUnlockLevelValue(int unlockLevel)
+	{
+		return m_unlockValues.Get(unlockLevel);
+	}
+	
+	ref map<int, int> GetUnlockLevels()
+	{
+		return m_unlockValues;
+	}
+};
