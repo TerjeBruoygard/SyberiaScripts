@@ -38,7 +38,7 @@ class ActionCheckName: ActionInteractBase
 		
 		if (mode == 1)
 		{
-			if (!IsFaceClosed(ntarget))
+			if (!ntarget.IsFaceBlocked(false))
 			{
 				return true;
 			}
@@ -51,30 +51,6 @@ class ActionCheckName: ActionInteractBase
 			}
 		}
 
-		return false;
-	}
-	
-	private bool IsFaceClosed(PlayerBase player)
-	{
-		ref ItemBase itemCheck = player.GetItemOnSlot("Mask");
-		if (itemCheck)
-		{
-			return true;
-		}
-		
-		itemCheck = player.GetItemOnSlot("Headgear");
-		if (itemCheck)
-		{
-			string configPathNoMask = "CfgVehicles " + itemCheck.GetType() +  " noMask";
-			if (GetGame().ConfigIsExisting(configPathNoMask))
-			{
-				if (GetGame().ConfigGetInt(configPathNoMask) == 1)
-				{
-					return true;
-				}
-			}
-		}
-		
 		return false;
 	}
 };

@@ -59,6 +59,8 @@ enum SyberiaScreenEquipPages {
 };
 
 enum SyberiaSleepingLevel {
+	SYBSL_ENERGED = -4,
+	SYBSL_SICK = -3,
 	SYBSL_COLD = -2,
 	SYBSL_HOT = -1,
 	SYBSL_NONE = 0,

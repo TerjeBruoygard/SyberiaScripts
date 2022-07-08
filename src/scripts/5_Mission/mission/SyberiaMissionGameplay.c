@@ -147,7 +147,15 @@ modded class MissionGameplay
 		float sleepingValue = Math.Clamp((int)sleepingLevel, 0, 1);
 		SyberiaPPEffects.SetSleepingEffect(sleepingValue);
 		
-		if (sleepingLevel == SyberiaSleepingLevel.SYBSL_COLD)
+		if (sleepingLevel == SyberiaSleepingLevel.SYBSL_ENERGED)
+		{
+			m_SyberiaAdditionalHud.ShowScreenMessage("#syb_nosleep_energed", 2);
+		}
+		else if (sleepingLevel == SyberiaSleepingLevel.SYBSL_SICK)
+		{
+			m_SyberiaAdditionalHud.ShowScreenMessage("#syb_nosleep_sick", 2);
+		}
+		else if (sleepingLevel == SyberiaSleepingLevel.SYBSL_COLD)
 		{
 			m_SyberiaAdditionalHud.ShowScreenMessage("#syb_nosleep_cold", 2);
 		}
