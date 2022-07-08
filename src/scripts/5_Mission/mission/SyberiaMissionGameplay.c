@@ -87,6 +87,7 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_OVERDOSED, badgets, "Overdosed");
 				m_Hud.InitBadgetWidget(NTFKEY_INFLUENZA, badgets, "Influenza");
 				m_Hud.InitBadgetWidget(NTFKEY_STOMATCHPOISONING, badgets, "Stomatchpoison");
+				m_Hud.InitBadgetWidget(NTFKEY_RADIATIONSICKNESS, badgets, "RadiationSickness");
 			}
 		}
 		
@@ -148,6 +149,7 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_OVERDOSED, (int)Math.Floor(Math.Clamp(player.m_overdosedValue, 0, 3)));
 				m_Hud.DisplayBadge(NTFKEY_INFLUENZA, player.m_influenzaLevel);
 				m_Hud.DisplayBadge(NTFKEY_STOMATCHPOISONING, player.m_stomatchpoisonLevel);
+				m_Hud.DisplayBadge(NTFKEY_RADIATIONSICKNESS, player.GetRadiationSicknessLevel());
 			}
 						
 			OnUpdateAdvMedicineGUI(player, timeslice);
@@ -171,6 +173,8 @@ modded class MissionGameplay
 		
 		float painEffect = Math.Clamp(player.GetCurrentPainLevel() * 0.1, 0, 0.3);
 		SyberiaPPEffects.SetPainEffect(painEffect);
+		
+		SyberiaPPEffects.SetRadiationEffect(player.GetRadiationSicknessLevel());
 		
 		float concussionEffect = Math.Clamp(((int)player.m_concussionHit) * 0.1, 0, 0.1);
 		SyberiaPPEffects.SetConcussionEffect(concussionEffect);

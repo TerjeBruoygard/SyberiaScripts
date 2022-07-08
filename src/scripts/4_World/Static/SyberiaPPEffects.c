@@ -15,6 +15,10 @@ class SyberiaPPEffects
 	static float m_PainValue;
 	static float m_PainOffset;
 	
+	static float m_RadiationEffect;
+	static float m_RadiationValue;
+	static float m_RadEffectColors[4];
+	
 	static float m_ConcussionValue;
 	static float m_ConcussionOffset;
 	
@@ -30,6 +34,12 @@ class SyberiaPPEffects
 	
 	static float m_nvgEffectColors[4];
 	static bool m_colorsMarkDirty;
+	
+	static float m_lightMult;
+	static float m_noiseIntensity;
+	static float m_sharpness;
+	static float m_grainSize;
+	static bool m_lightOptionsDirty;
 	
 	static void Init()
 	{
@@ -56,6 +66,13 @@ class SyberiaPPEffects
 		m_PainValue = 0;
 		m_PainOffset = 0;
 		
+		m_RadiationEffect = 0;
+		m_RadiationValue = 0;		
+		m_RadEffectColors[0] = 1.0;
+		m_RadEffectColors[1] = 1.0;
+		m_RadEffectColors[2] = 1.0;
+		m_RadEffectColors[3] = 0.0;
+		
 		m_ConcussionValue = 0;
 		m_ConcussionOffset = 0;
 		
@@ -78,6 +95,12 @@ class SyberiaPPEffects
 		m_nvgEffectColors[3] = 0.0;
 		m_MatColors.SetParam("ColorizationColor", m_nvgEffectColors);
 		m_colorsMarkDirty = false;
+		
+		m_lightMult = 1.0;
+		m_noiseIntensity = 0.0;
+		m_sharpness = 2.35;
+		m_grainSize = 2.75;
+		m_lightOptionsDirty = true;
 	}
 	
 	static void Update(float dt)
@@ -129,6 +152,30 @@ class SyberiaPPEffects
 			m_colorsMarkDirty = true;
 		}
 		
+		float newRadValue = m_RadiationValue;
+		if (m_RadiationEffect > 0)
+		{
+			newRadValue = Math.Clamp(m_RadiationValue + (dt * 0.1), 0, m_RadiationEffect);
+		}
+		else
+		{
+			newRadValue = Math.Max(m_RadiationValue - (dt * 0.1), 0);
+		}
+		
+		if (newRadValue != m_RadiationValue)
+		{
+			m_RadiationValue = newRadValue;
+			PPEffects.SetNVParams(1.0, 1.0, 10.0, 1.0);
+			
+			float radColorValue = Math.Clamp(m_RadiationValue, 0, 1);
+			m_RadEffectColors[0] = 1.0 - (radColorValue * 0.2);
+			m_RadEffectColors[1] = 1.0 - (radColorValue * 0.2);
+			m_RadEffectColors[2] = 1.0 - (radColorValue * 0.5);
+			m_RadEffectColors[3] = 0.0;
+			m_colorsMarkDirty = true;
+			m_lightOptionsDirty = true;
+		}
+		
 		if (m_colorsMarkDirty)
 		{
 			m_colorsMarkDirty = false;
@@ -145,7 +192,24 @@ class SyberiaPPEffects
 				color[2] = color[2] * m_nvgEffectColors[2];
 			}
 			
+			if (m_RadEffectColors[0] != 0 || m_RadEffectColors[1] != 0 || m_RadEffectColors[2] != 0)
+			{
+				color[0] = color[0] * m_RadEffectColors[0];
+				color[1] = color[1] * m_RadEffectColors[1];
+				color[2] = color[2] * m_RadEffectColors[2];
+			}
+			
 			m_MatColors.SetParam("ColorizationColor", color);
+		}
+		
+		if (m_lightOptionsDirty)
+		{
+			m_lightOptionsDirty = false;
+			float lightMul = m_lightMult;
+			float noiseIntensity = Math.Min(2, m_noiseIntensity + m_RadiationValue);
+			float sharpness = Math.Min(10, m_sharpness + (m_RadiationValue * 10));
+			float grainSize = Math.Max(1, m_grainSize - m_RadiationValue);
+			PPEffects.SetNVParams(lightMul, noiseIntensity, sharpness, grainSize);		
 		}
 		
 		if (m_OverdosedValue > 0)
@@ -251,6 +315,11 @@ class SyberiaPPEffects
 		m_PainValue = value;
 	}
 	
+	static void SetRadiationEffect(float value)
+	{
+		m_RadiationEffect = value;
+	}
+	
 	static void SetConcussionEffect(float value)
 	{
 		m_ConcussionValue = value;
@@ -259,6 +328,15 @@ class SyberiaPPEffects
 	static void SetPsiEffect(bool value)
 	{
 		m_psiEffectValue = value;
+	}
+	
+	static void SetNVParams(float light_mult, float noise_intensity, float sharpness, float grain_size)
+	{
+		m_lightMult = light_mult;
+		m_noiseIntensity = noise_intensity;
+		m_sharpness = sharpness;
+		m_grainSize = grain_size;
+		m_lightOptionsDirty = true;
 	}
 	
 	static void SetColorizationNV(float r, float g, float b)
@@ -275,6 +353,9 @@ class SyberiaPPEffects
 		m_ConcussionValue = 0;
 		m_PainValue = 0;
 		m_camShake = 0;
+		
+		m_RadiationEffect = 0;
+		m_RadiationValue = 0;
 		
 		m_SleepingValue = 0;
 		m_SleepingOffset = 0;
@@ -293,8 +374,20 @@ class SyberiaPPEffects
 		m_nvgEffectColors[1] = 1.0;
 		m_nvgEffectColors[2] = 1.0;
 		m_nvgEffectColors[3] = 0.0;
+		
+		m_RadEffectColors[0] = 1.0;
+		m_RadEffectColors[1] = 1.0;
+		m_RadEffectColors[2] = 1.0;
+		m_RadEffectColors[3] = 0.0;	
+		
 		m_MatColors.SetParam("ColorizationColor", m_nvgEffectColors);
 		m_colorsMarkDirty = false;
+		
+		m_lightMult = 1.0;
+		m_noiseIntensity = 0.0;
+		m_sharpness = 2.35;
+		m_grainSize = 2.75;
+		m_lightOptionsDirty = true;
 		
 		if (m_psiEffectSound) 
 		{

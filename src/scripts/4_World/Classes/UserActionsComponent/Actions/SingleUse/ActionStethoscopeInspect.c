@@ -56,6 +56,7 @@ class ActionStethoscopeInspect_Data
 	int m_pain;
 	int m_influenza;
 	int m_stomatchPoison;
+	int m_radiationSickness;
 	bool m_brokenLegs;
 	bool m_viscera;
 	bool m_sepsis;

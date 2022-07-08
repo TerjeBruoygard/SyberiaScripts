@@ -63,6 +63,7 @@ class StethoscopeMenu extends UIScriptedMenu
 			SetLevelValue("#syb_stethoscope_menu14", m_data.m_pain);
 			SetLevelValue("#syb_stethoscope_menu15", m_data.m_influenza);
 			SetLevelValue("#syb_stethoscope_menu16", m_data.m_stomatchPoison);
+			SetLevelValue("#syb_stethoscope_menu22", m_data.m_radiationSickness);
 			SetBoolValue( "#syb_stethoscope_menu17", m_data.m_brokenLegs);
 			SetBoolValue( "#syb_stethoscope_menu18", m_data.m_viscera);
 			SetBoolValue( "#syb_stethoscope_menu19", m_data.m_sepsis);
