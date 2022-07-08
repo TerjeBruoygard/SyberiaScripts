@@ -184,17 +184,23 @@ class GameHelpers
 			return itemClassname;
 	}
 	
-	static vector GetCursorPos()
+	static bool GetCursorPos(out vector result)
 	{
-	    if ( !GetGame().GetPlayer() )
-	        return "0 0 0";
-
-	    vector rayStart = GetGame().GetCurrentCameraPosition();
-	    vector rayEnd = rayStart + GetGame().GetCurrentCameraDirection() * 10000;
-	    vector hitPos;
-	    vector hitNormal;
-	    int hitComponentIndex;
-	    DayZPhysics.RaycastRV(rayStart, rayEnd, hitPos, hitNormal, hitComponentIndex, NULL, NULL, GetGame().GetPlayer());
-	    return hitPos;
+	    if ( GetGame().GetPlayer() )
+		{
+			vector rayStart = GetGame().GetCurrentCameraPosition();
+		    vector rayEnd = rayStart + GetGame().GetCurrentCameraDirection() * 10000;
+		    vector hitPos;
+		    vector hitNormal;
+		    int hitComponentIndex;
+		    if (DayZPhysics.RaycastRV(rayStart, rayEnd, hitPos, hitNormal, hitComponentIndex, NULL, NULL, GetGame().GetPlayer()))
+			{
+				result = hitPos;
+				return true;
+			}
+		}
+		
+		result = "0 0 0";
+        return false;
 	}
 };

@@ -26,7 +26,11 @@ class PluginAdminTool extends PluginBase
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_FREECAM, this, "FreeCam");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_ESPSYNCH, this, "EspSynch");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_OBJMOVE, this, "ObjMove");
-		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_OBJDEL, this, "ObjDel");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_OBJDEL, this, "ObjDel");		
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_DELETE_CHARACTER, this, "PlayerDeleteCharacter");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_KICK, this, "PlayerKick");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT_TO_PLAYER, this, "PlayerTeleportToPlayer");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT_PLAYER_TO_ME, this, "PlayerTeleportToMe");
 	}
 	
 	override void OnUpdate(float delta_time)
@@ -80,6 +84,26 @@ class PluginAdminTool extends PluginBase
 		}
 	}
 	
+	void TeleportToCursor()
+	{
+		if (!m_adminPermissions)
+			return;
+		
+		vector cursorPos;
+		if (GameHelpers.GetCursorPos(cursorPos))
+		{
+			if (m_freeCam)
+			{
+				cursorPos[1] = cursorPos[1] + 0.25;
+				m_freeCam.SetPosition(cursorPos);	
+			}
+			else
+			{
+				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, new Param2< vector, int >( cursorPos, 0 ) );
+			}
+		}
+	}
+	
 	void RequestOpen( ref ParamsReadContext ctx, ref PlayerIdentity sender )
     { 
 		if (GetGame().IsServer() || IsOpen()) return;		
@@ -130,7 +154,7 @@ class PluginAdminTool extends PluginBase
 	{
 		if (!m_adminPermissions) return;
 		
-		Param1< bool > serverData;
+		Param2< bool, vector > serverData;
 	    if ( !ctx.Read( serverData ) ) return;
 		
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
@@ -176,6 +200,14 @@ class PluginAdminTool extends PluginBase
 	void ObjMove( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
 	
 	void ObjDel( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	
+	void PlayerDeleteCharacter( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	
+	void PlayerKick( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	
+	void PlayerTeleportToPlayer( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	
+	void PlayerTeleportToMe( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
 	
 	bool HasAdminPermissions()
 	{
@@ -310,6 +342,7 @@ class PluginAdminTool_PlayerContextBase
 	string m_uid;
 	string m_name;
 	string m_nickname;
+	string m_group;
 	bool m_isAdmin;
 	bool m_isGhost;
 };
