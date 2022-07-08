@@ -9,7 +9,7 @@ class SyringeEmpty : Inventory_Base
     weight=50;
     absorbency=0;
     varTemperatureMax=100;
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\destruct.rvmat");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\syringe_destruct.rvmat");
 };
 
 class SyringeDirty : Inventory_Base
@@ -23,7 +23,7 @@ class SyringeDirty : Inventory_Base
     weight=50;
     absorbency=0;
     varTemperatureMax=100;
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\destruct.rvmat");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\syringe_destruct.rvmat");
 };
 
 class SyringeFull : Inventory_Base
@@ -43,9 +43,9 @@ class SyringeFull : Inventory_Base
     };
     hiddenSelectionsTextures[]=
     {
-        "SyberiaScripts\data\medical\syringefluid_med_ca.paa"
+        "SyberiaScripts\data\medical\syringefluid_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\destruct.rvmat");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\syringe.rvmat", "SyberiaScripts\data\medical\syringe_damage.rvmat", "SyberiaScripts\data\medical\syringe_destruct.rvmat");
     class AnimEvents
     {
         class SoundWeapon

@@ -1,4 +1,4 @@
-class TurnAmpouleRefillLambda : TurnItemIntoItemLambda
+class TurnCombineSybLambda : TurnItemIntoItemLambda
 {
     ItemBase m_ampouleSource;
 	

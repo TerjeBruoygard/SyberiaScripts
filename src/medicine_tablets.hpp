@@ -41,6 +41,7 @@ class TabletsBase : Edible_Base {
     varQuantityDestroyOnMin=1;
     weight=20;
     stackedUnit="pills";
+    canBeSplit=1;
     quantityBar=0;
     absorbency=0;
     overdosedIncrement=0.1;
