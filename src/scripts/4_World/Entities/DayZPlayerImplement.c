@@ -155,7 +155,7 @@ modded class DayZPlayerImplement
         }
 		
 		UAInput skillsMenuKey = GetUApi().GetInputByName("UAToggleSyberiaSkillsMenu");
-		if ( skillsMenuKey.LocalClick() )
+		if ( skillsMenuKey.LocalClick() && GetGame().GetUIManager().GetMenu() == NULL )
 		{
 			if (m_skillsMenu && m_skillsMenu.m_active) 
 			{
@@ -163,7 +163,6 @@ modded class DayZPlayerImplement
 				return;
 			}
 				
-			if (GetGame().GetUIManager().GetMenu() != NULL) return;
 			if (!player.CanOpenSyberiaUI()) return;		
 			if (!player.m_skills) return;		
 	        if (!m_skillsMenu) m_skillsMenu = new SkillsMenu;
@@ -172,7 +171,7 @@ modded class DayZPlayerImplement
 		}
 		
         UAInput hideItemKey = GetUApi().GetInputByName("UAToggleSyberiaHideItem");
-		if ( hideItemKey.LocalClick() )
+		if ( hideItemKey.LocalClick() && GetGame().GetUIManager().GetMenu() == NULL )
 		{
 			if ( !player.GetInventory().IsInventoryLocked() && player.GetHumanInventory().CanRemoveEntityInHands() )
 			{
@@ -181,7 +180,7 @@ modded class DayZPlayerImplement
 		}
 		
 		UAInput useBackpackKey = GetUApi().GetInputByName("UAToggleSyberiaUseBackpack");
-		if ( useBackpackKey.LocalClick() && !player.GetInventory().IsInventoryLocked() )
+		if ( useBackpackKey.LocalClick() && !player.GetInventory().IsInventoryLocked() && GetGame().GetUIManager().GetMenu() == NULL )
 		{
 			ItemBase backpack = player.GetItemInHands();
 			if (backpack)
@@ -202,7 +201,7 @@ modded class DayZPlayerImplement
 		}
 		
 		UAInput usePDAKey = GetUApi().GetInputByName("UAToggleSyberiaUsePDA");
-		if ( usePDAKey.LocalClick() )
+		if ( usePDAKey.LocalClick() && GetGame().GetUIManager().GetMenu() == NULL )
 		{
 			ItemPDA itemPda = ItemPDA.Cast( player.GetItemOnSlot("Armband") );
 			if ( itemPda && !itemPda.IsRuined() && itemPda.HasEnergyManager() && itemPda.GetCompEM().CanWork() )
