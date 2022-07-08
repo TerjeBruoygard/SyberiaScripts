@@ -414,7 +414,7 @@ class AmpouleFlemoclav : SyberiaMedicineAmpoule
     scope=2;
     displayName="#syb_flemoclav_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
-    medAntibioticLevel=2;
+    medAntibioticLevel=3;
     medAntibioticsTimeSec=1400;
     medAntibioticsStrength=2.5;
     overdosedIncrement=0.45;
@@ -432,7 +432,7 @@ class AmpouleOcsacylin : SyberiaMedicineAmpoule
     scope=2;
     displayName="#syb_ocsacylin_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
-    medAntibioticLevel=2;
+    medAntibioticLevel=3;
     medAntibioticsTimeSec=300;
     medAntibioticsStrength=2.7;
     overdosedIncrement=0.5;
@@ -449,7 +449,7 @@ class AmpouleImipenem : SyberiaMedicineAmpoule
     scope=2;
     displayName="#syb_imipenem_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
-    medAntibioticLevel=2;
+    medAntibioticLevel=3;
     medAntibioticsTimeSec=1200;
     medAntibioticsStrength=3.0;
     overdosedIncrement=0.55;
@@ -467,7 +467,7 @@ class AmpouleAmoksivan : SyberiaMedicineAmpoule
     scope=2;
     displayName="#syb_amoksivan_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
-    medAntibioticLevel=2;
+    medAntibioticLevel=3;
     medAntibioticsTimeSec=1400;
     medAntibioticsStrength=3.0;
     overdosedIncrement=0.6;

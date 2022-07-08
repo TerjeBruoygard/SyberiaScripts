@@ -86,9 +86,12 @@ const int NTFKEY_HEMATOPOIESIS = 1114;
 const int NTFKEY_USESALVE = 1115;
 const int NTFKEY_ADRENALIN = 1116;
 const int NTFKEY_OVERDOSED = 1117;
+const int NTFKEY_INFLUENZA = 1118;
 
-const int LEVELED_NTFKEY_BADGES_COUNT = 4;
-const int LEVELED_NTFKEY_BADGES[LEVELED_NTFKEY_BADGES_COUNT] = { NTFKEY_PAIN, NTFKEY_PAINKILLER, NTFKEY_ADRENALIN, NTFKEY_OVERDOSED };
+const int LEVELED_NTFKEY_BADGES_COUNT = 6;
+const int LEVELED_NTFKEY_BADGES[LEVELED_NTFKEY_BADGES_COUNT] = { 
+	NTFKEY_PAIN, NTFKEY_PAINKILLER, NTFKEY_ADRENALIN, NTFKEY_OVERDOSED, NTFKEY_INFLUENZA, NTFKEY_ANTIBIOTIC 
+};
 
 const string ALLOWED_LETTERS_IN_NAME = "abcdefghijklmnopqrstuvwxyz";
 
@@ -130,10 +133,10 @@ modded class PlayerConstants
 	static const float SL_ENERGY_NORMAL = 1500;
 	static const float SL_ENERGY_HIGH = 2800;
 	
-	static const float METABOLIC_SPEED_ENERGY_BASAL		= 0.02;		//energy loss per second while idle	
-	static const float METABOLIC_SPEED_ENERGY_WALK		= 0.05;		//energy loss per second
-	static const float METABOLIC_SPEED_ENERGY_JOG		= 0.2;		//energy loss per second
-	static const float METABOLIC_SPEED_ENERGY_SPRINT	= 0.4;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_BASAL		= 0.01;		//energy loss per second while idle	
+	static const float METABOLIC_SPEED_ENERGY_WALK		= 0.02;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_JOG		= 0.06;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_SPRINT	= 0.10;		//energy loss per second
 	
 	// Water
 	static const float SL_WATER_CRITICAL = 0;
