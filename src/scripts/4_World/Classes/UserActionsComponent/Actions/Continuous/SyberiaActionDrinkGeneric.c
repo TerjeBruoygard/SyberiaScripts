@@ -2,6 +2,11 @@ modded class ActionDrinkWellContinuous
 {
 	override bool ActionBlockerCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		if (!target.GetObject() || !target.GetObject().IsWell())
+		{
+			return false;
+		}
+		
 		ref ItemBase itemCheck = player.GetItemOnSlot("Mask");
 		if (itemCheck)
 		{
@@ -83,7 +88,7 @@ modded class ActionDrinkPondContinuous
 	
 	override string ActionBlockerText( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		return "#syb_action_consume_blocked_headgear";
+		return "";
 	}
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )

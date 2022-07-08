@@ -125,8 +125,8 @@ modded class PlayerConstants
 	static const float HEALTH_REGEN_MIN	= 0.002;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
 	static const float HEALTH_REGEN_MAX	= 0.01;	//health regen rate at MAXIMUM blood level
 	
-	static const float SHOCK_REFILL_CONSCIOUS_SPEED			= 1;		//shock refill speed when the player is conscious
-	static const float SHOCK_REFILl_UNCONSCIOUS_SPEED		= 0.1;		//shock refill speed when the player is unconscious
+	static const float SHOCK_REFILL_CONSCIOUS_SPEED			= 0.8;		//shock refill speed when the player is conscious
+	static const float SHOCK_REFILl_UNCONSCIOUS_SPEED		= 0.28;		//shock refill speed when the player is unconscious
 	
 	
 	// Metabolic
