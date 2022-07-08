@@ -41,11 +41,11 @@ modded class PlayerBase
 		super.Init();
 		
 		// Sleeping
-		m_lastSleepingValue = SLEEPING_MAX_VALUE;
-		m_sleepingValue = SLEEPING_MAX_VALUE;
+		m_lastSleepingValue = GetSyberiaConfig().m_sleepingMaxValue;
+		m_sleepingValue = GetSyberiaConfig().m_sleepingMaxValue;
 		m_sleepingLevel = (int)SyberiaSleepingLevel.SYBSL_NONE;
-		RegisterNetSyncVariableInt("m_lastSleepingValue", 0, SLEEPING_MAX_VALUE);
-		RegisterNetSyncVariableInt("m_sleepingValue", 0, SLEEPING_MAX_VALUE);
+		RegisterNetSyncVariableInt("m_lastSleepingValue", 0, GetSyberiaConfig().m_sleepingMaxValue);
+		RegisterNetSyncVariableInt("m_sleepingValue", 0, GetSyberiaConfig().m_sleepingMaxValue);
 		RegisterNetSyncVariableInt("m_sleepingLevel", -4, 2);
 		
 		// Adv medicine
@@ -96,8 +96,8 @@ modded class PlayerBase
 		RegisterNetSyncVariableBool("m_salveEffect");
 		
 		// Mind state
-		m_mindStateValue = MINDSTATE_MAX_VALUE;
-		m_mindStateLast = MINDSTATE_MAX_VALUE;
+		m_mindStateValue = GetSyberiaConfig().m_mindstateMaxValue;
+		m_mindStateLast = GetSyberiaConfig().m_mindstateMaxValue;
 		RegisterNetSyncVariableFloat("m_mindStateValue");
 		RegisterNetSyncVariableFloat("m_mindStateLast");
 	}
@@ -156,10 +156,10 @@ modded class PlayerBase
 	int GetSleepingState()
 	{
 		int value = GetSleepingValue();
-		if (value < SLEEPING_LEVEL_5) return 5;
-		if (value < SLEEPING_LEVEL_4) return 4;
-		if (value < SLEEPING_LEVEL_3) return 3;
-		if (value < SLEEPING_LEVEL_2) return 2;
+		if (value < GetSyberiaConfig().m_sleepingLevel5) return 5;
+		if (value < GetSyberiaConfig().m_sleepingLevel4) return 4;
+		if (value < GetSyberiaConfig().m_sleepingLevel3) return 3;
+		if (value < GetSyberiaConfig().m_sleepingLevel2) return 2;
 		return 1; 
 	}
 	
@@ -221,10 +221,10 @@ modded class PlayerBase
 	int GetMindState()
 	{
 		float value = GetMindStateValue();
-		if (value < MINDSTATE_LEVEL_5) return 5;
-		if (value < MINDSTATE_LEVEL_4) return 4;
-		if (value < MINDSTATE_LEVEL_3) return 3;
-		if (value < MINDSTATE_LEVEL_2) return 2;
+		if (value < GetSyberiaConfig().m_mindstateLevel5) return 5;
+		if (value < GetSyberiaConfig().m_mindstateLevel4) return 4;
+		if (value < GetSyberiaConfig().m_mindstateLevel3) return 3;
+		if (value < GetSyberiaConfig().m_mindstateLevel2) return 2;
 		return 1; 
 	}
 	
@@ -280,7 +280,7 @@ modded class PlayerBase
 		if (m_influenzaLevel > 2) return true;
 		if (m_stomatchpoisonLevel > 1) return true;
 		if (m_overdosedValue > 2) return true;
-		if (m_mindStateValue < MINDSTATE_LEVEL_4) return true;
+		if (m_mindStateValue < GetSyberiaConfig().m_mindstateLevel4) return true;
 		if (GetStatWater().Get() < PlayerConstants.SL_WATER_LOW) return true;
 		if (GetStatEnergy().Get() < PlayerConstants.SL_ENERGY_LOW) return true;
 		return false;

@@ -168,7 +168,7 @@ modded class MissionGameplay
 	
 	private void OnUpdateMindstateGUI(PlayerBase player, float deltaTime)
 	{
-		if (player.GetMindStateValue() < MINDSTATE_LEVEL_4)
+		if (player.GetMindStateValue() < GetSyberiaConfig().m_mindstateLevel4)
 		{
 			if (Math.RandomFloat01() < deltaTime * 0.05)
 			{

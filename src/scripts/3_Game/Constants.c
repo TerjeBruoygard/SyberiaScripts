@@ -137,21 +137,21 @@ const int LEVELED_NTFKEY_BADGES[LEVELED_NTFKEY_BADGES_COUNT] = {
 class SyberiaConfig
 {
 	// Auth	
-    ref array<string> allowedLettersInName = new array<string>;
+    ref array<string> m_allowedLettersInName = new array<string>;
     
 	// Sleeping
-	int sleepingMaxValue;
-    int sleepingLevel5;
-    int sleepingLevel4;
-    int sleepingLevel3;
-    int sleepingLevel2;
+	int m_sleepingMaxValue;
+    int m_sleepingLevel5;
+    int m_sleepingLevel4;
+    int m_sleepingLevel3;
+    int m_sleepingLevel2;
 	
 	// Mindstate
-	float mindstateMaxValue;
-	float mindstateLevel5;
-	float mindstateLevel4;
-	float mindstateLevel3;
-	float mindstateLevel2;
+	float m_mindstateMaxValue;
+	float m_mindstateLevel5;
+	float m_mindstateLevel4;
+	float m_mindstateLevel3;
+	float m_mindstateLevel2;
 	
     void SyberiaConfig()
     {
@@ -161,21 +161,21 @@ class SyberiaConfig
 	protected void Init()
 	{
 		// Auth
-		GetGame().ConfigGetTextArray("CfgSyberia AuthSystem allowedLettersInName", allowedLettersInName);
+		GetGame().ConfigGetTextArray("CfgSyberia AuthSystem allowedLettersInName", m_allowedLettersInName);
 		
 		// Sleeping
-		sleepingMaxValue = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingMaxValue");
-	    sleepingLevel5 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel5");
-	    sleepingLevel4 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel4");
-	    sleepingLevel3 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel3");
-	    sleepingLevel2 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel2");
+		m_sleepingMaxValue = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingMaxValue");
+	    m_sleepingLevel5 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel5");
+	    m_sleepingLevel4 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel4");
+	    m_sleepingLevel3 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel3");
+	    m_sleepingLevel2 = GetGame().ConfigGetInt("CfgSyberia SleepingSystem sleepingLevel2");
 		
 		// Mindstate
-		mindstateMaxValue = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateMaxValue");
-	    mindstateLevel5 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel5");
-	    mindstateLevel4 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel4");
-	    mindstateLevel3 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel3");
-	    mindstateLevel2 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel2");
+		m_mindstateMaxValue = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateMaxValue");
+	    m_mindstateLevel5 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel5");
+	    m_mindstateLevel4 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel4");
+	    m_mindstateLevel3 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel3");
+	    m_mindstateLevel2 = GetGame().ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel2");
 	}
 };
 
