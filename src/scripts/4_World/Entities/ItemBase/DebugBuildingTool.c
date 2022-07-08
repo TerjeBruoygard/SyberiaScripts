@@ -67,7 +67,9 @@ class DebugBuildingManager
 	
 	static void SwitchProxies(Object proxy)
 	{
-
+		//array<LOD> lods = new array<LOD>;
+		//proxy.GetLODS(lods);
+		//SybLog
 	}
 };
 
