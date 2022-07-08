@@ -175,7 +175,7 @@ class PluginAdminTool extends PluginBase
 			GetGame().GetInput().ResetGameFocus();
 			GetGame().GetUIManager().ShowCursor(false);
 			m_freeCam = null;
-			SetListenerCamera(-1);
+			
 		}
 		
 		if (serverData.param1)
@@ -184,7 +184,6 @@ class PluginAdminTool extends PluginBase
 			MiscGameplayFunctions.GetHeadBonePos(player, pos);
 			m_freeCam = AdminFreeCam.Cast(g_Game.CreateObject( "AdminFreeCam", pos, true ));
 			m_freeCam.SetActive(true);
-			SetListenerCamera(0);
 		}
 	}
 	
