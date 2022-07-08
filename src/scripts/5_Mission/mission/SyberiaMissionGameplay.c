@@ -143,6 +143,19 @@ modded class MissionGameplay
 		
 		float concussionEffect = Math.Clamp(((int)player.m_concussionHit) * 0.1, 0, 0.1);
 		SyberiaPPEffects.SetConcussionEffect(concussionEffect);
+		
+		SyberiaSleepingLevel sleepingLevel = player.GetSleepingProcessLevel();
+		float sleepingValue = Math.Clamp((int)sleepingLevel, 0, 1);
+		SyberiaPPEffects.SetSleepingEffect(sleepingValue);
+		
+		if (sleepingLevel == SyberiaSleepingLevel.SYBSL_COLD)
+		{
+			m_SyberiaAdditionalHud.ShowScreenMessage("#syb_nosleep_cold", 2);
+		}
+		else if (sleepingLevel == SyberiaSleepingLevel.SYBSL_HOT)
+		{
+			m_SyberiaAdditionalHud.ShowScreenMessage("#syb_nosleep_hot", 2);
+		}
 	}
 	
 	private void OnUpdateMindstateGUI(PlayerBase player, float deltaTime)

@@ -16,6 +16,11 @@ class SyberiaPPEffects
 	static float m_ConcussionValue;
 	static float m_ConcussionOffset;
 	
+	static int m_VignetteSleeping;
+	static float m_SleepingCurrent;
+	static float m_SleepingValue;
+	static float m_SleepingOffset;
+	
 	static void Init()
 	{
 		// Fix game options
@@ -41,6 +46,11 @@ class SyberiaPPEffects
 		
 		m_ConcussionValue = 0;
 		m_ConcussionOffset = 0;
+		
+		m_SleepingValue = 0;
+		m_SleepingOffset = 0;
+		m_SleepingCurrent = 0;
+		m_VignetteSleeping = PPEffects.RegisterVignetteEffect();
 	}
 	
 	static void Update(float dt)
@@ -120,6 +130,26 @@ class SyberiaPPEffects
 		
 		PPEffects.SetBlurValue(m_blurEffect, blurEffect);
 		PPEffects.UpdateBlur();
+		
+		m_SleepingCurrent = m_SleepingCurrent + ((m_SleepingValue - m_SleepingCurrent) * dt * 0.1);	
+		m_SleepingCurrent = Math.Clamp(m_SleepingCurrent, 0, 1);	
+		if (m_SleepingCurrent == 0) 
+		{
+			m_SleepingOffset = Math.Clamp(m_SleepingOffset - (dt * 0.2), 0, 1);	
+		}
+		else
+		{
+			m_SleepingOffset = m_SleepingOffset + (dt * 0.2);
+			if (m_SleepingOffset > Math.PI2) m_SleepingOffset = 0;
+		}	
+		float sleepOffset = Math.Clamp(Math.Sin(m_SleepingOffset) * 0.2, 0, 0.2);		
+		PPEffects.SetVignetteEffectValue(m_VignetteSleeping, Math.Clamp( (2 * m_SleepingCurrent) - sleepOffset, 0, 2), 0,0,0,0);
+		PPEffects.UpdateVignette();
+	}
+	
+	static void SetSleepingEffect(float value)
+	{
+		m_SleepingValue = value;
 	}
 	
 	static void SetOverdosedEffect(float value)
@@ -143,6 +173,11 @@ class SyberiaPPEffects
 		m_ConcussionValue = 0;
 		m_PainValue = 0;
 		m_camShake = 0;
+		
+		m_SleepingValue = 0;
+		m_SleepingOffset = 0;
+		m_SleepingCurrent = 0;
+		
 		Update(0);
 	}
 };

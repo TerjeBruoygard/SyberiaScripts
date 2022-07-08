@@ -25,12 +25,18 @@ class SleepingBagPlaced_BaseColor : BaseBuildingBase
 	{
 		super.SetActions();
 		
+		AddAction(ActionSleep);
 		AddAction(ActionFoldBaseBuildingObject);
 	}
 	
 	protected override string GetConstructionKitType()
 	{
 		return GetGame().ConfigGetTextOut("CfgVehicles " + GetType() + " packedName");
+	}
+	
+	override void SetPartsAfterStoreLoad()
+	{
+
 	}
 	
 	override ItemBase CreateConstructionKit()

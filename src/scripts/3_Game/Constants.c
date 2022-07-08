@@ -58,6 +58,14 @@ enum SyberiaScreenEquipPages {
 	SYBSEP_SPECIAL_PAGE = 7
 };
 
+enum SyberiaSleepingLevel {
+	SYBSL_COLD = -2,
+	SYBSL_HOT = -1,
+	SYBSL_NONE = 0,
+	SYBSL_COMFORT = 1,
+	SYBSL_PERFECT = 2
+};
+
 const int NTFKEY_SLEEPING = 1000;
 const int NTFKEY_MINDSTATE = 1001;
 const int NTFKEY_BULLETHIT = 1100;
@@ -86,11 +94,6 @@ const string ALLOWED_LETTERS_IN_NAME = "abcdefghijklmnopqrstuvwxyz";
 
 // U CAN CHANGE THIS CONSTANTS
 const int SLEEPING_MAX_VALUE = 14000;
-const int SLEEPING_DEC_PER_SEC = 1;
-const bool SLEEPING_UNCONSION_ENABLED = false;
-const int SLEEPING_INC_PER_UNCONSION_BOOST_VALUE = 5;
-const int SLEEPING_INC_PER_UNCONSION_BOOST_TIME = 30;
-const int SLEEPING_INC_PER_SLEEPING_SEC = 15;
 const int SLEEPING_LEVEL_5 = 100;
 const int SLEEPING_LEVEL_4 = 1000;
 const int SLEEPING_LEVEL_3 = 5000;
