@@ -153,6 +153,10 @@ class SyberiaConfig
 	float m_mindstateLevel3;
 	float m_mindstateLevel2;
 	
+	// Wetness
+	float m_clothingDrenchedHeatDrain;
+	float m_clothingWetHeatDrain;
+
 	protected void ConfigGetTextArray(string path, out array<string> result, int count)
 	{
 		if (!GetGame().ConfigIsExisting(path))
@@ -201,6 +205,9 @@ class SyberiaConfig
 	
 	void Init()
 	{
+		string worldName;
+		GetGame().GetWorldName(worldName);
+		
 		// Auth
 		ConfigGetTextArray("CfgSyberia AuthSystem allowedLettersInName", m_allowedLettersInName, -1);
 		
@@ -217,6 +224,10 @@ class SyberiaConfig
 	    m_mindstateLevel4 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel4");
 	    m_mindstateLevel3 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel3");
 	    m_mindstateLevel2 = ConfigGetFloat("CfgSyberia MindstateSystem mindstateLevel2");
+		
+		// Wetness
+		m_clothingDrenchedHeatDrain = ConfigGetFloat("CfgWorlds " + worldName + " clothingDrenchedHeatDrain");
+		m_clothingWetHeatDrain = ConfigGetFloat("CfgWorlds " + worldName + " clothingWetHeatDrain");
 	}
 };
 
@@ -273,8 +284,6 @@ modded class PlayerConstants
 	static const float SL_WATER_HIGH = 1300;
 	static const float LOW_WATER_THRESHOLD = 0.01;
 
-
-	
 	static const float METABOLIC_SPEED_WATER_BASAL		= 0.01;		//water loss per second while idle	
 	static const float METABOLIC_SPEED_WATER_WALK		= 0.03;		//water loss per second
 	static const float METABOLIC_SPEED_WATER_JOG		= 0.15;		//water loss per second
@@ -332,5 +341,7 @@ modded class GameConstants
 	const float ENVIRO_ITEM_HEAT_TRANSFER_COEF = 0.025;
 	const float TEMPERATURE_ITEM_HEAT_TRANSFER_COEF = 0.05;
 	const float TEMPERATURE_ITEMS_HEAT_IN_INVENTORY_FROM_BODY = 26;
-	const float ENVIRO_FIRE_INCREMENT = 0.1;	
+	const float ENVIRO_FIRE_INCREMENT = 0.001;	
+	const float ENVIRO_DRY_INCREMENT = 0.000005;
+	const float ENVIRO_WIND_EFFECT = 0.05;
 };
