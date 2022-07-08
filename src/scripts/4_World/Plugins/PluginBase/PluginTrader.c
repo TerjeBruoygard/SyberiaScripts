@@ -5,6 +5,7 @@ class PluginTrader extends PluginBase
 	override void OnInit()
 	{
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_OPEN_TRADE_MENU, this, "RpcRequstOpen"); 
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ACTION_TRADER, this, "RpcResponseTraderAction"); 
 	}
 
 	void CloseTraderMenu()
@@ -37,6 +38,95 @@ class PluginTrader extends PluginBase
 		GetGame().GetUIManager().ShowScriptedMenu( m_traderMenu, NULL );
 	}
 	
+	void RpcResponseTraderAction(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	{
+		Param1<ref PluginTrader_Data> clientData;
+       	if ( !ctx.Read( clientData ) ) return;
+		
+		if (m_traderMenu && m_traderMenu.m_active)
+		{
+			m_traderMenu.UpdateMetadata(clientData.param1);
+		}
+	}
+	
+	int CalculateSellPrice(ref PluginTrader_Trader trader, ref PluginTrader_Data data, ItemBase item)
+	{
+		if (!item)
+		{
+			return 0;
+		}
+		
+		int healthlevel = item.GetHealthLevel();
+		if (healthlevel > GameConstants.STATE_WORN)
+		{
+			return 0;
+		}
+		
+		string classname = item.GetType();
+		float traderTotalQuantity;
+		if (!data.m_items.Find(classname, traderTotalQuantity))
+		{
+			traderTotalQuantity = 0;
+		}
+		
+		float resultPrice = CalculateBuyPrice(trader, classname, traderTotalQuantity);
+		resultPrice = resultPrice - (trader.m_storageCommission * resultPrice);		
+		resultPrice = resultPrice * CalculateItemQuantity01(item);
+		
+		if (healthlevel == GameConstants.STATE_WORN)
+		{
+			resultPrice = resultPrice * trader.m_dumpingByBadQuality;
+		}
+		
+		return (int)Math.Max(0, Math.Floor(resultPrice));
+	}
+	
+	int CalculateBuyPrice(ref PluginTrader_Trader trader, string classname, float quantity)
+	{
+		float itemMaxQuantity = CalculateTraiderItemQuantityMax(trader, classname);
+		float dumpingMultiplier = CalculateDumping(trader.m_dumpingByAmountAlgorithm, trader.m_dumpingByAmountModifier, quantity, itemMaxQuantity);
+		float resultPrice = 1000 * dumpingMultiplier;	
+		return (int)Math.Max(1, Math.Floor(resultPrice));
+	}
+	
+	float CalculateTraiderItemQuantityMax(ref PluginTrader_Trader trader, string classname)
+	{
+		vector itemSize = GetGame().ConfigGetVector( CFG_VEHICLESPATH + " " + classname + " itemSize" );
+		int itemCapacity = (int)Math.Max(1, itemSize[0] * itemSize[1]);
+		return ((float)trader.m_storageMaxSize) / itemCapacity;
+	}
+	
+	float CalculateItemQuantity01(ItemBase item)
+	{
+		float item_quantity = item.GetQuantity();
+		int max_quantity = item.GetQuantityMax();
+		if (max_quantity > 0)
+		{
+			if ( item.IsInherited( Magazine ) )
+			{
+				Magazine magazine_item;
+				Class.CastTo(magazine_item, item);
+				return (float)magazine_item.GetAmmoCount() / (float)magazine_item.GetAmmoMax();
+			}
+			else
+			{
+				return Math.Min(item_quantity, max_quantity) / (float)max_quantity;
+			}
+		}
+		
+		return 1;
+	}
+	
+	float CalculateDumping(string algorithm, float modifier, float value, float max)
+	{
+		return Math.Lerp(1, modifier, (value / max));
+	}
+	
+	void DoBarter(int traderId, ref array<ItemBase> sellItems)
+	{
+		GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_ACTION_TRADER, new Param2<int, ref array<ItemBase>>(traderId, sellItems));
+	}
+	
 	override void OnDestroy()
 	{
 		
@@ -52,8 +142,7 @@ class PluginTrader_Trader
     float m_storageCommission;
     string m_dumpingByAmountAlgorithm;
     float m_dumpingByAmountModifier;
-	string m_dumpingByQualityAlgorithm;
-    float m_dumpingByQualityModifier;
+    float m_dumpingByBadQuality;
 	
 	void ~PluginTrader_Trader()
 	{
