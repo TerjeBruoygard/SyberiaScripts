@@ -651,7 +651,7 @@ class GearPDAMenu extends UIScriptedMenu
 			{
 				if (message.LengthUtf8() > m_messageMaxLength)
 				{
-					message = message.Substring(0, m_messageMaxLength);
+					message = message.SubstringUtf8(0, m_messageMaxLength);
 				}
 				
 				int rowShift = 0;
@@ -859,7 +859,7 @@ class GearPDAMenu extends UIScriptedMenu
 		{
 			string memberId = m_group_input.GetText();
 			if (memberId.LengthUtf8() > m_contactMaxLength) {
-				memberId = memberId.Substring(0, m_contactMaxLength);
+				memberId = memberId.SubstringUtf8(0, m_contactMaxLength);
 			}
 			
 			m_group_input.SetText("");			
@@ -904,21 +904,21 @@ class GearPDAMenu extends UIScriptedMenu
 		if (w.GetName() == m_addContactTxt.GetName()) {
 			boxText = m_addContactTxt.GetText();
 			if (boxText.LengthUtf8() > m_contactMaxLength) {
-				m_addContactTxt.SetText(boxText.Substring(0, m_contactMaxLength));
+				m_addContactTxt.SetText(boxText.SubstringUtf8(0, m_contactMaxLength));
 			}
 			return true;
 		}
 		if (w.GetName() == m_message.GetName()) {
 			boxText = m_message.GetText();
 			if (boxText.LengthUtf8() > m_messageMaxLength) {
-				m_message.SetText(boxText.Substring(0, m_messageMaxLength));
+				m_message.SetText(boxText.SubstringUtf8(0, m_messageMaxLength));
 			}
 			return true;
 		}
 		if (w.GetName() == m_group_input.GetName()) {
 			boxText = m_group_input.GetText();
 			if (boxText.LengthUtf8() > m_contactMaxLength) {
-				m_group_input.SetText(boxText.Substring(0, m_contactMaxLength));
+				m_group_input.SetText(boxText.SubstringUtf8(0, m_contactMaxLength));
 			}
 			return true;
 		}
