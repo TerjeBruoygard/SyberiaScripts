@@ -38,7 +38,7 @@ class CraftSyringeFill extends RecipeBase
 		
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = -50;// 0 = do nothing
+		m_IngredientAddQuantity[1] = -49;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -51,6 +51,6 @@ class CraftSyringeFill extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		MiscGameplayFunctions.TurnItemIntoItemEx(player, new TurnItemIntoItemLambda(ingredients[0], "SyringeFull", player));
+		MiscGameplayFunctions.TurnItemIntoItemEx(player, new TurnSyringeFillLambda(ingredients[0], "SyringeFull", player, ingredients[1], ingredients[0].IsInherited(SyringeDirty)));
 	}
 };
