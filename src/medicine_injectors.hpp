@@ -131,6 +131,11 @@ class InjectorKetorol : InjectorBase
     model="SyberiaScripts\data\medical\injector.p3d";
     medStomatchhealLevel=2;
     medStomatchhealTimeSec=1600;
+    medPainkillerLevel=1;
+    medPainkillerTimeSec=1800;
+    medAntibioticLevel=2;
+    medAntibioticsTimeSec=1800;
+    medAntibioticsStrength=2.0;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\injector_green_co.paa"

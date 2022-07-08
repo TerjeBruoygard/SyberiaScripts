@@ -299,6 +299,11 @@ class AmpouleKetorol : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medStomatchhealLevel=2;
     medStomatchhealTimeSec=1000;
+    medPainkillerLevel=1;
+    medPainkillerTimeSec=1200;
+    medAntibioticLevel=2;
+    medAntibioticsTimeSec=1200;
+    medAntibioticsStrength=2.0;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"

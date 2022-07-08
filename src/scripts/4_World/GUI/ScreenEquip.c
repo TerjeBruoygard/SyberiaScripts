@@ -26,7 +26,14 @@ class ScreenEquip extends ScreenBase
 			m_previewEntities.Insert(null);
 			if (m_equip.Get(i).Count() > 0)
 			{
-				m_selectedIndexes.Insert( Math.RandomInt(0, m_equip.Get(i).Count()) );
+				if (i < SyberiaScreenEquipPages.SYBSEP_ITEMS_PAGE)
+				{
+					m_selectedIndexes.Insert( Math.RandomInt(0, m_equip.Get(i).Count()) );
+				}
+				else
+				{
+					m_selectedIndexes.Insert( 0 );
+				}
 			}
 			else
 			{

@@ -278,6 +278,8 @@ modded class PlayerBase
 		if (m_stomatchpoisonLevel > 1) return true;
 		if (m_overdosedValue > 1) return true;
 		if (m_mindStateValue < MINDSTATE_LEVEL_4) return true;
+		if (GetStatWater().Get() < PlayerConstants.SL_WATER_LOW) return true;
+		if (GetStatEnergy().Get() < PlayerConstants.SL_ENERGY_LOW) return true;
 		return false;
 	}
 	
