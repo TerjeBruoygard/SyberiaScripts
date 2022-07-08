@@ -10,4 +10,9 @@ modded class ItemBase
 	{
 		return CanHaveTemperature();
 	}
+	
+	bool IsCleanness()
+	{
+		return m_Cleanness == 1;
+	}
 };

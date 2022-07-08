@@ -21,4 +21,28 @@ class SyberiaMedicineAmpoule : Inventory_Base
 		
 		return super.GetTooltip() + additionalText;
 	}
+	
+	
+};
+
+class AmpouleAlcohol : SyberiaMedicineAmpoule
+{
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionDisinfectTarget);
+		AddAction(ActionDisinfectSelf);
+		AddAction(ActionWashHandsItem);
+	}
+	
+	float GetDisinfectQuantity(int system = 0, Param param1 = null)
+	{
+		return 1;
+	}
+	
+	override int GetLiquidType()
+	{
+		return LIQUID_DISINFECTANT;
+	}
 };

@@ -506,7 +506,7 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass Badgets {
    ignorepointer 1
    position 100 30
-   size 900 38
+   size 1000 38
    halign right_ref
    valign bottom_ref
    hexactpos 1
@@ -1215,6 +1215,27 @@ FrameWidgetClass rootFrame {
        "text halign" center
       }
      }
+    }
+    ImageWidgetClass Disinfected {
+     visible 1
+     clipchildren 0
+     color 0.8627 0.8627 0.8627 1
+     position 880 0
+     size 35 35
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     image0 "SyberiaScripts/data/gui/badgets/Disinfected.paa"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     filter 1
+     nocache 0
     }
    }
   }

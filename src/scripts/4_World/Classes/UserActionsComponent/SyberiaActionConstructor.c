@@ -25,5 +25,6 @@ modded class ActionConstructor
 		actions.Insert(ActionDebugBuildingToolLink);
 		actions.Insert(ActionDebugBuildingToolMarker);
 		actions.Insert(ActionDebugBuildingToolObjPos);
+		actions.Insert(ActionDebugBuildingToolSwitchProxies);
 	}
 };

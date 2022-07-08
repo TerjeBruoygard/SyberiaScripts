@@ -30,6 +30,7 @@ modded class PlayerBase
 	bool m_bloodHemostaticEffect;
 	bool m_hematopoiesisEffect;
 	bool m_salveEffect;
+	bool m_disinfectedHands;
 	
 	// MindState
 	float m_mindStateValue;
@@ -77,6 +78,7 @@ modded class PlayerBase
 		m_bloodHemostaticEffect = false;
 		m_hematopoiesisEffect = false;
 		m_salveEffect = false;
+		m_disinfectedHands = false;
 		m_adrenalinEffect = 0;
 		m_influenzaLevel = 0;
 		m_antibioticsLevel = 0;
@@ -105,6 +107,7 @@ modded class PlayerBase
 		RegisterNetSyncVariableBool("m_bloodHemostaticEffect");
 		RegisterNetSyncVariableBool("m_hematopoiesisEffect");
 		RegisterNetSyncVariableBool("m_salveEffect");
+		RegisterNetSyncVariableBool("m_disinfectedHands");
 		
 		// Mind state
 		m_mindStateValue = GetSyberiaConfig().m_mindstateMaxValue;
@@ -149,6 +152,11 @@ modded class PlayerBase
 	override float GetPlayerLoad()
 	{
 		return super.GetPlayerLoad() * (1.0 - GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0));
+	}
+	
+	override void OnBleedingSourceRemovedEx(ItemBase item)
+	{
+		OnBleedingSourceRemoved();
 	}
 	
 	int GetSleepingValue()
@@ -423,5 +431,10 @@ modded class PlayerBase
 	int GetRadioprotectionLevel()
 	{
 		return m_radioprotectionLevel;
+	}
+	
+	bool HasDisinfectedHands()
+	{
+		return m_disinfectedHands;
 	}
 };

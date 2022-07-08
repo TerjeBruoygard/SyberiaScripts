@@ -59,10 +59,16 @@ class ActionDebugBuildingToolLink extends ActionSingleUseBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		if (GetGame().IsServer())
+			return true;
+		
 		if (!target.GetObject())
 			return false;
 		
 		if (!House.Cast(target.GetObject()))
+			return false;
+		
+		if ( DebugBuildingManager.IsHouseSame(target.GetObject()) ) 
 			return false;
 		
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
@@ -108,6 +114,9 @@ class ActionDebugBuildingToolMarker extends ActionSingleUseBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		if (GetGame().IsServer())
+			return true;
+		
 		if ( !target ) 
 			return false;
 
@@ -149,6 +158,9 @@ class ActionDebugBuildingToolObjPos extends ActionSingleUseBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		if (GetGame().IsServer())
+			return true;
+		
 		if ( !target ) 
 			return false;
 		
@@ -172,5 +184,54 @@ class ActionDebugBuildingToolObjPos extends ActionSingleUseBase
 	{
 		vector hitPos = action_data.m_Target.GetObject().GetPosition();
 		DebugBuildingManager.RelativePos(hitPos);
+	}
+};
+
+class ActionDebugBuildingToolSwitchProxies extends ActionSingleUseBase
+{
+	void ActionDebugBuildingToolSwitchProxies()
+	{
+		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+	}
+	
+	override void CreateConditionComponents()  
+	{	
+		m_ConditionItem = new CCINonRuined;
+		m_ConditionTarget = new CCTNone;
+	}
+
+	override string GetText()
+	{
+		return "Proxies";
+	}
+
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if (GetGame().IsServer())
+			return true;
+		
+		if ( !target ) 
+			return false;
+		
+		if ( !target.IsProxy() ) 
+			return false;
+		
+		if ( !DebugBuildingManager.IsHouseSame(target.GetParent()) ) 
+			return false;
+
+		DebugBuildingTool dbt = DebugBuildingTool.Cast(item);
+		if (!dbt)
+			return false;
+		
+		if (dbt.GetActionID() != 3)
+			return false;
+
+		return true;
+	}
+	
+	override void OnExecuteClient( ActionData action_data )
+	{
+		DebugBuildingManager.SwitchProxies(action_data.m_Target.GetObject());
 	}
 };
