@@ -40,6 +40,7 @@ class CfgVehicles
     #include "foods.hpp"
     #include "medicine_base.hpp"
     #include "electronic_base.hpp"
+    #include "sleeping_bags.hpp"
 };
 
 class CfgSounds

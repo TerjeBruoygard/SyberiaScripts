@@ -15,4 +15,9 @@ modded class ModItemRegisterCallbacks
 		pType.AddItemInHandsProfileIK("SalveBase", "dz/anims/workspaces/player/player_main/props/player_main_1h_pills.asi", pBehavior,	"dz/anims/anm/player/ik/gear/VitaminBottle.anm");
         pType.AddItemInHandsProfileIK("ItemPDA", "dz/anims/workspaces/player/player_main/props/player_main_1h_compass.asi", pBehavior, "dz/anims/anm/player/ik/gear/compass.anm");
 	}
+	
+	override void RegisterTwoHanded(DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior)
+	{
+		pType.AddItemInHandsProfileIK("SleepingBag_BaseColor", "dz/anims/workspaces/player/player_main/weapons/player_main_2h_extinguisher.asi", pBehavior, "dz/anims/anm/player/ik/two_handed/WaterproofBag.anm");	
+	}
 };

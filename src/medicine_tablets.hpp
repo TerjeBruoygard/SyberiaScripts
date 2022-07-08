@@ -33,7 +33,7 @@ class AnimEvents\
 
 class TabletsBase : Edible_Base {
     descriptionShort="#syb_tablets_common_desc";
-    rotationFlags=0;
+    rotationFlags=17;
     itemSize[]={1,2};
     varQuantityInit=10;
     varQuantityMin=0;
@@ -63,7 +63,7 @@ class TabletsAnalgin : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -80,7 +80,7 @@ class TabletsNaiz : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -97,7 +97,7 @@ class TabletsAertal : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -114,7 +114,7 @@ class TabletsNimesil : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -131,7 +131,7 @@ class TabletsPentalgin : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -148,7 +148,7 @@ class TabletsMovalis : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_sepia_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -166,7 +166,7 @@ class TabletsCytramon : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -187,7 +187,7 @@ class TabletsParacetamol : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -208,7 +208,7 @@ class TabletsIbuprofen : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -229,7 +229,7 @@ class TabletsNurofen : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -248,7 +248,7 @@ class TabletsTetracycline : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -267,7 +267,7 @@ class TabletsAmoksiklav : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_sepia_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -286,7 +286,7 @@ class TabletsAmpicylin : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -305,7 +305,7 @@ class TabletsPiperacylin : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -324,7 +324,7 @@ class TabletsTrihopol : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -343,7 +343,7 @@ class TabletsCyprolet : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -362,7 +362,7 @@ class TabletsAmoksivan : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_sepia_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -380,7 +380,7 @@ class TabletsAmibaktam : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -398,7 +398,7 @@ class TabletsCharcoal : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_black_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -416,7 +416,7 @@ class TabletsMezimForte : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -434,7 +434,7 @@ class TabletsZerukal : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -452,7 +452,7 @@ class TabletsNifuroksazid : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -470,7 +470,7 @@ class TabletsPolisorb : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -487,7 +487,7 @@ class TabletsKarbopekt : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_sepia_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -504,7 +504,7 @@ class TabletsEnterofuril : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -521,7 +521,7 @@ class TabletsErsefuril : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -538,7 +538,7 @@ class TabletsSalofalk : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -555,7 +555,7 @@ class TabletsFtalazol : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -572,7 +572,7 @@ class TabletsMesalazin : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -590,7 +590,7 @@ class TabletsNoopept : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -607,7 +607,7 @@ class TabletsVikasol : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -624,7 +624,7 @@ class TabletsDycinon : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -641,7 +641,7 @@ class TabletsIrovit : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -658,7 +658,7 @@ class TabletsTardiferon : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -675,7 +675,7 @@ class TabletsHeferol : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_sepia_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };
 
@@ -695,6 +695,6 @@ class TabletsSorbiferDurulis : TabletsBase
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
     };
-    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS();
 };

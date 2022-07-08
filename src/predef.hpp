@@ -1,14 +1,14 @@
-#define ITEM_DAMAGE_SYSTEM(hitpoints_value, rvmat_path)\
+#define ITEM_DAMAGE_SYSTEM(hitpoints_value, rvmat_path, rvmat_path_damage, rvmat_path_destruct)\
 class DamageSystem {\
     class GlobalHealth {\
         class Health {\
             hitpoints=hitpoints_value;\
             healthLevels[]={\
-                { 1.0, { rvmat_path##".rvmat" } },\
-                { 0.7, { rvmat_path##".rvmat" } },\
-                { 0.5, { rvmat_path##"_damage.rvmat" } },\
-                { 0.3, { rvmat_path##"_damage.rvmat" } },\
-                { 0.0, { rvmat_path##"_destruct.rvmat" } }\
+                { 1.0, { rvmat_path } },\
+                { 0.7, { rvmat_path } },\
+                { 0.5, { rvmat_path_damage } },\
+                { 0.3, { rvmat_path_damage } },\
+                { 0.0, { rvmat_path_destruct } }\
             };\
         };\
     };\
@@ -19,6 +19,8 @@ class Inventory_Base;
 class Edible_Base;
 class SodaCan_ColorBase;
 class Clothing;
+class Container_Base;
+class BaseBuildingBase;
 
 // Characters
 class SurvivorM_Mirek;
