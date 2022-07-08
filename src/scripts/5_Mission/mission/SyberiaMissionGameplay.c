@@ -190,7 +190,7 @@ modded class MissionGameplay
 		float cateyesValue = player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STEALTH_CAT_VISSION, 0, 0);
 		PPERequester_CatEyes.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CATEYES)).SetValue(cateyesValue);	
 		
-		float overdosedEffect = Math.Clamp(((float)player.GetSybStats().m_overdosedLevel - 1.0) * 0.1, 0, 0.3);
+		float overdosedEffect = Math.Clamp(((float)player.GetSybStats().m_overdosedLevel - 0.5) * 0.1, 0, 0.3);
 		PPERequester_SybOverdose.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE)).SetOverdosedEffect(overdosedEffect);
 		
 		float painEffect = Math.Clamp(player.GetCurrentPainLevel() * 0.1, 0, 0.3);
