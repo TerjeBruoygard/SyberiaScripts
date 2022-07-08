@@ -2,6 +2,7 @@ modded class DayZPlayerImplement
 {
 	ref SkillsMenu m_skillsMenu;
 	float m_loginTimer = 0;
+	float m_soundWaveMasterVolume = 1;
 	
 	override void ShowDeadScreen(bool show, float duration)
 	{
@@ -61,6 +62,66 @@ modded class DayZPlayerImplement
 			GetGame().GetSoundScene().SetVOIPVolume(g_Game.m_volume_VOIP,1);
 			GetGame().GetSoundScene().SetRadioVolume(g_Game.m_volume_radio,1);
 		}
+	}
+		
+	override void OnStepEvent(string pEventType, string pUserString, int pUserInt)
+	{
+		PlayerBase player = PlayerBase.Cast(this);
+		if (player)
+		{
+			m_soundWaveMasterVolume = player.m_skillsStealthStepVolume * 2;
+		}
+		
+		super.OnStepEvent(pEventType, pUserString, pUserInt);
+		m_soundWaveMasterVolume = 1;
+	}
+	
+	override void OnSoundEvent(string pEventType, string pUserString, int pUserInt)
+	{
+		PlayerBase player = PlayerBase.Cast(this);
+		if (player)
+		{
+			if (pEventType == "SoundVoice")
+			{
+				m_soundWaveMasterVolume = player.m_skillsStealthVoiceVolume * 2;
+			}
+			else if (pEventType == "Sound")
+			{
+				if ( pUserInt >= 400 && pUserInt <= 405 )
+				{
+					m_soundWaveMasterVolume = player.m_skillsStealthWeaponsVolume * 2;
+				}
+				else if ( pUserInt >= 250 && pUserInt < 270 )
+				{
+					m_soundWaveMasterVolume = player.m_skillsStealthWeaponsVolume * 2;
+				}
+				else if ( pUserInt == 893 || pUserInt == 1201 || pUserInt == 798 || pUserInt == 1200 )
+				{
+					m_soundWaveMasterVolume = player.m_skillsStealthWeaponsVolume * 2;
+				}
+			}
+			else if (pEventType == "SoundAttachment" || pEventType == "SoundWeapon")
+			{
+				m_soundWaveMasterVolume = player.m_skillsStealthEquipmentVolume * 3;
+			}
+		}
+		
+		//SybLog("OnSoundEvent: " + pEventType + ", " + pUserString + ", " + pUserInt + " => " + m_soundWaveMasterVolume);
+		
+		super.OnSoundEvent(pEventType, pUserString, pUserInt);		
+		m_soundWaveMasterVolume = 1;
+	}
+	
+	override AbstractWave PlaySound(SoundObject so, SoundObjectBuilder sob)
+	{
+		AbstractWave wave = super.PlaySound(so, sob);
+		
+		if (wave != null)
+		{
+			wave.SetVolumeRelative(m_soundWaveMasterVolume);
+		}
+		
+		return wave;
 	}
 	
 	override void CommandHandler(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)

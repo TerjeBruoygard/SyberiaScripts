@@ -52,15 +52,15 @@ enum SyberiaPerkType
     SYBPERK_MEDICINE_START_LOADOUT = 3010,
     SYBPERK_MEDICINE_DEATH_CAUSE = 3011,
     
-    SYBPERK_STEALTH_TRAPS_SOUND_DEC = 4000,
-    SYBPERK_STEALTH_MAGLOAD_SOUND_DEC = 4001,
-    SYBPERK_STEALTH_MAGATTACH_SOUND_DEC = 4002,
+    SYBPERK_STEALTH_VOICE_SOUND_DEC = 4000,
+    SYBPERK_STEALTH_WEAPONS_SOUND_DEC = 4001,
+    SYBPERK_STEALTH_EQUIPMENT_SOUND_DEC = 4002,
     SYBPERK_STEALTH_ZOMBIE_AGRO_DEC = 4003,
     SYBPERK_STEALTH_CAT_VISSION = 4004,
     SYBPERK_STEALTH_STEPS_SOUND_DEC = 4005,
     SYBPERK_STEALTH_KNIFE_CRIT = 4006,
     SYBPERK_STEALTH_MASK_ITEMS = 4007,
-	SYBPERK_STEALTH_BAIT_CRIT = 4008,
+	SYBPERK_STEALTH_TWOHANDED_CRIT = 4008,
     
     SYBPERK_SURVIVAL_MAKEFIRE_INC = 5000,
     SYBPERK_SURVIVAL_HANDDRILL_USE = 5001,
@@ -256,15 +256,18 @@ class PerksCollection
         //
         // STEALTH
         //
-        Register(SyberiaPerkType.SYBPERK_STEALTH_STEPS_SOUND_DEC, "%").AddUnlockValue(5, 25).AddUnlockValue(30, 50).AddUnlockValue(60, 75).AddUnlockValue(90, 100);
-        Register(SyberiaPerkType.SYBPERK_STEALTH_TRAPS_SOUND_DEC, "%").AddUnlockValue(10, 25).AddUnlockValue(35, 50).AddUnlockValue(65, 75);
-        Register(SyberiaPerkType.SYBPERK_STEALTH_MAGLOAD_SOUND_DEC, "%").AddUnlockValue(15, 25).AddUnlockValue(40, 50).AddUnlockValue(70, 75);
-        Register(SyberiaPerkType.SYBPERK_STEALTH_MAGATTACH_SOUND_DEC, "%").AddUnlockValue(20, 25).AddUnlockValue(45, 50).AddUnlockValue(80, 75);
-        Register(SyberiaPerkType.SYBPERK_STEALTH_ZOMBIE_AGRO_DEC, "%").AddUnlockValue(25, 5).AddUnlockValue(55, 10).AddUnlockValue(85, 20).AddUnlockValue(95, 30);
-        
-        Register(SyberiaPerkType.SYBPERK_STEALTH_CAT_VISSION).AddUnlockValue(50, 1);
-        Register(SyberiaPerkType.SYBPERK_STEALTH_MASK_ITEMS).AddUnlockValue(75, 1);
-        Register(SyberiaPerkType.SYBPERK_STEALTH_KNIFE_CRIT).AddUnlockValue(100, 1);
+        Register(SyberiaPerkType.SYBPERK_STEALTH_STEPS_SOUND_DEC, "%"    ).AddUnlockValue(1, 10).AddUnlockValue(8 , 20).AddUnlockValue(20, 30).AddUnlockValue(32, 40).AddUnlockValue(44, 50).AddUnlockValue(58, 60).AddUnlockValue(72, 70).AddUnlockValue(88, 80).AddUnlockValue(100, 95);
+        Register(SyberiaPerkType.SYBPERK_STEALTH_VOICE_SOUND_DEC, "%"    ).AddUnlockValue(2, 10).AddUnlockValue(10, 20).AddUnlockValue(22, 30).AddUnlockValue(34, 40).AddUnlockValue(46, 50).AddUnlockValue(60, 60).AddUnlockValue(74, 70).AddUnlockValue(90, 80).AddUnlockValue(100, 100);
+        Register(SyberiaPerkType.SYBPERK_STEALTH_WEAPONS_SOUND_DEC, "%"  ).AddUnlockValue(3, 10).AddUnlockValue(12, 20).AddUnlockValue(24, 30).AddUnlockValue(36, 40).AddUnlockValue(48, 50).AddUnlockValue(62, 60).AddUnlockValue(78, 70).AddUnlockValue(92, 80).AddUnlockValue(100, 95);
+        Register(SyberiaPerkType.SYBPERK_STEALTH_EQUIPMENT_SOUND_DEC, "%").AddUnlockValue(4, 10).AddUnlockValue(14, 20).AddUnlockValue(26, 30).AddUnlockValue(38, 40).AddUnlockValue(52, 50).AddUnlockValue(64, 60).AddUnlockValue(82, 70).AddUnlockValue(94, 80).AddUnlockValue(100, 95);
+        Register(SyberiaPerkType.SYBPERK_STEALTH_ZOMBIE_AGRO_DEC, "%"    ).AddUnlockValue(5, 5 ).AddUnlockValue(16, 10).AddUnlockValue(28, 20).AddUnlockValue(40, 30).AddUnlockValue(54, 40).AddUnlockValue(66, 50).AddUnlockValue(84, 60).AddUnlockValue(96, 70).AddUnlockValue(100, 90);
+        Register(SyberiaPerkType.SYBPERK_STEALTH_CAT_VISSION, "%"        ).AddUnlockValue(6, 10).AddUnlockValue(18, 20).AddUnlockValue(30, 30).AddUnlockValue(42, 40).AddUnlockValue(56, 50).AddUnlockValue(68, 60).AddUnlockValue(86, 70).AddUnlockValue(98, 80).AddUnlockValue(100, 120);
+		
+		Register(SyberiaPerkType.SYBPERK_STEALTH_TWOHANDED_CRIT).AddUnlockValue(25, 1);
+		Register(SyberiaPerkType.SYBPERK_STEALTH_KNIFE_CRIT).AddUnlockValue(50, 1);
+        //Register(SyberiaPerkType.SYBPERK_STEALTH_MASK_ITEMS).AddUnlockValue(75, 1);
+        // 70 and 80 levels are empty and reserver for future perks
+		
         
         /*       
         //

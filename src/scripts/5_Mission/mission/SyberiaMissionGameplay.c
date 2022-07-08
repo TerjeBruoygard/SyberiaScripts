@@ -20,6 +20,7 @@ modded class MissionGameplay
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PSI).Start();
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_RADIATION).Start();
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_SLEEPING).Start();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CATEYES).Start();
 	}
 	
 	override void OnMissionFinish()
@@ -33,6 +34,7 @@ modded class MissionGameplay
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PSI).Stop();
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_RADIATION).Stop();
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_SLEEPING).Stop();
+		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CATEYES).Stop();
 		
 		delete m_AdditionHudRootWidget;
 		delete m_SyberiaAdditionalHud;
@@ -183,6 +185,9 @@ modded class MissionGameplay
 	
 	private void OnUpdateAdvMedicineGUI(PlayerBase player, float deltaTime)
 	{		
+		float cateyesValue = player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STEALTH_CAT_VISSION, 0, 0);
+		PPERequester_CatEyes.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CATEYES)).SetValue(cateyesValue);	
+		
 		float overdosedEffect = Math.Clamp((player.m_overdosedValue - 1.0) * 0.1, 0, 0.3);
 		PPERequester_SybOverdose.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE)).SetOverdosedEffect(overdosedEffect);
 		

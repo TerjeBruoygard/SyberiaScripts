@@ -39,6 +39,10 @@ modded class PlayerBase
 	
 	// Skills container
 	ref SkillsContainer m_skills;
+	float m_skillsStealthStepVolume;
+	float m_skillsStealthVoiceVolume;
+	float m_skillsStealthWeaponsVolume;
+	float m_skillsStealthEquipmentVolume;
 	
 	// Current zone
 	ref array<ref ZoneImplementation> m_zones = new array<ref ZoneImplementation>;
@@ -87,7 +91,7 @@ modded class PlayerBase
 		m_adrenalinEffect = 0;
 		m_influenzaLevel = 0;
 		m_antibioticsLevel = 0;
-		RegisterNetSyncVariableFloat("m_overdosedValue");
+		RegisterNetSyncVariableFloat("m_overdosedValue", 0, 10, 2);
 		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
 		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);
@@ -118,8 +122,18 @@ modded class PlayerBase
 		// Mind state
 		m_mindStateValue = GetSyberiaConfig().m_mindstateMaxValue;
 		m_mindStateLast = GetSyberiaConfig().m_mindstateMaxValue;
-		RegisterNetSyncVariableFloat("m_mindStateValue");
-		RegisterNetSyncVariableFloat("m_mindStateLast");
+		RegisterNetSyncVariableFloat("m_mindStateValue", 0, 0, 2);
+		RegisterNetSyncVariableFloat("m_mindStateLast", 0, 0, 2);
+		
+		// Skills
+		m_skillsStealthStepVolume = 1;
+		m_skillsStealthVoiceVolume = 1;
+		m_skillsStealthWeaponsVolume = 1;
+		m_skillsStealthEquipmentVolume = 1;
+		RegisterNetSyncVariableFloat("m_skillsStealthStepVolume", 0, 1, 2);
+		RegisterNetSyncVariableFloat("m_skillsStealthVoiceVolume", 0, 1, 2);
+		RegisterNetSyncVariableFloat("m_skillsStealthWeaponsVolume", 0, 1, 2);
+		RegisterNetSyncVariableFloat("m_skillsStealthEquipmentVolume", 0, 1, 2);
 		
 		// Zones
 		m_isPveIntruderLast = false;
