@@ -436,6 +436,7 @@ class AmpouleOcsacylin : SyberiaMedicineAmpoule
     medAntibioticsTimeSec=300;
     medAntibioticsStrength=2.7;
     overdosedIncrement=0.5;
+    medRemoveSepsis=1;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
