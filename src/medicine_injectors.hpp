@@ -23,6 +23,7 @@ class InjectorBase : Inventory_Base
     itemSize[]={1,2};
     weight=60;
     overdosedIncrement=0.4;
+    medicalItem=1;
 };
 
 class InjectorPromedol : InjectorBase

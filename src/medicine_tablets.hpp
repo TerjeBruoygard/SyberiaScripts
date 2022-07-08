@@ -44,6 +44,7 @@ class TabletsBase : Edible_Base {
     quantityBar=0;
     absorbency=0;
     overdosedIncrement=0.1;
+    medicalItem=1;
     hiddenSelections[]=
     {
         "pills"

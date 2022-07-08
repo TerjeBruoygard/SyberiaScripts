@@ -22,6 +22,7 @@ class SyberiaMedicineAmpoule : Inventory_Base
     varQuantityDestroyOnMin=0;
     absorbency=0;
     overdosedIncrement=0.25;
+    medicalItem=1;
     hiddenSelections[]=
     {
         "zbytek"

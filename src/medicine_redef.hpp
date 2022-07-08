@@ -46,6 +46,7 @@ class TetracyclineAntibiotics: Edible_Base
 class BandageDressing: Inventory_Base
 {
     medBloodStop=2;
+    medicalItem=1;
 };
 
 class Bandana_ColorBase: Clothing
@@ -67,4 +68,5 @@ class SurgicalGloves_ColorBase: Clothing
 {
     medGloves=1;
     varCleannessInit=1;
+    medicalItem=1;
 };
