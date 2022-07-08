@@ -40,7 +40,7 @@ class AdminToolMenu extends UIScriptedMenu
 	static float m_spawnerSelectedHealth = 100;
 	static float m_spawnerSelectedQuantity = 100;
 	static float m_spawnerSelectedSpawnType = 0;
-	static bool m_spawnerFillProxiesChecked = true;
+	static bool m_spawnerFillProxiesChecked = false;
 	static int m_spawnerProxySlotSelectedAttachment = -1;
 	static string m_spawnerFilterCache = "";
 	static ref array<int> m_spawnerProxySlotsSelections = new array<int>;
