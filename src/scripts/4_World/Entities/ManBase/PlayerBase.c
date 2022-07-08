@@ -25,6 +25,7 @@ modded class PlayerBase
 	int m_stomatchhealLevel;
 	int m_radiationSickness;
 	int m_radioprotectionLevel;
+	int m_antidepresantLevel;
 	float m_overdosedValue;	
 	bool m_concussionHit;
 	bool m_bloodHemostaticEffect;
@@ -69,6 +70,7 @@ modded class PlayerBase
 		m_stomatchhealLevel = 0;
 		m_radiationSickness = 0;
 		m_radioprotectionLevel = 0;
+		m_antidepresantLevel = 0;
 		m_sepsis = 0;
 		m_zombieVirus = 0;
 		m_bulletBandage1 = 0;
@@ -102,6 +104,7 @@ modded class PlayerBase
 		RegisterNetSyncVariableInt("m_stomatchhealLevel", 0, 3);
 		RegisterNetSyncVariableInt("m_radiationSickness", 0, 3);
 		RegisterNetSyncVariableInt("m_radioprotectionLevel", 0, 3);
+		RegisterNetSyncVariableInt("m_antidepresantLevel", 0, 3);
 		
 		RegisterNetSyncVariableBool("m_concussionHit");
 		RegisterNetSyncVariableBool("m_bloodHemostaticEffect");
@@ -436,5 +439,10 @@ modded class PlayerBase
 	bool HasDisinfectedHands()
 	{
 		return m_disinfectedHands;
+	}
+	
+	int GetAntidepresantLevel()
+	{
+		return m_antidepresantLevel;
 	}
 };

@@ -90,6 +90,7 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_RADIATIONSICKNESS, badgets, "RadiationSickness");
 				m_Hud.InitBadgetWidget(NTFKEY_RADIOPROTECTION, badgets, "Radioprotection");
 				m_Hud.InitBadgetWidget(NTFKEY_DISINFECTED, badgets, "Disinfected");
+				m_Hud.InitBadgetWidget(NTFKEY_ANTIDEPRESANT, badgets, "Antidepresant");
 			}
 		}
 		
@@ -154,6 +155,7 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_RADIATIONSICKNESS, player.GetRadiationSicknessLevel());
 				m_Hud.DisplayBadge(NTFKEY_RADIOPROTECTION, player.GetRadioprotectionLevel());
 				m_Hud.DisplayBadge(NTFKEY_DISINFECTED, player.HasDisinfectedHands());
+				m_Hud.DisplayBadge(NTFKEY_ANTIDEPRESANT, player.GetAntidepresantLevel());
 			}
 						
 			OnUpdateAdvMedicineGUI(player, timeslice);
@@ -185,6 +187,10 @@ modded class MissionGameplay
 		
 		SyberiaSleepingLevel sleepingLevel = player.GetSleepingProcessLevel();
 		float sleepingValue = Math.Clamp((int)sleepingLevel, 0, 1);
+		if (player.GetSleepingValue() == 0)
+		{
+			sleepingValue = 1;
+		}
 		SyberiaPPEffects.SetSleepingEffect(sleepingValue);
 		
 		SyberiaPPEffects.SetPsiEffect(player.m_zone != null && player.m_zone.m_psi > 0);

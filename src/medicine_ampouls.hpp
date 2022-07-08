@@ -670,3 +670,45 @@ class AmpouleCarboxyme : SyberiaMedicineAmpoule
     ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
     AMPOUL_ANIM_EVENT;
 };
+
+class AmpouleMetralindol : SyberiaMedicineAmpoule
+{
+    scope=2;
+    displayName="#syb_metralyndol";
+    model="\dz\gear\medical\injectionvial.p3d";
+    medAntidepresantLevel=2;
+    medAntidepresantTimer=300;
+    overdosedIncrement=0.4;
+    hiddenSelections[] = {"zbytek"};
+    hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_green_co.paa" };
+    ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
+    AMPOUL_ANIM_EVENT;
+};
+
+class AmpouleActaparoxetine : SyberiaMedicineAmpoule
+{
+    scope=2;
+    displayName="#syb_aktaparoksetyn";
+    model="\dz\gear\medical\injectionvial.p3d";
+    medAntidepresantLevel=2;
+    medAntidepresantTimer=400;
+    overdosedIncrement=0.4;
+    hiddenSelections[] = {"zbytek"};
+    hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_blue_co.paa" };
+    ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
+    AMPOUL_ANIM_EVENT;
+};
+
+class AmpouleAmitriptyline : SyberiaMedicineAmpoule
+{
+    scope=2;
+    displayName="#syb_amitriptilin";
+    model="\dz\gear\medical\injectionvial.p3d";
+    medAntidepresantLevel=2;
+    medAntidepresantTimer=600;
+    overdosedIncrement=0.5;
+    hiddenSelections[] = {"zbytek"};
+    hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\ampoule_yellow_co.paa" };
+    ITEM_DAMAGE_SYSTEM(50, "DZ\gear\medical\data\InjectionVial.rvmat", "DZ\gear\medical\data\InjectionVial_damage.rvmat", "DZ\gear\medical\data\InjectionVial_destruct.rvmat");
+    AMPOUL_ANIM_EVENT;
+};
