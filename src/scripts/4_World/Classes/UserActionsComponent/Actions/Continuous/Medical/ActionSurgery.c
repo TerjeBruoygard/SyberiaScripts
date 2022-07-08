@@ -13,7 +13,7 @@ class ActionSurgeryBase: ActionContinuousBase
 	
 	override string ActionBlockerText( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		return "#syb_action_suringe_blocked";
+		return "#syb_surg_blocked";
 	}
 };
 
@@ -30,9 +30,9 @@ class ActionSurgerySelf: ActionSurgeryBase
 	void ActionSurgerySelf()
 	{
 		m_CallbackClass = ActionSurgeryCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_CRAFTING;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_BANDAGE;
 		m_FullBody = true;
-		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
+		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_HIGH;
 	}
 

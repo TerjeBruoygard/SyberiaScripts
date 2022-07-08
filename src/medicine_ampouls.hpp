@@ -14,13 +14,13 @@ class AnimEvents\
 class SyberiaMedicineAmpoule : Inventory_Base
 {
     descriptionShort="#syb_ampoule_desc";
-    itemSize[]={2,2};
+    itemSize[]={1,2};
     weight=100;
     quantityBar=1;
     varQuantityInit=4;
     varQuantityMin=0;
     varQuantityMax=4;
-    //varQuantityDestroyOnMin=1;
+    varQuantityDestroyOnMin=0;
     absorbency=0;
     overdosedIncrement=0.25;
     hiddenSelections[]=
