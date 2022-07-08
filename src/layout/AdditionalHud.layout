@@ -137,7 +137,7 @@ FrameWidgetClass rootFrame {
   }
   PanelWidgetClass Notifications {
    ignorepointer 1
-   size 38 100
+   size 80 100
    halign right_ref
    valign bottom_ref
    hexactpos 1
@@ -323,11 +323,189 @@ FrameWidgetClass rootFrame {
       }
      }
     }
+    PanelWidgetClass MindState {
+     clipchildren 1
+     inheritalpha 0
+     position 40 0
+     size 35 81
+     halign right_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     style blank
+     {
+      ImageWidgetClass IconMindState {
+       disabled 0
+       clipchildren 1
+       inheritalpha 0
+       ignorepointer 0
+       keepsafezone 0
+       color 0.8627 0.8627 0.8627 1
+       position 0.16539 0
+       size 35 35
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       fixaspect fixwidth
+       image0 "SyberiaScripts/data/gui/mindstate/icon0.paa"
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+       "flip u" 0
+       "flip v" 0
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass MindStateArrowUp3 {
+       visible 0
+       clipchildren 1
+       color 0.8627 0.8627 0.8627 1
+       position 0 -27
+       size 22 17
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp3"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 1
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass MindStateArrowUp2 {
+       visible 0
+       clipchildren 1
+       inheritalpha 0
+       color 0.8627 0.8627 0.8627 1
+       position 0 -25
+       size 22 12
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp2"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 1
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass MindStateArrowUp1 {
+       visible 0
+       clipchildren 1
+       inheritalpha 0
+       color 0.8627 0.8627 0.8627 1
+       position 0 -22
+       size 22 7
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp1"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 1
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass MindStateArrowDown1 {
+       visible 0
+       clipchildren 1
+       color 0.8627 0.8627 0.8627 1
+       position 0 22
+       size 22 7
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp1"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 0
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass MindStateArrowDown2 {
+       visible 0
+       clipchildren 1
+       inheritalpha 0
+       color 0.8627 0.8627 0.8627 1
+       position 0 25
+       size 22 12
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp2"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 0
+       filter 1
+       nocache 0
+      }
+      ImageWidgetClass MindStateArrowDown3 {
+       visible 0
+       clipchildren 1
+       inheritalpha 0
+       color 0.8627 0.8627 0.8627 1
+       position 0 27
+       size 22 17
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       image0 "set:dayz_gui image:iconArrowUp3"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 0
+       "flip v" 0
+       filter 1
+       nocache 0
+      }
+     }
+    }
    }
   }
   PanelWidgetClass Badgets {
    ignorepointer 1
-   position 50 30
+   position 100 30
    size 800 38
    halign right_ref
    valign bottom_ref

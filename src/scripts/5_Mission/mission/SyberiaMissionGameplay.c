@@ -51,7 +51,8 @@ modded class MissionGameplay
 			if (m_Hud)
 			{
 				ref Widget notifications = m_AdditionHudRootWidget.FindAnyWidget("Notifications");				
-				m_Hud.InitNotifierWidget(NTFKEY_SLEEPING, notifications, "Sleeping");
+				m_Hud.InitNotifierWidget(NTFKEY_SLEEPING, notifications, "Sleeping", 1);
+				m_Hud.InitNotifierWidget(NTFKEY_MINDSTATE, notifications, "MindState", 2);
 				
 				ref Widget badgets = m_AdditionHudRootWidget.FindAnyWidget("Badgets");
 				m_Hud.InitBadgetWidget(NTFKEY_BULLETHIT, badgets, "BulletHit");
@@ -97,6 +98,8 @@ modded class MissionGameplay
 			if (m_Hud)
 			{
 				m_Hud.DisplayNotifier(NTFKEY_SLEEPING, player.GetSleepingTendency(), player.GetSleepingState());
+				m_Hud.DisplayNotifier(NTFKEY_MINDSTATE, player.GetMindStateTendency(), player.GetMindState());
+				
 				m_Hud.DisplayBadge(NTFKEY_BULLETHIT, player.m_bulletHits);
 				m_Hud.DisplayBadge(NTFKEY_KNIFEHIT, player.m_knifeHits);
 				m_Hud.DisplayBadge(NTFKEY_HEMATOMA, player.m_hematomaHits);
@@ -118,6 +121,7 @@ modded class MissionGameplay
 			}
 						
 			OnUpdateAdvMedicineGUI(player, timeslice);
+			OnUpdateMindstateGUI(player, timeslice);
 		}
 		
 		if (!player || !player.IsAlive())
@@ -139,6 +143,36 @@ modded class MissionGameplay
 		
 		float concussionEffect = Math.Clamp(((int)player.m_concussionHit) * 0.1, 0, 0.1);
 		SyberiaPPEffects.SetConcussionEffect(concussionEffect);
+	}
+	
+	private void OnUpdateMindstateGUI(PlayerBase player, float deltaTime)
+	{
+		if (player.GetMindStateValue() < MINDSTATE_LEVEL_4)
+		{
+			if (Math.RandomFloat01() < deltaTime * 0.05)
+			{
+				int action = Math.RandomInt(0, 10);
+				if (action == 0)
+				{
+					Weapon_Base weapon;
+					WeaponEventBase weapon_event = new WeaponEventTrigger;
+					if ( Weapon_Base.CastTo(weapon, player.GetItemInHands()) )
+					{
+						weapon.ProcessWeaponEvent(weapon_event);
+					}
+				}
+				else
+				{
+					int emotesCount = player.GetEmoteManager().m_NameEmoteMap.Count();
+					int emoteId = Math.RandomInt(0, emotesCount);
+					int emoteKey = player.GetEmoteManager().m_NameEmoteMap.GetKey(emoteId);
+					if (player.GetEmoteManager().CanPlayEmote(emoteKey))
+					{
+						player.GetEmoteManager().CreateEmoteCBFromMenu(emoteKey);
+					}
+				}				 
+			}
+		}
 	}
 	
 	override int GetRespawnModeClient()
