@@ -7,7 +7,7 @@ class ZombieBase: DayZInfected
         {
             class Health
             {
-                hitpoints=250;
+                hitpoints=150;
                 healthLevels[]=
                 {
                     
@@ -17,7 +17,7 @@ class ZombieBase: DayZInfected
                     },
                     
                     {
-                        0.69999999,
+                        0.7,
                         {}
                     },
                     
@@ -27,7 +27,7 @@ class ZombieBase: DayZInfected
                     },
                     
                     {
-                        0.30000001,
+                        0.3,
                         {}
                     },
                     
@@ -44,7 +44,7 @@ class ZombieBase: DayZInfected
             {
                 class Health
                 {
-                    hitpoints=33;
+                    hitpoints=20;
                     transferToGlobalCoef=1;
                 };
                 class ArmorType
@@ -84,7 +84,7 @@ class ZombieBase: DayZInfected
             {
                 class Health
                 {
-                    hitpoints=250;
+                    hitpoints=150;
                     transferToGlobalCoef=1;
                 };
                 class ArmorType
@@ -163,7 +163,7 @@ class ZombieBase: DayZInfected
             {
                 class Health
                 {
-                    hitpoints=200;
+                    hitpoints=50;
                     transferToGlobalCoef=0.33000001;
                 };
                 class ArmorType
@@ -191,7 +191,7 @@ class ZombieBase: DayZInfected
             {
                 class Health
                 {
-                    hitpoints=200;
+                    hitpoints=50;
                     transferToGlobalCoef=0.33000001;
                 };
                 class ArmorType
@@ -219,7 +219,7 @@ class ZombieBase: DayZInfected
             {
                 class Health
                 {
-                    hitpoints=200;
+                    hitpoints=50;
                     transferToGlobalCoef=0.1;
                 };
                 class ArmorType
@@ -251,7 +251,7 @@ class ZombieBase: DayZInfected
             {
                 class Health
                 {
-                    hitpoints=200;
+                    hitpoints=50;
                     transferToGlobalCoef=0.1;
                 };
                 class ArmorType
