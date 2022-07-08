@@ -281,7 +281,7 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_TOOLS_DEGRADATION_DEC, " #syb_perk_info_times_longer").AddUnlockValue(40, 2).AddUnlockValue(60, 3).AddUnlockValue(80, 4).AddUnlockValue(100, 5);
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_KEEPING_FIRE, "%").AddUnlockValue(40, 10).AddUnlockValue(60, 25).AddUnlockValue(80, 50).AddUnlockValue(100, 75);
 		
-        Register(SyberiaPerkType.SYBPERK_SURVIVAL_BERRIES_RESEARCH).AddUnlockValue(10, 1);
+        //Register(SyberiaPerkType.SYBPERK_SURVIVAL_BERRIES_RESEARCH).AddUnlockValue(10, 1);
         //Register(SyberiaPerkType.SYBPERK_SURVIVAL_MUSHROOMS_RESEARCH).AddUnlockValue(25, 1);
 		
         Register(SyberiaPerkType.SYBPERK_SURVIVAL_HANDDRILL_USE).AddUnlockValue(30, 1);
