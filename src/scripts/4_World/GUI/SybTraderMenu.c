@@ -190,7 +190,7 @@ class SybTraderMenu extends UIScriptedMenu
 		WidgetSetWidth(itemBuy, "ItemNameWidget", contentWidth - 220);
 		WidgetTrySetText(itemBuy, "ItemNameWidget", item.GetDisplayName());
 		WidgetTrySetText(itemBuy, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, classname, quantity).ToString());		
-		WidgetTrySetText(itemBuy, "ItemQuantityWidget", FormatBuyQuantityStr(quantity));		
+		WidgetTrySetText(itemBuy, "ItemQuantityWidget", FormatBuyQuantityStr(quantity) + "/" + pluginTrader.CalculateTraiderItemQuantityMax(m_traderInfo, classname));		
 		
 		m_buyWidgetsCache.Insert(itemBuy);
 		return index;
@@ -202,11 +202,21 @@ class SybTraderMenu extends UIScriptedMenu
 		string quantityStr = quantityInt.ToString();
 		if (quantityInt % 10 != 0)
 		{
-			quantityStr = quantityStr.Substring(0, quantityStr.Length() - 1) + "." + quantityStr.Substring(quantityStr.Length() - 1, 1);
+			if (quantityStr.Length() == 1)
+			{
+				quantityStr = "0." + quantityStr;
+			}
+			else
+			{
+				quantityStr = quantityStr.Substring(0, quantityStr.Length() - 1) + "." + quantityStr.Substring(quantityStr.Length() - 1, 1);
+			}
 		}
 		else
 		{
-			quantityStr = quantityStr.Substring(0, quantityStr.Length - 1);
+			if (quantityStr.Length() > 1)
+			{
+				quantityStr = quantityStr.Substring(0, quantityStr.Length() - 1);
+			}
 		}
 		
 		return quantityStr;

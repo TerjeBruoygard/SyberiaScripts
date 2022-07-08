@@ -69,8 +69,9 @@ class PluginTrader extends PluginBase
 			traderTotalQuantity = 0;
 		}
 		
-		float resultPrice = CalculateBuyPrice(trader, classname, traderTotalQuantity);
-		resultPrice = resultPrice - (trader.m_storageCommission * resultPrice);		
+		float itemQuantity01 = CalculateItemQuantity01(item);
+		float resultPrice = CalculateBuyPrice(trader, classname, traderTotalQuantity + itemQuantity01);	
+		resultPrice = resultPrice - (trader.m_storageCommission * resultPrice);	
 		resultPrice = resultPrice * CalculateItemQuantity01(item);
 		
 		if (healthlevel == GameConstants.STATE_WORN)
@@ -83,9 +84,10 @@ class PluginTrader extends PluginBase
 	
 	int CalculateBuyPrice(ref PluginTrader_Trader trader, string classname, float quantity)
 	{
-		float itemMaxQuantity = CalculateTraiderItemQuantityMax(trader, classname);
-		float dumpingMultiplier = CalculateDumping(trader.m_dumpingByAmountAlgorithm, trader.m_dumpingByAmountModifier, quantity, itemMaxQuantity);
-		float resultPrice = 1000 * dumpingMultiplier;	
+		float itemMaxQuantity = CalculateTraiderItemQuantityMax(trader, classname);		
+		quantity = Math.Min(quantity, itemMaxQuantity);
+		float resultPrice = 1;//CalculateDumping(trader.m_dumpingByAmountAlgorithm, trader.m_dumpingByAmountModifier, (int)quantity, (int)itemMaxQuantity);
+		resultPrice = 1000 * resultPrice;	
 		return (int)Math.Max(1, Math.Floor(resultPrice));
 	}
 	
@@ -93,7 +95,7 @@ class PluginTrader extends PluginBase
 	{
 		vector itemSize = GetGame().ConfigGetVector( CFG_VEHICLESPATH + " " + classname + " itemSize" );
 		int itemCapacity = (int)Math.Max(1, itemSize[0] * itemSize[1]);
-		return ((float)trader.m_storageMaxSize) / itemCapacity;
+		return Math.Round(((float)trader.m_storageMaxSize) / itemCapacity);
 	}
 	
 	float CalculateItemQuantity01(ItemBase item)
