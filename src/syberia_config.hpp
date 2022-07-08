@@ -146,4 +146,9 @@ class SkillsExperienceSystem
     
     skillsExpAthleticsSprintTime = 60;
     skillsExpAthleticsSprintIncrement = 10;
+    
+    skillsExpStrengthLightAttackValue = 20;
+    skillsExpStrengthLightAttackChance = 0.1;
+    skillsExpStrengthHeavyAttackValue = 40;
+    skillsExpStrengthHeavyAttackChance = 0.2;
 };

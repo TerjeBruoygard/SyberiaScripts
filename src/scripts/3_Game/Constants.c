@@ -305,11 +305,11 @@ modded class GameConstants
 	
 	const float	STAMINA_DRAIN_HOLD_BREATH_START = 0.4; //in units (how much holding breath depletes stamina at the start)
 	const float	STAMINA_DRAIN_HOLD_BREATH_END = 1.0; //in units (how much holding breath depletes stamina at the end)
-	const float	STAMINA_DRAIN_JUMP = 40;		// in units (how much jumping depletes stamina)
-	const float	STAMINA_DRAIN_VAULT = 30;		// in units (how much jumping depletes stamina)
+	const float	STAMINA_DRAIN_JUMP = 30;		// in units (how much jumping depletes stamina)
+	const float	STAMINA_DRAIN_VAULT = 20;		// in units (how much jumping depletes stamina)
 	const float	STAMINA_DRAIN_CLIMB = 60;		// in units (how much jumping depletes stamina)
 	const float	STAMINA_DRAIN_MELEE_LIGHT = 10; //in units (how much light melee punch depletes stamina)
-	const float	STAMINA_DRAIN_MELEE_HEAVY = 5; //in units (how much heavy melee punch depletes stamina)
+	const float	STAMINA_DRAIN_MELEE_HEAVY = 40; //in units (how much heavy melee punch depletes stamina)
 	const float	STAMINA_DRAIN_MELEE_EVADE = 15; // in units (how much evade depletes stamina)
 	
 	const float STAMINA_DRAIN_HOLD_BREATH_DURATION = 1.0; //in seconds, time it takes to increase stamina drain from STAMINA_DRAIN_HOLD_BREATH_START to STAMINA_DRAIN_HOLD_BREATH_END
