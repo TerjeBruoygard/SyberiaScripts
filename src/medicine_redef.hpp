@@ -57,3 +57,8 @@ class Rag: Inventory_Base
 {
     medBloodStop=2;
 };
+
+class SurgicalGloves_ColorBase: Clothing
+{
+    medGloves=1;
+};
