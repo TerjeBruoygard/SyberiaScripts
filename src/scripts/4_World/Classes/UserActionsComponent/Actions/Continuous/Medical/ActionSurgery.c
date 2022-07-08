@@ -1,6 +1,6 @@
 class ActionSurgeryBase: ActionContinuousBase
 {	
-	void ApplySurgery( ItemBase item, PlayerBase player, bool self) {}
+	void ApplySurgery( ItemBase item, PlayerBase operator, PlayerBase player, bool self) {}
 	bool ConditionSurgery( ItemBase item, PlayerBase player, bool self)
 	{
 		if ( (GetSyberiaOptions().m_client.m_operateVisceraHimself || !self) && player.m_visceraHit )
@@ -21,7 +21,7 @@ class ActionSurgeryCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
 	{
-		m_ActionData.m_ActionComponent = new CAContinuousTime(30);
+		m_ActionData.m_ActionComponent = new CAContinuousTime(60);
 	}
 };
 
@@ -73,7 +73,7 @@ class ActionSurgerySelf: ActionSurgeryBase
 		PlayerBase target = PlayerBase.Cast(action_data.m_Player);
 		if(action_data.m_MainItem && target)
 		{
-			ApplySurgery( action_data.m_MainItem, target, true );
+			ApplySurgery( action_data.m_MainItem, target, target, true );
 			action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 		}
 	}
@@ -129,10 +129,11 @@ class ActionSurgeryTarget: ActionSurgeryBase
 	
 	override void OnFinishProgressServer( ActionData action_data )
 	{	
+		PlayerBase operator = PlayerBase.Cast(action_data.m_Player);		
 		PlayerBase target = PlayerBase.Cast(action_data.m_Target.GetObject());		
 		if(action_data.m_MainItem && target)
 		{
-			ApplySurgery( action_data.m_MainItem, target, false );
+			ApplySurgery( action_data.m_MainItem, operator, target, false );
 			action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 		}
 	}

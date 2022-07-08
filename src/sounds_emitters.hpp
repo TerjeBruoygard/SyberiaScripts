@@ -56,3 +56,10 @@ class SleepingFemale_SoundEmitter: SyberiaSoundEmitter
     emitterRange=10;
     emitterSound="sleeping_female";
 };
+class CutPage_SoundEmitter: SyberiaSoundEmitter
+{
+    scope=2;
+    emitterLifetime=5;
+    emitterRange=10;
+    emitterSound="cut_page";
+};

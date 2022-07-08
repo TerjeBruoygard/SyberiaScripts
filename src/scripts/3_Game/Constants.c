@@ -136,20 +136,20 @@ modded class PlayerConstants
 	static const float SL_ENERGY_HIGH = 2800;
 	
 	static const float METABOLIC_SPEED_ENERGY_BASAL		= 0.01;		//energy loss per second while idle	
-	static const float METABOLIC_SPEED_ENERGY_WALK		= 0.02;		//energy loss per second
-	static const float METABOLIC_SPEED_ENERGY_JOG		= 0.06;		//energy loss per second
-	static const float METABOLIC_SPEED_ENERGY_SPRINT	= 0.10;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_WALK		= 0.03;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_JOG		= 0.15;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_SPRINT	= 0.25;		//energy loss per second
 	
 	// Water
 	static const float SL_WATER_CRITICAL = 0;
 	static const float SL_WATER_LOW = 100;
-	static const float SL_WATER_NORMAL = 600;
+	static const float SL_WATER_NORMAL = 700;
 	static const float SL_WATER_HIGH = 1300;
 	
 	static const float METABOLIC_SPEED_WATER_BASAL		= 0.02;		//water loss per second while idle	
 	static const float METABOLIC_SPEED_WATER_WALK		= 0.05;		//water loss per second
 	static const float METABOLIC_SPEED_WATER_JOG		= 0.2;		//water loss per second
-	static const float METABOLIC_SPEED_WATER_SPRINT		= 0.3;		//water loss per second
+	static const float METABOLIC_SPEED_WATER_SPRINT		= 0.35;		//water loss per second
 };
 
 modded class GameConstants
