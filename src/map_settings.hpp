@@ -21,6 +21,7 @@ class CfgWorlds
         
         clothingDrenchedHeatDrain = -5;
         clothingWetHeatDrain = -2;
+        additionalTemperatureResistForSurvivalSkill = 15;
 	};
 	class CAWorld;
 	class namalsk: CAWorld
@@ -43,6 +44,7 @@ class CfgWorlds
         
         clothingDrenchedHeatDrain = -50;
         clothingWetHeatDrain = -20;
+        additionalTemperatureResistForSurvivalSkill = 30;
     };
 };
 

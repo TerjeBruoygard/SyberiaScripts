@@ -132,13 +132,14 @@ enum SyberiaSkillType {
 	SYBSKILL_TOTALCOUNT = 18
 };
 
-const int SYBERIA_ENABLED_SKILLS_COUNT = 6;
+const int SYBERIA_ENABLED_SKILLS_COUNT = 7;
 const int SYBERIA_ENABLED_SKILLS_LIST[SYBERIA_ENABLED_SKILLS_COUNT] = {
 	SyberiaSkillType.SYBSKILL_IMMUNITY,
 	SyberiaSkillType.SYBSKILL_MEDICINE,
 	SyberiaSkillType.SYBSKILL_ATHLETICS,
 	SyberiaSkillType.SYBSKILL_STRENGTH,
 	SyberiaSkillType.SYBSKILL_STEALTH,
+	SyberiaSkillType.SYBSKILL_SURVIVAL,
 	SyberiaSkillType.SYBSKILL_HUNTING
 };
 
@@ -293,8 +294,8 @@ modded class PlayerConstants
 	static const float CHANCE_TO_BLEED_SLIDING_LADDER_PER_SEC = 0.1; // probability of bleeding source occuring while sliding down ladder without gloves given as percentage per second(0.5 means 50% chance bleeding source will happen every second while sliding down) 
 	static const float GLOVES_DAMAGE_SLIDING_LADDER_PER_SEC = -0.5;// how much damage the gloves receive while sliding down the ladder (per sec)
 
-	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.02;
-	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.0025;
+	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.1;
+	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.003;
 	
 	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC = -2;
 	static const float BLOOD_REGEN_RATE_PER_SEC	= 0.05; //base amount of blood regenerated per second 

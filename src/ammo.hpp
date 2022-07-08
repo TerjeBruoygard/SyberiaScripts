@@ -58,7 +58,7 @@ class MeleeBrassKnuckles: MeleeDamage
         };
         class Shock
         {
-            damage=10;
+            damage=15;
         };
     };
 };
@@ -78,7 +78,7 @@ class MeleeBrassKnuckles_Heavy: MeleeBrassKnuckles
         };
         class Shock
         {
-            damage=15;
+            damage=20;
         };
     };
 };
