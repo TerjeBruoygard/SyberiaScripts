@@ -12,7 +12,6 @@ class PluginTrader extends PluginBase
 	{
 		if (m_traderMenu && m_traderMenu.m_active)
 		{
-			GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_CLOSE_TRADER_MENU, new Param1<int>(m_traderMenu.m_traderId));
 			m_traderMenu.m_active = false;		
 		}
 	}
@@ -49,13 +48,23 @@ class PluginTrader extends PluginBase
 		}
 	}
 	
-	bool HasOversizedSellItems(ref PluginTrader_Trader traderInfo, ref map<string, float> sellCounter)
+	bool HasOversizedSellItems(ref PluginTrader_Trader traderInfo, ref PluginTrader_Data data, ref map<string, float> sellCounter)
 	{
 		foreach (string classname, float quantity : sellCounter)
 		{
 			if (quantity > CalculateSellMaxQuantity(traderInfo, classname))
 			{
 				return true;
+			}
+			
+			if (data.m_items.Contains(classname))
+			{
+				float storedQuantity = data.m_items.Get(classname);
+				float maxQuantity = CalculateTraiderItemQuantityMax(traderInfo, classname);
+				if (storedQuantity + quantity > maxQuantity)
+				{
+					return true;
+				}
 			}
 		}
 		
@@ -235,7 +244,7 @@ class PluginTrader extends PluginBase
 	{
 		TStringArray inventorySlots = new TStringArray;
 						
-		if (GetGame().ConfigIsExisting(CFG_WEAPONSPATH + " " + classname))
+		if (GetGame().IsKindOf(classname, "Grenade_Base") || GetGame().ConfigIsExisting(CFG_WEAPONSPATH + " " + classname))
 		{
 			return enabledCategories.Get(categories.Find("weapons"));
 		}
@@ -303,7 +312,7 @@ class PluginTrader extends PluginBase
 	
 	bool CanSellItem(ref PluginTrader_Trader traderInfo, ItemBase item)
 	{
-		if (item.IsInherited(Box_Base) || item.IsInherited(FireplaceBase))
+		if (item.IsInherited(Box_Base) || item.IsInherited(FireplaceBase) || item.IsInherited(SyringeFull))
 		{
 			return false;
 		}
@@ -345,28 +354,52 @@ class PluginTrader extends PluginBase
 			}
 		}
 		
+		bool filterResult = false;
 		foreach (string filter : traderInfo.m_sellFilter)
 		{
-			if (item.GetType() == filter || GetGame().ObjectIsKindOf(item, filter))
+			if (filter.IndexOf("!") == 0)
 			{
-				return false;
+				string classname = filter.Substring(1, filter.Length() - 1);
+				if (item.GetType() == classname || GetGame().ObjectIsKindOf(item, classname))
+				{
+					filterResult = false;
+				}
+			}
+			else
+			{
+				if (item.GetType() == filter || GetGame().ObjectIsKindOf(item, filter))
+				{
+					filterResult = true;
+				}
 			}
 		}
 		
-		return true;
+		return filterResult;
 	}
 	
-	bool CanBuyItem(ref PluginTrader_Trader traderInfo, string classname)
+	bool CanBuyItem(ref PluginTrader_Trader traderInfo, string itemClassname)
 	{
+		bool filterResult = false;
 		foreach (string filter : traderInfo.m_buyFilter)
 		{
-			if (classname == filter || GetGame().IsKindOf(classname, filter))
+			if (filter.IndexOf("!") == 0)
 			{
-				return false;
+				string classname = filter.Substring(1, filter.Length() - 1);
+				if (itemClassname == classname || GetGame().IsKindOf(itemClassname, classname))
+				{
+					filterResult = false;
+				}
+			}
+			else
+			{
+				if (itemClassname == filter || GetGame().IsKindOf(itemClassname, filter))
+				{
+					filterResult = true;
+				}
 			}
 		}
 		
-		return true;
+		return filterResult;
 	}
 	
 	override void OnDestroy()
@@ -378,6 +411,7 @@ class PluginTrader extends PluginBase
 class PluginTrader_Trader
 {
 	int m_traderId;
+	vector m_position;
     ref array<string> m_buyFilter;
     ref array<string> m_sellFilter;
 	int m_storageMaxSize;
