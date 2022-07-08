@@ -16,6 +16,7 @@ class PluginSyberiaLogin extends PluginBase
 	{
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_RESPAWN_SCREEN_OPEN, this, "RespawnScreen_Open"); 
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_NEWCHAR_SCREEN_OPEN, this, "NewcharScreen_Open");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_EQUIP_SCREEN_OPEN, this, "EquipScreen_Open");
 	}
 	
 	override void OnUpdate(float delta_time)
@@ -24,11 +25,12 @@ class PluginSyberiaLogin extends PluginBase
 		
 		if (screenBase)
 		{
-			if (!screenBase.m_visible)
+			if (!screenBase.m_isShown)
 			{
 				GetGame().GetUIManager().CloseAll();
+				
+				screenBase.Init();
 				GetGame().GetUIManager().ShowScriptedMenu( screenBase, NULL );
-				SybLog("PluginSyberiaLogin force enable menu.");
 			}
 		}
 	}
@@ -43,7 +45,6 @@ class PluginSyberiaLogin extends PluginBase
 		if (screenBase) screenBase.Close();
 		
 		screenBase = new ScreenRespawn(clientData.param1, clientData.param2, clientData.param3);
-		screenBase.Init();
 	}
 	
 	void NewcharScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)
@@ -56,6 +57,14 @@ class PluginSyberiaLogin extends PluginBase
 		if (screenBase) screenBase.Close();
 		
 		screenBase = new ScreenNewchar(clientData.param1, clientData.param2);
-		screenBase.Init();
+	}
+	
+	void EquipScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	{
+		SybLog("PluginSyberiaLogin SYBRPC_EQUIP_SCREEN_OPEN RPC Received.");
+		
+		if (screenBase) screenBase.Close();
+		
+		screenBase = new ScreenEquip();
 	}
 };

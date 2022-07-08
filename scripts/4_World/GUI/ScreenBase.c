@@ -1,6 +1,7 @@
 class ScreenBase extends UIScriptedMenu
 {
-	bool m_visible = false;
+	bool m_isShown = false;
+	bool m_isClosed = false;
 
 	override void OnShow()
 	{
@@ -16,7 +17,7 @@ class ScreenBase extends UIScriptedMenu
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if (player) player.GetInputController().SetDisabled(true);
 		
-		m_visible = true;
+		m_isShown = true;
 	}
 
 	override void OnHide()
@@ -30,6 +31,6 @@ class ScreenBase extends UIScriptedMenu
 		if (player) player.GetInputController().SetDisabled(false);
 
 		super.Close();
-		m_visible = false;
+		m_isClosed = true;
 	}
 }
