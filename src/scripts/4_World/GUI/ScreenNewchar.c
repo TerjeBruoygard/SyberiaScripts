@@ -33,7 +33,7 @@ class ScreenNewchar extends ScreenBase
 	
 	void ~ScreenNewchar()
 	{
-		delete m_metadata;
+		if (m_metadata) delete m_metadata;
 	}
 	
     override Widget Init()
@@ -186,7 +186,7 @@ class ScreenNewchar extends ScreenBase
 					requestParams.m_skills = m_metadata.m_skills;
 										
 					GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_CREATENEWCHAR_REQUEST, new Param1<ref RpcCreateNewCharContainer>(requestParams));
-					delete requestParams;
+					//delete requestParams;
 				}
 				
 				return true;

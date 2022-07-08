@@ -44,20 +44,26 @@ class ScreenEquip extends ScreenBase
 	
 	void ~ScreenEquip()
 	{
-		delete m_pages;
-		delete m_selectedIndexes;
+		if (m_pages) delete m_pages;
+		if (m_selectedIndexes) delete m_selectedIndexes;
 		
-		foreach (ref array<string> items : m_equip)
+		if (m_equip)
 		{
-			delete items;
+			foreach (ref array<string> items : m_equip)
+			{
+				delete items;
+			}
+			delete m_equip;
 		}
-		delete m_equip;
 		
-		foreach (ItemBase entity : m_previewEntities)
+		if (m_previewEntities)
 		{
-			if (entity) GetGame().ObjectDelete(entity);
-	}
-		delete m_previewEntities;
+			foreach (ItemBase entity : m_previewEntities)
+			{
+				if (entity) GetGame().ObjectDelete(entity);
+			}
+			delete m_previewEntities;
+		}
 	}
 	
     override Widget Init()
@@ -251,7 +257,7 @@ class ScreenEquip extends ScreenBase
 
 				auto requestParams = new Param1<ref array<int>>(m_selectedIndexes); 
 				GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_STARTGAME_REQUEST, requestParams);
-				delete requestParams;
+				//delete requestParams;
 				return true;
 			}
 			
