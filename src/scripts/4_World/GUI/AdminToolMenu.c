@@ -145,8 +145,6 @@ class AdminToolMenu extends UIScriptedMenu
 		m_spawnerSliderQuantity.SetCurrent(m_spawnerSelectedQuantity);
 		m_spawnerTypeSelect.SetCurrentItem( m_spawnerSelectedSpawnType );
 		m_spawnerFillProxies.SetChecked( m_spawnerFillProxiesChecked );
-		m_spawnerProxySlotSelect.Show(m_spawnerFillProxiesChecked);
-		m_spawnerProxySlotType.Show(m_spawnerFillProxiesChecked);
 		
 		InitItemsConfig("CfgVehicles");
 		InitItemsConfig("CfgWeapons");
@@ -268,8 +266,6 @@ class AdminToolMenu extends UIScriptedMenu
 				
 		m_spawnerProxySlotSelect.ClearItems();
 		m_spawnerProxySlotType.ClearItems();		
-		if (!m_spawnerFillProxiesChecked)
-			return;
 		
 		array<string> attachments = new array<string>;
 		GetGame().ConfigGetTextArray(path + " attachments", attachments);
@@ -278,7 +274,8 @@ class AdminToolMenu extends UIScriptedMenu
 			m_spawnerProxySlotsSelections.Clear();
 			foreach (string attachment : attachments)
 			{
-				m_spawnerProxySlotsSelections.Insert(0);
+				if (m_spawnerFillProxiesChecked) m_spawnerProxySlotsSelections.Insert(1);
+				else m_spawnerProxySlotsSelections.Insert(0);
 			}
 		}
 		
@@ -301,10 +298,12 @@ class AdminToolMenu extends UIScriptedMenu
 		if (m_spawnerProxySlotSelectedAttachment < 0 || m_spawnerProxySlotSelectedAttachment >= m_spawnerProxySlotSelect.GetNumItems())
 			return;
 		
+		int rowId = 0;
 		string selectedAttachment;
 		m_spawnerProxySlotSelect.GetItemText(m_spawnerProxySlotSelectedAttachment, 0, selectedAttachment);
 		
-		int rowId = 0;
+		m_spawnerProxySlotType.AddItem("<EMPTY>", null, 0);
+		
 		ref array<string> attachmentsList = GetAllAttachments(selectedAttachment);		
 		foreach (string attachmentClassname : attachmentsList)
 		{
@@ -314,7 +313,7 @@ class AdminToolMenu extends UIScriptedMenu
 		}
 		
 		int selectedItemId = m_spawnerProxySlotsSelections.Get(m_spawnerProxySlotSelectedAttachment);
-		if (selectedItemId < 0 || selectedItemId > attachmentsList.Count())
+		if (selectedItemId < 0 || selectedItemId > m_spawnerProxySlotType.GetNumItems())
 			selectedItemId = 0;
 		
 		m_spawnerProxySlotsSelections.Set(m_spawnerProxySlotSelectedAttachment, selectedItemId);
@@ -415,9 +414,10 @@ class AdminToolMenu extends UIScriptedMenu
 		{
 			if (anyBaseClass || GetGame().IsKindOf(classname, filter.m_class))
 			{
-				displayName = GetGame().ConfigGetTextOut(filter.m_preffix + " " + classname + " displayName");
-				if (emptyTextFilter || GameHelpers.StringContainsCaseInsensetive(classname, textFilter) || GameHelpers.StringContainsCaseInsensetive(displayName, textFilter))
+				
+				if (emptyTextFilter || GameHelpers.StringContainsCaseInsensetive(classname, textFilter))
 				{
+					displayName = GetGame().ConfigGetTextOut(filter.m_preffix + " " + classname + " displayName");
 					rowId = m_spawnerItemsListBox.AddItem(classname, null, 0);
 					m_spawnerItemsListBox.SetItem(rowId, displayName, null, 1);
 					m_spawnerItemsListBox.SetItemColor(rowId, 1, ARGBF(1, 0.5, 1.0, 0.6));
@@ -650,19 +650,16 @@ class AdminToolMenu extends UIScriptedMenu
 		m_context.m_cursorPos = GameHelpers.GetCursorPos();
 		m_context.m_attachments = new array<string>;
 		
-		if (m_spawnerFillProxies.IsChecked())
+		string proxySlotName;
+		for (int sid = 0; sid < m_spawnerProxySlotSelect.GetNumItems(); sid++)
 		{
-			string proxySlotName;
-			for (int sid = 0; sid < m_spawnerProxySlotSelect.GetNumItems(); sid++)
+			m_spawnerProxySlotSelect.GetItemText(sid, 0, proxySlotName);
+			ref array<string> allAttachments = GetAllAttachments(proxySlotName);				
+			int attachmentId = m_spawnerProxySlotsSelections.Get(sid) - 1;
+			if (attachmentId >= 0 && attachmentId < allAttachments.Count())
 			{
-				m_spawnerProxySlotSelect.GetItemText(sid, 0, proxySlotName);
-				ref array<string> allAttachments = GetAllAttachments(proxySlotName);				
-				int attachmentId = m_spawnerProxySlotsSelections.Get(sid);
-				if (attachmentId >= 0 && attachmentId < allAttachments.Count())
-				{
-					string attachmentName = allAttachments.Get(attachmentId);
-					m_context.m_attachments.Insert(attachmentName);
-				}
+				string attachmentName = allAttachments.Get(attachmentId);
+				m_context.m_attachments.Insert(attachmentName);
 			}
 		}
 		
@@ -891,11 +888,13 @@ class AdminToolMenu extends UIScriptedMenu
 			m_spawnerSelectedQuantity = m_spawnerSliderQuantity.GetCurrent();
 			UpdateSpawnerItemPreview( );
 		}
-		else if (w == m_spawnerTypeSelect || w == m_spawnerFillProxies) {
+		else if (w == m_spawnerTypeSelect) {
 			m_spawnerSelectedSpawnType = m_spawnerTypeSelect.GetCurrentItem();
+			UpdateSpawnerItemPreview( );
+		}
+		else if (w == m_spawnerFillProxies) {
 			m_spawnerFillProxiesChecked = m_spawnerFillProxies.IsChecked();
-			m_spawnerProxySlotSelect.Show(m_spawnerFillProxiesChecked);
-			m_spawnerProxySlotType.Show(m_spawnerFillProxiesChecked);
+			m_spawnerProxySlotsSelections.Clear();
 			UpdateSpawnerItemPreview( );
 		}
 		else if (w == m_toolsFreeCamToggle && m_toolsFreeCamToggle.IsChecked() != m_toolsFreeCamToggleChecked)

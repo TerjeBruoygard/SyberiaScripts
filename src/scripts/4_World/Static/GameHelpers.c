@@ -26,6 +26,23 @@ class GameHelpers
 		return lowercaseText.Contains(match);
 	}
 	
+	static int StringIndexOfUtf8(string str, string match)
+	{
+		int lng = str.LengthUtf8();
+		int mng = match.LengthUtf8();
+		if (lng < mng) return -1;
+		
+		string substr;
+		int dif = lng - mng;
+		for (int i = 0; i <= dif; i++)
+		{
+			substr = str.SubstringUtf8(i, mng);
+			if (substr == match) return i;
+		}
+		
+		return -1;
+	}
+	
 	static void GetAllClasses(string preffix, ref array<string> output)
 	{
 		string classname;

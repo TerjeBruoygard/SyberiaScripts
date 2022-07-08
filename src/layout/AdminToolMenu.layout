@@ -364,7 +364,7 @@ FrameWidgetClass rootFrame {
        }
       }
       PanelWidgetClass SpawnerTabBody {
-       visible 0
+       visible 1
        ignorepointer 1
        position 0 0
        size 1 1
@@ -522,7 +522,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 1
            style Default
-           text "Spawn items in proxy slots"
+           text "Use attachments by default"
            font "gui/fonts/etelkatextpro16"
            checked 1
           }
