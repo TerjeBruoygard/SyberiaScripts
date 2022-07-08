@@ -1,6 +1,7 @@
 class ScreenNewchar extends ScreenBase
 {
 	bool m_updateFacePreview = false;
+	bool m_updateSkills = false;
 	ref RpcNewCharContainer m_metadata;
 	
 	const int m_maxNameLength = 16;
@@ -10,13 +11,16 @@ class ScreenNewchar extends ScreenBase
 	ref ImageWidget m_playerPreview;
 	ref ButtonWidget m_NextBtn;	
 	ref MultilineTextWidget m_nameHintBox;
-	
-	ref TextWidget m_totalScore;
-	
 	ref TextWidget m_charNameText1;
 	ref TextWidget m_charNameText2;
 	ref EditBoxWidget m_charNameEdit1;
 	ref EditBoxWidget m_charNameEdit2;
+	
+	ref TextWidget m_totalScore;
+	ref TextListboxWidget m_skillsList;
+	ref TextWidget m_currentSkillName;
+	ref MultilineTextWidget m_currentSkillDesc;
+	ref ButtonWidget m_currentSkillInc, m_currentSkillDec;
 	
 	bool m_isRpcError = false;
 	bool m_isRpcSended = false;
@@ -40,13 +44,18 @@ class ScreenNewchar extends ScreenBase
 		m_faceSelector = XComboBoxWidget.Cast( layoutRoot.FindAnyWidget( "FaceSelector" ) );	
 		m_playerPreview = ImageWidget.Cast( layoutRoot.FindAnyWidget( "PlayerPreview" ) );		
 		m_nameHintBox = MultilineTextWidget.Cast( layoutRoot.FindAnyWidget( "NameHintBox" ) );
-		m_NextBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "NextBtn" ) );
-		
 		m_charNameEdit1 = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "CharNameEdit1" ) );
 		m_charNameEdit2 = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "CharNameEdit2" ) );
 		m_charNameText1 = TextWidget.Cast( layoutRoot.FindAnyWidget( "CharNameText1" ) );	
-		m_charNameText2 = TextWidget.Cast( layoutRoot.FindAnyWidget( "CharNameText2" ) );		
+		m_charNameText2 = TextWidget.Cast( layoutRoot.FindAnyWidget( "CharNameText2" ) );	
+		m_NextBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "NextBtn" ) );
+			
 		m_totalScore = TextWidget.Cast( layoutRoot.FindAnyWidget( "TotalScore" ) );
+		m_skillsList = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "SkillsList" ) );
+		m_currentSkillName = TextWidget.Cast( layoutRoot.FindAnyWidget( "CurrentSkillName" ) );
+		m_currentSkillDesc = MultilineTextWidget.Cast( layoutRoot.FindAnyWidget( "CurrentSkillDesc" ) );
+		m_currentSkillInc = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "CurrentSkillInc" ) );
+		m_currentSkillDec = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "CurrentSkillDec" ) );
 		
         return layoutRoot;
     }
@@ -55,8 +64,37 @@ class ScreenNewchar extends ScreenBase
 	{
 		super.OnShow();
 		m_updateFacePreview = true;
+		m_updateSkills = true;
 	}
 
+	private void UpdateSkillsPreview()
+	{
+		int currentScore = m_metadata.m_score - (int)m_metadata.m_skills.GetTotalScore();
+		m_totalScore.SetText("#syb_totalpoints " + currentScore);
+		
+		int currentSelection = m_skillsList.GetSelectedRow();		
+		m_skillsList.ClearItems();
+		for (int i = 0; i < SyberiaSkillType.SYBSKILL_TOTALCOUNT; ++i)
+		{
+			int currentSkillValue = (int)m_metadata.m_skills.GetValue(i);
+			int rowId = m_skillsList.AddItem("#syb_skill" + i, null, 0);
+			m_skillsList.SetItem(rowId, currentSkillValue.ToString(), null, 1);
+		}
+		
+		if (currentSelection < 0)
+		{
+			currentSelection = SyberiaSkillType.SYBSKILL_IMMUNITY;
+		}
+		
+		int selectedSkillValue = (int)m_metadata.m_skills.GetValue(currentSelection);
+		bool isChangableItem = (currentSelection != SyberiaSkillType.SYBSKILL_HUMANITY);
+		m_skillsList.SelectRow(currentSelection);
+		m_currentSkillName.SetText( "#syb_skill" + currentSelection + ": " + selectedSkillValue );
+		m_currentSkillDesc.SetText( "#syb_skill_desc" + currentSelection );
+		m_currentSkillInc.GetParent().Show( isChangableItem && currentScore > 0 );
+		m_currentSkillDec.GetParent().Show( isChangableItem && selectedSkillValue > 0 );
+	}
+	
 	private void UpdatePlayerPreview()
 	{
 		bool isMale = (m_genderSelector.GetCurrentItem() == 0);
@@ -110,6 +148,12 @@ class ScreenNewchar extends ScreenBase
 			return;
 		}
 		
+		if (m_updateSkills)
+		{
+			m_updateSkills = false;
+			UpdateSkillsPreview();
+		}
+		
 		if (m_updateFacePreview)
 		{
 			m_updateFacePreview = false;
@@ -158,6 +202,18 @@ class ScreenNewchar extends ScreenBase
 			if (w == m_genderSelector)
 			{
 				m_updateFacePreview = true;
+				return true;
+			}
+			if (w == m_currentSkillInc && m_skillsList.GetSelectedRow() >= 0)
+			{
+				m_metadata.m_skills.AddValue( m_skillsList.GetSelectedRow(), 1 );
+				m_updateSkills = true;
+				return true;
+			}
+			if (w == m_currentSkillDec && m_skillsList.GetSelectedRow() >= 0)
+			{
+				m_metadata.m_skills.AddValue( m_skillsList.GetSelectedRow(), -1 );
+				m_updateSkills = true;
 				return true;
 			}
 		}
@@ -218,5 +274,18 @@ class ScreenNewchar extends ScreenBase
 		}
 
 		return false;
+	}
+	
+	override bool OnItemSelected(Widget w, int x, int y, int row, int  column,	int  oldRow, int  oldColumn)
+	{
+		if (w == m_skillsList)
+		{
+			if (row != oldRow)
+			{
+				m_updateSkills = true;	
+			}
+		}
+		
+		return super.OnItemSelected(w, x, y, row, column, oldRow, oldColumn);
 	}
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<modded_inputs>
+	<!-- declarations -->
+	<inputs>
+		<actions>
+			<input name="UAToggleSyberiaSkillsMenu" loc="syb_input_skillsmenu" />
+            <input name="UAToggleSyberiaHideItem" loc="syb_input_hideitem" />
+		</actions>
+	</inputs>
+
+	<!-- presets -->
+	<preset>
+        <input name="UAToggleSyberiaSkillsMenu">
+            <btn name="kO" />
+        </input>
+		
+        <input name="UAToggleSyberiaHideItem">
+            <btn name="kV" />
+        </input>
+	</preset>
+</modded_inputs>
