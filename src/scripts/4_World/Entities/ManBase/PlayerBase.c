@@ -38,12 +38,44 @@ modded class PlayerBase
 		RegisterNetSyncVariableFloat("m_mindStateLast");
 	}
 	
+	override void EEInit()
+	{
+		if (GetGame().IsClient())
+		{
+			RPCSingleParam(SyberiaERPC.SYBERPC_SYNCH_PLAYER_SYBSTATS_REQUEST, new Param1<int>(0), true);
+		}
+	}
+	
 	override void EEDelete(EntityAI parent)
 	{
 		super.EEDelete(parent);
 		
 		delete m_sybstats;
 		m_sybstats = null;
+	}
+	
+	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
+	{
+		super.OnRPC(sender, rpc_type, ctx);
+		
+		if (rpc_type == SyberiaERPC.SYBERPC_SYNCH_PLAYER_SYBSTATS_RESPONSE)
+		{
+			if (GetGame().IsClient())
+			{
+				Param1<ref SyberiaPlayerStats> params;
+				if (!ctx.Read(params))
+					return;
+				
+				if (m_sybstats != null)
+				{
+					delete m_sybstats;
+				}
+				
+				m_sybstats = params.param1;
+				
+				//SybLog("SYBSTATS context synchronized for player " + this);
+			}
+		}
 	}
 	
 	override void SetActions(out TInputActionMap InputActionMap)

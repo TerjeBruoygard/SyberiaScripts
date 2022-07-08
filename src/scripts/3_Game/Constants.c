@@ -1,6 +1,6 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
-const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.49c";
+const bool Syberia_DebugMode = true;
+const string Syberia_Version = "OPEN BETA 0.49d";
 
 void SybLog(string message)
 {
@@ -33,7 +33,9 @@ enum SyberiaERPC {
 	SYBERPC_SYNCH_LIVESPACE_CLIENT,
 	SYBERPC_SYNCH_LIVESPACE_SERVER,
 	SYBERPC_SYNCH_TRADER_POINT_CLIENT,
-	SYBERPC_SYNCH_TRADER_POINT_SERVER
+	SYBERPC_SYNCH_TRADER_POINT_SERVER,
+	SYBERPC_SYNCH_PLAYER_SYBSTATS_REQUEST,
+	SYBERPC_SYNCH_PLAYER_SYBSTATS_RESPONSE
 };
 
 enum SyberiaRPC {
