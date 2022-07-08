@@ -1,4 +1,4 @@
-#define INJECTOR_ANIM_EVENTS()\
+#define INJECTOR_ANIM_EVENTS\
 class AnimEvents\
 {\
     class SoundWeapon\
@@ -36,7 +36,7 @@ class InjectorPromedol : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
 
 class InjectorZivirol : InjectorBase
@@ -49,7 +49,7 @@ class InjectorZivirol : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
 
 class InjectorTopoizomeraza : InjectorBase
@@ -61,7 +61,7 @@ class InjectorTopoizomeraza : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_green_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
 
 class InjectorErytropoenin : InjectorBase
@@ -76,7 +76,7 @@ class InjectorErytropoenin : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
 
 class InjectorNeiroks : InjectorBase
@@ -89,7 +89,7 @@ class InjectorNeiroks : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
 
 class InjectorAmoksivan : InjectorBase
@@ -105,7 +105,7 @@ class InjectorAmoksivan : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_red_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
 
 class InjectorKetorol : InjectorBase
@@ -123,7 +123,7 @@ class InjectorKetorol : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_green_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
 
 class InjectorEpipen : InjectorBase
@@ -137,7 +137,7 @@ class InjectorEpipen : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
 
 class InjectorNovichek : InjectorBase
@@ -150,5 +150,5 @@ class InjectorNovichek : InjectorBase
     hiddenSelections[] = {"zbytek"};
     hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\injector_blue_co.paa" };
     ITEM_DAMAGE_SYSTEM(100, "DZ\gear\medical\data\Morphine.rvmat", "DZ\gear\medical\data\Morphine_damage.rvmat", "DZ\gear\medical\data\Morphine_destruct.rvmat");
-    INJECTOR_ANIM_EVENTS();
+    INJECTOR_ANIM_EVENTS;
 };
