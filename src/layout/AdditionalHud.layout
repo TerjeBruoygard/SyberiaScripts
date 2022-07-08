@@ -1150,7 +1150,7 @@ FrameWidgetClass rootFrame {
    visible 1
    ignorepointer 1
    position 0 120
-   size 0.6 80
+   size 0.6 100
    halign center_ref
    valign bottom_ref
    hexactpos 0

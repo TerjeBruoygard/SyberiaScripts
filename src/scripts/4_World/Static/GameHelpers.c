@@ -1,5 +1,41 @@
 class GameHelpers
 {
+	static void GetMedicineItemVisualEffects(string classname, ref array<string> effects)
+	{
+		float overdosedIncrement = GetGame().ConfigGetFloat( "CfgVehicles " + classname + " overdosedIncrement" );
+		if (overdosedIncrement > 3) effects.Insert("#syb_med_killoverdose"); 
+			
+		int medPainkillerLevel = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medPainkillerLevel" );
+		if (medPainkillerLevel > 0) effects.Insert("#syb_med_painkill " + medPainkillerLevel + " #syb_skill_level3"); 
+		
+		int medStomatchhealLevel = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medStomatchhealLevel" );
+		if (medStomatchhealLevel > 0) effects.Insert("#syb_med_stomachheal " + medStomatchhealLevel + " #syb_skill_level3"); 
+		
+		int medAntibioticLevel = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medAntibioticLevel" );
+		if (medAntibioticLevel > 0) effects.Insert("#syb_med_antibiotic " + medAntibioticLevel + " #syb_skill_level3"); 
+		
+		int medRemoveSepsis = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medRemoveSepsis" );
+		if (medRemoveSepsis > 0) effects.Insert("#syb_med_sepsis"); 
+		
+		int medRemoveZVirus = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medRemoveZVirus" );
+		if (medRemoveZVirus > 0) effects.Insert("#syb_med_zvirus"); 
+		
+		int medConcussionHeal = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medConcussionHeal" );
+		if (medConcussionHeal > 0) effects.Insert("#syb_med_concussion"); 
+		
+		int medBloodHemostatic = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medBloodHemostatic" );
+		if (medBloodHemostatic > 0) effects.Insert("#syb_med_hemostatic"); 
+		
+		int medBloodHematopoiesis = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medBloodHematopoiesis" );
+		if (medBloodHematopoiesis > 0) effects.Insert("#syb_med_hemostopoesis"); 
+		
+		int medHematomaHeal = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medHematomaHeal" );
+		if (medHematomaHeal > 0) effects.Insert("#syb_med_hematoma"); 
+		
+		int medAdrenalinLevel = GetGame().ConfigGetInt( "CfgVehicles " + classname + " medAdrenalinLevel" );
+		if (medAdrenalinLevel > 0) effects.Insert("#syb_med_adrenalin " + medAdrenalinLevel + " #syb_skill_level3"); 
+	}
+	
 	static Transport GetPlayerVehicle(PlayerBase player)
 	{
 		if (player.GetCommand_Vehicle())

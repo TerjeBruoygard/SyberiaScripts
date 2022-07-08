@@ -6,5 +6,6 @@ modded class PluginRecipesManagerBase
         RegisterRecipe(new CraftSyringeClear);
         RegisterRecipe(new CraftSyringeFill);
         RegisterRecipe(new CraftCombineSyb);
+        RegisterRecipe(new AmpouleAlcoholDisinfect);
     }
 };

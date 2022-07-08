@@ -42,8 +42,6 @@ class MedicineSystem
     sepsisKnifeHitChance = 0.04;
     sepsisBulletHitChance = 0.05;
     sepsisDirtySyringeChance = 0.75;
-    sepsisDitryHandsBandageChance = 0.4;
-    sepsisDitryHandsSyrgeryChance = 0.9;
     zvirusStage1TimeSec = 1200; // 20 min
     zvirusStage2TimeSec = 3600; // zvirusStage1TimeSec + 40 min
     zvirusDeathTimeSec = 900;
@@ -113,6 +111,11 @@ class MedicineSystem
     stomatchpoisonDefaultTimes[] = { 1800, 900, 600 }; // lvl1, lvl2, lvl3
     glovesDamageOnApplyBandage = -5;
     glovesDamageOnSurgery = -15;
+    startSurgeryVisceraChance = 0.1;
+    startSurgeryBulletChance = 0.2;
+    startSurgeryKnifeChance = 0.3;
+    surgerySideEffectBloodLoseCount = 500;
+    surgerySideEffectHealthLoseCount = 20;
 };
 
 class AttackSystem
