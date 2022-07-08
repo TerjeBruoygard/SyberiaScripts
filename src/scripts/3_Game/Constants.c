@@ -63,7 +63,8 @@ enum SyberiaRPC {
 	SYBRPC_ADMINTOOL_TELEPORT_PLAYER_TO_ME,	
 	SYBRPC_SKILLS_UPDATE,
 	SYBRPC_SKILLS_ACTIVATE,
-	SYBRPC_STETHOSCOPE_INSPECT
+	SYBRPC_STETHOSCOPE_INSPECT,
+	SYBRPC_CURRENT_ZONE_SYNC
 };
 
 enum SyberiaScreenEquipPages {
@@ -167,6 +168,7 @@ class SyberiaConfig
 	// Wetness
 	float m_clothingDrenchedHeatDrain;
 	float m_clothingWetHeatDrain;
+	float m_temperatureHeightReduction;
 
 	protected void ConfigGetTextArray(string path, out array<string> result, int count)
 	{
@@ -239,6 +241,7 @@ class SyberiaConfig
 		// Wetness
 		m_clothingDrenchedHeatDrain = ConfigGetFloat("CfgWorlds " + worldName + " clothingDrenchedHeatDrain");
 		m_clothingWetHeatDrain = ConfigGetFloat("CfgWorlds " + worldName + " clothingWetHeatDrain");
+		m_temperatureHeightReduction = ConfigGetFloat("CfgWorlds " + worldName + " temperatureHeightReduction");
 	}
 };
 

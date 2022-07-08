@@ -140,6 +140,9 @@ class SyberiaActionPlacementApply : ActionContinuousBase
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+        if (player.IsBuildingModeBlocked())
+            return false;
+        
 		//Client
 		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 		{

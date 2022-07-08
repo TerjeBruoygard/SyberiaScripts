@@ -17,6 +17,7 @@ class CfgWorlds
         temperatureFillWaterBottleMod = 0.1;
         temperatureIceDrain = 0;
         temperatureSnowDrain = 0;
+        temperatureHeightReduction = 0.002;
         
         clothingDrenchedHeatDrain = -5;
         clothingWetHeatDrain = -2;
@@ -38,6 +39,7 @@ class CfgWorlds
         temperatureFillWaterBottleTotal = 6;
         temperatureIceDrain = -40;
         temperatureSnowDrain = -20;
+        temperatureHeightReduction = 0.01;
         
         clothingDrenchedHeatDrain = -50;
         clothingWetHeatDrain = -20;

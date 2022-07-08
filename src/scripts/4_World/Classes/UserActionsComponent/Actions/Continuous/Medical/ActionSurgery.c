@@ -108,6 +108,9 @@ class ActionSurgeryTarget: ActionSurgeryBase
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+        if (player.IsInteractionWithPlayersBlocked())
+            return false;
+        
 		PlayerBase targetPlayer = PlayerBase.Cast(target.GetObject());	
 		return CheckBlockerActionCondition(player, target, item) && targetPlayer && super.ConditionSurgery(item, targetPlayer, false);		
 	}

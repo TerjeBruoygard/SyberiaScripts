@@ -1,5 +1,13 @@
 modded class Hologram
 {
+    override void EvaluateCollision(ItemBase action_item = null)
+    {
+        super.EvaluateCollision(action_item);
+
+        if (m_Player.IsBuildingModeBlocked())
+            SetIsColliding( true );
+    }
+    
 	string GetProjectionName(ItemBase item)
 	{
 		if( !item )

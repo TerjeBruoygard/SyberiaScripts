@@ -36,6 +36,11 @@ modded class PlayerBase
 	// Skills container
 	ref SkillsContainer m_skills;
 	
+	// Current zone
+	ref ZoneDefinition m_zone;
+	bool m_isPveIntruder;
+	bool m_isPveIntruderLast;
+	
 	override void Init()
 	{
 		super.Init();
@@ -100,6 +105,11 @@ modded class PlayerBase
 		m_mindStateLast = GetSyberiaConfig().m_mindstateMaxValue;
 		RegisterNetSyncVariableFloat("m_mindStateValue");
 		RegisterNetSyncVariableFloat("m_mindStateLast");
+		
+		// Zones
+		m_isPveIntruderLast = false;
+		m_isPveIntruder = false;
+		RegisterNetSyncVariableBool("m_isPveIntruder");
 	}
 	
 	override void SetActionsRemoteTarget( out TInputActionMap InputActionMap)
@@ -346,5 +356,55 @@ modded class PlayerBase
 	{
 		int value = GetPerkIntValue(perkId, -1);
 		return value == 1;
+	}
+	
+	bool IsBuildingModeBlocked()
+	{
+		if (m_zone == null)
+		{
+			return true;
+		}
+		
+		return m_zone.m_blockBuildingMode == 1;
+	}
+	
+	bool IsInteractionWithPlayersBlocked()
+	{
+		if (m_zone == null)
+		{
+			return true;
+		}
+		
+		return m_zone.m_blockInteractionWithPlayers == 1;
+	}
+	
+	bool IsInversedDammageEnabled()
+	{
+		if (m_zone == null)
+		{
+			return false;
+		}
+		
+		return m_zone.m_inverseDammage == 1;
+	}
+	
+	void OnZoneChanged(ref ZoneDefinition zone)
+	{
+		MissionBaseWorld mission = MissionBaseWorld.Cast(GetGame().GetMission());
+		if (m_zone != null)
+		{			
+			if (mission && m_zone.m_leaveMessage && m_zone.m_leaveMessage.LengthUtf8() > 0)
+			{
+				mission.ShowScreenMessage(m_zone.m_leaveMessage, 3.0);
+			}
+			
+			delete m_zone;
+		}
+		
+		m_zone = zone;
+		if (mission && m_zone.m_enterMessage && m_zone.m_enterMessage.LengthUtf8() > 0)
+		{
+			mission.ShowScreenMessage(m_zone.m_enterMessage, 3.0);
+		}
 	}
 };

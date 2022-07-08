@@ -18,6 +18,7 @@ class PluginSyberiaLogin extends PluginBase
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_CREATENEWCHAR_ERROR, this, "NewcharScreen_Error");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_SKILLS_UPDATE, this, "OnSkillsUpdate");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_STETHOSCOPE_INSPECT, this, "OnStethoscopeInspect");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_CURRENT_ZONE_SYNC, this, "OnCurrentZoneSync");
 	}
 	
 	override void OnUpdate(float delta_time)
@@ -186,6 +187,18 @@ class PluginSyberiaLogin extends PluginBase
 		if (m_stethoscopeMenu && m_stethoscopeMenu.m_active)
 		{
 			m_stethoscopeMenu.m_active = false;
+		}
+	}
+	
+	void OnCurrentZoneSync(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	{
+		Param1<ref ZoneDefinition> clientData;
+		if ( !ctx.Read( clientData ) ) return;	
+		
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());		
+		if (player)
+		{
+			player.OnZoneChanged(clientData.param1);
 		}
 	}
 };
