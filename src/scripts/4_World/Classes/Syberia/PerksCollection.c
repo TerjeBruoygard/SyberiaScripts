@@ -86,9 +86,9 @@ enum SyberiaPerkType
     SYBPERK_HUNTING_MEAT_COUNT = 7000,
     SYBPERK_HUNTING_SKINING = 7001,
     //SYBPERK_HUNTING_DECOY_USE = 7002,
-    //SYBPERK_HUNTING_FEEDER_USE = 7003,
+    SYBPERK_HUNTING_BUTCH_SPEED = 7003,
     //SYBPERK_HUNTING_USE_TRAPS = 7004,
-    //SYBPERK_HUNTING_ANIMAL_STEALTH = 7005,
+    SYBPERK_HUNTING_TOOLS = 7005,
     
     SYBPERK_FISHING_CATCH_ON_BREAD = 8000,
     SYBPERK_FISHING_CATCH_ON_SPOON = 8001,
@@ -305,10 +305,9 @@ class PerksCollection
         //
         Register(SyberiaPerkType.SYBPERK_HUNTING_MEAT_COUNT, "%").AddUnlockValue(1, 10).AddUnlockValue(3, 15).AddUnlockValue(5, 20).AddUnlockValue(10, 30).AddUnlockValue(30, 40).AddUnlockValue(45, 60).AddUnlockValue(70, 80).AddUnlockValue(90, 100).AddUnlockValue(100, 150);
         Register(SyberiaPerkType.SYBPERK_HUNTING_SKINING, "%").AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 50).AddUnlockValue(95, 70).AddUnlockValue(100, 100);
-        //Register(SyberiaPerkType.SYBPERK_HUNTING_ANIMAL_STEALTH, "%").AddUnlockValue(20, 10).AddUnlockValue(40, 20).AddUnlockValue(60, 30).AddUnlockValue(85, 50).AddUnlockValue(100, 80);
-        
-        //Register(SyberiaPerkType.SYBPERK_HUNTING_DECOY_USE).AddUnlockValue(25, 1);
-        //Register(SyberiaPerkType.SYBPERK_HUNTING_FEEDER_USE).AddUnlockValue(50, 1);
+        Register(SyberiaPerkType.SYBPERK_HUNTING_TOOLS, "%").AddUnlockValue(20, 20).AddUnlockValue(40, 40).AddUnlockValue(60, 60).AddUnlockValue(85, 80).AddUnlockValue(100, 100);
+        Register(SyberiaPerkType.SYBPERK_HUNTING_BUTCH_SPEED, "%").AddUnlockValue(2, 5).AddUnlockValue(8, 10).AddUnlockValue(22, 20).AddUnlockValue(38, 30).AddUnlockValue(50, 40).AddUnlockValue(62, 50).AddUnlockValue(78, 60).AddUnlockValue(92, 70).AddUnlockValue(100, 95);
+        //Register(SyberiaPerkType.SYBPERK_HUNTING_DECOY_USE).AddUnlockValue(25, 1);        
         //Register(SyberiaPerkType.SYBPERK_HUNTING_USE_TRAPS).AddUnlockValue(75, 1);
         
         /*
