@@ -1,0 +1,102 @@
+FrameWidgetClass rootFrame {
+ size 600 60
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass ItemBackground {
+   ignorepointer 1
+   color 0.098 0.098 0.098 0.7843
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    ButtonWidgetClass ItemActionButton {
+     color 0.0627 0.0627 0.0627 0.3216
+     position 0 0
+     size 1 1
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style EmptyHighlight
+     {
+      PanelWidgetClass ItemPreviewBackground {
+       ignorepointer 1
+       position 0 0
+       size 80 60
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       {
+        ItemPreviewWidgetClass ItemPreviewWidget {
+         ignorepointer 1
+         position -10 -20
+         size 100 100
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+        }
+       }
+      }
+      TextWidgetClass ItemNameWidget {
+       ignorepointer 1
+       position 90 5
+       size 390 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "TEST ITEM NAME"
+       font "gui/fonts/etelkatextpro22"
+      }
+      TextWidgetClass ItemDamageWidget {
+       ignorepointer 1
+       position 90 35
+       size 240 20
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "RUINED"
+       font "gui/fonts/etelkatextpro16"
+      }
+      TextWidgetClass ItemPriceWidget {
+       ignorepointer 1
+       position 20 5
+       size 100 30
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "240"
+       font "gui/fonts/etelkatextpro22"
+       "text halign" right
+      }
+      TextWidgetClass ItemQuantityWidget {
+       ignorepointer 1
+       position 20 35
+       size 250 20
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "50%"
+       font "gui/fonts/etelkatextpro16"
+       "text halign" right
+      }
+     }
+    }
+   }
+  }
+ }
+}
