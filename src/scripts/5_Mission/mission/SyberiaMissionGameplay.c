@@ -141,4 +141,9 @@ modded class MissionGameplay
 		
 		player.m_painEffectDurationLast = player.m_painEffectDurationCur;
 	}
+	
+	override int GetRespawnModeClient()
+	{
+		return GameConstants.RESPAWN_MODE_RANDOM;
+	}
 };

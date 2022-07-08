@@ -154,3 +154,18 @@ class InjectorEpipen : InjectorBase
     ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
     INJECTOR_ANIM_EVENTS();
 };
+
+class InjectorNovichek : InjectorBase
+{
+    scope=2;
+    displayName="#syb_novichek_name";
+    model="SyberiaScripts\data\medical\injector.p3d";
+    medHemologicShock=1;
+    overdosedIncrement=5;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\injector_blue_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    INJECTOR_ANIM_EVENTS();
+};
