@@ -6,5 +6,7 @@ modded class ActionConstructor
 		actions.Insert(ActionInjectSyringeSelf);
 		actions.Insert(ActionInjectSyringeTarget);
 		actions.Insert(ActionEmptySyringe);
+		actions.Insert(ActionInjectInjectorTarget);
+		actions.Insert(ActionInjectInjectorSelf);
 	}
 };

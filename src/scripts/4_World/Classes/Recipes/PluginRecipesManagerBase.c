@@ -4,5 +4,6 @@ modded class PluginRecipesManagerBase
     {
         super.RegisterRecipies();
         RegisterRecipe(new CraftSyringeFill);
+        RegisterRecipe(new CraftSyringeClear);
     }
 };
