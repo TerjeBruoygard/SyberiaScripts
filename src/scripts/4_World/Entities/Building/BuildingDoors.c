@@ -23,3 +23,11 @@ class BuildingDoor_T1_L2 extends BuildingDoorBase
 class BuildingDoor_T1_L3 extends BuildingDoorBase
 {
 };
+
+class BuildingDoor_T1_L4 extends BuildingDoorBase
+{
+};
+
+class BuildingDoor_T1_L5 extends BuildingDoorBase
+{
+};
