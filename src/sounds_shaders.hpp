@@ -29,3 +29,13 @@ class psieffect_Soundshader: baseCharacter_SoundShader
     };
     volume=0.5;
 };
+class adminMessage_Soundshader: baseCharacter_SoundShader
+{
+    samples[]=
+    {
+        {
+            "SyberiaScripts\data\sounds\misc\AdminMessage", 1
+        }
+    };
+    volume=1.0;
+};

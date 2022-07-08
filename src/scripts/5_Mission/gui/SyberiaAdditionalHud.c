@@ -14,7 +14,7 @@ class SyberiaAdditionalHud
 	
 	ref array<ref Widget> m_espMarkers; 
 	float m_espUpdateInterval;
-
+	
 	void SyberiaAdditionalHud(ref Widget mainHud, ref Widget actionBlocker, ref MultilineTextWidget screenMessageWidget)
 	{
 		m_mainHud = mainHud;

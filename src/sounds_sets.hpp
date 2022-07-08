@@ -20,3 +20,10 @@ class psieffect_SoundSet: baseCharacter_SoundSet
         "psieffect_Soundshader"
     };
 };
+class adminMessage_SoundSet: baseCharacter_SoundSet
+{
+    soundShaders[]=
+    {
+        "adminMessage_Soundshader"
+    };
+};

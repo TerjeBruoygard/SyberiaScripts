@@ -149,7 +149,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      {
       PanelWidgetClass PlayersTabBody {
-       visible 0
+       visible 1
        ignorepointer 1
        position 0 0
        size 1 1
@@ -341,7 +341,8 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            {
             TextListboxWidgetClass PlayersDataInv {
-             size 1 0.8
+             position 0 0.06
+             size 1 0.74
              halign right_ref
              valign bottom_ref
              hexactpos 0
@@ -456,6 +457,79 @@ FrameWidgetClass rootFrame {
                style EmptyHighlight
                "no focus" 1
                text "TELEPORT PLAYER TO ME"
+               font "gui/fonts/etelkatextpro22"
+               switch normal
+              }
+             }
+            }
+            PanelWidgetClass PlayersMsgEditBack {
+             ignorepointer 1
+             position 0 0
+             size 0.8 0.05
+             valign bottom_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              TextWidgetClass PlayersMsgEditText {
+               ignorepointer 1
+               size 0.98 1
+               halign right_ref
+               valign center_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               font "gui/fonts/etelkatextpro16"
+               "exact text" 0
+               "text valign" center
+              }
+              EditBoxWidgetClass PlayersMsgEditBox {
+               ignorepointer 0
+               keepsafezone 0
+               position 0 0
+               size 0.98 1
+               halign right_ref
+               valign center_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               scaled 0
+               style Default
+               "limit visible" 0
+               "Default text color" 0.6 0.6 0.6 1
+               "Use default text" 1
+               "exact text" 1
+               font "gui/fonts/etelkatextpro16"
+              }
+             }
+            }
+            PanelWidgetClass PlayersMsgApplyBack {
+             ignorepointer 1
+             color 0.098 0.1373 0.1569 1
+             position 0 0
+             size 0.2 0.05
+             halign right_ref
+             valign bottom_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_blackbox
+             {
+              ButtonWidgetClass PlayersMsgApply {
+               color 0.0588 0.0588 0.0588 1
+               size 1 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               style EmptyHighlight
+               "no focus" 1
+               text "MSG"
                font "gui/fonts/etelkatextpro22"
                switch normal
               }

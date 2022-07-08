@@ -178,7 +178,8 @@ class SybTraderMenu extends UIScriptedMenu
 	
 	void InitInventoryBuy()
 	{
-		CleanupBuyUI();
+		CleanupBuyUI();		
+		m_buyItemsPanel.VScrollToPos01(0);
 		
 		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
 		if (!pluginTrader)

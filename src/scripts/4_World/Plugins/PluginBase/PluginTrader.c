@@ -277,6 +277,20 @@ class PluginTrader extends PluginBase
 			}
 		}
 		
+		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname + " attachments"))
+		{
+			inventorySlots.Clear();
+			GetGame().ConfigGetTextArray(CFG_VEHICLESPATH + " " + classname + " attachments", inventorySlots);
+			foreach (string attachment : inventorySlots)
+			{
+				attachment.ToLower();
+				if (attachment.IndexOf("batteryd") == 0)
+				{
+					return enabledCategories.Get(categories.Find("electronic"));
+				}
+			}
+		}
+		
 		if (GetGame().ConfigGetInt(CFG_VEHICLESPATH + " " + classname + " medicalItem") == 1)
 		{
 			return enabledCategories.Get(categories.Find("medical"));
@@ -300,11 +314,6 @@ class PluginTrader extends PluginBase
 		if (GetGame().IsKindOf(classname, "BaseBuildingBase") || GetGame().IsKindOf(classname, "Container_Base") || GetGame().ConfigGetInt(CFG_VEHICLESPATH + " " + classname + " baseBuildingItem") == 1)
 		{
 			return enabledCategories.Get(categories.Find("base_building"));
-		}
-		
-		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname + " EnergyManager"))
-		{
-			return enabledCategories.Get(categories.Find("electronic"));
 		}
 		
 		return enabledCategories.Get(categories.Find("other"));

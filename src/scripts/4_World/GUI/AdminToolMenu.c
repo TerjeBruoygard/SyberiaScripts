@@ -20,7 +20,10 @@ class AdminToolMenu extends UIScriptedMenu
 	ref TextListboxWidget m_playersDataStats;
 	ref TextListboxWidget m_playersDataInv;
 	ref TextWidget m_playersStatEditText;
-	ref EditBoxWidget m_playersStatEditBox;	
+	ref EditBoxWidget m_playersStatEditBox;		
+	ref TextWidget m_playersMsgEditText;
+	ref EditBoxWidget m_playersMsgEditBox;	
+	ref ButtonWidget m_playersMsgApply;	
 	ref Widget m_playersStatApply;
 	string m_selectedPlayerUID;
 	
@@ -139,8 +142,11 @@ class AdminToolMenu extends UIScriptedMenu
 		m_playersDataTeleportToPlayer = layoutRoot.FindAnyWidget("PlayersDataTeleportToPlayer");
 		m_playersDataTeleportPlayerToMe = layoutRoot.FindAnyWidget("PlayersDataTeleportPlayerToMe");		
 		m_playersStatEditText = TextWidget.Cast(layoutRoot.FindAnyWidget("PlayersStatEditText"));
-		m_playersStatEditBox = EditBoxWidget.Cast(layoutRoot.FindAnyWidget("PlayersStatEditBox"));
+		m_playersStatEditBox = EditBoxWidget.Cast(layoutRoot.FindAnyWidget("PlayersStatEditBox"));		
+		m_playersMsgEditText = TextWidget.Cast(layoutRoot.FindAnyWidget("PlayersMsgEditText"));
+		m_playersMsgEditBox = EditBoxWidget.Cast(layoutRoot.FindAnyWidget("PlayersMsgEditBox"));		
 		m_playersStatApply = layoutRoot.FindAnyWidget("PlayersDataStatsApply");
+		m_playersMsgApply = ButtonWidget.Cast(layoutRoot.FindAnyWidget("PlayersMsgApply"));
 		
 		// Spawner tab
 		m_spawnerCategoryListBox = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("SpawnerCategoryListBox"));
@@ -841,6 +847,15 @@ class AdminToolMenu extends UIScriptedMenu
 				}
 			}
 			
+			if (w == m_playersMsgApply)
+			{
+				if (m_selectedPlayerUID.Length() > 0)
+				{
+					string msgStr = m_playersMsgEditBox.GetText();				
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_MESSAGE, new Param2< string, string >( m_selectedPlayerUID, msgStr ) );
+				}
+			}
+			
 			if (w == m_spawnButton)
 			{
 				SpawnCurrentItemRequest();
@@ -989,6 +1004,10 @@ class AdminToolMenu extends UIScriptedMenu
 		if (w == m_playersStatEditBox) {			
 			text = m_playersStatEditBox.GetText();
 			m_playersStatEditText.SetText(text);			
+		}
+		else if (w == m_playersMsgEditBox) {			
+			text = m_playersMsgEditBox.GetText();
+			m_playersMsgEditText.SetText(text);			
 		}
 		else if (w == m_spawnerFilterEditBox) {
 			text = m_spawnerFilterEditBox.GetText();

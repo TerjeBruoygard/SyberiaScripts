@@ -52,7 +52,7 @@ modded class MissionGameplay
 			{
 				ref Widget actionBlocker = m_AdditionHudRootWidget.FindAnyWidget("ActionBlocker");
 				m_AdditionHudRootWidget.RemoveChild(actionBlocker);
-				
+								
 				ref MultilineTextWidget screenInfoWidget = MultilineTextWidget.Cast( m_AdditionHudRootWidget.FindAnyWidget("ScreenInfoWidget") );
 				m_AdditionHudRootWidget.RemoveChild(screenInfoWidget);
 				
