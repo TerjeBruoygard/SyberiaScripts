@@ -10,7 +10,7 @@ class ScreenEquip extends ScreenBase
 	int m_currentPage = 0;
 	bool m_updateCurrentPage = false;
 	bool m_updatePlayerPreview = false;
-	ref array<ref EntityAI> m_previewEntities;
+	ref array<ref ItemBase> m_previewEntities;
 	
 	bool m_isRpcSended = false;
 	
@@ -18,7 +18,7 @@ class ScreenEquip extends ScreenBase
 	{
 		m_pages = new array<ref ButtonWidget>;
 		m_selectedIndexes = new array<int>;		
-		m_previewEntities = new array<ref EntityAI>;		
+		m_previewEntities = new array<ref ItemBase>;		
 		m_equip = equip;
 		
 		for (int i = 0; i < m_equip.Count(); i++)
@@ -46,7 +46,7 @@ class ScreenEquip extends ScreenBase
 		}
 		delete m_equip;
 		
-		foreach (ref EntityAI entity : m_previewEntities)
+		foreach (ref ItemBase entity : m_previewEntities)
 		{
 			if (entity) GetGame().ObjectDelete(entity);
 	}
@@ -138,8 +138,8 @@ class ScreenEquip extends ScreenBase
 	{	
 		int index;
 		int i;
-		EntityAI newEntity;
-		EntityAI oldEntity;
+		ItemBase newEntity;
+		ItemBase oldEntity;
 		DayZPlayer player = GetGame().GetPlayer();
 		
 		for (i = SyberiaScreenEquipPages.SYBSEP_BODY_PAGE; i <= SyberiaScreenEquipPages.SYBSEP_WEAPON_PAGE; i++)
@@ -148,8 +148,22 @@ class ScreenEquip extends ScreenBase
 			oldEntity = m_previewEntities.Get(i);
 			if (index != -1)
 			{
-				string itemName = m_equip.Get(i).Get(index);
-				newEntity = EntityAI.Cast(GetGame().CreateObject(itemName, "0 0 0", true));
+				string itemName, magName;
+				float health, quantity;
+				string itemData = m_equip.Get(i).Get(index);
+				TStringArray attachments = new TStringArray();
+				EquipItemData.Parse(itemData, itemName, attachments, health, quantity, magName);
+				
+				newEntity = ItemBase.Cast(GetGame().CreateObject(itemName, "0 0 0", true));
+				foreach (string attachment : attachments)
+				{
+					EntityAI attachmentItem = GetGame().CreateObject(attachment, "0 0 0", true);
+					if (attachmentItem)
+					{
+						newEntity.GetInventory().TakeEntityAsAttachment(InventoryMode.LOCAL, attachmentItem);
+					}
+				}
+						
 				if (i == SyberiaScreenEquipPages.SYBSEP_WEAPON_PAGE)
 				{
 					m_playerPreview.UpdateItemInHands(newEntity);

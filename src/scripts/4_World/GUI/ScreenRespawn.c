@@ -48,7 +48,7 @@ class ScreenRespawn extends ScreenBase
 		if ((m_totalSouls - m_priceSouls) < 0)
 		{
 			m_soulsPriceText.SetText("#syb_nosoulsleft");
-			m_respawnBtn.Show(false);
+			m_respawnBtn.Enable(false);
 		}
 		else
 		{
@@ -64,8 +64,8 @@ class ScreenRespawn extends ScreenBase
 		
 		if (m_isRpcSended)
 		{
-			m_respawnBtn.Show(false);
-			m_removeCharBtn.Show(false);
+			m_respawnBtn.Enable(false);
+			m_removeCharBtn.Enable(false);
 		}
 	}
 
