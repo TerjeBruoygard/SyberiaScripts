@@ -189,8 +189,8 @@ FrameWidgetClass rootFrame {
         }
         MultilineTextWidgetClass PerkDesc {
          ignorepointer 1
-         position 0 120
-         size 0.72 200
+         position 0 140
+         size 0.72 180
          halign right_ref
          valign bottom_ref
          hexactpos 1
@@ -236,7 +236,7 @@ FrameWidgetClass rootFrame {
          ignorepointer 1
          color 0.8824 0.6 0.0275 1
          position 0 60
-         size 0.72 60
+         size 0.72 80
          halign right_ref
          valign bottom_ref
          hexactpos 1

@@ -181,12 +181,15 @@ class SkillsMenu extends UIScriptedMenu
 	
 	private void UpdatePerkInfo()
 	{	
+		bool showHint = false;
 		string perkName = "";
 		string perkDesc = "";
+		string errorText = "";
 		int perkStatus = -3;
+		int selectedSkill = m_skillsList.GetSelectedRow();	
 		int selectedPerk = m_skillPerksList.GetSelectedRow();
 		int selectedLevel = m_skillLevelsList.GetSelectedRow();
-		if (selectedPerk >= 0 && selectedLevel >= 0)
+		if (selectedSkill >= 0 && selectedPerk >= 0 && selectedLevel >= 0)
 		{
 			Param1<int> selectedLevelValue;
 			m_skillLevelsList.GetItemData(selectedLevel, 0, selectedLevelValue);
@@ -201,18 +204,25 @@ class SkillsMenu extends UIScriptedMenu
 					perkName = perk.GetName();
 					perkDesc = perk.GetDesc(selectedLevelValue.param1);
 					perkStatus = player.m_skills.GetPerkStatus( perk.GetId(), selectedLevelValue.param1 );
+					
+					if (perkStatus == -1) errorText = "#syb_perk_err1";
+					else if (perkStatus == -2) errorText = "#syb_perk_err3";
+					else if (perkStatus == -3) errorText = "#syb_perk_err2 (#syb_skill" + selectedSkill + " " + perk.GetPrevUnlockLevel(selectedLevelValue.param1) + " #syb_skill_level3)";
 				}
 			}
+		}
+		
+		if (perkStatus == 0 && m_skillPerksList.GetNumItems() > 1)
+		{
+			showHint = true;
 		}
 		
 		m_perkName.SetText(perkName);
 		m_perkDesc.SetText(perkDesc);
 		m_activatePerkBack.Show(perkStatus == 0);
-		m_perkHint.Show(perkStatus == 0);
+		m_perkHint.Show(showHint);
 		m_perkErr.Show(perkStatus < 0);
-		if (perkStatus == -1) m_perkErr.SetText("#syb_perk_err1");
-		else if (perkStatus == -2) m_perkErr.SetText("#syb_perk_err3");
-		else m_perkErr.SetText("");
+		m_perkErr.SetText(errorText);
 	}
 	
 	override void Update(float timeslice)
