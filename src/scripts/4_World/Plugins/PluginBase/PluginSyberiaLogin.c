@@ -3,11 +3,6 @@ class PluginSyberiaLogin extends PluginBase
 	autoptr ScreenBase m_screenBase;
 	bool m_isRespawnCommited = false;
 	
-	void PluginSyberiaLogin()
-	{
-
-	}
-	
 	void ~PluginSyberiaLogin()
 	{
 		if (m_screenBase) m_screenBase.Close();

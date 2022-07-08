@@ -24,7 +24,6 @@ class GearPDAMenu extends UIScriptedMenu
 	ref ButtonWidget m_group_del_btn;
 	ref EditBoxWidget m_group_input;
 	ref TextWidget m_group_help_text;
-	ref TextWidget m_map_coords_text;
 	
 	ref ImageWidget m_page_msg;
 	ref ImageWidget m_page_map;
@@ -38,8 +37,8 @@ class GearPDAMenu extends UIScriptedMenu
 	ref ButtonWidget m_page_grp_btn;
 	ref Widget m_page_grp_back;
 	
-	ref ImageWidget m_map;
-	
+	ref MapWidget m_map;
+
 	const int m_contactMaxLength = 32;
 	const int m_messageMaxLength = 256;
 	
@@ -86,8 +85,7 @@ class GearPDAMenu extends UIScriptedMenu
 		m_mute_text = TextWidget.Cast( layoutRoot.FindAnyWidget( "mute_btntext" ) );
 		m_rename_btn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "rename_contact_btn" ) );
 		m_ban_btn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "ban_contact_btn" ) );
-		m_map = ImageWidget.Cast( layoutRoot.FindAnyWidget("map_widget") );
-		m_map_coords_text = TextWidget.Cast( layoutRoot.FindAnyWidget("map_coords_text") );
+		m_map = MapWidget.Cast( layoutRoot.FindAnyWidget("map_widget") );
 		m_page_buttons_panel = layoutRoot.FindAnyWidget("PagesBtnsPanel");
 		m_group_help_text = TextWidget.Cast( layoutRoot.FindAnyWidget("group_info") );
 		
@@ -119,15 +117,15 @@ class GearPDAMenu extends UIScriptedMenu
 		
 		SelectPdaPage(pluginGearPDA.m_current_page_id);
 				
-		ref array<string> request = new array<string>();
+		ref array<int> request = new array<int>();
 		for (int i = 0; i < pluginGearPDA.m_contacts.Count(); i++)
 		{
-			request.Insert(pluginGearPDA.m_contacts[i].m_UID);
+			request.Insert(pluginGearPDA.m_contacts[i].m_id);
 		}
 		
 		if (!m_active) 
 		{
-			GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_PDA_CHECK_CONTACT, new Param1< ref array<string> >( request ) );
+			GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_PDA_CHECK_CONTACT, new Param1< ref array<int> >( request ) );
 			m_yourIdText.SetText("#pda_loading");
 			m_message.Enable(false);
 			m_send.Enable(false);
@@ -150,28 +148,18 @@ class GearPDAMenu extends UIScriptedMenu
 	
 	void UpdateMap()
 	{
-		string worldName;
-		GetGame().GetWorldName(worldName);
-		m_map.LoadImageFile(0, "SyberiaScripts\\data\\pda\\" + worldName + "_map.paa");
-		
-		float x, y, w, h;
-		m_map.GetPos(x, y);
-		m_map.GetSize(w, h);
-
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if (!player) return;
 		
 		vector pos = player.GetPosition();
-		vector mapSize = GetGame().ConfigGetVector("CfgWorldInfo " + worldName + " worldSize");
-
-		float x_rel = (pos[0] - (mapSize[0] * 0.5)) / (mapSize[0] * 0.5);
-		float y_rel = (pos[2] - (mapSize[1] * 0.5)) / (mapSize[1] * 0.5);
+		m_map.ClearUserMarks();
+		m_map.AddUserMark(pos, "", ARGBF(1, 0.690, 0.152, 0.188), "SyberiaScripts\\data\\pda\\marker.paa");
+		m_map.SetScale(0.05);
 		
-		m_map.SetPos((x_rel * -1) * (w / 2), y_rel * (h / 2));
+		pos[0] = pos[0] + 160;
+		pos[2] = pos[2] - 140;
 		
-		int x_view = (int)(pos[0] / 100);
-		int y_view = (int)(pos[2] / 100);
-		m_map_coords_text.SetText(x_view.ToString() + " " + y_view.ToString());
+		m_map.SetMapPos(pos);
 	}
 	
 	void SelectPdaPage(int id)
@@ -246,14 +234,16 @@ class GearPDAMenu extends UIScriptedMenu
 			{
 				m_contactList.SetItemColor(itemId, 1, ARGBF(1, 0.447, 0.352, 0.294));
 			}
-			else if (pluginGearPDA.m_onlineContacts.Find(contact.m_UID) != -1)
+			else if (pluginGearPDA.m_onlineContacts.Find(contact.m_id) != -1)
 			{
 				m_contactList.SetItemColor(itemId, 1, ARGBF(1, 0.588, 0.662, 0.341));
 			}
 			else
 			{
-				m_contactList.SetItemColor(itemId, 1, ARGBF(1, 0.411, 0.447, 0.294));
-			}			
+				m_contactList.SetItemColor(itemId, 1, ARGBF(1, 0.411, 0.547, 0.294));
+			}		
+			
+			m_contactList.SetItemColor(itemId, 2, ARGBF(1, 0.588, 0.662, 0.341));	
 		}
 		
 		if (selectedRow >= 0 && selectedRow < pluginGearPDA.m_contacts.Count() + rowShift)
@@ -337,7 +327,9 @@ class GearPDAMenu extends UIScriptedMenu
 			{
 				ref Param2<string, string> commentGlob = confMessages[i];
 				autor = commentGlob.param1;							
-				itemId = m_chat.AddItem(autor, NULL, 1);							
+				itemId = m_chat.AddItem(autor, NULL, 1);	
+				m_chat.SetItemColor(itemId, 1, ARGBF(1, 0.588, 0.662, 0.341));
+										
 				addedLinesCount = 0;
 				chatMessage = commentGlob.param2;			
 				while (chatMessage.LengthUtf8() > 0)
@@ -365,7 +357,6 @@ class GearPDAMenu extends UIScriptedMenu
 						itemId = m_chat.AddItem(chatLine, NULL, 3);
 					}
 					
-					m_chat.SetItemColor(itemId, 1, ARGBF(1, 0.588, 0.662, 0.341));
 					m_chat.SetItemColor(itemId, 3, ARGBF(1, 0.588, 0.662, 0.341));
 					
 					chatMessage = chatMessage.SubstringUtf8(chatLine.LengthUtf8(), chatMessage.LengthUtf8() - chatLine.LengthUtf8());
@@ -385,15 +376,15 @@ class GearPDAMenu extends UIScriptedMenu
 		else
 		{
 			ref PluginGearPDA_Conversation contact = pluginGearPDA.m_contacts[id - rowShift];		
-			ref array<ref PluginGearPDA_Comment> comments = pluginGearPDA.GetComments(contact.m_UID);
+			ref array<ref PluginGearPDA_Comment> comments = pluginGearPDA.GetComments(contact.m_id);
 
 			for (i = 0; i < comments.Count(); i++)
 			{
 				ref PluginGearPDA_Comment comment = comments[i];	
-				if (comment.m_UID == GetGame().GetPlayer().GetIdentity().GetId())
+				if (comment.m_id == GetSyberiaOptions().m_clientCharacterId)
 				{
 					autor = "Me";
-					color = ARGBF(1, 0.466, 0.505, 0.337);
+					color = ARGBF(1, 0.678, 0.792, 0.305);
 				}
 				else
 				{
@@ -403,7 +394,6 @@ class GearPDAMenu extends UIScriptedMenu
 							
 				itemId = m_chat.AddItem(autor, NULL, 1);
 				m_chat.SetItemColor(itemId, 1, color);
-				m_chat.SetItemColor(itemId, 3, color);
 							
 				addedLinesCount = 0;
 				chatMessage = comment.m_Message;			
@@ -432,6 +422,8 @@ class GearPDAMenu extends UIScriptedMenu
 						m_chat.AddItem(chatLine, NULL, 3);
 					}
 					
+					m_chat.SetItemColor(itemId, 3, color);
+					
 					chatMessage = chatMessage.SubstringUtf8(chatLine.LengthUtf8(), chatMessage.LengthUtf8() - chatLine.LengthUtf8());
 					addedLinesCount = addedLinesCount + 1;
 					chatLinesCount = chatLinesCount + 1;
@@ -442,7 +434,7 @@ class GearPDAMenu extends UIScriptedMenu
 			m_chat.SelectRow(chatLinesCount);
 			m_chat.EnsureVisible(chatLinesCount);
 			
-			if ( (pluginGearPDA.m_onlineContacts.Find(contact.m_UID) == -1) || (contact.m_IsBanned) )
+			if ( (pluginGearPDA.m_onlineContacts.Find(contact.m_id) == -1) || (contact.m_IsBanned) )
 			{
 				m_message.Enable(false);
 				m_send.Enable(false);
@@ -458,7 +450,7 @@ class GearPDAMenu extends UIScriptedMenu
 			if (contact.m_Unreaded > 0)
 			{
 				contact.m_Unreaded = 0;
-				m_contactList.SetItem(id, "" + contact.m_Unreaded, NULL, 1);
+				m_contactList.SetItem(id, "" + contact.m_Unreaded, NULL, 2);
 				pluginGearPDA.SaveContactsConfig();
 			}
 		}
@@ -467,7 +459,7 @@ class GearPDAMenu extends UIScriptedMenu
 	override void Update(float timeslice)
 	{
 		super.Update(timeslice);
-
+		
 		if (m_externalSendEvent)
 		{
 			SendMessageEvent();
@@ -692,13 +684,12 @@ class GearPDAMenu extends UIScriptedMenu
 				
 
 
-				ref PluginGearPDA_Conversation msgContact = pluginGearPDA.m_contacts[selectedRow - rowShift];
-				string target = msgContact.m_UID;					
-				if ( (pluginGearPDA.m_onlineContacts.Find(target) != -1) && (!msgContact.m_IsBanned) )
+				ref PluginGearPDA_Conversation msgContact = pluginGearPDA.m_contacts[selectedRow - rowShift];				
+				if ( (pluginGearPDA.m_onlineContacts.Find(msgContact.m_id) != -1) && (!msgContact.m_IsBanned) )
 				{					
 					m_sendMessageTimeout = 0.25;
 					m_sendMessageStatus = 1;
-					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_PDA_SEND_MESSAGE, new Param2<string, string>( target, message ) );
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_PDA_SEND_MESSAGE, new Param2<int, string>( msgContact.m_id, message ) );
 					m_message.SetText("");
 					return true;
 				}
@@ -760,8 +751,8 @@ class GearPDAMenu extends UIScriptedMenu
 			
 			if (selectedRow >= 0 && selectedRow < pluginGearPDA.m_contacts.Count() + rowShift)
 			{
-				string contactToDeleteUid = pluginGearPDA.m_contacts[selectedRow - rowShift].m_UID;
-				pluginGearPDA.RemoveContact(contactToDeleteUid);
+				int contactToDeleteId = pluginGearPDA.m_contacts[selectedRow - rowShift].m_id;
+				pluginGearPDA.RemoveContact(contactToDeleteId);
 				m_dirty = true;
 			}
 			return true;
@@ -802,8 +793,8 @@ class GearPDAMenu extends UIScriptedMenu
 				string newContactName = m_addContactTxt.GetText();
 				if (newContactName.LengthUtf8() <= m_contactMaxLength && newContactName.LengthUtf8() > 0)
 				{
-					string contactToRenameUid = pluginGearPDA.m_contacts[selectedRow - rowShift].m_UID;
-					pluginGearPDA.RenameContact(contactToRenameUid, newContactName);
+					int contactToRenameId = pluginGearPDA.m_contacts[selectedRow - rowShift].m_id;
+					pluginGearPDA.RenameContact(contactToRenameId, newContactName);
 					m_dirty = true;
 				}
 			}
@@ -835,8 +826,8 @@ class GearPDAMenu extends UIScriptedMenu
 			
 			if (selectedRow >= 0 && selectedRow < pluginGearPDA.m_contacts.Count() + rowShift)
 			{
-				string contactToBanUid = pluginGearPDA.m_contacts[selectedRow - rowShift].m_UID;
-				pluginGearPDA.BanUnbanContact(contactToBanUid);
+				int contactToBanId = pluginGearPDA.m_contacts[selectedRow - rowShift].m_id;
+				pluginGearPDA.BanUnbanContact(contactToBanId);
 				m_dirty = true;
 			}
 			return true;
