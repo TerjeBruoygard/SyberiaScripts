@@ -2,11 +2,14 @@ modded class ActionConsume
 {
 	override bool ActionBlockerCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		return player.IsFaceBlocked(true);
+		return (item && item.IsTemperatureVisible() && item.GetTemperature() < 0) || player.IsFaceBlocked(true);
 	}
 	
 	override string ActionBlockerText( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		if (item && item.IsTemperatureVisible() && item.GetTemperature() < 0)
+			return "#syb_action_consume_blocked_temp";
+		
 		return "#syb_action_consume_blocked_headgear";
 	}
 	
@@ -20,11 +23,14 @@ modded class ActionConsumeSingle
 {
 	override bool ActionBlockerCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		return player.IsFaceBlocked(true);
+		return (item.IsTemperatureVisible() && item.GetTemperature() < 0) || player.IsFaceBlocked(true);
 	}
 	
 	override string ActionBlockerText( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		if (item.IsTemperatureVisible() && item.GetTemperature() < 0)
+			return "#syb_action_consume_blocked_temp";
+		
 		return "#syb_action_consume_blocked_headgear";
 	}
 	
