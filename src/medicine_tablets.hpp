@@ -698,3 +698,93 @@ class TabletsSorbiferDurulis : TabletsBase
     ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
     TABLETS_ANIM_EVENTS;
 };
+
+class TabletsPotassiumIodide : TabletsBase
+{
+    scope=2;
+    displayName="#syb_potassium_iodide";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medRadioprotectionLevel=1;
+    medRadioprotectionTimer=60;
+    overdosedIncrement=0.2;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_white_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};
+
+class TabletsPotassiumHexacyanoferrate : TabletsBase
+{
+    scope=2;
+    displayName="#syb_potassium_hexacyanoferrate";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medRadioprotectionLevel=1;
+    medRadioprotectionTimer=90;
+    overdosedIncrement=0.3;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_black_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};
+
+class TabletsCystamine : TabletsBase
+{
+    scope=2;
+    displayName="#syb_cystamine";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medRadioprotectionLevel=1;
+    medRadioprotectionTimer=120;
+    overdosedIncrement=0.3;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_brown_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};
+
+class TabletsB190 : TabletsBase
+{
+    scope=2;
+    displayName="#syb_b190";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medRadioprotectionLevel=1;
+    medRadioprotectionTimer=140;
+    overdosedIncrement=0.3;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_blue_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};
+
+class TabletsMexamine : TabletsBase
+{
+    scope=2;
+    displayName="#syb_mexamine";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medRadioprotectionLevel=2;
+    medRadioprotectionTimer=30;
+    overdosedIncrement=0.6;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_green_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base.rvmat", "SyberiaScripts\data\medical\tablets_base_damage.rvmat", "SyberiaScripts\data\medical\tablets_base_destruct.rvmat");
+    TABLETS_ANIM_EVENTS;
+};

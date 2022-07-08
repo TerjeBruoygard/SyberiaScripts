@@ -243,6 +243,14 @@ syb_adrenalin10_name,Epinephrine 1mg / ml,Epinephrine 1mg / ml,Epinephrine 1mg /
 syb_adrenalin30_name,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Адреналин 3мг/мл,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml,Epinephrine 3mg / ml
 syb_epipen_name,Epinephrine,Epinephrine,Epinephrine,Epinephrine,Эпинефрин,Epinephrine,Epinephrine,Epinephrine,Epinephrine,Epinephrine,Epinephrine,Epinephrine,Epinephrine,Epinephrine
 syb_novichek_name,Novichok,Novichok,Novichok,Novichok,Новичок,Novichok,Novichok,Novichok,Novichok,Novichok,Novichok,Novichok,Novichok,Novichok
+syb_potassium_iodide,Potassium Iodide,Potassium Iodide,Potassium Iodide,Potassium Iodide,Калия Йодид,Potassium Iodide,Potassium Iodide,Potassium Iodide,Potassium Iodide,Potassium Iodide,Potassium Iodide,Potassium Iodide,Potassium Iodide,Potassium Iodide
+syb_potassium_hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Калий-Железо Гексацианоферрат,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate,Potassium-Iron Hexacyanoferrate
+syb_cystamine,Cystamine,Cystamine,Cystamine,Cystamine,Цистамин,Cystamine,Cystamine,Cystamine,Cystamine,Cystamine,Cystamine,Cystamine,Cystamine,Cystamine
+syb_b190,B-190,B-190,B-190,B-190,Б-190,B-190,B-190,B-190,B-190,B-190,B-190,B-190,B-190,B-190
+syb_mexamine,Mexamine,Mexamine,Mexamine,Mexamine,Мексамин,Mexamine,Mexamine,Mexamine,Mexamine,Mexamine,Mexamine,Mexamine,Mexamine,Mexamine
+syb_pentacin,Pentacin,Pentacin,Pentacin,Pentacin,Пентацин,Pentacin,Pentacin,Pentacin,Pentacin,Pentacin,Pentacin,Pentacin,Pentacin,Pentacin
+syb_carboxyme,Carboxyme,Carboxyme,Carboxyme,Carboxyme,Карбоксим,Carboxyme,Carboxyme,Carboxyme,Carboxyme,Carboxyme,Carboxyme,Carboxyme,Carboxyme,Carboxyme
+syb_radioprotector,Radioprotector,Radioprotector,Radioprotector,Radioprotector,Радиопротектор,Radioprotector,Radioprotector,Radioprotector,Radioprotector,Radioprotector,Radioprotector,Radioprotector,Radioprotector,Radioprotector
 syb_loading,Loading...,Loading...,Loading...,Loading...,Загрузка...,Loading...,Loading...,Loading...,Loading...,Loading...,Loading...,Loading...,Loading...,Loading...
 syb_uaredead,You are dead,You are dead,You are dead,You are dead,Вы мертвы,You are dead,You are dead,You are dead,You are dead,You are dead,You are dead,You are dead,You are dead,You are dead
 pda_item_name,PDA,PDA,PDA,PDA,КПК,PDA,PDA,PDA,PDA,PDA,PDA,PDA,PDA,PDA
