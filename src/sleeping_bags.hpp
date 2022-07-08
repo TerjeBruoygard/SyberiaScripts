@@ -17,7 +17,7 @@ class SleepingBag_BaseColor : Inventory_Base {
     };
 };
 
-class SleepingBagPlaced_BaseColor : BaseBuildingBase {
+class SleepingBagPlaced_Base : BaseBuildingBase {
     displayName="#syb_sbag_packed_name";
     descriptionShort="#syb_sbag_packed_desc";
     model="SyberiaScripts\data\sleeping\sbag_placed.p3d";
@@ -35,7 +35,11 @@ class SleepingBagPlaced_BaseColor : BaseBuildingBase {
     };
 };
 
-class SleepingBagPlacing : SleepingBagPlaced_BaseColor {
+class SleepingBagPlaced_BaseColor : SleepingBagPlaced_Base {
+    placedSound="SleepingBagPlaced_SoundEmitter";
+};
+
+class SleepingBagPlacing : SleepingBagPlaced_Base {
     scope=2;
     hologramMaterial="tent_medium";
     hologramMaterialPath="dz\gear\camping\data";

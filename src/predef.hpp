@@ -21,6 +21,7 @@ class SodaCan_ColorBase;
 class Clothing;
 class Container_Base;
 class BaseBuildingBase;
+class House;
 
 // Characters
 class SurvivorM_Mirek;

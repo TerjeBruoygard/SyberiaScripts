@@ -17,19 +17,30 @@ class SleepingBag_BaseColor : ItemBase
 	{
 		return 0.5;
 	}
-	
-	override string GetDeploySoundset()
-	{
-		return "sbegDeploy_SoundSet";
-	}
-	
-	override string GetLoopDeploySoundset()
-	{
-		return "sbegDeployLoop_SoundSet";
-	}
 };
 
 class SleepingBagPlaced_BaseColor : BaseBuildingBase
 {
-
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionFoldBaseBuildingObject);
+	}
+	
+	protected override string GetConstructionKitType()
+	{
+		return GetGame().ConfigGetTextOut("CfgVehicles " + GetType() + " packedName");
+	}
+	
+	override ItemBase CreateConstructionKit()
+	{
+		ItemBase result = super.CreateConstructionKit();
+		if (result)
+		{
+			float health = GetHealth01("", "");
+			result.SetHealth01("", "", health);
+		}
+		return result;
+	}
 };

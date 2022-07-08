@@ -13,17 +13,3 @@ class hearthbit_SoundSet: baseCharacter_SoundSet
         "hearthbit_Soundshader"
     };
 };
-class sbegDeploy_SoundSet: baseCharacter_SoundSet
-{
-    soundShaders[]=
-    {
-        "sbegDeploy_Soundshader"
-    };
-};
-class sbegDeployLoop_SoundSet: baseCharacter_SoundSet
-{
-    soundShaders[]=
-    {
-        "sbegDeployLoop_Soundshader"
-    };
-};
