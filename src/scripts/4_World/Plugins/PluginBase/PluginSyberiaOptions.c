@@ -25,7 +25,7 @@ class PluginSyberiaOptions extends PluginBase
 	
 	void ~PluginSyberiaOptions()
 	{
-		if (m_client) delete m_client;
+		if (m_client) m_client = null;
 	}
 };
 

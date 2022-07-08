@@ -147,7 +147,6 @@ class PluginAdminTool extends PluginBase
         if ( !ctx.Read( serverData ) ) return;
 		
 		m_guiMenu.UpdateMapTab(serverData.param1);
-		delete serverData.param1;
 	}
 	
 	void Teleport( ParamsReadContext ctx, PlayerIdentity sender ) {}
