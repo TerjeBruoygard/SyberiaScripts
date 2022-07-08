@@ -119,7 +119,9 @@ class SurgicalKit: Inventory_Base
     scope=2;
     displayName="#syb_surgical_kit_once_name";
     descriptionShort="#syb_surgical_kit_once_desc";
-    model="SyberiaScripts\data\medical\surgical_kit.p3d";
+    model="\dz\gear\tools\sewing_kit.p3d";
+    hiddenSelections[] = {"zbytek"};
+    hiddenSelectionsTextures[] = { "SyberiaScripts\data\medical\surgical_kit_co.paa" };
     rotationFlags=17;
     varQuantityInit=100;
     varQuantityMin=0;
@@ -132,5 +134,5 @@ class SurgicalKit: Inventory_Base
     itemSize[]={1,2};
     varCleannessInit=1;
     medicalItem=1;
-    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\surgical_kit.rvmat", "SyberiaScripts\data\medical\surgical_kit_damage.rvmat", "SyberiaScripts\data\medical\surgical_kit_destruct.rvmat");
+    ITEM_DAMAGE_SYSTEM(100, "DZ\gear\tools\data\sewing_kit.rvmat", "DZ\gear\tools\data\sewing_kit_damage.rvmat", "DZ\gear\tools\data\sewing_kit_destruct.rvmat");
 };

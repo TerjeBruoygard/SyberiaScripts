@@ -324,7 +324,7 @@ modded class PlayerBase
 	
 	bool CanOpenSyberiaUI()
 	{
-		return !IsGhostBody() && m_MovementState.m_iMovement == DayZPlayerConstants.MOVEMENTIDX_IDLE;
+		return !IsGhostBody() && !IsUnconscious() && m_MovementState.m_iMovement == DayZPlayerConstants.MOVEMENTIDX_IDLE;
 	}
 	
 	int GetSkillValue(int skillId)

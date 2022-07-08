@@ -213,7 +213,7 @@ modded class MissionGameplay
 		{
 			if (Math.RandomFloat01() < deltaTime * 0.05)
 			{
-				int action = Math.RandomInt(0, 10);
+				int action = Math.RandomInt(0, 8);
 				if (action == 0)
 				{
 					Weapon_Base weapon;
@@ -221,6 +221,13 @@ modded class MissionGameplay
 					if ( Weapon_Base.CastTo(weapon, player.GetItemInHands()) )
 					{
 						weapon.ProcessWeaponEvent(weapon_event);
+					}
+				}
+				else if (action == 1)
+				{
+					if (player.GetEmoteManager().CanPlayEmote(EmoteConstants.ID_EMOTE_SUICIDE))
+					{
+						player.GetEmoteManager().CreateEmoteCBFromMenu(EmoteConstants.ID_EMOTE_SUICIDE);
 					}
 				}
 				else
