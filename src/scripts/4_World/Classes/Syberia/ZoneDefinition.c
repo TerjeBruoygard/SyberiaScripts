@@ -10,4 +10,7 @@ class ZoneDefinition
 	int m_inverseDammage;
 	int m_blockBuildingMode;
 	int m_blockInteractionWithPlayers;
+	float m_radiation;
+    float m_psi;
+    float m_gas;
 };

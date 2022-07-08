@@ -1,4 +1,4 @@
-modded class LogoutMenu
+/*modded class LogoutMenu
 {
 	override Widget Init()
 	{
@@ -6,4 +6,4 @@ modded class LogoutMenu
 		layoutRoot.FindAnyWidget("bLogoutNow").Show(false);
         return layoutRoot;
 	}
-};
+};*/

@@ -13,3 +13,10 @@ class hearthbit_SoundSet: baseCharacter_SoundSet
         "hearthbit_Soundshader"
     };
 };
+class psieffect_SoundSet: baseCharacter_SoundSet
+{
+    soundShaders[]=
+    {
+        "psieffect_Soundshader"
+    };
+};

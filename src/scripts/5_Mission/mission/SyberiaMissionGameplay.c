@@ -153,6 +153,8 @@ modded class MissionGameplay
 		float sleepingValue = Math.Clamp((int)sleepingLevel, 0, 1);
 		SyberiaPPEffects.SetSleepingEffect(sleepingValue);
 		
+		SyberiaPPEffects.SetPsiEffect(player.m_zone != null && player.m_zone.m_psi > 0);
+		
 		if (sleepingLevel == SyberiaSleepingLevel.SYBSL_ENERGED)
 		{
 			m_SyberiaAdditionalHud.ShowScreenMessage("#syb_nosleep_energed", 2);
