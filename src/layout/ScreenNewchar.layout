@@ -18,6 +18,7 @@ FrameWidgetClass rootFrame {
    style rover_sim_colorable
    {
     PanelWidgetClass PointsPanel {
+     visible 0
      ignorepointer 1
      color 0 0 0 1
      position -0.16 0
@@ -31,6 +32,7 @@ FrameWidgetClass rootFrame {
      style rover_sim_colorable
      {
       TextListboxWidgetClass TotalPerksList {
+       disabled 0
        position 0 0
        size 0.45 1
        hexactpos 1
@@ -44,6 +46,7 @@ FrameWidgetClass rootFrame {
        font "gui/fonts/metronlight16"
       }
       TextListboxWidgetClass UsedPerksList {
+       disabled 0
        size 0.45 0.7
        halign right_ref
        hexactpos 1
@@ -70,6 +73,7 @@ FrameWidgetClass rootFrame {
        wrap 1
       }
       ButtonWidgetClass AddPerk {
+       disabled 0
        color 0.9529 0 0 1
        position 0 -50
        size 0.08 48
@@ -85,6 +89,7 @@ FrameWidgetClass rootFrame {
        "disabled text color" 0.0588 0.0588 0.0588 1
       }
       ButtonWidgetClass DelPerk {
+       disabled 0
        color 0.9529 0 0 1
        position 0 50
        size 0.08 48
@@ -116,7 +121,7 @@ FrameWidgetClass rootFrame {
     PanelWidgetClass ResultsPanel {
      ignorepointer 1
      color 0 0 0 1
-     position 0.26 0
+     position 0 0
      size 0.3 0.8
      halign center_ref
      valign center_ref
@@ -204,6 +209,7 @@ FrameWidgetClass rootFrame {
        font "gui/fonts/metronlight22"
       }
       TextListboxWidgetClass SkillsResult {
+       disabled 0
        position 0 0
        size 1 600
        hexactpos 1
@@ -215,6 +221,37 @@ FrameWidgetClass rootFrame {
        lines 1
        "highlight row" 1
        font "gui/fonts/metronlight16"
+       {
+        PanelWidgetClass FrameWidget0 {
+         ignorepointer 1
+         color 0.0745 0.0745 0.0745 0.8157
+         size 0.8 0.1
+         halign center_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+         {
+          TextWidgetClass TextWidget0 {
+           ignorepointer 1
+           position 0 0
+           size 1 1
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "Comming soon..."
+           font "gui/fonts/metron-bold22"
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+       }
       }
      }
     }

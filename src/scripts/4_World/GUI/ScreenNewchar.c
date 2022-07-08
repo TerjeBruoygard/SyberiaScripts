@@ -303,6 +303,11 @@ class ScreenNewchar extends ScreenBase
 					
 					ref RpcCreateNewCharContainer requestParams = new RpcCreateNewCharContainer();
 					requestParams.m_name = m_charNameEdit.GetText();
+					if (requestParams.m_name.LengthUtf8() > m_maxNameLength)
+					{
+						requestParams.m_name = requestParams.m_name.SubstringUtf8(0, m_maxNameLength);
+					}
+					
 					requestParams.m_isMale = (m_genderSelector.GetCurrentItem() == 0);
 					requestParams.m_faceId = m_faceSelector.GetCurrentItem();					
 					requestParams.m_perks = m_usedPerks;

@@ -107,6 +107,14 @@ modded class MissionGameplay
 						
 			OnUpdateAdvMedicineGUI(player, timeslice);
 		}
+		
+		if (!player || !player.IsAlive())
+		{
+			if (m_HudRootWidget)
+			{
+				m_HudRootWidget.Show(false);
+			}
+		}
 	}
 	
 	private void OnUpdateAdvMedicineGUI(PlayerBase player, float deltaTime)
