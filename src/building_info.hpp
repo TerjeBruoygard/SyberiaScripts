@@ -157,7 +157,39 @@ class Land_Barn_Wood1
 
 class Land_Barn_Wood2
 {
-
+    class Livespace0
+    {
+        bboxStart[] = {-100, -100, -100}; // Bounding box min
+        bboxEnd[] = {100, 100, 100}; // Bounding box max
+        classname = "Land_Barn_Wood2_Livespace0";
+        homebook = "homebook";
+        class Door0
+        {
+            linkedDoorIds[] = { 0, 1 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            maxLevel = 3; // Maximum level to upgrade
+            levels[] = { "d12_l1", "d12_l2", "d12_l3" };
+        };
+        class Door1
+        {
+            linkedDoorIds[] = { 2, 3 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            maxLevel = 3; // Maximum level to upgrade
+            levels[] = { "d34_l1", "d34_l2", "d34_l3" };
+        };
+        class Door2
+        {
+            linkedDoorIds[] = { 4 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            maxLevel = 3; // Maximum level to upgrade
+            levels[] = { "d5_l1", "d5_l2", "d5_l3" };
+        };
+        class Barricade0
+        {
+            maxLevel = 1; // Maximum level to upgrade
+            levels[] = { "barricade_l1" };
+        };
+    };
 };
 
 class Land_Farm_CowshedA

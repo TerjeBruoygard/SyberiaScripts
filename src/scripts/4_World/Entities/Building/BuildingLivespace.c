@@ -7,13 +7,15 @@ class BuildingLivespace extends BuildingSuper
 	int m_livespaceId;
 	string m_livespacePath;
 	int m_houseNetId1, m_houseNetId2;
-	int m_homebookNetId1, m_homebookNetId2;
 	ref array<int> m_doorLevels = new array<int>;
-	ref array<int> m_windowLevels = new array<int>;
+	ref array<int> m_barricadeLevels = new array<int>;
+	ref array<string> m_simpleSelections = new array<string>;
 	
 	override void EEInit()
 	{
 		super.EEInit();
+		
+		ConfigGetTextArray("simpleHiddenSelections", m_simpleSelections);		
 		
 		if (GetGame().IsClient())
 		{
@@ -27,34 +29,77 @@ class BuildingLivespace extends BuildingSuper
 		
 		if (rpc_type == SyberiaERPC.SYBERPC_SYNCH_LIVESPACE_SERVER)
 		{
-			Param7<string, int, int, int, int, int, ref array<int>> params;
+			Param6<string, int, int, int, ref array<int>, ref array<int>> params;
 			if (!ctx.Read(params))
 				return;
 			
 			if (m_doorLevels) delete m_doorLevels;
+			if (m_barricadeLevels) delete m_barricadeLevels;
 			
 			m_livespacePath = params.param1;
 			m_livespaceId = params.param2;
 			m_houseNetId1 = params.param3;
 			m_houseNetId2 = params.param4;
-			m_homebookNetId1 = params.param5;
-			m_homebookNetId2 = params.param6;
-			m_doorLevels = params.param7;
-			m_ready = true;
+			m_doorLevels = params.param5;
+			m_barricadeLevels = params.param6;
+			
+			SetupDoors();
+			SetupBarricades();
+			
+			m_ready = true;			
 			SybLog("BuildingLivespace: OnRPC Successfully synched.");
 		}
-	}
-	
-	BuildingHomeBook GetHomebook()
-	{
-		if (!m_ready) return null;
-		return BuildingHomeBook.Cast( GetGame().GetObjectByNetworkId(m_homebookNetId1, m_homebookNetId2) );
 	}
 	
 	House GetHouse()
 	{
 		if (!m_ready) return null;
 		return House.Cast( GetGame().GetObjectByNetworkId(m_houseNetId1, m_houseNetId2) );
+	}
+	
+	int FindSimpleHidenSelectionId(string name)
+	{
+		return m_simpleSelections.Find(name);
+	}
+	
+	void SetupDoors()
+	{
+		TStringArray levels = new TStringArray;
+		for (int i = 0; i < m_doorLevels.Count(); i++) 
+		{
+			int level = m_doorLevels[i] - 1;
+			levels.Clear();
+			GetGame().ConfigGetTextArray(m_livespacePath + " Door" + i + " levels", levels);
+			
+			for (int l = 0; l < levels.Count(); l++)
+			{
+				int selectionId = FindSimpleHidenSelectionId(levels[l]);
+				if (selectionId != -1)
+				{
+					SetSimpleHiddenSelectionState(selectionId, level == l);
+				}
+			}
+		}
+	}
+	
+	void SetupBarricades()
+	{
+		TStringArray levels = new TStringArray;
+		for (int i = 0; i < m_barricadeLevels.Count(); i++) 
+		{
+			int level = m_barricadeLevels[i] - 1;
+			levels.Clear();
+			GetGame().ConfigGetTextArray(m_livespacePath + " Barricade" + i + " levels", levels);
+			
+			for (int l = 0; l < levels.Count(); l++)
+			{
+				int selectionId = FindSimpleHidenSelectionId(levels[l]);
+				if (selectionId != -1)
+				{
+					SetSimpleHiddenSelectionState(selectionId, level == l);
+				}
+			}
+		}
 	}
 	
 	bool CanOpenDoor(PlayerBase player, int vanilaDoorIndex)
@@ -78,12 +123,15 @@ class BuildingLivespace extends BuildingSuper
 		if (id == -1) return -1;
 		
 		int doorId = 0;
+		TIntArray linkedDoorIds = new TIntArray;
 		while ( GetGame().ConfigIsExisting(m_livespacePath + " Door" + doorId) )
 		{
-			int equalId = GetGame().ConfigGetInt(m_livespacePath + " Door" + doorId + " id");
-			if (equalId == id)
+			linkedDoorIds.Clear();
+			GetGame().ConfigGetIntArray(m_livespacePath + " Door" + doorId + " linkedDoorIds", linkedDoorIds);
+			int equalId = linkedDoorIds.Find(id);			
+			if (equalId != -1)
 			{
-				return equalId;
+				return linkedDoorIds[equalId];
 			}
 			
 			doorId = doorId + 1;
@@ -128,6 +176,7 @@ class BuildingLivespace extends BuildingSuper
 		super.EEDelete(parent);
 		
 		delete m_doorLevels;
-		delete m_windowLevels;
+		delete m_barricadeLevels;
+		delete m_simpleSelections;
 	}
 };

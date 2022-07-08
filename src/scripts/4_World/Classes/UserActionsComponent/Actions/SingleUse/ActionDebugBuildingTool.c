@@ -134,8 +134,11 @@ class ActionDebugBuildingToolUpgrade extends ActionSingleUseBase
 		if ( !target.GetObject() )
 			return false;
 		
-		BuildingLeveledElement element = BuildingLeveledElement.Cast(target.GetObject());
-		if ( !element )
+		if ( !target.GetObject().IsInherited(BuildingLivespace) )
+			return false;
+		
+		int componentIndex = target.GetComponentIndex();
+		if ( componentIndex == -1 )
 			return false;
 
 		return true;
@@ -144,7 +147,7 @@ class ActionDebugBuildingToolUpgrade extends ActionSingleUseBase
 	override void OnExecuteServer( ActionData action_data )
 	{
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
-		if (dbt) dbt.UpgradeElement(BuildingLeveledElement.Cast(action_data.m_Target.GetObject()));
+		if (dbt) dbt.UpgradeElement(BuildingLivespace.Cast(action_data.m_Target.GetObject()), action_data.m_Target.GetComponentIndex());
 	}
 };
 
@@ -341,17 +344,17 @@ class ActionDebugBuildingToolElementID extends ActionSingleUseBase
 		if ( !target.GetObject() )
 			return false;
 		
-		BuildingElement element = BuildingElement.Cast(target.GetObject());
-		if ( !element )
-			return false;
+		//BuildingElement element = BuildingElement.Cast(target.GetObject());
+		//if ( !element )
+		//	return false;
 
-		return true;
+		return false;
 	}
 	
 	override void OnExecuteClient( ActionData action_data )
 	{
-		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
-		if (dbt) dbt.GetElementID(BuildingElement.Cast(action_data.m_Target.GetObject()));
+		//DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
+		//if (dbt) dbt.GetElementID(BuildingElement.Cast(action_data.m_Target.GetObject()));
 	}
 };
 
