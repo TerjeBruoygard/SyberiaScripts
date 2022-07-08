@@ -36,8 +36,8 @@ FrameWidgetClass rootFrame {
      {
       ScrollWidgetClass BuyItemsPanel {
        ignorepointer 0
-       position 20 50
-       size 680 700
+       position 20 125
+       size 680 625
        hexactpos 1
        vexactpos 1
        hexactsize 1
@@ -55,6 +55,486 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "#syb_trader_forbuy"
        font "gui/fonts/etelkatextpro22"
+      }
+      PanelWidgetClass SortingPanel {
+       ignorepointer 1
+       position 20 45
+       size 680 75
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       {
+        PanelWidgetClass FilterActionBackground0 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0 0
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn0 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           switch normal
+           {
+            TextWidgetClass TextWidget2 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground1 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.25 0
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn1 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget3 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground2 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.5 0
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn2 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget4 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground3 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.75 0
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn3 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget5 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground4 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0 25
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn4 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget6 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground5 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.25 25
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn5 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget7 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground6 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.5 25
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn6 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget8 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground7 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.75 25
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn7 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget9 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground8 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0 50
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn8 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget10 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground9 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.25 50
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn9 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget11 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground10 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.5 50
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn10 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget12 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass FilterActionBackground11 {
+         ignorepointer 1
+         color 0.098 0.098 0.098 0.3529
+         position 0.75 50
+         size 0.245 22
+         hexactpos 0
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style rover_sim_colorable
+         {
+          ButtonWidgetClass FilterActionBtn11 {
+           color 0.0627 0.0627 0.0627 0.3294
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           style EmptyHighlight
+           {
+            TextWidgetClass TextWidget13 {
+             ignorepointer 1
+             position 0 0
+             size 1 1
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "FILTER"
+             font "gui/fonts/etelkatextpro22"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+       }
       }
      }
     }
