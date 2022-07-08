@@ -30,6 +30,6 @@ modded class DayZGame
 {
 	override void OnRespawnEvent(int time)
 	{
-		PPEffects.SetDeathDarkening(1);
+		PPERequesterBank.GetRequester(PPERequester_DeathDarkening).Start(new Param1<float>(1.0));
 	}
 };
