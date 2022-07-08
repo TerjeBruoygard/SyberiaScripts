@@ -426,11 +426,6 @@ class AdminToolMenu extends UIScriptedMenu
 	void UpdateMapTab(ref PluginAdminTool_MapContext context)
 	{
 		m_mapWidget.ClearUserMarks();		
-		int playersCount = context.m_playerPositions.Count();
-		for (int pid = 0; pid < playersCount; pid++)
-		{
-			m_mapWidget.AddUserMark(context.m_playerPositions.Get(pid), context.m_playerNames.Get(pid), ARGB(255, 255, 0, 0), "SyberiaScripts\\data\\gui\\Markers\\player.paa");
-		}
 		
 		int corpseCount = context.m_bodiesPositions.Count();	
 		for (int cid = 0; cid < corpseCount; cid++)
@@ -445,6 +440,12 @@ class AdminToolMenu extends UIScriptedMenu
 			string carName = context.m_vehicleNames.Get(vid);
 			carName = GameHelpers.GetItemDisplayName(carName) + " (" + carName + ")";
 			m_mapWidget.AddUserMark(context.m_vehiclePositions.Get(vid), carName, ARGB(255, 255, 216, 0), "SyberiaScripts\\data\\gui\\Markers\\car.paa");
+		}
+		
+		int playersCount = context.m_playerPositions.Count();
+		for (int pid = 0; pid < playersCount; pid++)
+		{
+			m_mapWidget.AddUserMark(context.m_playerPositions.Get(pid), context.m_playerNames.Get(pid), ARGB(255, 255, 0, 0), "SyberiaScripts\\data\\gui\\Markers\\player.paa");
 		}
 	}
 	
