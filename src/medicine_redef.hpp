@@ -56,6 +56,11 @@ class Bandana_ColorBase: Clothing
 class Rag: Inventory_Base
 {
     medBloodStop=2;
+    canBeSplit = 1;
+    varQuantityInit = 1.0;
+    varQuantityMin = 0.0;
+    varQuantityMax = 10.0;
+    varQuantityDestroyOnMin = 1;
 };
 
 class SurgicalGloves_ColorBase: Clothing

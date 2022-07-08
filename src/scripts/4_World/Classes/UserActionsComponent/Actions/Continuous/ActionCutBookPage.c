@@ -2,7 +2,7 @@ class ActionCutBookPageCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
 	{
-		m_ActionData.m_ActionComponent = new CAContinuousTime(1);
+		m_ActionData.m_ActionComponent = new CAContinuousRepeat(2.5);
 	}
 };
 

@@ -22,6 +22,7 @@ class Clothing;
 class Container_Base;
 class BaseBuildingBase;
 class House;
+class Transmitter_Base;
 
 // Characters
 class SurvivorM_Mirek;
