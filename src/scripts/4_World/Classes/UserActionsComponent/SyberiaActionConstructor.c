@@ -12,5 +12,6 @@ modded class ActionConstructor
 		actions.Insert(ActionSurgerySelf);
 		actions.Insert(ActionUseSalveTarget);
 		actions.Insert(ActionUseSalveSelf);
+		actions.Insert(ActionOpenPDA);
 	}
 };

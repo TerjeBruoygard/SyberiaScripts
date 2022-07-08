@@ -13,5 +13,6 @@ modded class ModItemRegisterCallbacks
 		pType.AddItemInHandsProfileIK("BandageHemostatic", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/gear/StartKit.anm");
 		pType.AddItemInHandsProfileIK("SurgicalKit",  "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/gear/sewing_kit.anm");
 		pType.AddItemInHandsProfileIK("SalveBase", "dz/anims/workspaces/player/player_main/props/player_main_1h_pills.asi", pBehavior,	"dz/anims/anm/player/ik/gear/VitaminBottle.anm");
+        pType.AddItemInHandsProfileIK("ItemPDA", "dz/anims/workspaces/player/player_main/props/player_main_1h_compass.asi", pBehavior, "dz/anims/anm/player/ik/gear/compass.anm");
 	}
 };
