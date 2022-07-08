@@ -36,7 +36,11 @@ modded class MissionGameplay
 			{
 				ref Widget actionBlocker = m_AdditionHudRootWidget.FindAnyWidget("ActionBlocker");
 				m_AdditionHudRootWidget.RemoveChild(actionBlocker);
-				m_SyberiaAdditionalHud = new SyberiaAdditionalHud(m_HudRootWidget, actionBlocker);
+				
+				ref MultilineTextWidget screenInfoWidget = MultilineTextWidget.Cast( m_AdditionHudRootWidget.FindAnyWidget("ScreenInfoWidget") );
+				m_AdditionHudRootWidget.RemoveChild(screenInfoWidget);
+				
+				m_SyberiaAdditionalHud = new SyberiaAdditionalHud(m_HudRootWidget, actionBlocker, screenInfoWidget);
 				m_SyberiaAdditionalHud.Init();		
 			}
 			
@@ -66,6 +70,8 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_OVERDOSED, badgets, "Overdosed");
 			}
 		}
+		
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_SCREEN_MESSAGE, this, "OnScreenMessageRpc");
 	}
 	
 	override void OnUpdate(float timeslice)
@@ -79,7 +85,7 @@ modded class MissionGameplay
 			
 			if (m_SyberiaAdditionalHud && m_LifeState == EPlayerStates.ALIVE && !player.IsUnconscious() )
 			{
-				m_SyberiaAdditionalHud.Refresh();	
+				m_SyberiaAdditionalHud.Refresh(timeslice);	
 			}
 			
 			if (m_Hud)
@@ -178,4 +184,13 @@ modded class MissionGameplay
 		}
 	}
 
+	protected void OnScreenMessageRpc(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	{
+		if (!m_SyberiaAdditionalHud) return;
+		
+		Param1<string> clientData;
+       	if ( !ctx.Read( clientData ) ) return;	
+		
+		m_SyberiaAdditionalHud.ShowScreenMessage(clientData.param1, 8);
+	}
 };
