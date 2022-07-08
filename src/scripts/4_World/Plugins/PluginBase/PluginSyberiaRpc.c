@@ -37,7 +37,7 @@ class PluginSyberiaRpc : PluginBase
 			
 			if (invoker.param1)
 			{			
-				auto invokeData = new Param2<ref ParamsReadContext, ref PlayerIdentity>(ctx, sender);				
+				auto invokeData = new Param2<ParamsReadContext, PlayerIdentity>(ctx, sender);				
 				GetGame().GameScript.CallFunctionParams(invoker.param1, invoker.param2, null, invokeData);
 			}
 		}
@@ -53,7 +53,7 @@ class PluginSyberiaRpc : PluginBase
 		m_RegisteredRPCs.Insert(id, new Param2<Class, string>(instance, fnc));
 	}
 
-    void SendToClient(int id, ref PlayerIdentity identity, ref Param params) 
+    void SendToClient(int id, PlayerIdentity identity, ref Param params) 
 	{
 		if (GetGame().IsServer())
 		{		

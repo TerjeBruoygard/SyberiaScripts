@@ -8,7 +8,7 @@ class PluginSyberiaOptions extends PluginBase
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_CLIENT_OPTIONS, this, "OnReceiveClientOptions");
 	}
 	
-	protected void OnReceiveClientOptions(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	protected void OnReceiveClientOptions(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		Param3<ref PluginSyberiaOptions_Client, int, string> clientData;
        	if ( !ctx.Read( clientData ) ) return;	

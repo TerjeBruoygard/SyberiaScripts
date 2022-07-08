@@ -10,7 +10,7 @@ class ScreenEquip extends ScreenBase
 	int m_currentPage = 0;
 	bool m_updateCurrentPage = false;
 	bool m_updatePlayerPreview = false;
-	ref array<ref ItemBase> m_previewEntities;
+	ref array<ItemBase> m_previewEntities;
 	
 	bool m_isRpcSended = false;
 	
@@ -18,7 +18,7 @@ class ScreenEquip extends ScreenBase
 	{
 		m_pages = new array<ref ButtonWidget>;
 		m_selectedIndexes = new array<int>;		
-		m_previewEntities = new array<ref ItemBase>;		
+		m_previewEntities = new array<ItemBase>;		
 		m_equip = equip;
 		
 		for (int i = 0; i < m_equip.Count(); i++)
@@ -53,7 +53,7 @@ class ScreenEquip extends ScreenBase
 		}
 		delete m_equip;
 		
-		foreach (ref ItemBase entity : m_previewEntities)
+		foreach (ItemBase entity : m_previewEntities)
 		{
 			if (entity) GetGame().ObjectDelete(entity);
 	}

@@ -106,7 +106,7 @@ class PluginAdminTool extends PluginBase
 		}
 	}
 	
-	void RequestOpen( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void RequestOpen( ParamsReadContext ctx, PlayerIdentity sender )
     { 
 		if (GetGame().IsServer() || IsOpen()) return;		
 		if (GetGame().GetUIManager().GetMenu() != NULL) return;
@@ -123,7 +123,7 @@ class PluginAdminTool extends PluginBase
 		GetGame().GetUIManager().ShowScriptedMenu( m_guiMenu, NULL );
 	}
 	
-	void PlayerInfo( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void PlayerInfo( ParamsReadContext ctx, PlayerIdentity sender )
     { 
 		if (GetGame().IsServer() || !IsOpen() || !m_guiMenu) return;		
 		
@@ -133,13 +133,13 @@ class PluginAdminTool extends PluginBase
 		m_guiMenu.UpdatePlayerContext(serverData.param1);
 	}
 	
-	void PlayerUpdate( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
+	void PlayerUpdate( ParamsReadContext ctx, PlayerIdentity sender ) {}
 	
-	void SpawnItem( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
+	void SpawnItem( ParamsReadContext ctx, PlayerIdentity sender ) {}
 	
-	void ClearItems( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
+	void ClearItems( ParamsReadContext ctx, PlayerIdentity sender ) {}
 	
-	void UpdateMap( ref ParamsReadContext ctx, ref PlayerIdentity sender ) 
+	void UpdateMap( ParamsReadContext ctx, PlayerIdentity sender ) 
 	{
 		if (GetGame().IsServer() || !IsOpen() || !m_guiMenu) return;		
 		
@@ -150,9 +150,9 @@ class PluginAdminTool extends PluginBase
 		delete serverData.param1;
 	}
 	
-	void Teleport( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
+	void Teleport( ParamsReadContext ctx, PlayerIdentity sender ) {}
 	
-	void FreeCam( ref ParamsReadContext ctx, ref PlayerIdentity sender ) 
+	void FreeCam( ParamsReadContext ctx, PlayerIdentity sender ) 
 	{
 		if (!m_adminPermissions) return;
 		
@@ -189,7 +189,7 @@ class PluginAdminTool extends PluginBase
 		}
 	}
 	
-	void EspSynch( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void EspSynch( ParamsReadContext ctx, PlayerIdentity sender )
 	{
 		if (!m_adminPermissions) return;
 		
@@ -201,19 +201,19 @@ class PluginAdminTool extends PluginBase
 		m_espSynchContext = serverData.param1;
 	}
 	
-	void ObjMove( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	void ObjMove( ParamsReadContext ctx, PlayerIdentity sender ) { }
 	
-	void ObjDel( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	void ObjDel( ParamsReadContext ctx, PlayerIdentity sender ) { }
 	
-	void PlayerDeleteCharacter( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	void PlayerDeleteCharacter( ParamsReadContext ctx, PlayerIdentity sender ) { }
 	
-	void PlayerKick( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	void PlayerKick( ParamsReadContext ctx, PlayerIdentity sender ) { }
 	
-	void PlayerTeleportToPlayer( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	void PlayerTeleportToPlayer( ParamsReadContext ctx, PlayerIdentity sender ) { }
 	
-	void PlayerTeleportToMe( ref ParamsReadContext ctx, ref PlayerIdentity sender ) { }
+	void PlayerTeleportToMe( ParamsReadContext ctx, PlayerIdentity sender ) { }
 	
-	void PlayerMessage( ref ParamsReadContext ctx, ref PlayerIdentity sender ) 
+	void PlayerMessage( ParamsReadContext ctx, PlayerIdentity sender ) 
 	{
 		Param1< string > serverData;
         if ( !ctx.Read( serverData ) ) return;

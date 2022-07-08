@@ -16,7 +16,7 @@ class PluginTrader extends PluginBase
 		}
 	}
 	
-	void RpcRequstOpen(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void RpcRequstOpen(ParamsReadContext ctx, PlayerIdentity sender)
     {   		
 		if (m_traderMenu && m_traderMenu.m_active)
 		{
@@ -37,7 +37,7 @@ class PluginTrader extends PluginBase
 		GetGame().GetUIManager().ShowScriptedMenu( m_traderMenu, NULL );
 	}
 	
-	void RpcResponseTraderAction(ref ParamsReadContext ctx, ref PlayerIdentity sender)
+	void RpcResponseTraderAction(ParamsReadContext ctx, PlayerIdentity sender)
 	{
 		Param1<ref PluginTrader_Data> clientData;
        	if ( !ctx.Read( clientData ) ) return;

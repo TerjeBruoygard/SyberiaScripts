@@ -47,7 +47,7 @@ class PluginLogicPDA extends PluginBase
 		return false;
 	}
 	
-	void SendGlobalMessage( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void SendGlobalMessage( ParamsReadContext ctx, PlayerIdentity sender )
 	{
         PluginGearPDA pluginGearPDA;
         Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));			
@@ -74,7 +74,7 @@ class PluginLogicPDA extends PluginBase
         }
 	}
 	
-	void SendGroupMessage( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void SendGroupMessage( ParamsReadContext ctx, PlayerIdentity sender )
 	{
         PluginGearPDA pluginGearPDA;
         Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));			
@@ -101,7 +101,7 @@ class PluginLogicPDA extends PluginBase
         }
 	}
 	
-	void SendMessage( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void SendMessage( ParamsReadContext ctx, PlayerIdentity sender )
     { 
         Param4< int, string, int, string > clientData;			
         if ( !ctx.Read( clientData ) ) return;
@@ -134,7 +134,7 @@ class PluginLogicPDA extends PluginBase
         }
 	}
 
-	void CheckContacts( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void CheckContacts( ParamsReadContext ctx, PlayerIdentity sender )
     { 
         Param5< array<int>, bool, ref array<ref SyberiaPdaGroupMember>, string, string > clientData;
         if ( !ctx.Read( clientData ) ) return;
@@ -167,7 +167,7 @@ class PluginLogicPDA extends PluginBase
         }
 	}
 	
-	void InitPdaProfile( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void InitPdaProfile( ParamsReadContext ctx, PlayerIdentity sender )
     {   
         Param4<string, string, bool, bool> clientData;
         if ( !ctx.Read( clientData ) ) return;
@@ -183,7 +183,7 @@ class PluginLogicPDA extends PluginBase
         }
 	}
 	
-	void AddContact( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void AddContact( ParamsReadContext ctx, PlayerIdentity sender )
     {        
         Param2< int, string > clientData;
         if ( !ctx.Read( clientData ) ) return;
@@ -196,7 +196,7 @@ class PluginLogicPDA extends PluginBase
         }
     }
 	
-	void GroupCommand( ref ParamsReadContext ctx, ref PlayerIdentity sender )
+	void GroupCommand( ParamsReadContext ctx, PlayerIdentity sender )
 	{
 	
 	}
