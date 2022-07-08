@@ -39,6 +39,7 @@ class CfgVehicles
     #include "predef.hpp"
     #include "characters.hpp"
     #include "zombie_redef.hpp"
+    #include "animals_redef.hpp"
     #include "fix_items.hpp"
     #include "drinks.hpp"
     #include "foods.hpp"

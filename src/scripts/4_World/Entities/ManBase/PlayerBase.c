@@ -301,6 +301,20 @@ modded class PlayerBase
 		return !IsGhostBody() && m_MovementState.m_iMovement == DayZPlayerConstants.MOVEMENTIDX_IDLE;
 	}
 	
+	int GetSkillValue(int skillId)
+	{
+		if (IsAlive() && m_skills)
+		{
+			int result = m_skills.GetSkillValueInt(skillId);
+			if (result != -1)
+			{
+				return result;
+			}
+		}
+		
+		return 0;
+	}
+	
 	int GetPerkIntValue(int perkId, int defaultValue = 0)
 	{
 		if (IsAlive() && m_skills)
