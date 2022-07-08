@@ -56,7 +56,7 @@ FrameWidgetClass rootFrame {
        "highlight row" 1
        font "gui/fonts/metronlight16"
       }
-      TextWidgetClass PerkDesc {
+      MultilineTextWidgetClass PerkDesc {
        ignorepointer 0
        size 0.45 0.3
        halign right_ref
@@ -65,8 +65,9 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 0
-       font "gui/fonts/metronlight22"
+       font "gui/fonts/metronlight16"
        "exact text" 1
+       wrap 1
       }
       ButtonWidgetClass AddPerk {
        color 0.9529 0 0 1
