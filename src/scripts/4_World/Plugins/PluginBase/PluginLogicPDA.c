@@ -21,7 +21,7 @@ class PluginLogicPDA extends PluginBase
 		ItemBase itemInHands = player.GetItemInHands();
 		if (itemInHands)
 		{
-			itemsArray.Insert(EntityAI.Cast(itemInHands));
+			itemsArray.Insert( itemInHands );
 		}
 		
 		ItemPDA item;		

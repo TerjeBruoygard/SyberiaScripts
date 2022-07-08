@@ -33,7 +33,7 @@ modded class IngameHud
 		defaultBadgesPanel.GetPos(x, y);
 		defaultBadgesPanel.SetPos(x + widgetWidth, y);
 		
-		ref ImageWidget imagew = notifierWidget.FindAnyWidget("Icon" + name); 
+		ref ImageWidget imagew = ImageWidget.Cast( notifierWidget.FindAnyWidget("Icon" + name) ); 
 		m_StatesWidgets.Set(id, imagew);
 		for ( int i = 0; i < 5; i++ )
 		{
@@ -43,12 +43,12 @@ modded class IngameHud
 	
 	void InitBadgetWidget(int id, ref Widget baseWidget, string name)
 	{
-		ref Widget badge_widget = baseWidget.FindAnyWidget(name);
+		ref ImageWidget badge_widget = ImageWidget.Cast( baseWidget.FindAnyWidget(name) );
 		baseWidget.RemoveChild(badge_widget);
 		m_Badges.AddChild(badge_widget);
 		
 		m_BadgesWidgetNames.Set( id, name );
-		m_BadgesWidgets.Set( id, badge_widget );
+		m_BadgesWidgets.Set( id, badge_widget);
 		badge_widget.Show( false );
 		m_BadgesWidgetDisplay.Set( id, 0 );
 	}

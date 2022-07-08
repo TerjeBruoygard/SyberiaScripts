@@ -21,7 +21,7 @@ class PluginSyberiaLogin extends PluginBase
 	{
 		super.OnUpdate(delta_time);
 
-		PlayerBase player = GetGame().GetPlayer();
+		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
 		if (!player) 
 		{
 			return;
@@ -126,7 +126,7 @@ class PluginSyberiaLogin extends PluginBase
 			
 			player.m_skills = clientData.param1;
 			
-			DayZPlayerImplement playerImpl = DayZPlayerImplement.Cast(player);
+			DayZPlayerImplement playerImpl = player;
 			if (playerImpl && playerImpl.m_skillsMenu && playerImpl.m_skillsMenu.m_active)
 			{
 				playerImpl.m_skillsMenu.m_refresh = true;

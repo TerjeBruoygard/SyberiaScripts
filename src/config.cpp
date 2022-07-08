@@ -48,6 +48,11 @@ class CfgVehicles
     #include "sounds_emitters.hpp"
 };
 
+class CfgAmmo
+{
+    #include "ammo.hpp"
+};
+
 class CfgSounds
 {
     #include "sounds.hpp"

@@ -34,9 +34,9 @@ class MindstateSystem
 
 class MedicineSystem
 {
-    sepsisStage1TimeSec = 60 * 10;
-    sepsisStage2TimeSec = 60 * 40;
-    sepsisDeathTimeSec = 60 * 15;
+    sepsisStage1TimeSec = 600;
+    sepsisStage2TimeSec = 2400;
+    sepsisDeathTimeSec = 900;
     sepsisHighTemperatureValue = 42;
     sepsisZombieHitChance = 0.04;
     sepsisKnifeHitChance = 0.04;
@@ -44,17 +44,18 @@ class MedicineSystem
     sepsisDirtySyringeChance = 0.6;
     sepsisDitryHandsBandageChance = 0.2;
     sepsisDitryHandsSyrgeryChance = 0.8;
-    zvirusStage1TimeSec = 20 * 60; // 20 min
-    zvirusStage2TimeSec = 60 * 60; // zvirusStage1TimeSec + 40 min
-    zvirusDeathTimeSec = 60 * 15;
+    zvirusStage1TimeSec = 1200; // 20 min
+    zvirusStage2TimeSec = 3600; // zvirusStage1TimeSec + 40 min
+    zvirusDeathTimeSec = 900;
     zvirusBloodRegenPerSec = 4;
     zvirusZombieHitChance = 0.25;
+    zvirusZombieBloodTransferChance = 0.25;
     zvirusAntidotBloodDmg01 = 0.15;
     zvirusAntidotHealthDmg01 = 0.2;
-    painLvl1TimeSec = 60 * 5;
-    painLvl2TimeSec = 60 * 30;
-    painLvl3TimeSec = 60 * 60;
-    painMaxDurationSec = 60 * 60 * 4;
+    painLvl1TimeSec = 180;
+    painLvl2TimeSec = 1200;
+    painLvl3TimeSec = 2100;
+    painMaxDurationSec = 3600;
     bleedingBullethitHealthlosePerSecond = 0.003;
     bleedingBullethitOpenPerSecond = 5;
     bleedingBullethitCupd1PerSecond = 0.3;
@@ -64,52 +65,59 @@ class MedicineSystem
     bleedingKnifehitOpenPerSecond = 6;
     bleedingKnifehitCupd1PerSecond = 0.35;
     bleedingKnifehitCupd2PerSecond = 0.1;
-    bleedingKnifehitRemoveBandagedTimeSec = 60 * 20; // 30 min
+    bleedingKnifehitRemoveBandagedTimeSec = 1800;
     bleedingVisceraBloodlosePerSecond = 3;
     bleedingVisceraHealthlosePerSecond = 0.005;
     bleedingHematomaBloodlosePerSecond = 0;
     bleedingHematomaHealthlosePerSecond = 0.002;
     bleedingZombieHitChance = 0.3;
-    hematomaPlayerhandsHitChance = 0.4;
+    hematomaPlayerhandsHitChance = 0.6;
     hematomaZombieHitChance = 0.7;
-    hematomaRegenTimerSec = 60 * 10;
-    hematomaRegenTimeBoostOnSalve = 5;
-    cuthitRegenTimerSec = 60 * 5;
+    hematomaRegenTimerSec = 600;
+    hematomaRegenTimeBoostOnSalve = 8;
+    cuthitRegenTimerSec = 300;
     visceraKnifehitTorsoChance = 0.4;
     visceraBullethitTorsoChance = 0.3;
-    concussionRegenTimeSec = 60 * 30; //30 min
+    concussionRegenTimeSec = 1800; //30 min
     hemostaticEffectModifier = 0.4; // 40% of total bloodlose
     hematopoiesisEffectBloodPerSec = 5;
-    adrenalinEffectShock01Lvl1PerSec = 1 / 60;
-    adrenalinEffectShock01Lvl2PerSec = 1 / 30;
-    adrenalinEffectShock01Lvl3PerSec = 1 / 5;
+    adrenalinEffectShock01Lvl1PerSec = 0.01666;
+    adrenalinEffectShock01Lvl2PerSec = 0.03333;
+    adrenalinEffectShock01Lvl3PerSec = 0.2;
     overdoseDecrementPerSec = 0.001;
     overdoseUnconChangePerSec = 0.025;
     mindstateHealPerSec = 0.04;
-    mindstateEmptyDeadtimeSec = 10 * 60;
-    influenzaIncubatePeriodsSec[] = { 60 * 5, 60 * 25, 60 * 30 };
+    mindstateEmptyDeadtimeSec = 600;
+    influenzaIncubatePeriodsSec[] = { 300, 1500, 1800 };
     influenzaTemperatureLevels[] = { -1.0, 37.0, 40.0 };
     influenzaSympthomChance[] = { 0.02, 0.04, 0.08 };
-    influenzaDeathTime[] = {0, 0, 60 * 15};
+    influenzaDeathTime[] = {0, 0, 900};
     influenzaApplyOnColdWarnChance = 0.0003;
     influenzaApplyOnColdCritChance = 0.001;
     antibioticsGlobalEffectivityModifier = 0.006;
-    stomatchpoisonVomitChance[] = { 1 / 120, 1 / 60, 1 / 30 };
+    stomatchpoisonVomitChance[] = { 0.008333, 0.016666, 0.033333 };
     stomatchpoisonWaterDrainFromVomit[] = { 100, 300, 500 };
     stomatchpoisonEnergyDrainFromVomit[] = { 150, 400, 1000 };
     stomatchhealModifier = 10;
-    stomatchpoisonRawMeat[] = { 1, 5 * 60 }; // level, seconds * amount
-    stomatchpoisonBurnedMeat[] = { 1, 5 * 60 }; // level, seconds * amount
-    stomatchpoisonRottenMeat[] = { 2, 5 * 60 }; // level, seconds * amount
-    stomatchpoisonBurnedFood[] = { 1, 5 * 60 }; // level, seconds * amount
-    stomatchpoisonRottenFood[] = { 2, 5 * 60 }; // level, seconds * amount
-    stomatchpoisonDirtyHands[] = { 1, 5 * 60 }; // level, seconds * amount
-    stomatchpoisonInfection[] = { 1, 5 * 60 }; // level, seconds * amount
+    stomatchpoisonRawMeat[] = { 1, 300 }; // level, seconds * amount
+    stomatchpoisonBurnedMeat[] = { 1, 300 }; // level, seconds * amount
+    stomatchpoisonRottenMeat[] = { 2, 300 }; // level, seconds * amount
+    stomatchpoisonBurnedFood[] = { 1, 300 }; // level, seconds * amount
+    stomatchpoisonRottenFood[] = { 2, 300 }; // level, seconds * amount
+    stomatchpoisonDirtyHands[] = { 1, 300 }; // level, seconds * amount
+    stomatchpoisonInfection[] = { 1, 300 }; // level, seconds * amount
     stomatchpoisonChanceDrinkPond = 0.8;
-    stomatchpoisonDrinkPond[] = { 1, 2 * 60 };
+    stomatchpoisonDrinkPond[] = { 1, 120 };
     stomatchpoisonChanceDrinkWell = 0.01;
     stomatchpoisonDrinkWell[] = { 1, 60 };
-    stomatchpoisonDefaultTimes[] = { 30 * 60, 15 * 60, 10 * 60 }; // lvl1, lvl2, lvl3
+    stomatchpoisonDefaultTimes[] = { 1800, 900, 600 }; // lvl1, lvl2, lvl3
+};
+
+class AttackSystem
+{
+    damageNonWeaponItemInHandsOnAttack = 3.0;
+    damageGlovesOnHandsOnAttack = 2.0;
+    damageHandsOnAttackChance = 0.20;
 };
 
 class ZombieSystem

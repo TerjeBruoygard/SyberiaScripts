@@ -172,7 +172,7 @@ class ScreenEquip extends ScreenBase
 				newEntity = ItemBase.Cast(GetGame().CreateObject(itemName, "0 0 0", true));
 				foreach (string attachment : attachments)
 				{
-					EntityAI attachmentItem = GetGame().CreateObject(attachment, "0 0 0", true);
+					EntityAI attachmentItem = EntityAI.Cast( GetGame().CreateObject(attachment, "0 0 0", true) );
 					if (attachmentItem)
 					{
 						newEntity.GetInventory().TakeEntityAsAttachment(InventoryMode.LOCAL, attachmentItem);
