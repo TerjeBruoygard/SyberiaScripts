@@ -15,4 +15,9 @@ modded class ItemBase
 	{
 		return m_Cleanness == 1;
 	}
+	
+	bool IsInventoryBlocked()
+	{
+		return false;	
+	}
 };

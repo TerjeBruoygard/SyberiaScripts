@@ -118,5 +118,26 @@ modded class DayZPlayerImplement
 				player.PredictiveMoveItemFromHandsToInventory();
 			}
 		}
+		
+		UAInput useBackpackKey = GetUApi().GetInputByName("UAToggleSyberiaUseBackpack");
+		if ( useBackpackKey.LocalClick() && !player.GetInventory().IsInventoryLocked() )
+		{
+			ItemBase backpack = player.GetItemInHands();
+			if (backpack)
+			{
+				if (player.GetHumanInventory().CanAddAttachmentEx(backpack, InventorySlots.BACK))
+				{
+					player.PredictiveTakeEntityToInventory(FindInventoryLocationType.ATTACHMENT, backpack);
+				}
+			}
+			else
+			{
+				backpack = player.GetItemOnSlot("Back");
+				if (backpack && player.GetHumanInventory().CanAddEntityInHands(backpack))
+				{
+					player.PredictiveTakeEntityToHands(backpack);
+				}
+			}
+		}
 	}
 };

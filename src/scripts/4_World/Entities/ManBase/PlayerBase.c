@@ -124,12 +124,18 @@ modded class PlayerBase
 		RegisterNetSyncVariableBool("m_isPveIntruder");
 	}
 	
-	override void SetActionsRemoteTarget( out TInputActionMap InputActionMap)
+	override void SetActions(out TInputActionMap InputActionMap)
+	{
+		super.SetActions(InputActionMap);
+		AddAction(ActionSearchTargetInventory, InputActionMap);	
+	}
+	
+	override void SetActionsRemoteTarget(out TInputActionMap InputActionMap)
 	{
 		super.SetActionsRemoteTarget(InputActionMap);
 		AddAction(ActionStethoscopeInspect, InputActionMap);
 		AddAction(ActionCheckName, InputActionMap);
-		AddAction(ActionSayName, InputActionMap);		
+		AddAction(ActionSayName, InputActionMap);			
 	}
 	
 	override void IncreaseDiseaseCount()

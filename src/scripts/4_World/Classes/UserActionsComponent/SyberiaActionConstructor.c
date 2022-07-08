@@ -30,5 +30,6 @@ modded class ActionConstructor
 		actions.Insert(ActionDebugBuildingToolElementID);
 		actions.Insert(ActionDebugBuildingToolMarker);
 		actions.Insert(ActionDebugBuildingToolSizer);
+		actions.Insert(ActionSearchTargetInventory);
 	}
 };
