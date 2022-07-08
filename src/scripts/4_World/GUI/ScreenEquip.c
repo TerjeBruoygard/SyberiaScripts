@@ -83,14 +83,23 @@ class ScreenEquip extends ScreenBase
 		m_updateCurrentPage = true;
 		m_updatePlayerPreview = true;
 			
-		m_playerPreview.SetPlayer(GetGame().GetPlayer());
-				
+		m_playerPreview.SetPlayer(GetGame().GetPlayer());				
         return layoutRoot;
     }
 	
 	override void Update(float timeslice)
 	{
 		super.Update(timeslice);
+		
+		/*PlayerBase dummyPlayer = PlayerBase.Cast( m_playerPreview.GetDummyPlayer() );
+		if (dummyPlayer)
+		{
+			if (dummyPlayer.GetEmoteManager() && dummyPlayer.GetEmoteManager().CanPlayEmote(EmoteConstants.ID_EMOTE_HEART))
+			{
+				dummyPlayer.GetEmoteManager().PlayEmote(EmoteConstants.ID_EMOTE_HEART);
+				SybLog("PLAY EMOTE!!!");
+			}
+		}*/
 		
 		if (m_isRpcSended)
 		{
