@@ -17,7 +17,7 @@ class CfgWorlds
         airDayTemperatureMax=-5;
         airNightTemperatureMin=-20;
         airNightTemperatureMax=-10;
-        clothingHeatIsolationGlobal=1.6;
+        clothingHeatIsolationGlobal=1.8;
     };
 };
 
