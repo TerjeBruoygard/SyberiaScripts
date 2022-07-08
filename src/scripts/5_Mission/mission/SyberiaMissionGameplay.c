@@ -58,7 +58,9 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_SEPSIS, badgets, "Sepsis");
 				m_Hud.InitBadgetWidget(NTFKEY_ZVIRUS, badgets, "ZVirus");
 				m_Hud.InitBadgetWidget(NTFKEY_BANDAGE1, badgets, "Bandage1");
-				m_Hud.InitBadgetWidget(NTFKEY_BANDAGE2, badgets, "Bandage2");
+				m_Hud.InitBadgetWidget(NTFKEY_BANDAGE2, badgets, "Bandage2");				
+				m_Hud.InitBadgetWidget(NTFKEY_HEMOSTATIC, badgets, "Hemostatic");
+				m_Hud.InitBadgetWidget(NTFKEY_HEMATOPOIESIS, badgets, "Hematopoiesis");
 			}
 		}
 	}
@@ -93,6 +95,8 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_ZVIRUS, player.HasVisibleZVirus());
 				m_Hud.DisplayBadge(NTFKEY_BANDAGE1, player.m_bulletBandage1 + player.m_knifeBandage1);
 				m_Hud.DisplayBadge(NTFKEY_BANDAGE2, player.m_bulletBandage2 + player.m_knifeBandage2);
+				m_Hud.DisplayBadge(NTFKEY_HEMOSTATIC, player.m_bloodHemostaticEffect);
+				m_Hud.DisplayBadge(NTFKEY_HEMATOPOIESIS, player.m_hematopoiesisEffect);
 			}
 			
 			OnUpdateAdvMedicineGUI(player, timeslice);

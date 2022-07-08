@@ -57,10 +57,104 @@ class TabletsAnalgin : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medPainkillerLevel=1;
-    medPainkillerTimeSec=900; // 15 minutes
+    medPainkillerTimeSec=700;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_green_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    TABLETS_ANIM_EVENTS();
+};
+
+class TabletsNaiz : TabletsBase
+{
+    scope=2;
+    displayName="#syb_naiz_name";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medPainkillerLevel=1;
+    medPainkillerTimeSec=1400;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_brown_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    TABLETS_ANIM_EVENTS();
+};
+
+class TabletsCytramon : TabletsBase
+{
+    scope=2;
+    displayName="#syb_cytramon_name";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medPainkillerLevel=1;
+    medPainkillerTimeSec=900;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_green_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    TABLETS_ANIM_EVENTS();
+};
+
+class TabletsParacetamol : TabletsBase
+{
+    scope=2;
+    displayName="#syb_paracetamol_name";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medPainkillerLevel=1;
+    medPainkillerTimeSec=1000;
+    medAntibioticLevel=1;
+    medAntibioticsTimeSec=200;
+    medAntibioticsStrength = 0.5;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_blue_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    TABLETS_ANIM_EVENTS();
+};
+
+class TabletsIbuprofen : TabletsBase
+{
+    scope=2;
+    displayName="#syb_ibuprofen_name";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medPainkillerLevel=1;
+    medPainkillerTimeSec=600;
+    medAntibioticLevel=1;
+    medAntibioticsTimeSec=400;
+    medAntibioticsStrength = 0.8;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_white_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
+    TABLETS_ANIM_EVENTS();
+};
+
+class TabletsNurofen : TabletsBase
+{
+    scope=2;
+    displayName="#syb_nurofen_name";
+    model="SyberiaScripts\data\medical\tablets.p3d";
+    varQuantityInit=10;
+    varQuantityMax=10;
+    medPainkillerLevel=1;
+    medPainkillerTimeSec=800;
+    medAntibioticLevel=1;
+    medAntibioticsTimeSec=350;
+    medAntibioticsStrength = 0.7;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\tablets_brown_co.paa"
     };
     ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\tablets_base");
     TABLETS_ANIM_EVENTS();

@@ -51,6 +51,8 @@ const int NTFKEY_SEPSIS = 1109;
 const int NTFKEY_ZVIRUS = 1110;
 const int NTFKEY_BANDAGE1 = 1111;
 const int NTFKEY_BANDAGE2 = 1112;
+const int NTFKEY_HEMOSTATIC = 1113;
+const int NTFKEY_HEMATOPOIESIS = 1114;
 
 const int LEVELED_NTFKEY_BADGES_COUNT = 2;
 const int LEVELED_NTFKEY_BADGES[LEVELED_NTFKEY_BADGES_COUNT] = { NTFKEY_PAIN, NTFKEY_PAINKILLER };
@@ -82,6 +84,6 @@ modded class PlayerConstants
 	static const float HEALTH_REGEN_MIN	= 0.001;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
 	static const float HEALTH_REGEN_MAX	= 0.005;	//health regen rate at MAXIMUM blood level
 	
-	static const float SHOCK_REFILL_CONSCIOUS_SPEED			= 2;		//shock refill speed when the player is conscious
-	static const float SHOCK_REFILl_UNCONSCIOUS_SPEED		= 0.2;		//shock refill speed when the player is unconscious
+	static const float SHOCK_REFILL_CONSCIOUS_SPEED			= 1;		//shock refill speed when the player is conscious
+	static const float SHOCK_REFILl_UNCONSCIOUS_SPEED		= 0.1;		//shock refill speed when the player is unconscious
 }
