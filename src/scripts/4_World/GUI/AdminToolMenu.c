@@ -2,10 +2,8 @@ class AdminToolMenu extends UIScriptedMenu
 {
 	bool m_active = false;
 	bool m_dirty = false;
-	
+		
 	int m_selectedTabId = 0;
-	string m_selectedPlayerUID;
-	
 	ref array<ref Widget> m_tabButtons;
 	ref array<ref Widget> m_tabBodies;
 	ref PluginAdminTool_OpenContext m_context;
@@ -20,9 +18,11 @@ class AdminToolMenu extends UIScriptedMenu
 	ref TextWidget m_playersStatEditText;
 	ref EditBoxWidget m_playersStatEditBox;
 	ref Widget m_playersStatApply;
+	string m_selectedPlayerUID;
 	
 	// Spawner
-	static ref map<string, ref array<string>> m_cachedConfigItems;
+	static ref map<string, ref array<string>> m_cachedConfigItems = new map<string, ref array<string>>;
+	static ref map<string, ref array<string>> m_cachedAttachments = new map<string, ref array<string>>;
 	ref TextListboxWidget m_spawnerCategoryListBox;
 	ref TextListboxWidget m_spawnerItemsListBox;
 	ref TextWidget m_spawnerFilterEditText;
@@ -31,7 +31,23 @@ class AdminToolMenu extends UIScriptedMenu
 	ref SliderWidget m_spawnerSliderQuantity;
 	ref XComboBoxWidget m_spawnerTypeSelect;
 	ref CheckBoxWidget m_spawnerFillProxies;
+	ref TextListboxWidget m_spawnerProxySlotSelect;
+	ref TextListboxWidget m_spawnerProxySlotType;
 	ref ButtonWidget m_spawnButton;
+	ref ButtonWidget m_spawnerClear;
+	static int m_spawnerSelectedCategory = 0;
+	static int m_spawnerSelectedItem = 0;
+	static float m_spawnerSelectedHealth = 100;
+	static float m_spawnerSelectedQuantity = 100;
+	static float m_spawnerSelectedSpawnType = 0;
+	static bool m_spawnerFillProxiesChecked = true;
+	static int m_spawnerProxySlotSelectedAttachment = -1;
+	static ref array<int> m_spawnerProxySlotsSelections = new array<int>;
+	
+	// Map
+	ref MapWidget m_mapWidget;
+	static vector m_mapPos = "0 0 0";
+	static float m_mapScale = 0.1;
 	
 	void AdminToolMenu()
 	{
@@ -88,11 +104,26 @@ class AdminToolMenu extends UIScriptedMenu
 		m_spawnerSliderQuantity = SliderWidget.Cast(layoutRoot.FindAnyWidget("SpawnerSliderQuantity"));
 		m_spawnerTypeSelect = XComboBoxWidget.Cast(layoutRoot.FindAnyWidget("SpawnerTypeSelect"));
 		m_spawnerFillProxies = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("SpawnerFillProxies"));
+		m_spawnerProxySlotSelect = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("SpawnerProxySlotSelect"));
+		m_spawnerProxySlotType = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("SpawnerProxySlotType"));
 		m_spawnButton = ButtonWidget.Cast(layoutRoot.FindAnyWidget("SpawnerAction"));
+		m_spawnerClear = ButtonWidget.Cast(layoutRoot.FindAnyWidget("SpawnerClear"));
+		
+		m_spawnerSliderHealth.SetCurrent(m_spawnerSelectedHealth);
+		m_spawnerSliderQuantity.SetCurrent(m_spawnerSelectedQuantity);
+		m_spawnerTypeSelect.SetCurrentItem( m_spawnerSelectedSpawnType );
+		m_spawnerFillProxies.SetChecked( m_spawnerFillProxiesChecked );
+		m_spawnerProxySlotSelect.Show(m_spawnerFillProxiesChecked);
+		m_spawnerProxySlotType.Show(m_spawnerFillProxiesChecked);
 		
 		InitItemsConfig("CfgVehicles");
 		InitItemsConfig("CfgWeapons");
 		InitItemsConfig("CfgMagazines");
+		
+		// Map
+		m_mapWidget = MapWidget.Cast(layoutRoot.FindAnyWidget("MapPreview"));
+		m_mapWidget.SetMapPos(m_mapPos);	
+		m_mapWidget.SetScale(m_mapScale);
 		
 		// Common tabs
 		m_tabButtons.Clear();
@@ -113,9 +144,6 @@ class AdminToolMenu extends UIScriptedMenu
 	
 	void InitItemsConfig(string preffix)
 	{
-		if (!m_cachedConfigItems) 
-			m_cachedConfigItems = new map<string, ref array<string>>;
-		
 		if (!m_cachedConfigItems.Contains(preffix))
 		{
 			ref array<string> classes = new array<string>;
@@ -143,7 +171,88 @@ class AdminToolMenu extends UIScriptedMenu
 		string preffix = GameHelpers.FindItemPreffix(classname);
 		string path = preffix + " " + classname;
 		UpdateSliderValue(m_spawnerSliderHealth, "Health", 100);
-		UpdateSliderValue(m_spawnerSliderQuantity, "Quantity", GetGame().ConfigGetFloat(path + " varQuantityMax"));
+		
+		float quantityMax = 0;		
+		if (GetGame().IsKindOf(classname, "Inventory_Base"))
+		{
+			quantityMax = GetGame().ConfigGetFloat(path + " varQuantityMax");
+		}
+		else if (GetGame().IsKindOf(classname, "Magazine_Base"))
+		{
+			quantityMax = GetGame().ConfigGetFloat(path + " count");
+		}
+		
+		UpdateSliderValue(m_spawnerSliderQuantity, "Quantity", quantityMax);
+				
+		m_spawnerProxySlotSelect.ClearItems();
+		m_spawnerProxySlotType.ClearItems();		
+		if (!m_spawnerFillProxiesChecked)
+			return;
+		
+		array<string> attachments = new array<string>;
+		GetGame().ConfigGetTextArray(path + " attachments", attachments);
+		if (attachments.Count() != m_spawnerProxySlotsSelections.Count())
+		{
+			m_spawnerProxySlotsSelections.Clear();
+			foreach (string attachment : attachments)
+			{
+				m_spawnerProxySlotsSelections.Insert(0);
+			}
+		}
+		
+		foreach (string attachment2 : attachments)
+		{
+			m_spawnerProxySlotSelect.AddItem(attachment2, null, 0);
+		}
+		
+		if (m_spawnerProxySlotSelectedAttachment < 0 || m_spawnerProxySlotSelectedAttachment >= attachments.Count())
+			m_spawnerProxySlotSelectedAttachment = 0;
+		
+		if (attachments.Count() > 0)
+			m_spawnerProxySlotSelect.SelectRow(m_spawnerProxySlotSelectedAttachment);
+		
+		UpdateSpawnerSelectedProxy();
+	}
+	
+	void UpdateSpawnerSelectedProxy()
+	{
+		if (m_spawnerProxySlotSelectedAttachment < 0 || m_spawnerProxySlotSelectedAttachment >= m_spawnerProxySlotSelect.GetNumItems())
+			return;
+		
+		string selectedAttachment;
+		m_spawnerProxySlotSelect.GetItemText(m_spawnerProxySlotSelectedAttachment, 0, selectedAttachment);
+		
+		int rowId = 0;
+		ref array<string> attachmentsList = GetAllAttachments(selectedAttachment);		
+		foreach (string attachmentClassname : attachmentsList)
+		{
+			rowId = m_spawnerProxySlotType.AddItem(attachmentClassname, null, 0);
+			m_spawnerProxySlotType.SetItem(rowId, GameHelpers.GetItemDisplayName(attachmentClassname), null, 1);
+			m_spawnerProxySlotType.SetItemColor(rowId, 1, ARGBF(1, 0.5, 1.0, 0.6));
+		}
+		
+		int selectedItemId = m_spawnerProxySlotsSelections.Get(m_spawnerProxySlotSelectedAttachment);
+		if (selectedItemId < 0 || selectedItemId > attachmentsList.Count())
+			selectedItemId = 0;
+		
+		m_spawnerProxySlotsSelections.Set(m_spawnerProxySlotSelectedAttachment, selectedItemId);
+		m_spawnerProxySlotType.SelectRow(selectedItemId);
+	}
+	
+	private ref array<string> GetAllAttachments(string selectedAttachment)
+	{
+		ref array<string> attachmentsList = null;
+		if (m_cachedAttachments.Contains(selectedAttachment))
+		{
+			attachmentsList = m_cachedAttachments.Get(selectedAttachment);
+		}
+		else
+		{
+			attachmentsList = new array<string>;
+			GameHelpers.GetAllAttachments(selectedAttachment, attachmentsList);
+			m_cachedAttachments.Insert(selectedAttachment, attachmentsList);
+		}
+		return attachmentsList;
 	}
 	
 	void UpdateCurrentTab()
@@ -161,24 +270,49 @@ class AdminToolMenu extends UIScriptedMenu
 		{
 			RefreshSpawnerTab();
 		}
+		else if (m_selectedTabId == 2)
+		{
+			RequestMapTab();
+		}
+	}
+	
+	void RequestMapTab()
+	{
+		GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_UPDATEMAP, new Param1< int >( 0 ) );	
+	}
+	
+	void UpdateMapTab(ref PluginAdminTool_MapContext context)
+	{
+		m_mapWidget.ClearUserMarks();		
+		int playersCount = context.m_playerPositions.Count();
+		for (int pid = 0; pid < playersCount; pid++)
+		{
+			m_mapWidget.AddUserMark(context.m_playerPositions.Get(pid), context.m_playerNames.Get(pid), ARGB(255, 255, 0, 0), "SyberiaScripts\\data\\gui\\Markers\\player.paa");
+		}
+		
+		int vehiclesCount = context.m_vehiclePositions.Count();	
+		for (int vid = 0; vid < vehiclesCount; vid++)
+		{
+			string carName = context.m_vehicleNames.Get(vid);
+			carName = GameHelpers.GetItemDisplayName(carName) + " (" + carName + ")";
+			m_mapWidget.AddUserMark(context.m_vehiclePositions.Get(vid), carName, ARGB(255, 255, 216, 0), "SyberiaScripts\\data\\gui\\Markers\\car.paa");
+		}
 	}
 	
 	void RefreshSpawnerTab()
 	{
 		int rowId;
-		int categoryId = m_spawnerCategoryListBox.GetSelectedRow();
-		
 		m_spawnerCategoryListBox.ClearItems();
 		foreach (ref PluginAdminTool_SpawnerCategories category : m_context.m_spawnerCategories)
 		{
 			m_spawnerCategoryListBox.AddItem(category.m_name, category, 0);
 		}
 		
-		if (categoryId < 0) categoryId = 0;		
-		m_spawnerCategoryListBox.SelectRow(categoryId);
+		if (m_spawnerSelectedCategory < 0) m_spawnerSelectedCategory = 0;		
+		m_spawnerCategoryListBox.SelectRow(m_spawnerSelectedCategory);
 
 		ref PluginAdminTool_SpawnerCategories filter;
-		m_spawnerCategoryListBox.GetItemData(categoryId, 0, filter);
+		m_spawnerCategoryListBox.GetItemData(m_spawnerSelectedCategory, 0, filter);
 		m_spawnerItemsListBox.ClearItems();
 			
 		if (!filter || !m_cachedConfigItems.Contains(filter.m_preffix))
@@ -201,6 +335,10 @@ class AdminToolMenu extends UIScriptedMenu
 				}
 			}
 		}
+		
+		if (m_spawnerSelectedItem < 0) m_spawnerSelectedItem = 0;
+		if (m_spawnerSelectedItem >= m_spawnerItemsListBox.GetNumItems()) m_spawnerSelectedItem = 0;		
+		m_spawnerItemsListBox.SelectRow(m_spawnerSelectedItem);
 	}
 	
 	void RefreshPlayersTab()
@@ -319,6 +457,43 @@ class AdminToolMenu extends UIScriptedMenu
 			AddPlayersInvItem(itemCargo, tabSpace + 1, 2);
 		}
 	}
+	
+	private void SpawnCurrentItemRequest()
+	{
+		string classname;
+		int row = m_spawnerItemsListBox.GetSelectedRow();
+
+		if (row == -1) return;
+		m_spawnerItemsListBox.GetItemText(row, 0, classname);
+		
+		if (classname == "") return;
+		
+		PluginAdminTool_SpawnItemContext m_context = new PluginAdminTool_SpawnItemContext;
+		m_context.m_classname = classname;
+		m_context.m_health = m_spawnerSliderHealth.GetCurrent();
+		m_context.m_quantity = m_spawnerSliderQuantity.GetCurrent();
+		m_context.m_spawnType = m_spawnerTypeSelect.GetCurrentItem();
+		m_context.m_cursorPos = GameHelpers.GetCursorPos();
+		m_context.m_attachments = new array<string>;
+		
+		if (m_spawnerFillProxies.IsChecked())
+		{
+			string proxySlotName;
+			for (int sid = 0; sid < m_spawnerProxySlotSelect.GetNumItems(); sid++)
+			{
+				m_spawnerProxySlotSelect.GetItemText(sid, 0, proxySlotName);
+				ref array<string> allAttachments = GetAllAttachments(proxySlotName);				
+				int attachmentId = m_spawnerProxySlotsSelections.Get(sid);
+				if (attachmentId >= 0 && attachmentId < allAttachments.Count())
+				{
+					string attachmentName = allAttachments.Get(attachmentId);
+					m_context.m_attachments.Insert(attachmentName);
+				}
+			}
+		}
+		
+		GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_SPAWNITEM, new Param1< ref PluginAdminTool_SpawnItemContext >( m_context ));
+	}
 
 	override void Update(float timeslice)
 	{
@@ -332,6 +507,8 @@ class AdminToolMenu extends UIScriptedMenu
 		
 		if (!m_active)
 		{
+			m_mapPos = m_mapWidget.GetMapPos();
+			m_mapScale = m_mapWidget.GetScale();			
 			GetGame().GetUIManager().Back();
 		}
 	}
@@ -382,25 +559,12 @@ class AdminToolMenu extends UIScriptedMenu
 			
 			if (w == m_spawnButton)
 			{
-				string classname;
-				int row = m_spawnerItemsListBox.GetSelectedRow();
-				
-				SybLog("SPAWN BTN: row = " + row);
-				
-				if (row == -1) return false;
-				m_spawnerItemsListBox.GetItemText(row, 0, classname);
-				
-				SybLog("SPAWN BTN: classname = " + classname);
-				if (classname == "") return false;
-				
-				float health = m_spawnerSliderHealth.GetCurrent();
-				float quantity = m_spawnerSliderQuantity.GetCurrent();
-				int spawnType = m_spawnerTypeSelect.GetCurrentItem();
-				bool spawnProxies = m_spawnerFillProxies.IsChecked();
-				vector cursorPos = GameHelpers.GetCursorPos();
-				
-				auto spawnParams = new Param6< string, float, float, int, bool, vector >( classname, health, quantity, spawnType, spawnProxies, cursorPos );
-				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_SPAWNITEM, spawnParams);
+				SpawnCurrentItemRequest();
+			}
+			
+			if (w == m_spawnerClear)
+			{
+				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_CLEARITEMS, new Param1< int >( 0 ) );
 			}
 		}
 		
@@ -436,14 +600,72 @@ class AdminToolMenu extends UIScriptedMenu
 		if (w == m_spawnerCategoryListBox && oldRow != row)
 		{
 			m_dirty = true;
+			if (m_spawnerSelectedCategory != row)
+			{
+				m_spawnerSelectedCategory = row;
+				m_spawnerSelectedItem = 0;
+				m_spawnerProxySlotsSelections.Clear();
+				m_spawnerProxySlotSelectedAttachment = -1;
+			}
 		}
 		
 		if (w == m_spawnerItemsListBox && oldRow != row)
 		{
+			if (m_spawnerSelectedItem != row)
+			{
+				m_spawnerSelectedItem = row;
+				m_spawnerProxySlotsSelections.Clear();
+				m_spawnerProxySlotSelectedAttachment = -1;
+			}
 			UpdateSpawnerItemPreview( );
 		}
 		
+		if (w == m_spawnerProxySlotSelect && row != m_spawnerProxySlotSelectedAttachment)
+		{
+			m_spawnerProxySlotSelectedAttachment = row;
+			UpdateSpawnerItemPreview( );
+		}
+		
+		if (w == m_spawnerProxySlotType && m_spawnerProxySlotSelectedAttachment >= 0 && m_spawnerProxySlotSelectedAttachment < m_spawnerProxySlotsSelections.Count())
+		{
+			m_spawnerProxySlotsSelections.Set(m_spawnerProxySlotSelectedAttachment, row);
+		}
+		
 		return super.OnItemSelected(w, x, y, row, column, oldRow, oldColumn);
+	}
+	
+	override bool OnDoubleClick(Widget w, int x, int y, int button)
+	{
+		if (button == MouseState.LEFT)
+		{
+			if (w == m_spawnerItemsListBox)
+			{
+				SpawnCurrentItemRequest( );
+			}
+			
+			if (w == m_mapWidget)
+			{
+				vector worldPos = MapPositionToWorldPosition();
+				GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, new Param1< vector >( worldPos ) );
+			}
+		}
+		
+		return super.OnDoubleClick(w, x, y, button);
+	}
+	
+	private vector MapPositionToWorldPosition()
+	{
+		vector screenPos;
+		vector result;
+		vector dir;
+		vector from;
+		vector to;
+		dir = GetGame().GetPointerDirection();
+	    from = GetGame().GetCurrentCameraPosition();
+	    to = from + ( dir * 1000 );
+		screenPos = GetGame().GetScreenPos( to );
+	    result = m_mapWidget.ScreenToMap( screenPos );
+	    return result;
 	}
 	
 	override bool OnChange( Widget w, int x, int y, bool finished )
@@ -459,6 +681,15 @@ class AdminToolMenu extends UIScriptedMenu
 			m_dirty = true;
 		}
 		else if (w == m_spawnerSliderHealth || w == m_spawnerSliderQuantity) {
+			m_spawnerSelectedHealth = m_spawnerSliderHealth.GetCurrent();
+			m_spawnerSelectedQuantity = m_spawnerSliderQuantity.GetCurrent();
+			UpdateSpawnerItemPreview( );
+		}
+		else if (w == m_spawnerTypeSelect || w == m_spawnerFillProxies) {
+			m_spawnerSelectedSpawnType = m_spawnerTypeSelect.GetCurrentItem();
+			m_spawnerFillProxiesChecked = m_spawnerFillProxies.IsChecked();
+			m_spawnerProxySlotSelect.Show(m_spawnerFillProxiesChecked);
+			m_spawnerProxySlotType.Show(m_spawnerFillProxiesChecked);
 			UpdateSpawnerItemPreview( );
 		}
 		

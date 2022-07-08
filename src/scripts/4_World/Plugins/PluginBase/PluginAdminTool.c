@@ -12,6 +12,9 @@ class PluginAdminTool extends PluginBase
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_PLAYERINFO, this, "PlayerInfo");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_PLAYERUPDATE, this, "PlayerUpdate");
 		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_SPAWNITEM, this, "SpawnItem");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_CLEARITEMS, this, "ClearItems");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_UPDATEMAP, this, "UpdateMap");
+		GetSyberiaRPC().RegisterHandler(SyberiaRPC.SYBRPC_ADMINTOOL_TELEPORT, this, "Teleport");
 	}
 	
 	bool IsOpen()
@@ -68,6 +71,21 @@ class PluginAdminTool extends PluginBase
 	void PlayerUpdate( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
 	
 	void SpawnItem( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
+	
+	void ClearItems( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
+	
+	void UpdateMap( ref ParamsReadContext ctx, ref PlayerIdentity sender ) 
+	{
+		if (GetGame().IsServer() || !IsOpen() || !m_guiMenu) return;		
+		
+		Param1< ref PluginAdminTool_MapContext > serverData;
+        if ( !ctx.Read( serverData ) ) return;
+		
+		m_guiMenu.UpdateMapTab(serverData.param1);
+		delete serverData.param1;
+	}
+	
+	void Teleport( ref ParamsReadContext ctx, ref PlayerIdentity sender ) {}
 };
 
 class PluginAdminTool_OpenContext
@@ -165,5 +183,38 @@ class PluginAdminTool_PlayerInvContext
 			foreach (ref PluginAdminTool_PlayerInvContext c : m_cargo) delete c;
 			delete m_cargo;
 		}
+	}
+};
+
+class PluginAdminTool_SpawnItemContext
+{
+	string m_classname;
+	float m_health;
+	float m_quantity;
+	int m_spawnType;
+	vector m_cursorPos;
+	ref array<string> m_attachments;
+	
+	void ~PluginAdminTool_SpawnItemContext()
+	{
+		if (m_attachments) delete m_attachments;
+	}
+};
+
+class PluginAdminTool_MapContext
+{
+	ref array<vector> m_playerPositions;
+	ref array<string> m_playerNames;
+	
+	ref array<vector> m_vehiclePositions;
+	ref array<string> m_vehicleNames;
+	
+	void ~PluginAdminTool_MapContext()
+	{
+		if (m_playerPositions) delete m_playerPositions;
+		if (m_playerNames) delete m_playerNames;
+		
+		if (m_vehiclePositions) delete m_vehiclePositions;
+		if (m_vehicleNames) delete m_vehicleNames;
 	}
 };
