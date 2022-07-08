@@ -11,15 +11,13 @@ class PluginTrader extends PluginBase
 	{
 		if (m_traderMenu && m_traderMenu.m_active)
 		{
-			m_traderMenu.m_active = false;
+			GetSyberiaRPC().SendToServer(SyberiaRPC.SYBRPC_CLOSE_TRADER_MENU, new Param1<int>(m_traderMenu.m_traderId));
+			m_traderMenu.m_active = false;		
 		}
 	}
 	
 	void RpcRequstOpen(ref ParamsReadContext ctx, ref PlayerIdentity sender)
-    {   
-		Param3<int, ref PluginTrader_Traider, ref PluginTrader_Storage> clientData;
-       	if ( !ctx.Read( clientData ) ) return;			
-		
+    {   		
 		if (m_traderMenu && m_traderMenu.m_active)
 		{
 			m_traderMenu.m_active = false;
@@ -30,6 +28,9 @@ class PluginTrader extends PluginBase
 		{
 			return;
 		}
+		
+		Param3<int, ref PluginTrader_Trader, ref PluginTrader_Data> clientData;
+       	if ( !ctx.Read( clientData ) ) return;
 		
 		m_traderMenu = new SybTraderMenu;
 		m_traderMenu.InitMetadata(clientData.param1, clientData.param2, clientData.param3);
@@ -42,19 +43,41 @@ class PluginTrader extends PluginBase
 	}
 };
 
-class PluginTrader_Storage
+class PluginTrader_Trader
 {
-    int m_storageMaxSize;
+	int m_traderId;
+    ref array<string> m_purchaseFilter;
+    ref array<string> m_saleFilter;
+	int m_storageMaxSize;
     float m_storageCommission;
     string m_dumpingByAmountAlgorithm;
     float m_dumpingByAmountModifier;
 	string m_dumpingByQualityAlgorithm;
     float m_dumpingByQualityModifier;
+	
+	void ~PluginTrader_Trader()
+	{
+		if (m_purchaseFilter)
+		{
+			delete m_purchaseFilter;
+		}
+		
+		if (m_saleFilter)
+		{
+			delete m_saleFilter;
+		}
+	}
 };
 
-class PluginTrader_Traider
+class PluginTrader_Data
 {
-	int m_traderId;
-    ref array<string> m_purchaseFilter;
-    ref array<string> m_saleFilter;
+	ref map<string, float> m_items;
+	
+	void ~PluginTrader_Data()
+	{
+		if (m_items)
+		{
+			delete m_items;
+		}
+	}
 };
