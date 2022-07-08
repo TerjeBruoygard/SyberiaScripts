@@ -1,5 +1,4 @@
-#define TABLETS_ANIM_EVENTS\
-class AnimEvents\
+#define TABLETS_ANIM_EVENTS class AnimEvents\
 {\
     class SoundWeapon\
     {\

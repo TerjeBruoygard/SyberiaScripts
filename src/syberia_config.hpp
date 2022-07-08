@@ -36,15 +36,15 @@ class MedicineSystem
 {
     sepsisStage1TimeSec = 600;
     sepsisStage2TimeSec = 2400;
-    sepsisDeathTimeSec = 900;
+    sepsisDeathTimeSec = 1200;
     sepsisHighTemperatureValue = 42;
     sepsisZombieHitChance = 0.04;
     sepsisKnifeHitChance = 0.04;
     sepsisBulletHitChance = 0.05;
     sepsisDirtySyringeChance = 0.75;
-    zvirusStage1TimeSec = 1200; // 20 min
-    zvirusStage2TimeSec = 3600; // zvirusStage1TimeSec + 40 min
-    zvirusDeathTimeSec = 900;
+    zvirusStage1TimeSec = 600; // 20 min
+    zvirusStage2TimeSec = 2400; // zvirusStage1TimeSec + 40 min
+    zvirusDeathTimeSec = 1200;
     zvirusBloodRegenPerSec = 4;
     zvirusZombieHitChance = 0.2;
     zvirusZombieBloodTransferChance = 0.1;
@@ -154,6 +154,7 @@ class SkillsExperienceSystem
     skillsExpStrengthLightAttackChance = 0.1;
     skillsExpStrengthHeavyAttackValue = 40;
     skillsExpStrengthHeavyAttackChance = 0.2;
+    skillsExpStrengthMineWoodOrStone = 3;
     
     skillsExpMedicineBandage = 5;
     skillsExpMedicineTablets = 5;

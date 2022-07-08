@@ -1,5 +1,4 @@
-#define INJECTOR_ANIM_EVENTS\
-class AnimEvents\
+#define INJECTOR_ANIM_EVENTS class AnimEvents\
 {\
     class SoundWeapon\
     {\
