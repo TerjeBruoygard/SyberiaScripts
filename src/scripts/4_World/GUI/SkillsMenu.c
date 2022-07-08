@@ -81,8 +81,9 @@ class SkillsMenu extends UIScriptedMenu
 		int rowId = -1;
 		int currentSelection = m_skillsList.GetSelectedRow();		
 		m_skillsList.ClearItems();
-		for (int i = 0; i < SyberiaSkillType.SYBSKILL_TOTALCOUNT; ++i)
+		for (int q = 0; q < SYBERIA_ENABLED_SKILLS_COUNT; ++q)
 		{
+			int i = SYBERIA_ENABLED_SKILLS_LIST[q];
 			rowId = m_skillsList.AddItem("#syb_skill" + i, null, 0);
 			int currentSkillValue = player.m_skills.GetSkillValueInt(i);			
 			m_skillsList.SetItem(rowId, currentSkillValue.ToString(), null, 1);
@@ -90,17 +91,18 @@ class SkillsMenu extends UIScriptedMenu
 		
 		if (currentSelection < 0)
 		{
-			currentSelection = SyberiaSkillType.SYBSKILL_IMMUNITY;
+			currentSelection = 0;
 		}
 		
-		int currentValue = player.m_skills.GetSkillValueInt(currentSelection);
+		int currentSelectionSkill = SYBERIA_ENABLED_SKILLS_LIST[currentSelection];
+		int currentValue = player.m_skills.GetSkillValueInt(currentSelectionSkill);
 		m_skillsList.SelectRow(currentSelection);
-		m_totalLvlText.SetText("#syb_skill" + currentSelection + ": " + currentValue);
-		m_totalLvlDesc.SetText("#syb_skill_desc" + currentSelection);
+		m_totalLvlText.SetText("#syb_skill" + currentSelectionSkill + ": " + currentValue);
+		m_totalLvlDesc.SetText("#syb_skill_desc" + currentSelectionSkill);
 				
-		int curLvlValue = (int)Math.Round(player.m_skills.GetSkillLevelValue(currentSelection));
-		int maxLvlValue = (int)Math.Round(player.m_skills.GetSkillLevelSize(currentSelection));
-		if (currentValue != player.m_skills.GetSkillMax(currentSelection))
+		int curLvlValue = (int)Math.Round(player.m_skills.GetSkillLevelValue(currentSelectionSkill));
+		int maxLvlValue = (int)Math.Round(player.m_skills.GetSkillLevelSize(currentSelectionSkill));
+		if (currentValue != player.m_skills.GetSkillMax(currentSelectionSkill))
 		{
 			m_currentLvlText.SetText( curLvlValue.ToString() + "/" + maxLvlValue.ToString() );
 			m_currentLvlProgress.SetCurrent( (curLvlValue / maxLvlValue) * 100.0 );
@@ -114,7 +116,7 @@ class SkillsMenu extends UIScriptedMenu
 		int selectedLevelRow = -1;
 		int selectedLevelValue = -1;
 		array<int> perkUnlockLevels = new array<int>;
-		PerksCollection.m_Instance.GetUnlockLevelsOfSkill(currentSelection, perkUnlockLevels);
+		PerksCollection.m_Instance.GetUnlockLevelsOfSkill(currentSelectionSkill, perkUnlockLevels);
 		perkUnlockLevels.Sort();
 		m_skillLevelsList.ClearItems();
 		
@@ -126,7 +128,7 @@ class SkillsMenu extends UIScriptedMenu
 		{			
 			rowId = m_skillLevelsList.AddItem("#syb_skill_level " + perkUnlockLevel, new Param1<int>(perkUnlockLevel), 0);
 			
-			int visualState = player.m_skills.GetSkillLevelVisualStatus(currentSelection, perkUnlockLevel);
+			int visualState = player.m_skills.GetSkillLevelVisualStatus(currentSelectionSkill, perkUnlockLevel);
 			if (visualState == -1) visualState = ARGB(255, 255, 0, 0);
 			else if (visualState == 1) visualState = ARGB(255, 0, 255, 0);
 			else visualState = ARGB(255, 255, 255, 255);
@@ -154,13 +156,14 @@ class SkillsMenu extends UIScriptedMenu
 		if (!player || !player.m_skills) return;
 		
 		int selectedPerk = m_skillPerksList.GetSelectedRow();
-		int selectedSkill = m_skillsList.GetSelectedRow();
+		int selectedSkillRow = m_skillsList.GetSelectedRow();
 		int selectedLevel = m_skillLevelsList.GetSelectedRow();
 		
 		m_skillPerksList.ClearItems();
-		if (selectedSkill == -1 || selectedLevel == -1)
+		if (selectedSkillRow == -1 || selectedLevel == -1)
 			return;
 		
+		int selectedSkill = SYBERIA_ENABLED_SKILLS_LIST[selectedSkillRow];		
 		Param1<int> selectedLevelValue;
 		m_skillLevelsList.GetItemData(selectedLevel, 0, selectedLevelValue);
 		
@@ -206,11 +209,12 @@ class SkillsMenu extends UIScriptedMenu
 		string perkDesc = "";
 		string errorText = "";
 		int perkStatus = -3;
-		int selectedSkill = m_skillsList.GetSelectedRow();	
+		int selectedSkillRow = m_skillsList.GetSelectedRow();	
 		int selectedPerk = m_skillPerksList.GetSelectedRow();
 		int selectedLevel = m_skillLevelsList.GetSelectedRow();
-		if (selectedSkill >= 0 && selectedPerk >= 0 && selectedLevel >= 0)
+		if (selectedSkillRow >= 0 && selectedPerk >= 0 && selectedLevel >= 0)
 		{
+			int selectedSkill = SYBERIA_ENABLED_SKILLS_LIST[selectedSkillRow];
 			Param1<int> selectedLevelValue;
 			m_skillLevelsList.GetItemData(selectedLevel, 0, selectedLevelValue);
 			if (selectedLevelValue && selectedLevelValue.param1 > 0)
@@ -281,10 +285,10 @@ class SkillsMenu extends UIScriptedMenu
 
 		if (w == m_activatePerkBtn)
 		{
-			int selectedSkill = m_skillsList.GetSelectedRow();
+			int selectedSkillRow = m_skillsList.GetSelectedRow();
 			int selectedLevel = m_skillLevelsList.GetSelectedRow();
 			int selectedPerk = m_skillPerksList.GetSelectedRow();
-			if (selectedPerk >= 0 && selectedLevel >= 0 && selectedSkill >= 0)
+			if (selectedPerk >= 0 && selectedLevel >= 0 && selectedSkillRow >= 0)
 			{
 				Param1<int> selectedLevelValue;
 				m_skillLevelsList.GetItemData(selectedLevel, 0, selectedLevelValue);
@@ -293,7 +297,7 @@ class SkillsMenu extends UIScriptedMenu
 				m_skillPerksList.GetItemData(selectedPerk, 0, perk);
 				if (perk)
 				{
-					m_storedSkillId = selectedSkill;
+					m_storedSkillId = selectedSkillRow;
 					m_storedLevelId = selectedLevel;
 					m_storedPerkId = selectedPerk;
 					m_activatePerkBack.Show(false);
