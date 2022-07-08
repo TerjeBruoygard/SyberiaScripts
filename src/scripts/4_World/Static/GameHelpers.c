@@ -59,7 +59,7 @@ class GameHelpers
 		string lowercaseText = text;
 		lowercaseText.ToLower();
 		match.ToLower();
-		return lowercaseText.Contains(match);
+		return StringIndexOfUtf8(lowercaseText, match) != -1;
 	}
 	
 	static int StringIndexOfUtf8(string str, string match)
