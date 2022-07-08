@@ -1,5 +1,6 @@
 modded class MissionGameplay
 {
+	private ref WatermarkHandler m_watermarkHandler;
 	ref Widget m_AdditionHudRootWidget = null;
 	ref SyberiaAdditionalHud m_SyberiaAdditionalHud = null;
 	bool m_isAltPressed = false;
@@ -25,6 +26,7 @@ modded class MissionGameplay
 	{
 		super.OnInit();
 		
+		m_watermarkHandler = new WatermarkHandler();
 		SyberiaPPEffects.Init();
 		
 		if (!m_AdditionHudRootWidget)
@@ -278,6 +280,23 @@ modded class MissionGameplay
 		if (m_SyberiaAdditionalHud)
 		{
 			m_SyberiaAdditionalHud.ShowScreenMessage(message, time);
+		}
+	}
+	
+	override void Pause()
+	{
+		super.Pause();
+		
+		UIScriptedMenu ingameMenu = GetGame().GetUIManager().GetMenu();
+		if (ingameMenu && ingameMenu.GetID() == MENU_INGAME)
+		{
+			ref Widget watermarkWidget = GetGame().GetWorkspace().CreateWidgets( "SyberiaScripts/layout/WatermarkInGame.layout" );		
+			ref Widget watermarkBase = watermarkWidget.FindAnyWidget( "WatermarkBase" );
+			ref Widget watermarkBtn = watermarkBase.FindAnyWidget( "WatermarkActionBtn" );
+			m_WidgetEventHandler.RegisterOnClick(watermarkBtn, m_watermarkHandler, "OnWatermarkClick");
+			watermarkWidget.RemoveChild(watermarkBase);
+			ingameMenu.GetLayoutRoot().AddChild(watermarkBase, true);
+			delete watermarkWidget;
 		}
 	}
 };
