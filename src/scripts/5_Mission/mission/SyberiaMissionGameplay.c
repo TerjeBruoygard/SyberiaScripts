@@ -6,6 +6,7 @@ modded class MissionGameplay
 	ref array<int> m_pressedKeys;
 	ref array<ref ToxicZoneView> m_toxicZonesView;
 	float m_toxicZoneUpdateTimer;
+	bool m_isPveIntruderLast;
 	
 	override void OnMissionStart()
 	{
@@ -13,6 +14,7 @@ modded class MissionGameplay
 		super.OnMissionStart();
 		m_pressedKeys = new array<int>;
 		m_toxicZoneUpdateTimer = 0;
+		m_isPveIntruderLast = false;
 		
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CONCUSSION).Start();
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE).Start();
@@ -143,26 +145,26 @@ modded class MissionGameplay
 				m_Hud.DisplayNotifier(NTFKEY_SLEEPING, player.GetSleepingTendency(), player.GetSleepingState());
 				m_Hud.DisplayNotifier(NTFKEY_MINDSTATE, player.GetMindStateTendency(), player.GetMindState());
 				
-				m_Hud.DisplayBadge(NTFKEY_BULLETHIT, player.m_bulletHits);
-				m_Hud.DisplayBadge(NTFKEY_KNIFEHIT, player.m_knifeHits);
-				m_Hud.DisplayBadge(NTFKEY_HEMATOMA, player.m_hematomaHits);
-				m_Hud.DisplayBadge(NTFKEY_VISCERADMG, player.m_visceraHit);
-				m_Hud.DisplayBadge(NTFKEY_CONCUSSION, player.m_concussionHit);
+				m_Hud.DisplayBadge(NTFKEY_BULLETHIT, player.GetSybStats().m_bulletHits);
+				m_Hud.DisplayBadge(NTFKEY_KNIFEHIT, player.GetSybStats().m_knifeHits);
+				m_Hud.DisplayBadge(NTFKEY_HEMATOMA, player.GetSybStats().m_hematomaHits);
+				m_Hud.DisplayBadge(NTFKEY_VISCERADMG, player.GetSybStats().m_visceraHit);
+				m_Hud.DisplayBadge(NTFKEY_CONCUSSION, player.GetSybStats().m_concussionHit);
 				m_Hud.DisplayBadge(NTFKEY_PAIN, player.GetCurrentPainLevel());
-				m_Hud.DisplayBadge(NTFKEY_PAINKILLER, player.m_painkillerEffect);
-				m_Hud.DisplayBadge(NTFKEY_ANTIBIOTIC, player.m_antibioticsLevel);
-				m_Hud.DisplayBadge(NTFKEY_STOMATCHHEAL, player.m_stomatchhealLevel);
+				m_Hud.DisplayBadge(NTFKEY_PAINKILLER, player.GetSybStats().m_painkillerEffect);
+				m_Hud.DisplayBadge(NTFKEY_ANTIBIOTIC, player.GetSybStats().m_antibioticsLevel);
+				m_Hud.DisplayBadge(NTFKEY_STOMATCHHEAL, player.GetSybStats().m_stomatchhealLevel);
 				m_Hud.DisplayBadge(NTFKEY_SEPSIS, player.HasVisibleSepsis());
 				m_Hud.DisplayBadge(NTFKEY_ZVIRUS, player.HasVisibleZVirus());
-				m_Hud.DisplayBadge(NTFKEY_BANDAGE1, player.m_bulletBandage1 + player.m_knifeBandage1);
-				m_Hud.DisplayBadge(NTFKEY_BANDAGE2, player.m_bulletBandage2 + player.m_knifeBandage2);
-				m_Hud.DisplayBadge(NTFKEY_HEMOSTATIC, player.m_bloodHemostaticEffect);
-				m_Hud.DisplayBadge(NTFKEY_HEMATOPOIESIS, player.m_hematopoiesisEffect);
-				m_Hud.DisplayBadge(NTFKEY_USESALVE, player.m_salveEffect);
-				m_Hud.DisplayBadge(NTFKEY_ADRENALIN, player.m_adrenalinEffect);
-				m_Hud.DisplayBadge(NTFKEY_OVERDOSED, (int)Math.Floor(Math.Clamp(player.m_overdosedValue, 0, 3)));
-				m_Hud.DisplayBadge(NTFKEY_INFLUENZA, player.m_influenzaLevel);
-				m_Hud.DisplayBadge(NTFKEY_STOMATCHPOISONING, player.m_stomatchpoisonLevel);
+				m_Hud.DisplayBadge(NTFKEY_BANDAGE1, player.GetSybStats().m_bulletBandage1 + player.GetSybStats().m_knifeBandage1);
+				m_Hud.DisplayBadge(NTFKEY_BANDAGE2, player.GetSybStats().m_bulletBandage2 + player.GetSybStats().m_knifeBandage2);
+				m_Hud.DisplayBadge(NTFKEY_HEMOSTATIC, player.GetSybStats().m_bloodHemostaticEffect);
+				m_Hud.DisplayBadge(NTFKEY_HEMATOPOIESIS, player.GetSybStats().m_hematopoiesisEffect);
+				m_Hud.DisplayBadge(NTFKEY_USESALVE, player.GetSybStats().m_salveEffect);
+				m_Hud.DisplayBadge(NTFKEY_ADRENALIN, player.GetSybStats().m_adrenalinEffect);
+				m_Hud.DisplayBadge(NTFKEY_OVERDOSED, player.GetSybStats().m_overdosedLevel);
+				m_Hud.DisplayBadge(NTFKEY_INFLUENZA, player.GetSybStats().m_influenzaLevel);
+				m_Hud.DisplayBadge(NTFKEY_STOMATCHPOISONING, player.GetSybStats().m_stomatchpoisonLevel);
 				m_Hud.DisplayBadge(NTFKEY_RADIATIONSICKNESS, player.GetRadiationSicknessLevel());
 				m_Hud.DisplayBadge(NTFKEY_RADIOPROTECTION, player.GetRadioprotectionLevel());
 				m_Hud.DisplayBadge(NTFKEY_DISINFECTED, player.HasDisinfectedHands());
@@ -188,14 +190,14 @@ modded class MissionGameplay
 		float cateyesValue = player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STEALTH_CAT_VISSION, 0, 0);
 		PPERequester_CatEyes.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CATEYES)).SetValue(cateyesValue);	
 		
-		float overdosedEffect = Math.Clamp((player.m_overdosedValue - 1.0) * 0.1, 0, 0.3);
+		float overdosedEffect = Math.Clamp((player.GetSybStats().m_overdosedValue - 1.0) * 0.1, 0, 0.3);
 		PPERequester_SybOverdose.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE)).SetOverdosedEffect(overdosedEffect);
 		
 		float painEffect = Math.Clamp(player.GetCurrentPainLevel() * 0.1, 0, 0.3);
 		PPERequester_SybPain.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PAIN)).SetPainEffect(painEffect);	
 		PPERequester_SybRadiation.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_RADIATION)).SetRadiationEffect(player.GetRadiationSicknessLevel());
 		
-		float concussionEffect = Math.Clamp(((int)player.m_concussionHit) * 0.1, 0, 0.1);
+		float concussionEffect = Math.Clamp(((int)player.GetSybStats().m_concussionHit) * 0.1, 0, 0.1);
 		PPERequester_SybConcussion.Cast(PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CONCUSSION)).SetConcussionEffect(concussionEffect);
 		
 		SyberiaSleepingLevel sleepingLevel = player.GetSleepingProcessLevel();
@@ -265,9 +267,9 @@ modded class MissionGameplay
 	
 	private void OnUpdatePveIntruderState(PlayerBase player, float deltaTime)
 	{
-		if (player.m_isPveIntruder && !player.m_isPveIntruderLast)
+		if (player.GetSybStats().m_isPveIntruder && !m_isPveIntruderLast)
 		{
-			player.m_isPveIntruderLast = true;
+			m_isPveIntruderLast = true;
 			ShowScreenMessage("#syb_pve_intrude", 10);
 		}
 	}

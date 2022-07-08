@@ -34,7 +34,7 @@ modded class InjuryAnimationHandler
 			result = radiationSickness;
 		}
 		
-		if (m_Player.m_concussionHit && InjuryLevelToValue(result) < 2)
+		if (m_Player.GetSybStats().m_concussionHit && InjuryLevelToValue(result) < 2)
 		{
 			result = eInjuryHandlerLevels.DAMAGED;
 		}
@@ -80,17 +80,17 @@ modded class InjuryAnimationHandler
 	
 	private eInjuryHandlerLevels CalculateOverdoseState()
 	{
-		if (m_Player.m_overdosedValue > 3)
+		if (m_Player.GetSybStats().m_overdosedLevel > 3)
 		{
 			return eInjuryHandlerLevels.RUINED;
 		}
 		
-		if (m_Player.m_overdosedValue > 2)
+		if (m_Player.GetSybStats().m_overdosedLevel > 2)
 		{
 			return eInjuryHandlerLevels.BADLY_DAMAGED;
 		}
 		
-		if (m_Player.m_overdosedValue > 1)
+		if (m_Player.GetSybStats().m_overdosedLevel > 1)
 		{
 			return eInjuryHandlerLevels.WORN;
 		}

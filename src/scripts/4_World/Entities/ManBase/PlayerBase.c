@@ -3,35 +3,6 @@ modded class PlayerBase
 	// Sleeping
 	int m_lastSleepingValue;
 	int m_sleepingValue;
-	int m_sleepingLevel;
-	
-	// Adv medicine
-	int m_bulletHits;
-	int m_knifeHits;
-	int m_hematomaHits;
-	int m_visceraHit;
-	int m_painLevel;
-	int m_painkillerEffect;
-	int m_sepsis;
-	int m_zombieVirus;
-	int m_bulletBandage1;
-	int m_bulletBandage2;
-	int m_knifeBandage1;
-	int m_knifeBandage2;
-	int m_adrenalinEffect;
-	int m_influenzaLevel;
-	int m_antibioticsLevel;
-	int m_stomatchpoisonLevel;
-	int m_stomatchhealLevel;
-	int m_radiationSickness;
-	int m_radioprotectionLevel;
-	int m_antidepresantLevel;
-	float m_overdosedValue;	
-	bool m_concussionHit;
-	bool m_bloodHemostaticEffect;
-	bool m_hematopoiesisEffect;
-	bool m_salveEffect;
-	bool m_disinfectedHands;
 	
 	// MindState
 	float m_mindStateValue;
@@ -39,110 +10,40 @@ modded class PlayerBase
 	
 	// Skills container
 	ref SkillsContainer m_skills;
-	float m_skillsStealthStepVolume;
-	float m_skillsStealthVoiceVolume;
-	float m_skillsStealthWeaponsVolume;
-	float m_skillsStealthEquipmentVolume;
 	
 	// Current zone
 	ref array<ref ZoneImplementation> m_zones = new array<ref ZoneImplementation>;
-	bool m_isPveIntruder;
-	bool m_isPveIntruderLast;
 	
-	// Misc
-	bool m_isNPC;
+	// Syberia stats (synch context)
+	ref SyberiaPlayerStats m_sybstats;
 	
 	override void Init()
 	{
 		super.Init();
 		
+		// Initialize stats
+		m_sybstats = new SyberiaPlayerStats;
+		m_sybstats.Init();
+		
 		// Sleeping
 		m_lastSleepingValue = GetSyberiaConfig().m_sleepingMaxValue;
 		m_sleepingValue = GetSyberiaConfig().m_sleepingMaxValue;
-		m_sleepingLevel = (int)SyberiaSleepingLevel.SYBSL_NONE;
 		RegisterNetSyncVariableInt("m_lastSleepingValue", 0, GetSyberiaConfig().m_sleepingMaxValue);
 		RegisterNetSyncVariableInt("m_sleepingValue", 0, GetSyberiaConfig().m_sleepingMaxValue);
-		RegisterNetSyncVariableInt("m_sleepingLevel", -4, 2);
-		
-		// Adv medicine
-		m_overdosedValue = 0;
-		m_bulletHits = 0;
-		m_knifeHits = 0;
-		m_hematomaHits = 0;
-		m_visceraHit = 0;
-		m_concussionHit = false;
-		m_painLevel = 0;
-		m_painkillerEffect = 0;
-		m_stomatchpoisonLevel = 0;
-		m_stomatchhealLevel = 0;
-		m_radiationSickness = 0;
-		m_radioprotectionLevel = 0;
-		m_antidepresantLevel = 0;
-		m_sepsis = 0;
-		m_zombieVirus = 0;
-		m_bulletBandage1 = 0;
-		m_bulletBandage2 = 0;
-		m_knifeBandage1 = 0;
-		m_knifeBandage2 = 0;
-		m_bloodHemostaticEffect = false;
-		m_hematopoiesisEffect = false;
-		m_salveEffect = false;
-		m_disinfectedHands = false;
-		m_adrenalinEffect = 0;
-		m_influenzaLevel = 0;
-		m_antibioticsLevel = 0;
-		RegisterNetSyncVariableFloat("m_overdosedValue", 0, 10, 2);
-		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
-		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
-		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);
-		RegisterNetSyncVariableInt("m_visceraHit", 0, 99);
-		RegisterNetSyncVariableInt("m_painLevel", 0, 3);
-		RegisterNetSyncVariableInt("m_painkillerEffect", 0, 3);
-		RegisterNetSyncVariableInt("m_sepsis", 0, 4);
-		RegisterNetSyncVariableInt("m_zombieVirus", 0, 4);		
-		RegisterNetSyncVariableInt("m_bulletBandage1", 0, 99);
-		RegisterNetSyncVariableInt("m_bulletBandage2", 0, 99);
-		RegisterNetSyncVariableInt("m_knifeBandage1", 0, 99);
-		RegisterNetSyncVariableInt("m_knifeBandage2", 0, 99);
-		RegisterNetSyncVariableInt("m_adrenalinEffect", 0, 3);
-		RegisterNetSyncVariableInt("m_influenzaLevel", 0, 3);
-		RegisterNetSyncVariableInt("m_antibioticsLevel", 0, 3);		
-		RegisterNetSyncVariableInt("m_stomatchpoisonLevel", 0, 3);
-		RegisterNetSyncVariableInt("m_stomatchhealLevel", 0, 3);
-		RegisterNetSyncVariableInt("m_radiationSickness", 0, 3);
-		RegisterNetSyncVariableInt("m_radioprotectionLevel", 0, 3);
-		RegisterNetSyncVariableInt("m_antidepresantLevel", 0, 3);
-		
-		RegisterNetSyncVariableBool("m_concussionHit");
-		RegisterNetSyncVariableBool("m_bloodHemostaticEffect");
-		RegisterNetSyncVariableBool("m_hematopoiesisEffect");
-		RegisterNetSyncVariableBool("m_salveEffect");
-		RegisterNetSyncVariableBool("m_disinfectedHands");
-		
+
 		// Mind state
 		m_mindStateValue = GetSyberiaConfig().m_mindstateMaxValue;
 		m_mindStateLast = GetSyberiaConfig().m_mindstateMaxValue;
-		RegisterNetSyncVariableFloat("m_mindStateValue", 0, 0, 2);
-		RegisterNetSyncVariableFloat("m_mindStateLast", 0, 0, 2);
+		RegisterNetSyncVariableFloat("m_mindStateValue");
+		RegisterNetSyncVariableFloat("m_mindStateLast");
+	}
+	
+	override void EEDelete(EntityAI parent)
+	{
+		super.EEDelete(parent);
 		
-		// Skills
-		m_skillsStealthStepVolume = 1;
-		m_skillsStealthVoiceVolume = 1;
-		m_skillsStealthWeaponsVolume = 1;
-		m_skillsStealthEquipmentVolume = 1;
-		RegisterNetSyncVariableFloat("m_skillsStealthStepVolume", 0, 1, 2);
-		RegisterNetSyncVariableFloat("m_skillsStealthVoiceVolume", 0, 1, 2);
-		RegisterNetSyncVariableFloat("m_skillsStealthWeaponsVolume", 0, 1, 2);
-		RegisterNetSyncVariableFloat("m_skillsStealthEquipmentVolume", 0, 1, 2);
-		
-		// Zones
-		m_isPveIntruderLast = false;
-		m_isPveIntruder = false;
-		RegisterNetSyncVariableBool("m_isPveIntruder");
-		
-		// Misc
-		m_isNPC = false;
-		RegisterNetSyncVariableBool("m_isNPC");
+		delete m_sybstats;
+		m_sybstats = null;
 	}
 	
 	override void SetActions(out TInputActionMap InputActionMap)
@@ -177,7 +78,7 @@ modded class PlayerBase
 	
 	override bool IsBleeding()
 	{
-		return super.IsBleeding() || (m_bulletHits > (m_bulletBandage1 + m_bulletBandage2)) || (m_knifeHits > (m_knifeBandage1 + m_knifeBandage2));
+		return super.IsBleeding() || (m_sybstats.m_bulletHits > (m_sybstats.m_bulletBandage1 + m_sybstats.m_bulletBandage2)) || (m_sybstats.m_knifeHits > (m_sybstats.m_knifeBandage1 + m_sybstats.m_knifeBandage2));
 	}
 	
 	override float GetPlayerLoad()
@@ -229,33 +130,33 @@ modded class PlayerBase
 	
 	SyberiaSleepingLevel GetSleepingProcessLevel()
 	{
-		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_ENERGED) return SyberiaSleepingLevel.SYBSL_ENERGED;
-		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_SICK) return SyberiaSleepingLevel.SYBSL_SICK;
-		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_COLD) return SyberiaSleepingLevel.SYBSL_COLD;
-		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_HOT) return SyberiaSleepingLevel.SYBSL_HOT;
-		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_COMFORT) return SyberiaSleepingLevel.SYBSL_COMFORT;
-		if (m_sleepingLevel == SyberiaSleepingLevel.SYBSL_PERFECT) return SyberiaSleepingLevel.SYBSL_PERFECT;
+		if (m_sybstats.m_sleepingLevel == SyberiaSleepingLevel.SYBSL_ENERGED) return SyberiaSleepingLevel.SYBSL_ENERGED;
+		if (m_sybstats.m_sleepingLevel == SyberiaSleepingLevel.SYBSL_SICK) return SyberiaSleepingLevel.SYBSL_SICK;
+		if (m_sybstats.m_sleepingLevel == SyberiaSleepingLevel.SYBSL_COLD) return SyberiaSleepingLevel.SYBSL_COLD;
+		if (m_sybstats.m_sleepingLevel == SyberiaSleepingLevel.SYBSL_HOT) return SyberiaSleepingLevel.SYBSL_HOT;
+		if (m_sybstats.m_sleepingLevel == SyberiaSleepingLevel.SYBSL_COMFORT) return SyberiaSleepingLevel.SYBSL_COMFORT;
+		if (m_sybstats.m_sleepingLevel == SyberiaSleepingLevel.SYBSL_PERFECT) return SyberiaSleepingLevel.SYBSL_PERFECT;
 		return SyberiaSleepingLevel.SYBSL_NONE;
 	}
 	
 	int GetCurrentPainLevel()
 	{
-		if (m_painkillerEffect >= m_painLevel)
+		if (m_sybstats.m_painkillerEffect >= m_sybstats.m_painLevel)
 		{
 			return 0;
 		}
 		
-		return m_painLevel;
+		return m_sybstats.m_painLevel;
 	}
 	
 	bool HasVisibleSepsis()
 	{
-		return m_sepsis > 1;
+		return m_sybstats.m_sepsis > 1;
 	}
 	
 	bool HasVisibleZVirus()
 	{
-		return m_zombieVirus > 1;
+		return m_sybstats.m_zombieVirus > 1;
 	}
 	
 	float GetMindStateValue()
@@ -335,15 +236,15 @@ modded class PlayerBase
 	
 	bool IsSicknesOrInjured()
 	{
-		if (m_bulletHits > 3) return true;
-		if (m_knifeHits > 3) return true;
-		if (m_visceraHit > 0) return true;
+		if (m_sybstats.m_bulletHits > 3) return true;
+		if (m_sybstats.m_knifeHits > 3) return true;
+		if (m_sybstats.m_visceraHit > 0) return true;
 		if (GetCurrentPainLevel() > 1) return true;
-		if (m_sepsis > 1) return true;
-		if (m_zombieVirus > 1) return true;
-		if (m_influenzaLevel > 2) return true;
-		if (m_stomatchpoisonLevel > 1) return true;
-		if (m_overdosedValue > 2) return true;
+		if (m_sybstats.m_sepsis > 1) return true;
+		if (m_sybstats.m_zombieVirus > 1) return true;
+		if (m_sybstats.m_influenzaLevel > 2) return true;
+		if (m_sybstats.m_stomatchpoisonLevel > 1) return true;
+		if (m_sybstats.m_overdosedLevel > 2) return true;
 		if (GetRadiationSicknessLevel() > 0) return true;
 		if (m_mindStateValue < GetSyberiaConfig().m_mindstateLevel4) return true;
 		if (GetStatWater().Get() < PlayerConstants.SL_WATER_LOW) return true;
@@ -358,7 +259,7 @@ modded class PlayerBase
 	
 	bool IsNPC()
 	{
-		return m_isNPC;
+		return m_sybstats.m_isNPC;
 	}
 	
 	bool CanOpenSyberiaUI()
@@ -482,22 +383,27 @@ modded class PlayerBase
 	
 	int GetRadiationSicknessLevel()
 	{
-		return m_radiationSickness;
+		return m_sybstats.m_radiationSickness;
 	}
 	
 	int GetRadioprotectionLevel()
 	{
-		return m_radioprotectionLevel;
+		return m_sybstats.m_radioprotectionLevel;
 	}
 	
 	bool HasDisinfectedHands()
 	{
-		return m_disinfectedHands;
+		return m_sybstats.m_disinfectedHands;
 	}
 	
 	int GetAntidepresantLevel()
 	{
-		return m_antidepresantLevel;
+		return m_sybstats.m_antidepresantLevel;
+	}
+	
+	ref SyberiaPlayerStats GetSybStats()
+	{
+		return m_sybstats;
 	}
 	
 	override void OnUnconsciousUpdate(float pDt, int last_command)
