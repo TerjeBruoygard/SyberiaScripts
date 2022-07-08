@@ -33,7 +33,9 @@ modded class StaminaHandler
 			resultValue = resultValue / (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC, 0, 0));
 		}
 
-		return resultValue * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, 1, 1);
+		resultValue = resultValue * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, 1, 1);
+		resultValue = resultValue * (1.0 + (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0) * 0.25));
+		return resultValue;
 	}
 	
 	override bool HasEnoughStaminaFor(EStaminaConsumers consumer)
@@ -50,6 +52,7 @@ modded class StaminaHandler
 	{
 		float depleteMod = 1;
 		float additionaMod = 1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, 0, 0);
+		additionaMod = additionaMod * (1.0 - (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0) * 0.25));
 		StaminaModifier sm = m_StaminaModifiers.GetModifierData(modifier);
 		if (modifier == EStaminaModifiers.HOLD_BREATH)
 		{
@@ -98,13 +101,17 @@ modded class StaminaHandler
 		case DayZPlayerConstants.MOVEMENTIDX_SPRINT: //sprint
 			if ( pHumanMovementState.m_iStanceIdx == DayZPlayerConstants.STANCEIDX_ERECT )
 			{
-				m_StaminaDelta = -GameConstants.STAMINA_DRAIN_STANDING_SPRINT_PER_SEC * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, 0, 0));
+				m_StaminaDelta = -GameConstants.STAMINA_DRAIN_STANDING_SPRINT_PER_SEC;
+				m_StaminaDelta = m_StaminaDelta * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, 0, 0));
+				m_StaminaDelta = m_StaminaDelta * (1.0 - (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, 0, 0) * 0.25));
 				SetCooldown(GameConstants.STAMINA_REGEN_COOLDOWN_DEPLETION);
 				break;
 			}
 			if ( pHumanMovementState.m_iStanceIdx == DayZPlayerConstants.STANCEIDX_CROUCH)
 			{
-				m_StaminaDelta = -GameConstants.STAMINA_DRAIN_CROUCHED_SPRINT_PER_SEC * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, 0, 0));
+				m_StaminaDelta = -GameConstants.STAMINA_DRAIN_CROUCHED_SPRINT_PER_SEC;
+				m_StaminaDelta = m_StaminaDelta * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, 0, 0));
+				m_StaminaDelta = m_StaminaDelta * (1.0 - (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, 0, 0) * 0.25));
 				SetCooldown(GameConstants.STAMINA_REGEN_COOLDOWN_DEPLETION);
 				break;
 			}
@@ -114,14 +121,18 @@ modded class StaminaHandler
 		case DayZPlayerConstants.MOVEMENTIDX_RUN: //jog
 			if (!m_IsInCooldown)
 			{
-				m_StaminaDelta = (GameConstants.STAMINA_GAIN_JOG_PER_SEC + CalcStaminaGainBonus()) * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, 1, 1);
+				m_StaminaDelta = (GameConstants.STAMINA_GAIN_JOG_PER_SEC + CalcStaminaGainBonus());
+				m_StaminaDelta = m_StaminaDelta * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, 1, 1);
+				m_StaminaDelta = m_StaminaDelta * (1.0 + (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, 0, 0) * 0.25));
 			}
 		break;
 			
 		case DayZPlayerConstants.MOVEMENTIDX_WALK: //walk
 			if (!m_IsInCooldown)
 			{
-				m_StaminaDelta = (GameConstants.STAMINA_GAIN_WALK_PER_SEC + CalcStaminaGainBonus()) * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, 1, 1);
+				m_StaminaDelta = (GameConstants.STAMINA_GAIN_WALK_PER_SEC + CalcStaminaGainBonus());
+				m_StaminaDelta = m_StaminaDelta * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, 1, 1);
+				m_StaminaDelta = m_StaminaDelta * (1.0 + (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, 0, 0) * 0.25));
 			}
 		break;
 			
@@ -151,7 +162,9 @@ modded class StaminaHandler
 		switch ( pHumanMovementState.m_iMovement )
 		{
 		case 3: //swim fast
-			m_StaminaDelta = -GameConstants.STAMINA_DRAIN_SWIM_FAST_PER_SEC * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_SPRINT_DEC, 0, 0));
+			m_StaminaDelta = -GameConstants.STAMINA_DRAIN_SWIM_FAST_PER_SEC;
+			m_StaminaDelta = m_StaminaDelta * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_SPRINT_DEC, 0, 0));
+			m_StaminaDelta = m_StaminaDelta * (1.0 - (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_INC, 0, 0) * 0.25));
 			SetCooldown(GameConstants.STAMINA_REGEN_COOLDOWN_DEPLETION);
 			break;
 		break;
@@ -159,7 +172,9 @@ modded class StaminaHandler
 		case 2: //swim slow
 			if (!m_IsInCooldown)
 			{
-				m_StaminaDelta = (GameConstants.STAMINA_GAIN_SWIM_PER_SEC + CalcStaminaGainBonus()) * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_INC, 1, 1);
+				m_StaminaDelta = (GameConstants.STAMINA_GAIN_SWIM_PER_SEC + CalcStaminaGainBonus());
+				m_StaminaDelta = m_StaminaDelta * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_INC, 1, 1);
+				m_StaminaDelta = m_StaminaDelta * (1.0 + (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_SPRINT_DEC, 0, 0) * 0.25));
 			}
 		break;
 			
@@ -177,7 +192,9 @@ modded class StaminaHandler
 		switch ( pHumanMovementState.m_iMovement )
 		{
 		case 2: //climb up (fast)
-			m_StaminaDelta = -GameConstants.STAMINA_DRAIN_LADDER_FAST_PER_SEC * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_SPRINT_DEC, 0, 0));
+			m_StaminaDelta = -GameConstants.STAMINA_DRAIN_LADDER_FAST_PER_SEC;
+			m_StaminaDelta = m_StaminaDelta * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_SPRINT_DEC, 0, 0));
+			m_StaminaDelta = m_StaminaDelta * (1.0 - (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_INC, 0, 0) * 0.25));
 			SetCooldown(GameConstants.STAMINA_REGEN_COOLDOWN_DEPLETION);
 			break;
 		break;
@@ -185,7 +202,9 @@ modded class StaminaHandler
 		case 1: //climb up (slow)
 			if (!m_IsInCooldown)
 			{
-				m_StaminaDelta = (GameConstants.STAMINA_GAIN_LADDER_PER_SEC + CalcStaminaGainBonus()) * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_INC, 1, 1);
+				m_StaminaDelta = (GameConstants.STAMINA_GAIN_LADDER_PER_SEC + CalcStaminaGainBonus());
+				m_StaminaDelta = m_StaminaDelta * m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_INC, 1, 1);
+				m_StaminaDelta = m_StaminaDelta * (1.0 + (m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_SPRINT_DEC, 0, 0) * 0.25));
 			}
 		break;
 			
@@ -200,6 +219,6 @@ modded class StaminaHandler
 	
 	override protected void SetCooldown(float time, int modifier = -1)
 	{
-		super.SetCooldown(time * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_COLDOWN_DEC, 0, 0)), modifier);
+		super.SetCooldown(time * 2.5 * (1.0 - m_Player.GetPerkFloatValue(SyberiaPerkType.SYBPERK_ATHLETICS_COLDOWN_DEC, 0, 0)), modifier);
 	}
 };

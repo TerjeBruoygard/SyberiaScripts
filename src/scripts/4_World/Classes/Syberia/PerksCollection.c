@@ -201,14 +201,14 @@ class PerksCollection
         //
         // ATHLETICS
         //
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, "%").AddUnlockValue(1, 5).AddUnlockValue(12, 10).AddUnlockValue(30, 20).AddUnlockValue(50, 30).AddUnlockValue(70, 40).AddUnlockValue(90, 50).AddUnlockValue(100, 80);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SPRINT_DEC, "%").AddUnlockValue(1, 10).AddUnlockValue(12, 20).AddUnlockValue(30, 30).AddUnlockValue(50, 40).AddUnlockValue(70, 50).AddUnlockValue(90, 70).AddUnlockValue(100, 90);
         Register(SyberiaPerkType.SYBPERK_ATHLETICS_JOG_INC, "%").AddUnlockValue(1, 10).AddUnlockValue(12, 20).AddUnlockValue(30, 30).AddUnlockValue(50, 40).AddUnlockValue(70, 50).AddUnlockValue(90, 70).AddUnlockValue(100, 100);
         
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_SPRINT_DEC, "%").AddUnlockValue(3, 10).AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 40).AddUnlockValue(75, 80);
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_INC, "%").AddUnlockValue(3, 10).AddUnlockValue(15, 20).AddUnlockValue(35, 30).AddUnlockValue(55, 40).AddUnlockValue(75, 80);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_SPRINT_DEC, "%").AddUnlockValue(3, 20).AddUnlockValue(15, 35).AddUnlockValue(35, 50).AddUnlockValue(55, 70).AddUnlockValue(75, 90);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_SWIM_INC, "%").AddUnlockValue(3, 20).AddUnlockValue(15, 35).AddUnlockValue(35, 50).AddUnlockValue(55, 70).AddUnlockValue(75, 90);
         
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_SPRINT_DEC, "%").AddUnlockValue(6, 10).AddUnlockValue(18, 20).AddUnlockValue(40, 30).AddUnlockValue(60, 40).AddUnlockValue(80, 80);
-        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_INC, "%").AddUnlockValue(6, 10).AddUnlockValue(18, 20).AddUnlockValue(40, 30).AddUnlockValue(60, 40).AddUnlockValue(80, 80);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_SPRINT_DEC, "%").AddUnlockValue(6, 20).AddUnlockValue(18, 35).AddUnlockValue(40, 50).AddUnlockValue(60, 70).AddUnlockValue(80, 90);
+        Register(SyberiaPerkType.SYBPERK_ATHLETICS_LADDER_INC, "%").AddUnlockValue(6, 20).AddUnlockValue(18, 35).AddUnlockValue(40, 50).AddUnlockValue(60, 70).AddUnlockValue(80, 90);
         
         Register(SyberiaPerkType.SYBPERK_ATHLETICS_BREATH_DEC, "%").AddUnlockValue(9, 10).AddUnlockValue(22, 20).AddUnlockValue(45, 30).AddUnlockValue(65, 40).AddUnlockValue(85, 50).AddUnlockValue(95, 80).AddUnlockValue(100, 120);
         Register(SyberiaPerkType.SYBPERK_ATHLETICS_IDDLE_INC, "%").AddUnlockValue(9, 10).AddUnlockValue(22, 20).AddUnlockValue(45, 30).AddUnlockValue(65, 40).AddUnlockValue(85, 50).AddUnlockValue(95, 80).AddUnlockValue(100, 120);
@@ -218,17 +218,17 @@ class PerksCollection
         //
         // STRENGTH
         //
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, "%").AddUnlockValue(1, 5).AddUnlockValue(18, 10).AddUnlockValue(36, 15).AddUnlockValue(50, 20).AddUnlockValue(65, 30).AddUnlockValue(76, 40).AddUnlockValue(88, 50).AddUnlockValue(100, 75);
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, "%").AddUnlockValue(1, 5).AddUnlockValue(18, 10).AddUnlockValue(36, 15).AddUnlockValue(50, 20).AddUnlockValue(65, 30).AddUnlockValue(76, 40).AddUnlockValue(88, 50).AddUnlockValue(100, 75);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, "%").AddUnlockValue(1, 10).AddUnlockValue(18, 20).AddUnlockValue(36, 30).AddUnlockValue(50, 40).AddUnlockValue(65, 50).AddUnlockValue(76, 60).AddUnlockValue(88, 70).AddUnlockValue(100, 90);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, "%").AddUnlockValue(1, 10).AddUnlockValue(18, 20).AddUnlockValue(36, 30).AddUnlockValue(50, 40).AddUnlockValue(65, 50).AddUnlockValue(76, 60).AddUnlockValue(88, 70).AddUnlockValue(100, 90);
         
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, "%").AddUnlockValue(3, 5).AddUnlockValue(24, 10).AddUnlockValue(40, 20).AddUnlockValue(54, 30).AddUnlockValue(68, 40).AddUnlockValue(79, 50).AddUnlockValue(90, 60);
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_BLOCK_STAMINA_DEC, "%").AddUnlockValue(3, 5).AddUnlockValue(24, 10).AddUnlockValue(40, 20).AddUnlockValue(54, 30).AddUnlockValue(68, 40).AddUnlockValue(79, 50).AddUnlockValue(90, 60);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_JUMP_STAMINA_DEC, "%").AddUnlockValue(3, 20).AddUnlockValue(24, 30).AddUnlockValue(40, 40).AddUnlockValue(54, 50).AddUnlockValue(68, 60).AddUnlockValue(79, 70).AddUnlockValue(90, 80);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_BLOCK_STAMINA_DEC, "%").AddUnlockValue(3, 20).AddUnlockValue(24, 30).AddUnlockValue(40, 40).AddUnlockValue(54, 50).AddUnlockValue(68, 60).AddUnlockValue(79, 70).AddUnlockValue(90, 80);
         
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_FAST_ATTACK_STAMINA_DEC, "%").AddUnlockValue(5, 5).AddUnlockValue(28, 10).AddUnlockValue(43, 20).AddUnlockValue(58, 30).AddUnlockValue(70, 40).AddUnlockValue(82, 50).AddUnlockValue(93, 60);
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_FAST_ATTACK_STRENGTH, "%").AddUnlockValue(5, 5).AddUnlockValue(28, 10).AddUnlockValue(43, 20).AddUnlockValue(58, 30).AddUnlockValue(70, 40).AddUnlockValue(82, 50).AddUnlockValue(93, 60);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_FAST_ATTACK_STAMINA_DEC, "%").AddUnlockValue(5, 20).AddUnlockValue(28, 30).AddUnlockValue(43, 40).AddUnlockValue(58, 50).AddUnlockValue(70, 60).AddUnlockValue(82, 70).AddUnlockValue(93, 80);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_FAST_ATTACK_STRENGTH, "%").AddUnlockValue(5, 20).AddUnlockValue(28, 30).AddUnlockValue(43, 40).AddUnlockValue(58, 50).AddUnlockValue(70, 60).AddUnlockValue(82, 70).AddUnlockValue(93, 80);
         
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC, "%").AddUnlockValue(12, 5).AddUnlockValue(32, 10).AddUnlockValue(47, 20).AddUnlockValue(62, 30).AddUnlockValue(73, 40).AddUnlockValue(85, 50).AddUnlockValue(97, 60);
-        Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STRENGTH, "%").AddUnlockValue(12, 5).AddUnlockValue(32, 10).AddUnlockValue(47, 20).AddUnlockValue(62, 30).AddUnlockValue(73, 40).AddUnlockValue(85, 50).AddUnlockValue(97, 60);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STAMINA_DEC, "%").AddUnlockValue(12, 20).AddUnlockValue(32, 30).AddUnlockValue(47, 40).AddUnlockValue(62, 50).AddUnlockValue(73, 640).AddUnlockValue(85, 70).AddUnlockValue(97, 80);
+        Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ATTACK_STRENGTH, "%").AddUnlockValue(12, 20).AddUnlockValue(32, 30).AddUnlockValue(47, 40).AddUnlockValue(62, 50).AddUnlockValue(73, 60).AddUnlockValue(85, 70).AddUnlockValue(97, 80);
         
         Register(SyberiaPerkType.SYBPERK_STRENGTH_KNOCKOUT_HEAVY_ITEMS).AddUnlockValue(100, 1);
         Register(SyberiaPerkType.SYBPERK_STRENGTH_HEAVY_ITEMS).AddUnlockValue(8, 1);
