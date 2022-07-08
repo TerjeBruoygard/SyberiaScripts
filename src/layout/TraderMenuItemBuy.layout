@@ -83,6 +83,98 @@ FrameWidgetClass rootFrame {
        font "gui/fonts/etelkatextpro16"
        "text halign" right
       }
+      PanelWidgetClass MinusActionBackground {
+       ignorepointer 1
+       color 0.098 0.098 0.098 0.3529
+       position 90 35
+       size 20 20
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        ButtonWidgetClass MinusActionBtn {
+         color 0.0627 0.0627 0.0627 0.3294
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style EmptyHighlight
+         {
+          TextWidgetClass TextWidget0 {
+           ignorepointer 1
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "-"
+           font "gui/fonts/metron-bold22"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+      PanelWidgetClass PlusActionBackground {
+       ignorepointer 1
+       color 0.098 0.098 0.098 0.3529
+       position 230 35
+       size 20 20
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        ButtonWidgetClass PlusActionBtn {
+         color 0.0627 0.0627 0.0627 0.3294
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style EmptyHighlight
+         {
+          TextWidgetClass TextWidget2 {
+           ignorepointer 1
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "+"
+           font "gui/fonts/metron-bold22"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+      TextWidgetClass ItemSelectedCountWidget {
+       ignorepointer 1
+       position 120 35
+       size 100 20
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "0"
+       font "gui/fonts/etelkatextpro16"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
      }
     }
    }
