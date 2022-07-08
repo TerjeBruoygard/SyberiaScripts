@@ -22,22 +22,26 @@ class BuildingDoorBase extends BuildingLeveledElement
 	}
 };
 
-class BuildingDoor_T1_L1 extends BuildingDoorBase
-{
-};
+class BuildingDoor_T1_L1 extends BuildingDoorBase { };
+class BuildingDoor_T1_L2 extends BuildingDoorBase { };
+class BuildingDoor_T1_L3 extends BuildingDoorBase { };
+class BuildingDoor_T1_L4 extends BuildingDoorBase { };
+class BuildingDoor_T1_L5 extends BuildingDoorBase { };
 
-class BuildingDoor_T1_L2 extends BuildingDoorBase
-{
-};
+class BuildingDoor_T2_L1 extends BuildingDoorBase { };
+class BuildingDoor_T2_L2 extends BuildingDoorBase { };
+class BuildingDoor_T2_L3 extends BuildingDoorBase { };
+class BuildingDoor_T2_L4 extends BuildingDoorBase { };
+class BuildingDoor_T2_L5 extends BuildingDoorBase { };
 
-class BuildingDoor_T1_L3 extends BuildingDoorBase
-{
-};
+class BuildingDoor_T3_L1 extends BuildingDoorBase { };
+class BuildingDoor_T3_L2 extends BuildingDoorBase { };
+class BuildingDoor_T3_L3 extends BuildingDoorBase { };
+class BuildingDoor_T3_L4 extends BuildingDoorBase { };
+class BuildingDoor_T3_L5 extends BuildingDoorBase { };
 
-class BuildingDoor_T1_L4 extends BuildingDoorBase
-{
-};
-
-class BuildingDoor_T1_L5 extends BuildingDoorBase
-{
-};
+class BuildingDoor_T4_L1 extends BuildingDoorBase { };
+class BuildingDoor_T4_L2 extends BuildingDoorBase { };
+class BuildingDoor_T4_L3 extends BuildingDoorBase { };
+class BuildingDoor_T4_L4 extends BuildingDoorBase { };
+class BuildingDoor_T4_L5 extends BuildingDoorBase { };
