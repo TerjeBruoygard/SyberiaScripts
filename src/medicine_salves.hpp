@@ -10,6 +10,7 @@ class SalveBase : Inventory_Base
     varQuantityMax=5;
     varQuantityDestroyOnMin=1;
     absorbency=0;
+    overdosedIncrement=0.01;
     hiddenSelections[]=
     {
         "zbytek"

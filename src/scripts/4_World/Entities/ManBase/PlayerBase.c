@@ -23,6 +23,7 @@ modded class PlayerBase
 	int m_knifeBandage1;
 	int m_knifeBandage2;
 	int m_adrenalinEffect;
+	float m_overdosedValue;
 	
 	bool m_concussionHit;
 	bool m_stomatchhealEffect;
@@ -47,6 +48,7 @@ modded class PlayerBase
 		RegisterNetSyncVariableInt("m_sleepingBoostValue");
 		
 		// Adv medicine
+		m_overdosedValue = 0;
 		m_bulletHits = 0;
 		m_knifeHits = 0;
 		m_hematomaHits = 0;
@@ -68,6 +70,7 @@ modded class PlayerBase
 		m_hematopoiesisEffect = false;
 		m_salveEffect = false;
 		m_adrenalinEffect = 0;
+		RegisterNetSyncVariableFloat("m_overdosedValue");
 		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
 		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);

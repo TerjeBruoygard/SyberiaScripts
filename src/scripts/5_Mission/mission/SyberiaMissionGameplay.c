@@ -63,6 +63,7 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_HEMATOPOIESIS, badgets, "Hematopoiesis");
 				m_Hud.InitBadgetWidget(NTFKEY_USESALVE, badgets, "UseSalve");
 				m_Hud.InitBadgetWidget(NTFKEY_ADRENALIN, badgets, "Adrenalin");
+				m_Hud.InitBadgetWidget(NTFKEY_OVERDOSED, badgets, "Overdosed");
 			}
 		}
 	}
@@ -101,6 +102,7 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_HEMATOPOIESIS, player.m_hematopoiesisEffect);
 				m_Hud.DisplayBadge(NTFKEY_USESALVE, player.m_salveEffect);
 				m_Hud.DisplayBadge(NTFKEY_ADRENALIN, player.m_adrenalinEffect);
+				m_Hud.DisplayBadge(NTFKEY_OVERDOSED, (int)Math.Floor(Math.Clamp(player.m_overdosedValue, 0, 3)));
 			}
 			
 			OnUpdateAdvMedicineGUI(player, timeslice);
@@ -109,7 +111,12 @@ modded class MissionGameplay
 	
 	private void OnUpdateAdvMedicineGUI(PlayerBase player, float deltaTime)
 	{		
-		if (player.GetCurrentPainLevel() > 1)
+		if (player.m_overdosedValue > 1)
+		{
+			float overdosedEffect = Math.Clamp(player.m_overdosedValue * 20, 0, 100);
+			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur + deltaTime, 0, overdosedEffect);
+		}
+		else if (player.GetCurrentPainLevel() > 1)
 		{			
 			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur + deltaTime, 0, player.m_painLevel * 10);
 		}

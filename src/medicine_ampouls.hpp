@@ -22,6 +22,7 @@ class SyberiaMedicineAmpoule : Inventory_Base
     varQuantityMax=4;
     varQuantityDestroyOnMin=1;
     absorbency=0;
+    overdosedIncrement=0.25;
     hiddenSelections[]=
     {
         "zbytek"
@@ -34,6 +35,7 @@ class AmpouleAlcohol : SyberiaMedicineAmpoule
     displayName="#syb_alcohol_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
+    overdosedIncrement=10;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -48,6 +50,7 @@ class AmpouleHihlofos : SyberiaMedicineAmpoule
     displayName="#syb_dihlofos_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
+    overdosedIncrement=10;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
@@ -62,6 +65,7 @@ class AmpouleCypermetrin : SyberiaMedicineAmpoule
     displayName="#syb_cypermetrin_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
+    overdosedIncrement=10;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
@@ -76,6 +80,7 @@ class AmpouleDiazinon : SyberiaMedicineAmpoule
     displayName="#syb_diazinon_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
+    overdosedIncrement=10;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
@@ -90,6 +95,7 @@ class AmpouleArsenic : SyberiaMedicineAmpoule
     displayName="#syb_arsenic_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHemologicShock=1;
+    overdosedIncrement=10;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
@@ -165,6 +171,7 @@ class AmpoulePropofol : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medPainkillerLevel=3;
     medPainkillerTimeSec=800;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
@@ -180,6 +187,7 @@ class AmpouleTiopental : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medPainkillerLevel=3;
     medPainkillerTimeSec=600;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
@@ -195,6 +203,7 @@ class AmpouleKetamin : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medPainkillerLevel=3;
     medPainkillerTimeSec=300;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
@@ -240,6 +249,7 @@ class AmpouleSodiumOxybutirate : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medPainkillerLevel=3;
     medPainkillerTimeSec=1200;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -319,6 +329,7 @@ class AmpouleHeptral : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medStomatchhealLevel=2;
     medStomatchhealTimeSec=1200;
+    overdosedIncrement=0.3;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -338,6 +349,7 @@ class AmpouleCylaspen : SyberiaMedicineAmpoule
     medAntibioticLevel=2;
     medAntibioticsTimeSec=600;
     medAntibioticsStrength=2.0;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -354,6 +366,7 @@ class AmpouleGrimipenem : SyberiaMedicineAmpoule
     medAntibioticLevel=2;
     medAntibioticsTimeSec=500;
     medAntibioticsStrength=1.8;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -370,6 +383,7 @@ class AmpouleZeftriaxon : SyberiaMedicineAmpoule
     medAntibioticLevel=2;
     medAntibioticsTimeSec=600;
     medAntibioticsStrength=1.8;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
@@ -386,6 +400,7 @@ class AmpouleErytromicyn : SyberiaMedicineAmpoule
     medAntibioticLevel=2;
     medAntibioticsTimeSec=1000;
     medAntibioticsStrength=2.0;
+    overdosedIncrement=0.45;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
@@ -402,6 +417,7 @@ class AmpouleFlemoclav : SyberiaMedicineAmpoule
     medAntibioticLevel=2;
     medAntibioticsTimeSec=1400;
     medAntibioticsStrength=2.5;
+    overdosedIncrement=0.45;
     medRemoveSepsis=1;
     hiddenSelectionsTextures[]=
     {
@@ -419,6 +435,7 @@ class AmpouleOcsacylin : SyberiaMedicineAmpoule
     medAntibioticLevel=2;
     medAntibioticsTimeSec=300;
     medAntibioticsStrength=2.7;
+    overdosedIncrement=0.5;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
@@ -435,6 +452,7 @@ class AmpouleImipenem : SyberiaMedicineAmpoule
     medAntibioticLevel=2;
     medAntibioticsTimeSec=1200;
     medAntibioticsStrength=3.0;
+    overdosedIncrement=0.55;
     medRemoveSepsis=1;
     hiddenSelectionsTextures[]=
     {
@@ -452,6 +470,7 @@ class AmpouleAmoksivan : SyberiaMedicineAmpoule
     medAntibioticLevel=2;
     medAntibioticsTimeSec=1400;
     medAntibioticsStrength=3.0;
+    overdosedIncrement=0.6;
     medRemoveSepsis=1;
     hiddenSelectionsTextures[]=
     {
@@ -469,6 +488,7 @@ class AmpouleZivirol : SyberiaMedicineAmpoule
     displayName="#syb_zvirus_antidot_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medRemoveZVirus=1;
+    overdosedIncrement=1.8;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
@@ -483,6 +503,7 @@ class AmpouleMeksidol : SyberiaMedicineAmpoule
     displayName="#syb_meksidol_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medConcussionHeal=1;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_green_co.paa"
@@ -497,6 +518,7 @@ class AmpouleActovegin : SyberiaMedicineAmpoule
     displayName="#syb_actovegin_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medConcussionHeal=1;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
@@ -511,6 +533,7 @@ class AmpouleNeiroks : SyberiaMedicineAmpoule
     displayName="#syb_neiroks_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medConcussionHeal=1;
+    overdosedIncrement=0.5;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -528,6 +551,7 @@ class AmpoulePeklitakcel : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHematomaHeal=1;
     medHematomaHealTimeSec=900;
+    overdosedIncrement=0.2;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -543,6 +567,7 @@ class AmpouleNonacogAlpha : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medBloodHemostatic=1;
     medBloodHemostaticTimeSec=600;
+    overdosedIncrement=0.3;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -558,6 +583,7 @@ class AmpouleAminokaprolSulfat : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medBloodHemostatic=1;
     medBloodHemostaticTimeSec=600;
+    overdosedIncrement=0.3;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
@@ -573,6 +599,7 @@ class AmpouleVikasol : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medBloodHemostatic=1;
     medBloodHemostaticTimeSec=800;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
@@ -588,6 +615,7 @@ class AmpouleEtamzilat : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medBloodHemostatic=1;
     medBloodHemostaticTimeSec=1400;
+    overdosedIncrement=0.5;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
@@ -603,6 +631,7 @@ class AmpoulePerftoran : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medBloodHematopoiesis=1;
     medBloodHematopoiesisTimeSec=300;
+    overdosedIncrement=0.3;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_blue_co.paa"
@@ -618,6 +647,7 @@ class AmpouleMaltofer : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medBloodHematopoiesis=1;
     medBloodHematopoiesisTimeSec=600;
+    overdosedIncrement=0.3;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -635,6 +665,7 @@ class AmpouleErytropoenin : SyberiaMedicineAmpoule
     medBloodHematopoiesisTimeSec=900;
     medBloodHemostatic=1;
     medBloodHemostaticTimeSec=900;
+    overdosedIncrement=0.5;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"
@@ -651,6 +682,7 @@ class AmpouleAdrenalin05 : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medAdrenalinLevel=1;
     medAdrenalinTimeSec=900;
+    overdosedIncrement=0.2;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -666,6 +698,7 @@ class AmpouleAdrenalin10 : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medAdrenalinLevel=2;
     medAdrenalinTimeSec=600;
+    overdosedIncrement=0.4;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
@@ -681,6 +714,7 @@ class AmpouleAdrenalin30 : SyberiaMedicineAmpoule
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medAdrenalinLevel=3;
     medAdrenalinTimeSec=300;
+    overdosedIncrement=0.6;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"

@@ -23,6 +23,7 @@ class InjectorBase : Inventory_Base
     rotationFlags=17;
     itemSize[]={1,2};
     weight=60;
+    overdosedIncrement=0.4;
     hiddenSelections[]=
     {
         "zbytek"
@@ -50,6 +51,7 @@ class InjectorZivirol : InjectorBase
     displayName="#syb_zvirus_antidot_name";
     model="SyberiaScripts\data\medical\injector.p3d";
     medRemoveZVirus=1;
+    overdosedIncrement=1.8;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\injector_red_co.paa"
@@ -95,6 +97,7 @@ class InjectorNeiroks : InjectorBase
     displayName="#syb_neiroks_name";
     model="SyberiaScripts\data\medical\injector.p3d";
     medConcussionHeal=1;
+    overdosedIncrement=0.5;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\injector_blue_co.paa"
@@ -112,6 +115,7 @@ class InjectorAmoksivan : InjectorBase
     medAntibioticsTimeSec=1800;
     medAntibioticsStrength=5.0;
     medRemoveSepsis=1;
+    overdosedIncrement=0.6;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\injector_red_co.paa"
@@ -142,6 +146,7 @@ class InjectorEpipen : InjectorBase
     model="SyberiaScripts\data\medical\injector.p3d";
     medAdrenalinLevel=3;
     medAdrenalinTimeSec=300;
+    overdosedIncrement=0.5;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\injector_blue_co.paa"
