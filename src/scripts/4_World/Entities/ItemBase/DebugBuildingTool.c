@@ -27,18 +27,19 @@ class DebugBuildingTool : ItemBase
 		
 		AddAction(ActionDebugBuildingToolNext);
 		AddAction(ActionDebugBuildingToolLink);
-		AddAction(ActionDebugBuildingToolMarker);
+		AddAction(ActionDebugBuildingToolUpgrade);
 		AddAction(ActionDebugBuildingToolObjPos);
 		AddAction(ActionDebugBuildingToolObjRot);
 		AddAction(ActionDebugBuildingToolDoorID);
+		AddAction(ActionDebugBuildingToolElementID);
+		AddAction(ActionDebugBuildingToolMarker);
 		AddAction(ActionDebugBuildingToolSizer);
-		AddAction(ActionDebugBuildingToolUpgrade);
 	}
 	
 	void NextAction()
 	{
 		m_currentAction = m_currentAction + 1;
-		if (m_currentAction >= 7)
+		if (m_currentAction > 7)
 		{
 			m_currentAction = 0;
 		}
@@ -208,6 +209,26 @@ class DebugBuildingTool : ItemBase
 	{
 		int doorIndex = m_linkedHouse.GetDoorIndex(componentIndex);
 		GetGame().CopyToClipboard(doorIndex.ToString());
+	}
+	
+	void GetElementID(BuildingElement element)
+	{
+		int result = -1;
+		if (element)
+		{
+			if (element.IsInherited(BuildingDoorBase))
+			{
+				BuildingDoorBase door = BuildingDoorBase.Cast( element );
+				result = door.GetDoorId();
+			}	
+			else if (element.IsInherited(BuildingWindowBase))
+			{
+				BuildingWindowBase window = BuildingWindowBase.Cast( element );
+				result = window.GetWindowId();
+			}
+		}
+		
+		GetGame().CopyToClipboard( result.ToString() );
 	}
 	
 	void Ruler(vector pos)
