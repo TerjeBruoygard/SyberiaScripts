@@ -1,10 +1,10 @@
 modded class FireplaceBase
 {
-	const float PARAM_FULL_HEAT_RADIUS = 2.5;
-	const float PARAM_HEAT_RADIUS = 5.0;
-	const float PARAM_HEAT_THROUGH_AIR_COEF	= 0.035;
-	const float PARAM_HEAT_THROUGH_AIR_COEF_BOOST = 0.1;
-	const float PARAM_HEAT_ITEM_COEF = 6.0;
+	const float PARAM_FULL_HEAT_RADIUS = 2.0;
+	const float PARAM_HEAT_RADIUS = 4.0;
+	const float PARAM_HEAT_THROUGH_AIR_COEF	= 0.03;
+	const float PARAM_HEAT_THROUGH_AIR_COEF_BOOST = 0.08;
+	const float PARAM_HEAT_ITEM_COEF = 5.0;
 	const float PARAM_HEAT_ITEM_MAX_TEMP = 40.0;
 	
 	override protected void TransferHeatToNearPlayers()
@@ -22,7 +22,7 @@ modded class FireplaceBase
 			{
 				if (PlayerBase.CastTo(player, nearest_object))
 				{
-					if (player.GetStatHeatComfort().Get() < 0)
+					if (player.GetStatHeatComfort().Get() < 0 && vector.Distance(player.GetPosition(), GetPosition()) < 1.5)
 					{
 						player.AddToEnvironmentTemperature( Math.Min( GetTemperature() * PARAM_HEAT_THROUGH_AIR_COEF_BOOST, 60 ) );
 					}
