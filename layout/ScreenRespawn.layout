@@ -1,0 +1,114 @@
+FrameWidgetClass rootFrame {
+ color 0 0 0 1
+ position 0 0
+ size 1 1
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass Background {
+   ignorepointer 1
+   color 0 0 0 1
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    TextWidgetClass SoulsCounter {
+     ignorepointer 1
+     position 0 -20
+     size 500 100
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "99"
+     font "gui/fonts/metron48"
+     "text halign" center
+     "text valign" center
+    }
+    TextWidgetClass SoulsLabel {
+     ignorepointer 1
+     position 0 -100
+     size 500 50
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "#syb_souls"
+     font "gui/fonts/metronlight22"
+     "text halign" center
+     "text valign" center
+    }
+    TextWidgetClass NameLabel {
+     ignorepointer 1
+     position 0 -230
+     size 500 50
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Your Name"
+     font "gui/fonts/metronlight28"
+     "text halign" center
+     "text valign" center
+    }
+    TextWidgetClass RespPrice {
+     ignorepointer 1
+     position 0 100
+     size 500 30
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "#syb_resp_price"
+     font "gui/fonts/metronlight16"
+     "text halign" center
+     "text valign" center
+    }
+    ButtonWidgetClass RespawnBtn {
+     color 0.9529 0 0 1
+     position 0 180
+     size 500 100
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Colorable
+     text "#syb_respawn"
+     font "gui/fonts/metron28"
+     "disabled text color" 0.2353 0.2353 0.2353 1
+    }
+    ButtonWidgetClass RemoveCharBtn {
+     color 0.0588 0.0588 0.0588 1
+     position 0 300
+     size 500 40
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Colorable
+     text "#syb_removechar"
+     font "gui/fonts/metronlight16"
+     "disabled text color" 0.2353 0.2353 0.2353 1
+    }
+   }
+  }
+ }
+}
