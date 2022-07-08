@@ -284,26 +284,31 @@ class ActionDebugBuildingToolDoorID extends ActionSingleUseBase
 		if (!dbt)
 			return false;
 		
-		if ( !dbt.IsHouseSame(House.Cast(target.GetObject())) ) 
-			return false;
-		
 		if (dbt.GetActionID() != 4)
 			return false;
 		
-
-		int doorIndex = dbt.GetLinkedHouse().GetDoorIndex(target.GetComponentIndex());
+		House house = House.Cast( target.GetObject() );
+		if (!house)
+			return false;
+		
+		int doorIndex = house.GetDoorIndex(target.GetComponentIndex());
 		if ( doorIndex != -1 )
 		{
 			return true;
 		}
 
-		return true;
+		return false;
 	}
 	
 	override void OnExecuteClient( ActionData action_data )
 	{
 		DebugBuildingTool dbt = DebugBuildingTool.Cast(action_data.m_MainItem);
-		if (dbt) dbt.GetDoorID(action_data.m_Target.GetComponentIndex());
+		if (dbt)
+		{
+			House house = House.Cast( action_data.m_Target.GetObject() );
+			int doorIndex = house.GetDoorIndex(action_data.m_Target.GetComponentIndex());
+			dbt.GetDoorID(doorIndex);
+		}
 	}
 };
 

@@ -5,7 +5,7 @@ modded class ActionOpenDoors
 		if (super.ActionCondition(player, target, item))
 		{
 			House house;
-			if ( Class.CastTo(house, target.GetObject()) )
+			if ( target.GetObject() && !target.GetObject().IsInherited(BuildingLivespace) && Class.CastTo(house, target.GetObject()) )
 			{
 				int doorIndex = house.GetDoorIndex(target.GetComponentIndex());
 				if (doorIndex != -1)

@@ -8,10 +8,27 @@ class Land_Barn_Wood2_Livespace0: BuildingLivespace
     scope=1;
     model="SyberiaScripts\data\building\barn\barn_wood2_livespace0.p3d";
     simpleHiddenSelections[] = {
+        "l1",
+        "l2",
+        "l3",
         "barricade_l1",
+        "d1_l1",
+        "d1_l2",
+        "d1_l3",
+        "d2_l1",
+        "d2_l2",
+        "d2_l3",
+        "d3_l1",
+        "d3_l2",
+        "d3_l3",
+        "d4_l1",
+        "d4_l2",
+        "d4_l3",
         "d5_l1",
         "d5_l2",
         "d5_l3",
+        "d5_l2_base",
+        "d5_l3_base",
         "d12_l1",
         "d12_l2",
         "d12_l3",
@@ -22,11 +39,11 @@ class Land_Barn_Wood2_Livespace0: BuildingLivespace
     };
     class Doors
     {
-        class Doors1
+        class DoorsTwin1
         {
             displayName="door 1";
-            component="Doors1";
-            soundPos="doors1_action";
+            component="DoorsTwin1";
+            soundPos="doorstwin1_action";
             animPeriod=1;
             initPhase=0;
             initOpened=0.30000001;
@@ -35,37 +52,11 @@ class Land_Barn_Wood2_Livespace0: BuildingLivespace
             soundLocked="doorWoodSlideBigRattle";
             soundOpenABit="doorWoodSlideBigOpenABit";
         };
-        class Doors2
-        {
-            displayName="door 2";
-            component="Doors2";
-            soundPos="doors2_action";
-            animPeriod=1;
-            initPhase=0;
-            initOpened=0.30000001;
-            soundOpen="doorWoodSlideBigOpen";
-            soundClose="doorWoodSlideBigClose";
-            soundLocked="doorWoodSlideBigRattle";
-            soundOpenABit="doorWoodSlideBigOpenABit";
-        };
-        class Doors3
+        class DoorsTwin2
         {
             displayName="door 3";
-            component="Doors3";
-            soundPos="doors3_action";
-            animPeriod=1;
-            initPhase=0;
-            initOpened=0.30000001;
-            soundOpen="doorWoodSlideBigOpen";
-            soundClose="doorWoodSlideBigClose";
-            soundLocked="doorWoodSlideBigRattle";
-            soundOpenABit="doorWoodSlideBigOpenABit";
-        };
-        class Doors4
-        {
-            displayName="door 4";
-            component="Doors4";
-            soundPos="doors4_action";
+            component="DoorsTwin2";
+            soundPos="doorstwin2_action";
             animPeriod=1;
             initPhase=0;
             initOpened=0.30000001;

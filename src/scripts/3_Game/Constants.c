@@ -291,7 +291,7 @@ modded class PlayerConstants
 	static const float GLOVES_DAMAGE_SLIDING_LADDER_PER_SEC = -0.5;// how much damage the gloves receive while sliding down the ladder (per sec)
 
 	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.02;
-	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.001;
+	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.0025;
 	
 	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC = -2;
 	static const float BLOOD_REGEN_RATE_PER_SEC	= 0.05; //base amount of blood regenerated per second 
