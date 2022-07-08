@@ -1,3 +1,32 @@
+class Land_House_1W11
+{
+    class Livespace0
+    {
+        bboxStart[] = {-8.16663, -3.07231, 2.625}; // Bounding box min
+        bboxEnd[] = {3.62695, 0.196213, -6.58398}; // Bounding box max
+        homeBookPos[] = {1.51624, -2.17395, -4.12402}; // BuildingHomeBook position
+        homeBookRot = 255; // BuildingHomeBook yaw rotation
+        class Door0
+        {
+            outerDoor = 1; // Is door from house to outside world
+            maxLevel = 4; // 0 - default, 1 - light wood, 2 - hard wood, 3 - reinforced wood, 4 - metal, 5 - armored
+            size[] = {1.3, 2.3, 0.1};
+        };
+        class Door1
+        {
+            outerDoor = 1;
+        };
+        class Door2
+        {
+            outerDoor = 0;
+        };
+        class Door3
+        {
+            outerDoor = 0;
+        };
+    };
+};
+
 class Land_CementWorks_SiloBig1A
 {
 
@@ -364,11 +393,6 @@ class Land_House_1W10
 };
 
 class Land_House_1W10_Brown
-{
-
-};
-
-class Land_House_1W11
 {
 
 };

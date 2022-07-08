@@ -70,3 +70,23 @@ class SurgicalGloves_ColorBase: Clothing
     varCleannessInit=1;
     medicalItem=1;
 };
+
+class PurificationTablets: Edible_Base
+{
+    medicalItem=1;
+};
+
+class IodineTincture: Edible_Base
+{
+    medicalItem=1;
+};
+
+class DisinfectantAlcohol: Edible_Base
+{
+    medicalItem=1;
+};
+
+class DisinfectantSpray: Edible_Base
+{
+    medicalItem=1;
+};
