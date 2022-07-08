@@ -270,6 +270,14 @@ modded class MissionGameplay
 		Param1<string> clientData;
        	if ( !ctx.Read( clientData ) ) return;	
 		
-		m_SyberiaAdditionalHud.ShowScreenMessage(clientData.param1, 8);
+		ShowScreenMessage(clientData.param1, 8);
+	}
+	
+	override void ShowScreenMessage(string message, float time)
+	{
+		if (m_SyberiaAdditionalHud)
+		{
+			m_SyberiaAdditionalHud.ShowScreenMessage(message, time);
+		}
 	}
 };

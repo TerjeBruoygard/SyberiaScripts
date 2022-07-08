@@ -180,7 +180,7 @@ class PerksCollection
         Register(SyberiaPerkType.SYBPERK_IMMUNITY_HEMATOMA_TIME, "%").AddUnlockValue(3, 5).AddUnlockValue(12, 10).AddUnlockValue(23, 20).AddUnlockValue(34, 30).AddUnlockValue(53, 40).AddUnlockValue(90, 50);
 		Register(SyberiaPerkType.SYBPERK_IMMUNITY_CUTHIT_TIME, "%").AddUnlockValue(3, 5).AddUnlockValue(12, 10).AddUnlockValue(23, 20).AddUnlockValue(34, 30).AddUnlockValue(53, 40).AddUnlockValue(90, 50);
         
-        Register(SyberiaPerkType.SYBPERK_IMMUNITY_SLEEPING_TIME, "%").AddUnlockValue(5, 5).AddUnlockValue(15, 10).AddUnlockValue(25, 20).AddUnlockValue(36, 30).AddUnlockValue(57, 40);
+        Register(SyberiaPerkType.SYBPERK_IMMUNITY_SLEEPING_TIME, "%").AddUnlockValue(5, 10).AddUnlockValue(15, 20).AddUnlockValue(25, 30).AddUnlockValue(36, 50).AddUnlockValue(57, 80).AddUnlockValue(100, 120);
 		Register(SyberiaPerkType.SYBPERK_IMMUNITY_MENTAL_TIME, "%").AddUnlockValue(5, 5).AddUnlockValue(15, 10).AddUnlockValue(25, 20).AddUnlockValue(36, 30).AddUnlockValue(57, 40);
         Register(SyberiaPerkType.SYBPERK_IMMUNITY_OVERDOSE_STRONG, "%").AddUnlockValue(5, 10).AddUnlockValue(15, 20).AddUnlockValue(25, 35).AddUnlockValue(36, 50).AddUnlockValue(57, 75).AddUnlockValue(100, 200);
         

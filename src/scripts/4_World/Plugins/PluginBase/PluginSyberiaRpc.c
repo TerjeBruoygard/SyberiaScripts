@@ -45,6 +45,11 @@ class PluginSyberiaRpc : PluginBase
 	
 	void RegisterHandler(int id, Class instance, string fnc)
 	{
+		if (m_RegisteredRPCs.Contains(id))
+		{
+			m_RegisteredRPCs.Remove(id);
+		}
+		
 		m_RegisteredRPCs.Insert(id, new Param2<Class, string>(instance, fnc));
 	}
 

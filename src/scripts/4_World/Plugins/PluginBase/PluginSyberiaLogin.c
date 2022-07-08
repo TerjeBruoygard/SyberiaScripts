@@ -119,18 +119,38 @@ class PluginSyberiaLogin extends PluginBase
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());		
 		if (player)
 		{
+			ref SkillsContainer newSkills = clientData.param1;
+			int changedSkill = -1;			
 			if (player.m_skills)
 			{ 
+				for (int i = 0; i < SyberiaSkillType.SYBSKILL_TOTALCOUNT; i++)
+				{
+					if (newSkills.GetSkillValueInt(i) > player.m_skills.GetSkillValueInt(i))
+					{
+						changedSkill = i;
+						break;
+					}
+				}
+				
 				delete player.m_skills;
 			}
 			
-			player.m_skills = clientData.param1;
+			player.m_skills = newSkills;
 			
 			DayZPlayerImplement playerImpl = player;
 			if (playerImpl && playerImpl.m_skillsMenu && playerImpl.m_skillsMenu.m_active)
 			{
 				playerImpl.m_skillsMenu.m_refresh = true;
 				playerImpl.m_skillsMenu.m_dirty = true;
+			}
+			
+			if (changedSkill != -1)
+			{
+				MissionBaseWorld mission = MissionBaseWorld.Cast( GetGame().GetMission() );
+				if (mission)
+				{
+					mission.ShowScreenMessage("#syb_skill_up_part1 '#syb_skill" + changedSkill + "' #syb_skill_up_part2 " + newSkills.GetSkillValueInt(changedSkill), 5 );
+				}
 			}
 		}
 	}

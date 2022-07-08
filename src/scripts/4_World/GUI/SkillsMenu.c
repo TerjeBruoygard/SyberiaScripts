@@ -92,8 +92,8 @@ class SkillsMenu extends UIScriptedMenu
 		m_totalLvlText.SetText("#syb_skill" + currentSelection + ": " + currentValue);
 		m_totalLvlDesc.SetText("#syb_skill_desc" + currentSelection);
 		
-		float curLvlValue = Math.AbsFloat(player.m_skills.GetSkillLevelValue(currentSelection));
-		float maxLvlValue = Math.AbsFloat(player.m_skills.GetSkillLevelSize(currentSelection));
+		int curLvlValue = (int)player.m_skills.GetSkillLevelValue(currentSelection);
+		int maxLvlValue = (int)player.m_skills.GetSkillLevelSize(currentSelection);
 		m_currentLvlText.SetText( curLvlValue.ToString() + "/" + maxLvlValue.ToString() );
 		m_currentLvlProgress.SetCurrent( (curLvlValue / maxLvlValue) * 100.0 );
 		
