@@ -21,19 +21,22 @@ modded class ActionSkinning
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		bool result = super.ActionCondition(player, target, item);
-		if (result)
+		Object targetObject = target.GetObject();
+		if ( targetObject != NULL )
 		{
-			AnimalBase animal = AnimalBase.Cast(target.GetObject());
-			if (animal && !animal.IsSkinned())
+			if ( targetObject.CanBeSkinned() )
 			{
-				return true;
-			}
-			
-			Edible_Base edibleBase = Edible_Base.Cast(target.GetObject());
-			if (edibleBase && edibleBase.CanBeSkinned() && !edibleBase.IsSkinned())
-			{
-				return true;
+				AnimalBase animal = AnimalBase.Cast(targetObject);
+				if (animal && !animal.IsSkinned() && !animal.IsAlive())
+				{
+					return true;
+				}
+				
+				Edible_Base edibleBase = Edible_Base.Cast(targetObject);
+				if (edibleBase && !edibleBase.IsSkinned())
+				{
+					return true;
+				}
 			}
 		}
 		

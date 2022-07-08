@@ -10,7 +10,7 @@ modded class AnimalBase
 	
 	override bool CanBeSkinned()
 	{
-		return super.CanBeSkinned() && GetInventory().IsInventoryLocked();
+		return super.CanBeSkinned() && GetInventory().IsInventoryLocked() && !IsAlive();
 	}
 	
 	override bool IsSkinned()
