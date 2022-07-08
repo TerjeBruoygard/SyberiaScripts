@@ -82,7 +82,8 @@ modded class PlayerBase
 	{
 		super.SetActions(InputActionMap);
 		AddAction(ActionSearchTargetInventory, InputActionMap);
-		AddAction(ActionTraderInteract, InputActionMap);	
+		AddAction(ActionTraderInteract, InputActionMap);
+		AddAction(ActionOpenHomebook, InputActionMap);
 	}
 	
 	override void SetActionsRemoteTarget(out TInputActionMap InputActionMap)
