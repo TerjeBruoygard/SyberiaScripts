@@ -405,7 +405,7 @@ FrameWidgetClass GearPDAMenu {
    }
   }
   ImageWidgetClass PageMap {
-   visible 1
+   visible 0
    clipchildren 1
    inheritalpha 0
    ignorepointer 0
@@ -533,7 +533,7 @@ FrameWidgetClass GearPDAMenu {
      vexactsize 1
      style Editor
      "title visible" 1
-     colums ";3;ID;40;Name;57;"
+     colums ";3;ID;20;Name;77;"
      lines 1
      "highlight row" 1
      font "gui/fonts/etelkatextpro14"
