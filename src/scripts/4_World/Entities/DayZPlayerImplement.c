@@ -139,5 +139,29 @@ modded class DayZPlayerImplement
 				}
 			}
 		}
+		
+		UAInput usePDAKey = GetUApi().GetInputByName("UAToggleSyberiaUsePDA");
+		if ( usePDAKey.LocalClick() )
+		{
+			ItemPDA itemPda = ItemPDA.Cast( player.GetItemOnSlot("Armband") );
+			if ( itemPda && !itemPda.IsRuined() && itemPda.HasEnergyManager() && itemPda.GetCompEM().CanWork() )
+			{
+				if (GetGame().IsClient() && player.CanOpenSyberiaUI())
+				{
+					PluginGearPDA pluginGearPDA;
+					Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));					
+					if (pluginGearPDA && !pluginGearPDA.IsOpen())
+					{
+						itemPda.GetCompEM().ConsumeEnergy(0.01);
+						pluginGearPDA.Open();
+					}
+				}
+				
+				if (GetGame().IsServer())
+				{
+					itemPda.GetCompEM().ConsumeEnergy(0.01);
+				}
+			}
+		}
 	}
 };
