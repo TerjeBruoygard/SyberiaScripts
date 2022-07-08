@@ -1,6 +1,6 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
 const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.48b";
+const string Syberia_Version = "OPEN BETA 0.48c";
 
 void SybLog(string message)
 {
@@ -308,6 +308,11 @@ modded class PlayerConstants
 	static const float METABOLIC_SPEED_WATER_WALK		= 0.03;		//water loss per second
 	static const float METABOLIC_SPEED_WATER_JOG		= 0.15;		//water loss per second
 	static const float METABOLIC_SPEED_WATER_SPRINT		= 0.30;		//water loss per second
+	
+	static const float HEALTH_LOSS_HC_PLUS_LOW				= 0.01;
+	static const float HEALTH_LOSS_HC_PLUS_HIGH				= 0.05;			
+	static const float HEALTH_LOSS_HC_MINUS_LOW				= 0.05;
+	static const float HEALTH_LOSS_HC_MINUS_HIGH 			= 0.10;	
 };
 
 modded class GameConstants

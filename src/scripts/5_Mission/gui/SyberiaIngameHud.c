@@ -81,7 +81,7 @@ modded class IngameHud
 		}
 		else if (key == NTFKEY_HEMATOMA)
 		{
-			if (value > 5)
+			if (value > 4)
 			{
 				badgetColor = redColor;
 			}
