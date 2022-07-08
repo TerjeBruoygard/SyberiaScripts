@@ -18,6 +18,7 @@ class SybTraderMenu extends UIScriptedMenu
 	ref SimpleProgressBarWidget m_progressNegative;
 	
 	ref ButtonWidget m_barterBtn;
+	ref MultilineTextWidget m_tradeButtonInfo;
 	
 	ref array<ref Widget> m_sellWidgetsCache = new array<ref Widget>;
 	ref array<ref Widget> m_buyWidgetsCache = new array<ref Widget>;
@@ -28,6 +29,7 @@ class SybTraderMenu extends UIScriptedMenu
 	static ref array<bool> m_filterMemory = new array<bool>;
 	
 	float m_currentBarterProgress = 0;
+	bool m_blockBarter = true;
 	
 	void InitMetadata(int traderId, ref PluginTrader_Trader traderInfo, ref PluginTrader_Data traderData)
 	{
@@ -130,7 +132,16 @@ class SybTraderMenu extends UIScriptedMenu
 		
 		WidgetSetWidth(itemSell, "ItemNameWidget", contentWidth - 220);
 		WidgetTrySetText(itemSell, "ItemNameWidget", item.GetDisplayName());
-		WidgetTrySetText(itemSell, "ItemPriceWidget", pluginTrader.CalculateSellPrice(m_traderInfo, m_traderData, item).ToString());		
+		
+		if (pluginTrader.CanSellItem(m_traderInfo, item))
+		{
+			WidgetTrySetText(itemSell, "ItemPriceWidget", pluginTrader.CalculateSellPrice(m_traderInfo, m_traderData, item).ToString());		
+		}
+		else
+		{
+			WidgetTrySetText(itemSell, "ItemPriceWidget", "-");
+		}
+		
 		UpdateItemInfoDamage(itemSell, item);
 		UpdateItemInfoQuantity(itemSell, item);		
 		m_sellWidgetsCache.Insert(itemSell);
@@ -217,7 +228,16 @@ class SybTraderMenu extends UIScriptedMenu
 		
 		WidgetSetWidth(itemBuy, "ItemNameWidget", contentWidth - 220);
 		WidgetTrySetText(itemBuy, "ItemNameWidget", item.GetDisplayName());
-		WidgetTrySetText(itemBuy, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, classname, actionBtnParam.m_selectedQuantity).ToString());
+		
+		if (pluginTrader.CanBuyItem(m_traderInfo, classname))
+		{
+			WidgetTrySetText(itemBuy, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, classname, actionBtnParam.m_selectedQuantity).ToString());
+		}
+		else
+		{
+			WidgetTrySetText(itemBuy, "ItemPriceWidget", "-");
+		}
+		
 		UpdateItemInfoQuantity(itemBuy, pluginTrader, classname, quantity);					
 		UpdateItemInfoSelectedQuantity(itemBuy, classname, actionBtnParam.m_selectedQuantity, actionBtnParam.m_maxBuyQuantity);
 		
@@ -264,12 +284,34 @@ class SybTraderMenu extends UIScriptedMenu
 		if (!pluginTrader)
 			return;
 		
+		int blockedItemsCounter = 0;
 		float value = 0;
 		ref array<ItemBase> sellResult = new array<ItemBase>;
+		ref map<string, float> sellCounter = new map<string, float>;
 		GetSelectedSellItems(sellResult);
 		foreach (ItemBase sellItem : sellResult)
 		{
-			value = value + pluginTrader.CalculateSellPrice(m_traderInfo, m_traderData, sellItem);
+			if (!sellItem)
+				continue;
+			
+			string classname = sellItem.GetType();
+			if (sellCounter.Contains(classname))
+			{
+				sellCounter.Set( classname, sellCounter.Get(classname) + pluginTrader.CalculateItemQuantity01(sellItem) );
+			}
+			else
+			{
+				sellCounter.Insert( classname, pluginTrader.CalculateItemQuantity01(sellItem) );
+			}
+			
+			if (pluginTrader.CanSellItem(m_traderInfo, sellItem))
+			{
+				value = value + pluginTrader.CalculateSellPrice(m_traderInfo, m_traderData, sellItem);
+			}
+			else
+			{
+				blockedItemsCounter++;
+			}
 		}
 		delete sellResult;
 		
@@ -277,7 +319,14 @@ class SybTraderMenu extends UIScriptedMenu
 		GetSelectedBuyItems(buyResult);
 		foreach (string buyClassname, float buyQuantity : buyResult)
 		{
-			value = value - pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, buyClassname, buyQuantity);
+			if (pluginTrader.CanBuyItem(m_traderInfo, buyClassname))
+			{
+				value = value - pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, buyClassname, buyQuantity);
+			}
+			else
+			{
+				blockedItemsCounter++;
+			}
 		}
 		delete buyResult;
 		
@@ -300,6 +349,24 @@ class SybTraderMenu extends UIScriptedMenu
 			m_progressNegative.SetCurrent(0);
 			m_barterBtn.Enable(true);
 		}
+		
+		if (blockedItemsCounter > 0)
+		{
+			m_tradeButtonInfo.SetText("#syb_trader_block_baditems");
+			m_blockBarter = true;
+		}
+		else if (pluginTrader.HasOversizedSellItems(m_traderInfo, sellCounter))
+		{
+			m_tradeButtonInfo.SetText("#syb_trader_block_toomany");
+			m_blockBarter = true;
+		}
+		else
+		{
+			m_tradeButtonInfo.SetText("");
+			m_blockBarter = false;
+		}
+		
+		delete sellCounter;
 		
 		m_currentBarterProgress = value;
 	}
@@ -363,6 +430,7 @@ class SybTraderMenu extends UIScriptedMenu
 		m_progressPositive = SimpleProgressBarWidget.Cast( layoutRoot.FindAnyWidget( "ProgressPositive" ) );
 		m_progressNegative = SimpleProgressBarWidget.Cast( layoutRoot.FindAnyWidget( "ProgressNegative" ) );
 		m_barterBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "TradeButton" ) );
+		m_tradeButtonInfo = MultilineTextWidget.Cast( layoutRoot.FindAnyWidget( "TradeButtonInfo" ) );
 		
 		m_filterData.Clear();
 		InitializeFilter(layoutRoot, "weapons");
@@ -391,9 +459,9 @@ class SybTraderMenu extends UIScriptedMenu
 		if (m_dirty)
 		{
 			CleanupUI();
-			UpdateCurrentPriceProgress();
 			InitInventorySell();
 			InitInventoryBuy();
+			UpdateCurrentPriceProgress();
 			m_dirty = false;
 		}
 
@@ -610,7 +678,15 @@ class SybTraderMenu extends UIScriptedMenu
 			mainParam.m_selectedQuantity = Math.Min(mainParam.m_selectedQuantity, mainParam.m_maxBuyQuantity);			
 		}
 		
-		WidgetTrySetText(mainWidget, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, mainParam.m_classname, mainParam.m_selectedQuantity).ToString());
+		if (pluginTrader.CanBuyItem(m_traderInfo, mainParam.m_classname))
+		{
+			WidgetTrySetText(mainWidget, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, mainParam.m_classname, mainParam.m_selectedQuantity).ToString());
+		}
+		else
+		{
+			WidgetTrySetText(mainWidget, "ItemPriceWidget", "-");
+		}
+			
 		UpdateItemInfoSelectedQuantity(mainWidget, mainParam.m_classname, mainParam.m_selectedQuantity, mainParam.m_maxBuyQuantity);
 		UpdateCurrentPriceProgress();
 	}
@@ -620,17 +696,22 @@ class SybTraderMenu extends UIScriptedMenu
 		if (m_currentBarterProgress < 0)
 			return;
 		
+		if (m_blockBarter)
+			return;
+
 		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
 		if (!pluginTrader)
 			return;
 		
+		ref map<string, float> buyItems = new map<string, float>;
 		ref array<ItemBase> sellItems = new array<ItemBase>;
 		GetSelectedSellItems(sellItems);
+		if (sellItems.Count() > 0)
+		{			
+			GetSelectedBuyItems(buyItems);			
+			pluginTrader.DoBarter(m_traderId, sellItems, buyItems);
+		}
 		
-		ref map<string, float> buyItems = new map<string, float>;
-		GetSelectedBuyItems(buyItems);
-		
-		pluginTrader.DoBarter(m_traderId, sellItems, buyItems);
 		delete sellItems;
 		delete buyItems;
 	}
@@ -723,6 +804,16 @@ class SybTraderMenu extends UIScriptedMenu
 	
 	private void UpdateItemInfoQuantity(Widget root_widget, ItemBase item_base)
 	{
+		PluginTrader pluginTrader = PluginTrader.Cast(GetPlugin(PluginTrader));
+		if (!pluginTrader)
+			return;
+		
+		if (!pluginTrader.CanSellItem(m_traderInfo, item_base))
+		{
+			WidgetTrySetText( root_widget, "ItemQuantityWidget", "#syb_trader_block_sell", 0xFF800000 );
+			return;
+		}
+		
 		float item_quantity = item_base.GetQuantity();
 		int max_quantity = item_base.GetQuantityMax();
 		
@@ -777,6 +868,12 @@ class SybTraderMenu extends UIScriptedMenu
 	
 	private void UpdateItemInfoQuantity(Widget root_widget, PluginTrader pluginTrader, string classname, float quantity)
 	{
+		if (!pluginTrader.CanBuyItem(m_traderInfo, classname))
+		{
+			WidgetTrySetText( root_widget, "ItemQuantityWidget", "#syb_trader_block_buy", 0xFF800000 );
+			return;
+		}
+		
 		int maxStackSize = 0;		
 		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
 		{
@@ -890,16 +987,13 @@ class SybTraderMenu extends UIScriptedMenu
 		}
 	}
 	
-	private void WidgetTrySetText(Widget root_widget, string widget_name, string text, int color = 0)
+	private void WidgetTrySetText(Widget root_widget, string widget_name, string text, int color = 0xFFFFFFFF)
 	{
 		TextWidget widget = TextWidget.Cast( root_widget.FindAnyWidget(widget_name) );
 		if (widget)
 		{
 			widget.SetText(text);			
-			if (color != 0)
-			{
-				widget.SetColor(color | 0xFF000000);
-			}
+			widget.SetColor(color);
 		}
 	}
 	
@@ -907,8 +1001,8 @@ class SybTraderMenu extends UIScriptedMenu
 	{
 		float w, h;
 		ref Widget widget = root_widget.FindAnyWidget(widget_name);
-		root_widget.GetSize(w, h);
-		widget.SetSize(Math.Max(1, w - diff), h);
+		widget.GetSize(w, h);
+		widget.SetSize(Math.Max(1, diff), h);
 	}
 };
 

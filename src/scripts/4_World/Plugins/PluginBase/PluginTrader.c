@@ -49,6 +49,19 @@ class PluginTrader extends PluginBase
 		}
 	}
 	
+	bool HasOversizedSellItems(ref PluginTrader_Trader traderInfo, ref map<string, float> sellCounter)
+	{
+		foreach (string classname, float quantity : sellCounter)
+		{
+			if (quantity > CalculateSellMaxQuantity(traderInfo, classname))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	int CalculateSellPrice(ref PluginTrader_Trader trader, ref PluginTrader_Data data, ItemBase item)
 	{
 		if (!item)
@@ -83,7 +96,7 @@ class PluginTrader extends PluginBase
 	}
 	
 	int CalculateBuyPrice(ref PluginTrader_Trader trader, ref PluginTrader_Data data, string classname, float quantity)
-	{
+	{		
 		float totalQuantity = 0;
 		if (data.m_items.Contains(classname))
 		{
@@ -142,6 +155,14 @@ class PluginTrader extends PluginBase
 		}
 		
 		return 1;
+	}
+	
+	float CalculateSellMaxQuantity(ref PluginTrader_Trader traderInfo, string classname)
+	{
+		float result = CalculateTraiderItemQuantityMax(traderInfo, classname) * traderInfo.m_sellMaxQuantityPercent;
+		result = Math.Round(result);
+		result = Math.Max(1, result);		
+		return result;
 	}
 	
 	float CalculateBuyMaxQuantity(ref PluginTrader_Trader traderInfo, string classname)
@@ -277,6 +298,74 @@ class PluginTrader extends PluginBase
 		return enabledCategories.Get(categories.Find("other"));
 	}
 	
+	bool CanSellItem(ref PluginTrader_Trader traderInfo, ItemBase item)
+	{
+		if (item.IsInherited(Box_Base) || item.IsInherited(FireplaceBase))
+		{
+			return false;
+		}
+		
+		if (item.GetHealthLevel() > GameConstants.STATE_WORN)
+		{
+			return false;
+		}
+		
+		if (item.IsInherited(Edible_Base))
+		{
+			Edible_Base edibleBase = Edible_Base.Cast(item);
+			if (edibleBase.IsMeat())
+			{
+				return false;
+			}
+			else if (edibleBase.GetFoodStage() != null)
+			{
+				if (edibleBase.GetFoodStage().GetFoodStageType() == FoodStageType.BAKED)
+				{
+					return false;
+				}
+				else if (edibleBase.GetFoodStage().GetFoodStageType() == FoodStageType.BOILED)
+				{
+					return false;
+				}
+				else if (edibleBase.GetFoodStage().GetFoodStageType() == FoodStageType.DRIED)
+				{
+					return false;
+				}
+				else if (edibleBase.GetFoodStage().GetFoodStageType() == FoodStageType.BURNED)
+				{
+					return false;
+				}
+				else if (edibleBase.GetFoodStage().GetFoodStageType() == FoodStageType.ROTTEN)
+				{
+					return false;
+				}
+			}
+		}
+		
+		foreach (string filter : traderInfo.m_sellFilter)
+		{
+			if (item.GetType() == filter || GetGame().ObjectIsKindOf(item, filter))
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	bool CanBuyItem(ref PluginTrader_Trader traderInfo, string classname)
+	{
+		foreach (string filter : traderInfo.m_buyFilter)
+		{
+			if (classname == filter || GetGame().IsKindOf(classname, filter))
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	override void OnDestroy()
 	{
 		
@@ -286,26 +375,26 @@ class PluginTrader extends PluginBase
 class PluginTrader_Trader
 {
 	int m_traderId;
-    ref array<string> m_purchaseFilter;
-    ref array<string> m_saleFilter;
+    ref array<string> m_buyFilter;
+    ref array<string> m_sellFilter;
 	int m_storageMaxSize;
     float m_storageCommission;
     string m_dumpingByAmountAlgorithm;
     float m_dumpingByAmountModifier;
     float m_dumpingByBadQuality;
-	float m_saleMaxQuantityPercent;
+	float m_sellMaxQuantityPercent;
 	float m_buyMaxQuantityPercent;
 	
 	void ~PluginTrader_Trader()
 	{
-		if (m_purchaseFilter)
+		if (m_buyFilter)
 		{
-			delete m_purchaseFilter;
+			delete m_buyFilter;
 		}
 		
-		if (m_saleFilter)
+		if (m_sellFilter)
 		{
-			delete m_saleFilter;
+			delete m_sellFilter;
 		}
 	}
 };
