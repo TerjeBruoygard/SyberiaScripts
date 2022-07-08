@@ -68,7 +68,59 @@ modded class IngameHud
 		
 		super.DisplayBadge(key, value);
 		
+		int yellowColor = ARGB( 255, 220, 220, 0 );
+		int redColor = ARGB( 255, 220, 0, 0 );
+		int badgetColor = ARGB( 255, 220, 220, 220 );
+		if (key == NTFKEY_FRACTURE || key == NTFKEY_CONCUSSION)
+		{
+			badgetColor = yellowColor;
+		}
+		else if (key == NTFKEY_BLEEDISH || key == NTFKEY_BULLETHIT || key == NTFKEY_KNIFEHIT || key == NTFKEY_VISCERADMG || key == NTFKEY_SEPSIS || key == NTFKEY_ZVIRUS)
+		{
+			badgetColor = redColor;
+		}
+		else if (key == NTFKEY_HEMATOMA)
+		{
+			if (value > 5)
+			{
+				badgetColor = redColor;
+			}
+			else
+			{
+				badgetColor = yellowColor;
+			}
+		}
+		else if (key == NTFKEY_PAIN || key == NTFKEY_OVERDOSED || key == NTFKEY_INFLUENZA)
+		{
+			if (value == 3)
+			{
+				badgetColor = redColor;
+			}
+			else
+			{
+				badgetColor = yellowColor;
+			}
+		}
+		else if (key == NTFKEY_STOMATCHPOISONING || key == NTFKEY_RADIATIONSICKNESS)
+		{
+			if (value > 1)
+			{
+				badgetColor = redColor;
+			}
+			else
+			{
+				badgetColor = yellowColor;
+			}
+		}
+		
+		
 		string badge_name = m_BadgesWidgetNames.Get( key );
+		ImageWidget w_image = ImageWidget.Cast( m_Badges.FindAnyWidget( badge_name ) );
+		if (w_image)
+		{
+			w_image.SetColor(badgetColor);
+		}
+		
 		TextWidget w_count = TextWidget.Cast( m_Badges.FindAnyWidget( badge_name + "Count" ) );
 		if (w_count)
 		{
