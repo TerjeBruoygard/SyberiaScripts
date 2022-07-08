@@ -32,5 +32,7 @@ modded class ActionConstructor
 		actions.Insert(ActionDebugBuildingToolSizer);
 		actions.Insert(ActionSearchTargetInventory);
 		actions.Insert(ActionTraderInteract);
+        actions.Insert(ActionWashFruitsWell);
+		actions.Insert(ActionWashFruitsWater);
 	}
 };
