@@ -90,9 +90,10 @@ class ScreenEquip extends ScreenBase
 		{
 			m_updateCurrentPage = false;
 			
-			foreach (ref ButtonWidget pageBtn : m_pages)
+			for (int i = 0; i < m_pages.Count(); i++)
 			{
-				if (m_currentPage == pageBtn)
+				ref ButtonWidget pageBtn = m_pages.Get(i);
+				if (m_currentPage == i)
 				{
 					pageBtn.Enable(false);
 				}
@@ -112,16 +113,22 @@ class ScreenEquip extends ScreenBase
 			m_selectedIndexes.Set(m_currentPage, rowId);
 			ReequipPreview();
 		}
-		}
+	}
 	
 	private void UpdateCurrentPage()
 	{
 		m_selection.ClearItems();
 		
 		ref array<string> items = m_equip.Get(m_currentPage);
-		foreach (string item : items)
+		foreach (string itemClass : items)
 		{
-			m_selection.AddItem(item, null, 0);
+			string itemName = itemClass;
+			if (m_currentPage > SyberiaScreenEquipPages.SYBSEP_SPAWN_PAGE && m_currentPage < SyberiaScreenEquipPages.SYBSEP_ITEMS_PAGE)
+			{
+				itemName = GameHelpers.GetItemDisplayName(itemClass);
+			}
+			
+			m_selection.AddItem(itemName, null, 0);
 		}
 		
 		m_selection.SelectRow(m_selectedIndexes.Get(m_currentPage));
@@ -135,7 +142,7 @@ class ScreenEquip extends ScreenBase
 		EntityAI oldEntity;
 		DayZPlayer player = GetGame().GetPlayer();
 		
-		for (i = 1; i <= 5; i++)
+		for (i = SyberiaScreenEquipPages.SYBSEP_BODY_PAGE; i <= SyberiaScreenEquipPages.SYBSEP_WEAPON_PAGE; i++)
 		{
 			index = m_selectedIndexes.Get(i);
 			oldEntity = m_previewEntities.Get(i);
@@ -143,11 +150,11 @@ class ScreenEquip extends ScreenBase
 			{
 				string itemName = m_equip.Get(i).Get(index);
 				newEntity = EntityAI.Cast(GetGame().CreateObject(itemName, "0 0 0", true));
-				if (i == 5)
+				if (i == SyberiaScreenEquipPages.SYBSEP_WEAPON_PAGE)
 				{
 					m_playerPreview.UpdateItemInHands(newEntity);
 					if (oldEntity) GetGame().ObjectDelete(oldEntity);
-		}
+				}
 				else
 				{
 					if (oldEntity == null)
@@ -179,7 +186,7 @@ class ScreenEquip extends ScreenBase
 			}
 			else if (oldEntity != null)
 			{
-				if (i == 5)
+				if (i == SyberiaScreenEquipPages.SYBSEP_WEAPON_PAGE)
 				{
 					m_playerPreview.UpdateItemInHands(null);
 				}

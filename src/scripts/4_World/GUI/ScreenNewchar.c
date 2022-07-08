@@ -8,9 +8,9 @@ class ScreenNewchar extends ScreenBase
 	ref XComboBoxWidget m_genderSelector;
 	ref XComboBoxWidget m_faceSelector;
 	ref ImageWidget m_playerPreview;
+	ref TextWidget m_charNameText;
 	ref EditBoxWidget m_charNameEdit;
 	ref ButtonWidget m_NextBtn;	
-	ref Widget m_NextBack;
 	ref TextListboxWidget m_skillsResult;
 	
 	ref TextListboxWidget m_perksTotal;
@@ -55,9 +55,9 @@ class ScreenNewchar extends ScreenBase
 		m_faceSelector = XComboBoxWidget.Cast( layoutRoot.FindAnyWidget( "FaceSelector" ) );	
 		m_playerPreview = ImageWidget.Cast( layoutRoot.FindAnyWidget( "PlayerPreview" ) );	
 		m_charNameEdit = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "CharNameEdit" ) );	
+		m_charNameText = TextWidget.Cast( layoutRoot.FindAnyWidget( "CharNameText" ) );	
 		m_skillsResult = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "SkillsResult" ) );
 		m_NextBtn = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "NextBtn" ) );
-		m_NextBack = layoutRoot.FindAnyWidget( "NextBtnBack" );
 		
 		m_perksTotal = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "TotalPerksList" ) );
 		m_perksUsed = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "UsedPerksList" ) );
@@ -269,6 +269,14 @@ class ScreenNewchar extends ScreenBase
 	{
 		super.Update(timeslice);
 
+		m_charNameText.SetText(m_charNameEdit.GetText());
+		
+		if (m_isRpcSended)
+		{
+			m_NextBtn.Enable(false);
+			return;
+		}
+		
 		if (m_updateFacePreview)
 		{
 			m_updateFacePreview = false;
@@ -281,14 +289,9 @@ class ScreenNewchar extends ScreenBase
 			UpdatePerks();
 		}
 		
-		if (m_isRpcSended)
-		{
-			m_NextBack.Show(false);
-		}
-		
 		UpdateHint();
 		
-		m_NextBack.Show(m_currentScore >= 0 && (m_charNameEdit.GetText().LengthUtf8() == 0 || (m_charNameEdit.GetText().LengthUtf8() >= 4 && m_charNameEdit.GetText().LengthUtf8() <= m_maxNameLength)) );
+		m_NextBtn.Enable(m_currentScore >= 0 && (m_charNameEdit.GetText().LengthUtf8() == 0 || (m_charNameEdit.GetText().LengthUtf8() >= 4 && m_charNameEdit.GetText().LengthUtf8() <= m_maxNameLength)) );
 	}
 
 	override bool OnClick( Widget w, int x, int y, int button )
