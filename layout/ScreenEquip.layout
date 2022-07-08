@@ -28,125 +28,133 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      {
-      TextListboxWidgetClass SelectSpawn {
+      ButtonWidgetClass SpawnPage {
+       color 0.9529 0 0 1
        position 0 0
-       size 0.5 0.25
+       size 0.4 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_spawnselect"
+       font "gui/fonts/metronlight22"
+      }
+      ButtonWidgetClass BodyPage {
+       color 0.9529 0 0 1
+       position 0 75
+       size 0.4 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_bodyselect"
+       font "gui/fonts/metronlight22"
+      }
+      ButtonWidgetClass PantsPage {
+       color 0.9529 0 0 1
+       position 0 150
+       size 0.4 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_pantsselect"
+       font "gui/fonts/metronlight22"
+      }
+      ButtonWidgetClass FootPage {
+       color 0.9529 0 0 1
+       position 0 225
+       size 0.4 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_footwearselect"
+       font "gui/fonts/metronlight22"
+      }
+      ButtonWidgetClass HeadPage {
+       color 0.9529 0 0 1
+       position 0 300
+       size 0.4 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_headgearselect"
+       font "gui/fonts/metronlight22"
+      }
+      ButtonWidgetClass ItemsPage {
+       color 0.9529 0 0 1
+       position 0 450
+       size 0.4 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_itemsselect"
+       font "gui/fonts/metronlight22"
+      }
+      ButtonWidgetClass WeaponPage {
+       color 0.9529 0 0 1
+       position 0 375
+       size 0.4 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_weaponselect"
+       font "gui/fonts/metronlight22"
+      }
+      ButtonWidgetClass SpecialPage {
+       color 0.9529 0 0 1
+       position 0 525
+       size 0.4 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       text "#syb_specialselect"
+       font "gui/fonts/metronlight22"
+      }
+      PanelWidgetClass PanelWidget0 {
+       ignorepointer 1
+       color 0.9529 0 0 1
+       size 0.6 1
+       halign right_ref
        hexactpos 1
        vexactpos 1
        hexactsize 0
        vexactsize 0
-       style Default
-       "title visible" 1
-       colums " #syb_spawnselect"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
-      }
-      TextListboxWidgetClass SelectSpecial {
-       size 0.5 0.25
-       halign right_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 0
-       style Default
-       "title visible" 1
-       colums " #syb_special"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
-      }
-      TextListboxWidgetClass SelectBody {
-       position 0 0.25
-       size 0.5 0.25
-       hexactpos 1
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       style Default
-       "title visible" 1
-       colums " #syb_bodyselect"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
-      }
-      TextListboxWidgetClass SelectPants {
-       position 0 0.25
-       size 0.5 0.25
-       halign right_ref
-       hexactpos 1
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       style Default
-       "title visible" 1
-       colums " #syb_pantsselect"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
-      }
-      TextListboxWidgetClass SelectHeadgear {
-       position 0 0.5
-       size 0.5 0.25
-       hexactpos 1
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       style Default
-       "title visible" 1
-       colums " #syb_headgearselect"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
-      }
-      TextListboxWidgetClass SelectFootwear {
-       position 0 0.5
-       size 0.5 0.25
-       halign right_ref
-       hexactpos 1
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       style Default
-       "title visible" 1
-       colums " #syb_footwearselect"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
-      }
-      TextListboxWidgetClass SelectItems {
-       size 0.5 0.25
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       style Default
-       "title visible" 1
-       colums " #syb_itemsselect"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
-      }
-      TextListboxWidgetClass SelectWeapon {
-       size 0.5 0.25
-       halign right_ref
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       style Default
-       "title visible" 1
-       colums " #syb_weaponselect"
-       lines 1
-       "highlight row" 1
-       font "gui/fonts/metronlight16"
+       style Outline
+       {
+        TextListboxWidgetClass ItemsSelector {
+         position 0 0
+         size 0.95 1
+         halign right_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         "title visible" 0
+         lines 1
+         "highlight row" 1
+         font "gui/fonts/metronlight16"
+        }
+       }
       }
      }
     }
     PanelWidgetClass RightPanel {
      ignorepointer 1
+     color 1 1 1 0
      position 0.26 0
      size 0.3 0.8
      halign center_ref
@@ -155,6 +163,7 @@ FrameWidgetClass rootFrame {
      vexactpos 0
      hexactsize 0
      vexactsize 0
+     style rover_sim_colorable
      {
       PlayerPreviewWidgetClass PlayerPreview {
        ignorepointer 1
