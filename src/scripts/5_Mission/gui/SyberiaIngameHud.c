@@ -1,16 +1,10 @@
 modded class IngameHud
 {
-	protected ref Widget m_panelSleepingStatus;
-	
-	void InitSleepingNotifier(ref Widget sleepingWidget)
+	void InitNotifierWidget(int id, ref Widget baseWidget, string name)
 	{
-		m_panelSleepingStatus = sleepingWidget;
-		InitNotifierWidget(NTFKEY_SLEEPING, sleepingWidget);
-	}
-	
-	protected void InitNotifierWidget(int id, ref Widget notifierWidget)
-	{
-		string name = notifierWidget.GetName();
+		ref Widget notifierWidget = baseWidget.FindAnyWidget(name);
+		baseWidget.RemoveChild(notifierWidget);
+		
 		m_StatesWidgetNames.Set( id, name );
 		
 		Widget defaultNotifiersPanel = m_HudPanelWidget.FindAnyWidget("NotifiersPanel");
@@ -40,5 +34,34 @@ modded class IngameHud
 		{
 			imagew.LoadImageFile( i, "SyberiaScripts/data/gui/" + name + "/icon" + i + ".paa");
 		}		
+	}
+	
+	void InitBadgetWidget(int id, ref Widget baseWidget, string name)
+	{
+		ref Widget badge_widget = baseWidget.FindAnyWidget(name);
+		baseWidget.RemoveChild(badge_widget);
+		m_Badges.AddChild(badge_widget);
+		
+		m_BadgesWidgetNames.Set( id, name );
+		m_BadgesWidgets.Set( id, badge_widget );
+		badge_widget.Show( false );
+		m_BadgesWidgetDisplay.Set( id, 0 );
+	}
+	
+	override void DisplayBadge( int key, int value )
+	{
+		if (m_BadgesWidgetDisplay.Get( key ) == value)
+		{
+			return;
+		}
+		
+		super.DisplayBadge(key, value);
+		
+		string badge_name = m_BadgesWidgetNames.Get( key );
+		TextWidget w_count = TextWidget.Cast( m_Badges.FindAnyWidget( badge_name + "Count" ) );
+		if (w_count)
+		{
+			w_count.SetText( value.ToString() );
+		}
 	}
 }

@@ -42,9 +42,15 @@ modded class MissionGameplay
 			
 			if (m_Hud)
 			{
-				ref Widget panelSleepingStatus = m_AdditionHudRootWidget.FindAnyWidget("Sleeping");
-				m_AdditionHudRootWidget.RemoveChild(panelSleepingStatus);
-				m_Hud.InitSleepingNotifier(panelSleepingStatus);
+				ref Widget notifications = m_AdditionHudRootWidget.FindAnyWidget("Notifications");				
+				m_Hud.InitNotifierWidget(NTFKEY_SLEEPING, notifications, "Sleeping");
+				
+				ref Widget badgets = m_AdditionHudRootWidget.FindAnyWidget("Badgets");
+				m_Hud.InitBadgetWidget(NTFKEY_BULLETHIT, badgets, "BulletHit");
+				m_Hud.InitBadgetWidget(NTFKEY_KNIFEHIT, badgets, "KnifeHit");
+				m_Hud.InitBadgetWidget(NTFKEY_HEMATOMA, badgets, "Hematoma");
+				m_Hud.InitBadgetWidget(NTFKEY_VISCERADMG, badgets, "VisceraDamage");
+				m_Hud.InitBadgetWidget(NTFKEY_CONCUSSION, badgets, "Concussion");
 			}
 		}
 	}
@@ -64,6 +70,11 @@ modded class MissionGameplay
 		if (m_Hud && player)
 		{
 			m_Hud.DisplayNotifier(NTFKEY_SLEEPING, player.GetSleepingTendency(), player.GetSleepingState());
+			m_Hud.DisplayBadge(NTFKEY_BULLETHIT, player.m_bulletHits);
+			m_Hud.DisplayBadge(NTFKEY_KNIFEHIT, player.m_knifeHits);
+			m_Hud.DisplayBadge(NTFKEY_HEMATOMA, player.m_hematomaHits);
+			m_Hud.DisplayBadge(NTFKEY_VISCERADMG, player.m_visceraHit);
+			m_Hud.DisplayBadge(NTFKEY_CONCUSSION, player.m_concussionHit);
 		}
 	}
 };
