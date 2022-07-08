@@ -143,6 +143,11 @@ class PluginTrader extends PluginBase
 	
 	float CalculateItemQuantity01(ItemBase item)
 	{
+		if (item.GetLiquidTypeInit() != 0)
+		{
+			return 1;
+		}
+		
 		float item_quantity = item.GetQuantity();
 		int max_quantity = item.GetQuantityMax();
 		if (max_quantity > 0)
@@ -184,6 +189,11 @@ class PluginTrader extends PluginBase
 	
 	float CalculateItemSelectedQuantityStep(string classname)
 	{		
+		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname + " liquidContainerType"))
+		{
+			return 1;
+		}
+		
 		int maxStackSize = 0;		
 		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
 		{
@@ -360,6 +370,10 @@ class PluginTrader extends PluginBase
 				{
 					return false;
 				}
+			}
+			else if (edibleBase.GetType().IndexOf("_Opened") != -1)
+			{
+				return false;
 			}
 		}
 		

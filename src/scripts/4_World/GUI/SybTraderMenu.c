@@ -837,7 +837,7 @@ class SybTraderMenu extends UIScriptedMenu
 		
 		float quantity_ratio;
 		
-		if( max_quantity > 0 )
+		if( max_quantity > 0 && !GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + item_base.GetType() + " liquidContainerType") )
 		{
 			string quantity_str;
 			if( item_base.ConfigGetString("stackedUnit") == "pc." )
@@ -892,7 +892,7 @@ class SybTraderMenu extends UIScriptedMenu
 			return;
 		}
 		
-		int maxStackSize = 0;		
+		int maxStackSize = 0;
 		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
 		{
 			maxStackSize = GetGame().ConfigGetInt( CFG_VEHICLESPATH + " " + classname + " varQuantityMax" );
@@ -907,7 +907,7 @@ class SybTraderMenu extends UIScriptedMenu
 		}
 		
 		int maxStacksCount = pluginTrader.CalculateTraiderItemQuantityMax(m_traderInfo, classname);
-		if ( maxStackSize > 0 )
+		if ( maxStackSize > 0 && !GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname + " liquidContainerType") )
 		{
 			string stackedUnits = "";
 			if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
@@ -925,6 +925,7 @@ class SybTraderMenu extends UIScriptedMenu
 			
 			float item_quantity;
 			int max_quantity;
+			
 			if ( stackedUnits == "pc." )
 			{
 				item_quantity = quantity * maxStackSize;
@@ -964,7 +965,7 @@ class SybTraderMenu extends UIScriptedMenu
 			maxStackSize = GetGame().ConfigGetInt( CFG_WEAPONSPATH + " " + classname + " varQuantityMax" );
 		}
 		
-		if ( maxStackSize > 0 )
+		if ( maxStackSize > 0 && !GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname + " liquidContainerType") )
 		{
 			string stackedUnits = "";
 			if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
