@@ -10,5 +10,7 @@ modded class ActionConstructor
 		actions.Insert(ActionInjectInjectorSelf);
 		actions.Insert(ActionSurgeryTarget);
 		actions.Insert(ActionSurgerySelf);
+		actions.Insert(ActionUseSalveTarget);
+		actions.Insert(ActionUseSalveSelf);
 	}
 };

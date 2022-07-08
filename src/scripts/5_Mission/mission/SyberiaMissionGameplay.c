@@ -61,6 +61,8 @@ modded class MissionGameplay
 				m_Hud.InitBadgetWidget(NTFKEY_BANDAGE2, badgets, "Bandage2");				
 				m_Hud.InitBadgetWidget(NTFKEY_HEMOSTATIC, badgets, "Hemostatic");
 				m_Hud.InitBadgetWidget(NTFKEY_HEMATOPOIESIS, badgets, "Hematopoiesis");
+				m_Hud.InitBadgetWidget(NTFKEY_USESALVE, badgets, "UseSalve");
+				m_Hud.InitBadgetWidget(NTFKEY_ADRENALIN, badgets, "Adrenalin");
 			}
 		}
 	}
@@ -97,6 +99,8 @@ modded class MissionGameplay
 				m_Hud.DisplayBadge(NTFKEY_BANDAGE2, player.m_bulletBandage2 + player.m_knifeBandage2);
 				m_Hud.DisplayBadge(NTFKEY_HEMOSTATIC, player.m_bloodHemostaticEffect);
 				m_Hud.DisplayBadge(NTFKEY_HEMATOPOIESIS, player.m_hematopoiesisEffect);
+				m_Hud.DisplayBadge(NTFKEY_USESALVE, player.m_salveEffect);
+				m_Hud.DisplayBadge(NTFKEY_ADRENALIN, player.m_adrenalinEffect);
 			}
 			
 			OnUpdateAdvMedicineGUI(player, timeslice);

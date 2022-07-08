@@ -35,7 +35,7 @@ class InjectorPromedol : InjectorBase
     displayName="#syb_promedol_name";
     model="SyberiaScripts\data\medical\injector.p3d";
     medPainkillerLevel=3;
-    medPainkillerTimeSec=2400; // 40 minutes
+    medPainkillerTimeSec=1800;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\injector_blue_co.paa"
@@ -109,7 +109,7 @@ class InjectorAmoksivan : InjectorBase
     displayName="#syb_amoksivan_name";
     model="SyberiaScripts\data\medical\injector.p3d";
     medAntibioticLevel=3;
-    medAntibioticsTimeSec=2500;
+    medAntibioticsTimeSec=1800;
     medAntibioticsStrength=5.0;
     medRemoveSepsis=1;
     hiddenSelectionsTextures[]=
@@ -126,10 +126,25 @@ class InjectorKetorol : InjectorBase
     displayName="#syb_ketorol_name";
     model="SyberiaScripts\data\medical\injector.p3d";
     medStomatchhealLevel=2;
-    medStomatchhealTimeSec=2000;
+    medStomatchhealTimeSec=1600;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\injector_green_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
+    INJECTOR_ANIM_EVENTS();
+};
+
+class InjectorEpipen : InjectorBase
+{
+    scope=2;
+    displayName="#syb_epipen_name";
+    model="SyberiaScripts\data\medical\injector.p3d";
+    medAdrenalinLevel=3;
+    medAdrenalinTimeSec=300;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\injector_blue_co.paa"
     };
     ITEM_DAMAGE_SYSTEM(100, "SyberiaScripts\data\medical\injector");
     INJECTOR_ANIM_EVENTS();

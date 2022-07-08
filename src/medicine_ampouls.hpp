@@ -17,9 +17,9 @@ class SyberiaMedicineAmpoule : Inventory_Base
     itemSize[]={2,2};
     weight=100;
     quantityBar=1;
-    varQuantityInit=150;
+    varQuantityInit=4;
     varQuantityMin=0;
-    varQuantityMax=150;
+    varQuantityMax=4;
     varQuantityDestroyOnMin=1;
     absorbency=0;
     hiddenSelections[]=
@@ -527,6 +527,7 @@ class AmpoulePeklitakcel : SyberiaMedicineAmpoule
     displayName="#syb_peklitakcel_name";
     model="SyberiaScripts\data\medical\ampoule.p3d";
     medHematomaHeal=1;
+    medHematomaHealTimeSec=900;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_co.paa"
@@ -634,6 +635,52 @@ class AmpouleErytropoenin : SyberiaMedicineAmpoule
     medBloodHematopoiesisTimeSec=900;
     medBloodHemostatic=1;
     medBloodHemostaticTimeSec=900;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\ampoule_red_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    AMPOUL_ANIM_EVENT();
+};
+
+
+class AmpouleAdrenalin05 : SyberiaMedicineAmpoule
+{
+    scope=2;
+    displayName="#syb_adrenalin05_name";
+    model="SyberiaScripts\data\medical\ampoule.p3d";
+    medAdrenalinLevel=1;
+    medAdrenalinTimeSec=900;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\ampoule_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    AMPOUL_ANIM_EVENT();
+};
+
+class AmpouleAdrenalin10 : SyberiaMedicineAmpoule
+{
+    scope=2;
+    displayName="#syb_adrenalin10_name";
+    model="SyberiaScripts\data\medical\ampoule.p3d";
+    medAdrenalinLevel=2;
+    medAdrenalinTimeSec=600;
+    hiddenSelectionsTextures[]=
+    {
+        "SyberiaScripts\data\medical\ampoule_yellow_co.paa"
+    };
+    ITEM_DAMAGE_SYSTEM(50, "SyberiaScripts\data\medical\ampoule");
+    AMPOUL_ANIM_EVENT();
+};
+
+class AmpouleAdrenalin30 : SyberiaMedicineAmpoule
+{
+    scope=2;
+    displayName="#syb_adrenalin30_name";
+    model="SyberiaScripts\data\medical\ampoule.p3d";
+    medAdrenalinLevel=3;
+    medAdrenalinTimeSec=300;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\ampoule_red_co.paa"

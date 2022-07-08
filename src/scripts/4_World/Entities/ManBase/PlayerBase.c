@@ -22,12 +22,14 @@ modded class PlayerBase
 	int m_bulletBandage2;
 	int m_knifeBandage1;
 	int m_knifeBandage2;
+	int m_adrenalinEffect;
 	
 	bool m_concussionHit;
 	bool m_stomatchhealEffect;
 	bool m_antibioticsEffect;
 	bool m_bloodHemostaticEffect;
 	bool m_hematopoiesisEffect;
+	bool m_salveEffect;
 	
 	override void Init()
 	{
@@ -64,6 +66,8 @@ modded class PlayerBase
 		m_knifeBandage2 = 0;
 		m_bloodHemostaticEffect = false;
 		m_hematopoiesisEffect = false;
+		m_salveEffect = false;
+		m_adrenalinEffect = 0;
 		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
 		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);
@@ -76,12 +80,14 @@ modded class PlayerBase
 		RegisterNetSyncVariableInt("m_bulletBandage2", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeBandage1", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeBandage2", 0, 99);
+		RegisterNetSyncVariableInt("m_adrenalinEffect", 0, 3);
 		
 		RegisterNetSyncVariableBool("m_concussionHit");
 		RegisterNetSyncVariableBool("m_stomatchhealEffect");
 		RegisterNetSyncVariableBool("m_antibioticsEffect");
 		RegisterNetSyncVariableBool("m_bloodHemostaticEffect");
 		RegisterNetSyncVariableBool("m_hematopoiesisEffect");
+		RegisterNetSyncVariableBool("m_salveEffect");
 	}
 	
 	
