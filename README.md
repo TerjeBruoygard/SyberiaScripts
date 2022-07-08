@@ -9,3 +9,6 @@ How to build client PBO:
 For get sources of server-side mod please check SyberiaServer repository.
 
 With love - Terje Bruoygard
+
+If you want to support me:
+BTC: bc1q395yw8as5v9mn4yzls5y78av0q342e2cwdrhdh 
