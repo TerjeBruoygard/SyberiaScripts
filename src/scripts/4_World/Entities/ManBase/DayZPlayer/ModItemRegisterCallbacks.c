@@ -10,6 +10,7 @@ modded class ModItemRegisterCallbacks
 		pType.AddItemInHandsProfileIK("SyringeDirty", "dz/anims/workspaces/player/player_main/props/player_main_1h_syringe.asi", pBehavior, "dz/anims/anm/player/ik/gear/Syringe_Empty.anm");
 		pType.AddItemInHandsProfileIK("SyringeFull", "dz/anims/workspaces/player/player_main/props/player_main_1h_syringe.asi", pBehavior,	"dz/anims/anm/player/ik/gear/Syringe_Full.anm");
 		pType.AddItemInHandsProfileIK("InjectorBase", "dz/anims/workspaces/player/player_main/props/player_main_1h_morphine.asi", pBehavior, "dz/anims/anm/player/ik/gear/morphine.anm");
-
+		pType.AddItemInHandsProfileIK("BandageHemostatic", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/gear/StartKit.anm");
+		pType.AddItemInHandsProfileIK("SurgicalKit",  "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/gear/sewing_kit.anm");
 	}
 };

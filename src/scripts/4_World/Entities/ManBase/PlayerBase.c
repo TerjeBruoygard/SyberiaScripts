@@ -18,6 +18,10 @@ modded class PlayerBase
 	int m_painkillerEffect;
 	int m_sepsis;
 	int m_zombieVirus;
+	int m_bulletBandage1;
+	int m_bulletBandage2;
+	int m_knifeBandage1;
+	int m_knifeBandage2;
 	
 	bool m_concussionHit;
 	bool m_stomatchhealEffect;
@@ -52,17 +56,32 @@ modded class PlayerBase
 		m_antibioticsEffect = false;
 		m_sepsis = 0;
 		m_zombieVirus = 0;
+		m_bulletBandage1 = 0;
+		m_bulletBandage2 = 0;
+		m_knifeBandage1 = 0;
+		m_knifeBandage2 = 0;
 		RegisterNetSyncVariableInt("m_bulletHits", 0, 99);
 		RegisterNetSyncVariableInt("m_knifeHits", 0, 99);
 		RegisterNetSyncVariableInt("m_hematomaHits", 0, 99);
 		RegisterNetSyncVariableInt("m_visceraHit", 0, 99);
-		RegisterNetSyncVariableBool("m_concussionHit");
 		RegisterNetSyncVariableInt("m_painLevel", 0, 3);
 		RegisterNetSyncVariableInt("m_painkillerEffect", 0, 3);
+		RegisterNetSyncVariableInt("m_sepsis", 0, 4);
+		RegisterNetSyncVariableInt("m_zombieVirus", 0, 4);		
+		RegisterNetSyncVariableInt("m_bulletBandage1", 0, 99);
+		RegisterNetSyncVariableInt("m_bulletBandage2", 0, 99);
+		RegisterNetSyncVariableInt("m_knifeBandage1", 0, 99);
+		RegisterNetSyncVariableInt("m_knifeBandage2", 0, 99);
+		
+		RegisterNetSyncVariableBool("m_concussionHit");
 		RegisterNetSyncVariableBool("m_stomatchhealEffect");
 		RegisterNetSyncVariableBool("m_antibioticsEffect");
-		RegisterNetSyncVariableInt("m_sepsis", 0, 4);
-		RegisterNetSyncVariableInt("m_zombieVirus", 0, 4);
+	}
+	
+	
+	override bool IsBleeding()
+	{
+		return super.IsBleeding() || (m_bulletHits > (m_bulletBandage1 + m_bulletBandage2)) || (m_knifeHits > (m_knifeBandage1 + m_knifeBandage2));
 	}
 	
 	override void OnScheduledTick(float deltaTime)

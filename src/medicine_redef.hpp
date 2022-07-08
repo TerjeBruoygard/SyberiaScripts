@@ -42,3 +42,18 @@ class TetracyclineAntibiotics: Edible_Base
 {
     scope=0;
 };
+
+class BandageDressing: Inventory_Base
+{
+    medBloodStop=2;
+};
+
+class Bandana_ColorBase: Clothing
+{
+    medBloodStop=2;
+};
+
+class Rag: Inventory_Base
+{
+    medBloodStop=2;
+};
