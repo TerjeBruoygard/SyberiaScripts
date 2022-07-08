@@ -11,6 +11,7 @@ class PluginAdminTool extends PluginBase
 	bool m_espSynchPending = false;	
 	ref array<vector> m_lootCachePositions = new array<vector>;
 	ref array<string> m_lootCacheNames = new array<string>;
+	ref array<int> m_lootCacheColors = new array<int>;
 	ref PluginAdminTool_MapContext m_espSynchContext = null;
 	
 	override void OnInit()
@@ -174,6 +175,7 @@ class PluginAdminTool extends PluginBase
 			GetGame().GetInput().ResetGameFocus();
 			GetGame().GetUIManager().ShowCursor(false);
 			m_freeCam = null;
+			SetListenerCamera(-1);
 		}
 		
 		if (serverData.param1)
@@ -182,6 +184,7 @@ class PluginAdminTool extends PluginBase
 			MiscGameplayFunctions.GetHeadBonePos(player, pos);
 			m_freeCam = AdminFreeCam.Cast(g_Game.CreateObject( "AdminFreeCam", pos, true ));
 			m_freeCam.SetActive(true);
+			SetListenerCamera(0);
 		}
 	}
 	
@@ -214,7 +217,7 @@ class PluginAdminTool extends PluginBase
 		return m_adminPermissions;
 	}
 	
-	void GetEspMarkers(ref array<vector> positions, ref array<string> names, ref array<int> types)
+	void GetEspMarkers(ref array<vector> positions, ref array<string> names, ref array<int> types, ref array<int> colors)
 	{
 		if (!m_adminPermissions) return;
 		
@@ -242,6 +245,7 @@ class PluginAdminTool extends PluginBase
 					positions.Insert( pvec );
 					names.Insert( m_espSynchContext.m_playerNames.Get(pi) + " (" + (int)pdist + "m)" );
 					types.Insert( PluginAdminTool_EspType.PLAYER );
+					colors.Insert(ARGB(255, 255, 0, 0));
 				}
 			}
 		}
@@ -257,6 +261,7 @@ class PluginAdminTool extends PluginBase
 					positions.Insert( bvec );
 					names.Insert( m_espSynchContext.m_bodiesNames.Get(bi) + " (" + (int)bdist + "m)" );
 					types.Insert( PluginAdminTool_EspType.BODY );
+					colors.Insert(ARGB(255, 128, 93, 128));
 				}
 			}
 		}
@@ -272,29 +277,40 @@ class PluginAdminTool extends PluginBase
 					positions.Insert( vvec );
 					names.Insert( m_espSynchContext.m_vehicleNames.Get(vi) + " (" + (int)vdist + "m)" );
 					types.Insert( PluginAdminTool_EspType.VEHICLES );
+					colors.Insert(ARGB(255, 255, 216, 0));
 				}
 			}
 		}
 		
-		if (AdminToolMenu.m_toolsEspLootChecked)
+		if (AdminToolMenu.m_toolsEspLootChecked && AdminToolMenu.m_toolsEspLootCategoriesSelections)
 		{
 			if ( (GetGame().GetTime() - m_lastEspLootReload) > 1000 )
 			{
 				m_lastEspLootReload = GetGame().GetTime();
 				m_lootCachePositions.Clear();
 				m_lootCacheNames.Clear();
+				m_lootCacheColors.Clear();
 				
 				bool emptyFilter = AdminToolMenu.m_toolsEspFilterValue == "";
 				array<Object> object = new array<Object>;
 				GetGame().GetObjectsAtPosition3D(pos, AdminToolMenu.m_toolsEspSliderDist2Value, object, null);
 				foreach (Object obj : object)
 				{
-					if (obj.IsInherited(ItemBase))
+					for (int ilc = 0; ilc < AdminToolMenu.m_toolsEspLootCategoriesSelections.Count(); ilc++)
 					{
-						if (emptyFilter || GameHelpers.StringContainsCaseInsensetive(obj.GetType(), AdminToolMenu.m_toolsEspFilterValue))
+						if (!AdminToolMenu.m_toolsEspLootCategoriesSelections.Get(ilc))
+							continue;
+						
+						if (obj.IsInherited( AdminToolMenu.m_toolsEspLootCategoriesFilter.Get(ilc) ))
 						{
-							m_lootCachePositions.Insert( obj.GetPosition() );
-							m_lootCacheNames.Insert( obj.GetType() );
+							if (emptyFilter || GameHelpers.StringContainsCaseInsensetive(obj.GetType(), AdminToolMenu.m_toolsEspFilterValue))
+							{
+								m_lootCachePositions.Insert( obj.GetPosition() );
+								m_lootCacheNames.Insert( obj.GetType() );
+								m_lootCacheColors.Insert( AdminToolMenu.m_toolsEspLootCategoriesColor.Get(ilc) );
+							}
+							
+							break;
 						}
 					}
 				}
@@ -305,6 +321,7 @@ class PluginAdminTool extends PluginBase
 				positions.Insert( m_lootCachePositions.Get(li) );
 				names.Insert( m_lootCacheNames.Get(li) );
 				types.Insert( PluginAdminTool_EspType.LOOT );
+				colors.Insert( m_lootCacheColors.Get(li) );
 			}
 		}
 	}
