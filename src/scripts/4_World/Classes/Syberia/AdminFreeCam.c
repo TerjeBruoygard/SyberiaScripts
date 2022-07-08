@@ -32,8 +32,8 @@ class AdminFreeCam extends Camera
 		if (key == KeyCode.KC_S) m_moveBackward = state;
 		if (key == KeyCode.KC_A) m_moveLeft = state;
 		if (key == KeyCode.KC_D) m_moveRight = state;
-		if (key == KeyCode.KC_Q) m_moveDown = state;
-		if (key == KeyCode.KC_E) m_moveUp = state;
+		if (key == KeyCode.KC_Z) m_moveDown = state;
+		if (key == KeyCode.KC_Q) m_moveUp = state;
 		if (key == KeyCode.KC_LSHIFT) m_moveShift = state;
 		
 		if (!state)
