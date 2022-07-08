@@ -1,6 +1,6 @@
 class Land_House_1W11
 {
-    class Livespace0
+    /*class Livespace0
     {
         bboxStart[] = {-8.16663, -3.07231, 2.625}; // Bounding box min
         bboxEnd[] = {3.62695, 0.196213, -6.58398}; // Bounding box max
@@ -102,7 +102,7 @@ class Land_House_1W11
             pos3[] = { -7.88477, -1.34639, 0.207031 };
             pos4[] = { -7.88477, -1.34639, 0.207031 };
         };
-    };
+    };*/
 };
 
 class Land_CementWorks_SiloBig1A
@@ -152,15 +152,54 @@ class Land_Barn_Brick2
 
 class Land_Barn_Wood1
 {
-
+    class Livespace0
+    {
+        bboxStart[] = {-7.23926, -3.93669, 20.4473}; // Bounding box min 
+        bboxEnd[] = {7.5791, 3.66328, -20.5605}; // Bounding box max
+        classname = "Land_Barn_Wood1_Livespace0"; // Classname of livespace object
+        offset[] = { 0.161133, -3.16653, -0.078125 }; // Livespace object offset on spawn
+        homebook = "homebook";
+        class Door0
+        {
+            selfDoorId = 0; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 0, 1 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            levels[] = { "d12_l1", "d12_l2", "d12_l3" }; // Selection in p3d relative to this door for each level
+        };
+        class Door1
+        {
+            selfDoorId = 1; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 2, 3 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            levels[] = { "d34_l1", "d34_l2", "d34_l3" }; // Selection in p3d relative to this door for each level
+        };
+        class Door2
+        {
+            selfDoorId = 2; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 4 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            levels[] = { "d5_l1", "d5_l2", "d5_l3" }; // Selection in p3d relative to this door for each level
+        };
+        class Door3
+        {
+            selfDoorId = 3; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 5 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            levels[] = { "d6_l1", "d6_l2", "d6_l3" }; // Selection in p3d relative to this door for each level
+        };
+        class Barricade0
+        {
+            levels[] = { "barricade_l1" }; // Selection in p3d relative to this barricade for each level
+        };
+    };
 };
 
 class Land_Barn_Wood2
 {
     class Livespace0
     {
-        bboxStart[] = {-100, -100, -100}; // Bounding box min
-        bboxEnd[] = {100, 100, 100}; // Bounding box max
+        bboxStart[] = {5.93555, -2.73677, -7.6543}; // Bounding box min 
+        bboxEnd[] = {-6.75293, 2.20354, 7.8916}; // Bounding box max
         classname = "Land_Barn_Wood2_Livespace0"; // Classname of livespace object
         offset[] = { -0.487305, -3.10001, 0.00976563 }; // Livespace object offset on spawn
         homebook = "homebook";
@@ -544,7 +583,47 @@ class Land_House_2W01
 
 class Land_House_2W02
 {
-
+    class Livespace0
+    {
+        bboxStart[] = {-100, -100, -100}; // Bounding box min
+        bboxEnd[] = {100, 100, 100}; // Bounding box max
+        classname = "Land_House_2W02_Livespace0"; // Classname of livespace object
+        offset[] = { 3.24902, -1.91812, 0.0898438 }; // Livespace object offset on spawn
+        homebook = "homebook";
+        debug = 1;
+        class Door0
+        {
+            selfDoorId = 0; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 0 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 1; // Is door from house to outside world
+            levels[] = { "doorstwin1_l1", "doorstwin1_l2", "doorstwin1_l3", "doorstwin1_l4" }; // Selection in p3d relative to this door for each level
+        };
+        class Door1
+        {
+            selfDoorId = 1; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 1 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 0; // Is door from house to outside world
+            levels[] = { "d3_l1", "d3_l2", "d3_l3" }; // Selection in p3d relative to this door for each level
+        };
+        class Door2
+        {
+            selfDoorId = 2; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 2 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 0; // Is door from house to outside world
+            levels[] = { "d4_l1", "d4_l2", "d4_l3" }; // Selection in p3d relative to this door for each level
+        };
+        class Door3
+        {
+            selfDoorId = 3; // ID of this door of livespace. (Check by DebugBuildingTool)
+            linkedDoorIds[] = { 3 }; // ID of vanilla house doors. Empty if not exist.
+            outerDoor = 0; // Is door from house to outside world
+            levels[] = { "d5_l1", "d5_l2", "d5_l3" }; // Selection in p3d relative to this door for each level
+        };
+        class Barricade0
+        {
+            levels[] = { "barricade_l1", "barricade_l2", "barricade_l3", "barricade_l4" }; // Selection in p3d relative to this barricade for each level
+        };
+    };
 };
 
 class Land_House_2W03
