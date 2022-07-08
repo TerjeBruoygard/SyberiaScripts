@@ -393,7 +393,7 @@ class TabletsCharcoal : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=30;
+    medStomatchhealTimeSec=60;
     overdosedIncrement=0.0;
     hiddenSelectionsTextures[]=
     {
@@ -411,7 +411,7 @@ class TabletsMezimForte : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=60;
+    medStomatchhealTimeSec=120;
     overdosedIncrement=0.05;
     hiddenSelectionsTextures[]=
     {
@@ -429,7 +429,7 @@ class TabletsZerukal : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=120;
+    medStomatchhealTimeSec=180;
     overdosedIncrement=0.05;
     hiddenSelectionsTextures[]=
     {
@@ -447,7 +447,7 @@ class TabletsNifuroksazid : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=180;
+    medStomatchhealTimeSec=300;
     overdosedIncrement=0.05;
     hiddenSelectionsTextures[]=
     {
@@ -465,7 +465,7 @@ class TabletsPolisorb : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=180;
+    medStomatchhealTimeSec=300;
     overdosedIncrement=0.05;
     hiddenSelectionsTextures[]=
     {
@@ -483,7 +483,7 @@ class TabletsKarbopekt : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=120;
+    medStomatchhealTimeSec=300;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_sepia_co.paa"
@@ -500,7 +500,7 @@ class TabletsEnterofuril : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=180;
+    medStomatchhealTimeSec=250;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
@@ -517,7 +517,7 @@ class TabletsErsefuril : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=200;
+    medStomatchhealTimeSec=400;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
@@ -534,7 +534,7 @@ class TabletsSalofalk : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=150;
+    medStomatchhealTimeSec=250;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_brown_co.paa"
@@ -551,7 +551,7 @@ class TabletsFtalazol : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=150;
+    medStomatchhealTimeSec=250;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_white_co.paa"
@@ -568,7 +568,7 @@ class TabletsMesalazin : TabletsBase
     varQuantityInit=10;
     varQuantityMax=10;
     medStomatchhealLevel=1;
-    medStomatchhealTimeSec=280;
+    medStomatchhealTimeSec=380;
     hiddenSelectionsTextures[]=
     {
         "SyberiaScripts\data\medical\tablets_blue_co.paa"

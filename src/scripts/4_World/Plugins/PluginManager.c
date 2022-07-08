@@ -12,6 +12,8 @@ modded class PluginManager
 			RegisterPlugin("PluginGearPDA", true, false);
 		}
 		
+        RegisterPlugin("PluginAdminTool", true, true);
+        
 		super.Init();
 	}
 }

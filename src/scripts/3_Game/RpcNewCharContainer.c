@@ -5,5 +5,5 @@ class RpcNewCharContainer
 	ref array<ref CharacterMetadata> m_maleCharsMetadata;
 	ref array<ref CharacterMetadata> m_femaleCharsMetadata;
 	
-	ref SkillsContainer m_skillsContainer;
+	ref SkillsContainer m_skills;
 };
