@@ -161,33 +161,33 @@ class Land_Barn_Wood2
     {
         bboxStart[] = {-100, -100, -100}; // Bounding box min
         bboxEnd[] = {100, 100, 100}; // Bounding box max
-        classname = "Land_Barn_Wood2_Livespace0";
+        classname = "Land_Barn_Wood2_Livespace0"; // Classname of livespace object
+        offset[] = { -0.487305, -3.10001, -0.00976563 }; // Livespace object offset on spawn
         homebook = "homebook";
         class Door0
         {
-            linkedDoorIds[] = { 0, 1 }; // ID of vanilla house doors. Empty if not exist.
+            linkedDoorIds[] = { 2, 3 }; // ID of vanilla house doors. Empty if not exist.
             outerDoor = 1; // Is door from house to outside world
-            maxLevel = 3; // Maximum level to upgrade
-            levels[] = { "d12_l1", "d12_l2", "d12_l3" };
+            levels[] = { "d12_l1", "d12_l2", "d12_l3" }; // Selection in p3d relative to this door for each level
+            components[] = { "doors1", "doors2" }; // Components in p3d relative to this door
         };
         class Door1
         {
-            linkedDoorIds[] = { 2, 3 }; // ID of vanilla house doors. Empty if not exist.
+            linkedDoorIds[] = { 0, 1 }; // ID of vanilla house doors. Empty if not exist.
             outerDoor = 1; // Is door from house to outside world
-            maxLevel = 3; // Maximum level to upgrade
-            levels[] = { "d34_l1", "d34_l2", "d34_l3" };
+            levels[] = { "d34_l1", "d34_l2", "d34_l3" }; // Selection in p3d relative to this door for each level
+            components[] = { "doors3", "doors4" }; // Components in p3d relative to this door
         };
         class Door2
         {
             linkedDoorIds[] = { 4 }; // ID of vanilla house doors. Empty if not exist.
             outerDoor = 1; // Is door from house to outside world
-            maxLevel = 3; // Maximum level to upgrade
-            levels[] = { "d5_l1", "d5_l2", "d5_l3" };
+            levels[] = { "d5_l1", "d5_l2", "d5_l3" }; // Selection in p3d relative to this door for each level
+            components[] = { "doors5" }; // Components in p3d relative to this door
         };
         class Barricade0
         {
-            maxLevel = 1; // Maximum level to upgrade
-            levels[] = { "barricade_l1" };
+            levels[] = { "barricade_l1" }; // Selection in p3d relative to this barricade for each level
         };
     };
 };
