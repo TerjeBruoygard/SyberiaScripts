@@ -7,6 +7,7 @@ modded class MissionGameplay
 	{
 		SybLog("MissionGameplay OnMissionStart");
 		super.OnMissionStart();
+		SyberiaPPEffects.ResetAllEffects();
 	}
 	
 	override void OnMissionFinish()
@@ -16,6 +17,7 @@ modded class MissionGameplay
 		
 		delete m_AdditionHudRootWidget;
 		delete m_SyberiaAdditionalHud;
+		SyberiaPPEffects.ResetAllEffects();
 	}
 	
 	override void OnInit()
@@ -26,6 +28,8 @@ modded class MissionGameplay
 		}
 		
 		super.OnInit();
+		
+		SyberiaPPEffects.Init();
 		
 		if (!m_AdditionHudRootWidget)
 		{
@@ -77,10 +81,12 @@ modded class MissionGameplay
 	override void OnUpdate(float timeslice)
 	{
 		super.OnUpdate(timeslice);
-		
+				
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
 		if (player)
 		{
+			SyberiaPPEffects.Update(timeslice);
+			
 			UIScriptedMenu menu = m_UIManager.GetMenu();
 			
 			if (m_SyberiaAdditionalHud && m_LifeState == EPlayerStates.ALIVE && !player.IsUnconscious() )
@@ -125,35 +131,14 @@ modded class MissionGameplay
 	
 	private void OnUpdateAdvMedicineGUI(PlayerBase player, float deltaTime)
 	{		
-		if (player.m_overdosedValue > 1)
-		{
-			float overdosedEffect = Math.Clamp(player.m_overdosedValue * 20, 0, 100);
-			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur + deltaTime, 0, overdosedEffect);
-		}
-		else if (player.GetCurrentPainLevel() > 1)
-		{			
-			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur + deltaTime, 0, player.m_painLevel * 10);
-		}
-		else if (player.m_concussionHit)
-		{
-			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur + deltaTime, 0, 10);
-		}
-		else
-		{
-			player.m_painEffectDurationCur = Math.Clamp(player.m_painEffectDurationCur - deltaTime, 0, 100);
-		}
+		float overdosedEffect = Math.Clamp((player.m_overdosedValue - 1.0) * 0.1, 0, 0.3);
+		SyberiaPPEffects.SetOverdosedEffect(overdosedEffect);
 		
-		if (player.m_painEffectDurationCur > 0)
-		{
-			PPEffects.SetBlurFlashbang(player.m_painEffectDurationCur * 0.01);
-		}
+		float painEffect = Math.Clamp(player.GetCurrentPainLevel() * 0.1, 0, 0.3);
+		SyberiaPPEffects.SetPainEffect(painEffect);
 		
-		if (player.m_painEffectDurationLast > 0 && player.m_painEffectDurationCur == 0)
-		{
-			PPEffects.SetBlurFlashbang(0);
-		}
-		
-		player.m_painEffectDurationLast = player.m_painEffectDurationCur;
+		float concussionEffect = Math.Clamp(((int)player.m_concussionHit) * 0.1, 0, 0.1);
+		SyberiaPPEffects.SetConcussionEffect(concussionEffect);
 	}
 	
 	override int GetRespawnModeClient()
