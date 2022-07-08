@@ -105,8 +105,9 @@ modded class PlayerBase
 	override void SetActionsRemoteTarget( out TInputActionMap InputActionMap)
 	{
 		super.SetActionsRemoteTarget(InputActionMap);
+		AddAction(ActionStethoscopeInspect, InputActionMap);
 		AddAction(ActionCheckName, InputActionMap);
-		AddAction(ActionSayName, InputActionMap);
+		AddAction(ActionSayName, InputActionMap);		
 	}
 	
 	override void IncreaseDiseaseCount()

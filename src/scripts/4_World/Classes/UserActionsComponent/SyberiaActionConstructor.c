@@ -20,5 +20,6 @@ modded class ActionConstructor
 		actions.Insert(ActionSleep);
         actions.Insert(ActionCutBookPage);
 		actions.Insert(ActionPlugStethoscope);
+		actions.Insert(ActionStethoscopeInspect);
 	}
 };

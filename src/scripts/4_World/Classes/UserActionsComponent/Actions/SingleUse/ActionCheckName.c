@@ -22,6 +22,10 @@ class ActionCheckName: ActionInteractBase
 	{
 		if (player.GetItemInHands()) return false;
 		
+		Stethoscope itemStatoschope = Stethoscope.Cast(player.GetItemOnSlot("Eyewear"));
+		if (itemStatoschope)
+			return false;
+		
 		PlayerBase ntarget = PlayerBase.Cast( target.GetObject() );
 		if( !ntarget ) return false;
 		
@@ -78,6 +82,10 @@ class ActionSayName: ActionInteractBase
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		if (player.GetItemInHands()) return false;
+		
+		Stethoscope itemStatoschope = Stethoscope.Cast(player.GetItemOnSlot("Eyewear"));
+		if (itemStatoschope)
+			return false;
 		
 		PlayerBase ntarget = PlayerBase.Cast( target.GetObject() );
 		if( !ntarget ) return false;

@@ -249,12 +249,19 @@ modded class MissionGameplay
 		bool m_isAltPressed = m_pressedKeys.Find(KeyCode.KC_LMENU) != -1;
 		
 		PluginGearPDA pluginGearPDA;
+		PluginSyberiaLogin pluginSyberiaLogin;
 		if ( key == KeyCode.KC_ESCAPE )
 		{	
 			Class.CastTo(pluginGearPDA, GetPlugin(PluginGearPDA));
 			if (pluginGearPDA && pluginGearPDA.IsOpen())
 			{
 				pluginGearPDA.Close();
+			}
+			
+			Class.CastTo(pluginSyberiaLogin, GetPlugin(PluginSyberiaLogin));
+			if (pluginSyberiaLogin)
+			{
+				pluginSyberiaLogin.CloseStethoscopeMenu();
 			}
 		}
 		else if ( key == KeyCode.KC_RETURN )
