@@ -70,7 +70,7 @@ class PluginTrader extends PluginBase
 		}
 		
 		float itemQuantity01 = CalculateItemQuantity01(item);
-		float resultPrice = CalculateBuyPrice(trader, classname, traderTotalQuantity + itemQuantity01);	
+		float resultPrice = CalculateBuyPrice(trader, data, classname, 1);	
 		resultPrice = resultPrice - (trader.m_storageCommission * resultPrice);	
 		resultPrice = resultPrice * CalculateItemQuantity01(item);
 		
@@ -82,12 +82,20 @@ class PluginTrader extends PluginBase
 		return (int)Math.Max(0, Math.Floor(resultPrice));
 	}
 	
-	int CalculateBuyPrice(ref PluginTrader_Trader trader, string classname, float quantity)
+	int CalculateBuyPrice(ref PluginTrader_Trader trader, ref PluginTrader_Data data, string classname, float quantity)
 	{
-		float itemMaxQuantity = CalculateTraiderItemQuantityMax(trader, classname);		
+		float totalQuantity = 0;
+		if (data.m_items.Contains(classname))
+		{
+			totalQuantity = data.m_items.Get(classname);
+		}
+		
+		float itemMaxQuantity = CalculateTraiderItemQuantityMax(trader, classname);				
 		quantity = Math.Min(quantity, itemMaxQuantity);
-		float resultPrice = CalculateDumping(trader.m_dumpingByAmountAlgorithm, trader.m_dumpingByAmountModifier, (int)quantity, (int)itemMaxQuantity);
-		resultPrice = 1000 * resultPrice;
+		totalQuantity = Math.Min(totalQuantity, itemMaxQuantity);
+		
+		float resultPrice = CalculateDumping(trader.m_dumpingByAmountAlgorithm, trader.m_dumpingByAmountModifier, (int)totalQuantity, (int)itemMaxQuantity);
+		resultPrice = resultPrice * quantity * 1000;
 		return (int)Math.Max(1, Math.Floor(resultPrice));
 	}
 	
@@ -138,7 +146,10 @@ class PluginTrader extends PluginBase
 	
 	float CalculateBuyMaxQuantity(ref PluginTrader_Trader traderInfo, string classname)
 	{
-		return Math.Max(1, CalculateTraiderItemQuantityMax(traderInfo, classname) * traderInfo.m_buyMaxQuantityPercent);
+		float result = CalculateTraiderItemQuantityMax(traderInfo, classname) * traderInfo.m_buyMaxQuantityPercent;
+		result = Math.Round(result);
+		result = Math.Max(1, result);		
+		return result;
 	}
 	
 	float CalculateItemSelectedQuantityStep(string classname)

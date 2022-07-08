@@ -203,8 +203,8 @@ class SybTraderMenu extends UIScriptedMenu
 		ref SybTraderMenu_BuyData actionBtnParam = new ref SybTraderMenu_BuyData;
 		actionBtnParam.m_classname = classname;
 		actionBtnParam.m_totalQuantity = quantity;
-		actionBtnParam.m_maxBuyQuantity = pluginTrader.CalculateBuyMaxQuantity(m_traderInfo, classname);
-		actionBtnParam.m_selectedQuantity = Math.Clamp(quantity, 1, actionBtnParam.m_maxBuyQuantity);
+		actionBtnParam.m_maxBuyQuantity = Math.Min(pluginTrader.CalculateBuyMaxQuantity(m_traderInfo, classname), quantity);
+		actionBtnParam.m_selectedQuantity = Math.Min(1, actionBtnParam.m_maxBuyQuantity);
 		
 		ref ButtonWidget actionButton = ButtonWidget.Cast( itemBuy.FindAnyWidget( "ItemActionButton" ) );
 		actionButton.SetUserID(2001);
@@ -217,7 +217,7 @@ class SybTraderMenu extends UIScriptedMenu
 		
 		WidgetSetWidth(itemBuy, "ItemNameWidget", contentWidth - 220);
 		WidgetTrySetText(itemBuy, "ItemNameWidget", item.GetDisplayName());
-		WidgetTrySetText(itemBuy, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, classname, quantity).ToString());		
+		WidgetTrySetText(itemBuy, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, classname, actionBtnParam.m_selectedQuantity).ToString());
 		UpdateItemInfoQuantity(itemBuy, pluginTrader, classname, quantity);					
 		UpdateItemInfoSelectedQuantity(itemBuy, classname, actionBtnParam.m_selectedQuantity, actionBtnParam.m_maxBuyQuantity);
 		
@@ -277,7 +277,7 @@ class SybTraderMenu extends UIScriptedMenu
 		GetSelectedBuyItems(buyResult);
 		foreach (string buyClassname, float buyQuantity : buyResult)
 		{
-			value = value - pluginTrader.CalculateBuyPrice(m_traderInfo, buyClassname, buyQuantity);
+			value = value - pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, buyClassname, buyQuantity);
 		}
 		delete buyResult;
 		
@@ -604,13 +604,14 @@ class SybTraderMenu extends UIScriptedMenu
 			value = stepSize;
 		}
 			
-		if ((mainParam.m_selectedQuantity + value) > 0 && (mainParam.m_selectedQuantity + value) <= mainParam.m_maxBuyQuantity)
+		if ((mainParam.m_selectedQuantity + value) > 0)
 		{
 			mainParam.m_selectedQuantity = mainParam.m_selectedQuantity + value;
-			mainParam.m_selectedQuantity = Math.Min(mainParam.m_selectedQuantity, mainParam.m_maxBuyQuantity);
-			UpdateItemInfoSelectedQuantity(mainWidget, mainParam.m_classname, mainParam.m_selectedQuantity, mainParam.m_maxBuyQuantity);
+			mainParam.m_selectedQuantity = Math.Min(mainParam.m_selectedQuantity, mainParam.m_maxBuyQuantity);			
 		}
 		
+		WidgetTrySetText(mainWidget, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, m_traderData, mainParam.m_classname, mainParam.m_selectedQuantity).ToString());
+		UpdateItemInfoSelectedQuantity(mainWidget, mainParam.m_classname, mainParam.m_selectedQuantity, mainParam.m_maxBuyQuantity);
 		UpdateCurrentPriceProgress();
 	}
 	
