@@ -1,6 +1,6 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
 const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.49h";
+const string Syberia_Version = "OPEN BETA 0.49i";
 
 void SybLog(string message)
 {
@@ -79,7 +79,8 @@ enum SyberiaRPC {
 	SYBRPC_SYNC_TOXIC_ZONES,
 	SYBRPC_OPEN_TRADE_MENU,
 	SYBRPC_CLOSE_TRADER_MENU,
-	SYBRPC_ACTION_TRADER
+	SYBRPC_ACTION_TRADER,
+	SYBRPC_SELF_KICK
 };
 
 enum SyberiaScreenEquipPages {
