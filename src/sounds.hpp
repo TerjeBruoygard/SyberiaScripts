@@ -62,3 +62,17 @@ class cut_page: default
         "SyberiaScripts\data\sounds\actions\cut_page.ogg", 0.8, 1, 10
     };
 };
+class jim_wow_1: default
+{
+    sound[]=
+    {
+        "SyberiaScripts\data\sounds\player\wow1.ogg", 2, 1, 25
+    };
+};
+class jim_wow_2: default
+{
+    sound[]=
+    {
+        "SyberiaScripts\data\sounds\player\wow2.ogg", 2, 1, 25
+    };
+};

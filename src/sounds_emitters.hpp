@@ -63,3 +63,17 @@ class CutPage_SoundEmitter: SyberiaSoundEmitter
     emitterRange=10;
     emitterSound="cut_page";
 };
+class JimWow1_SoundEmitter: SyberiaSoundEmitter
+{
+    scope=2;
+    emitterLifetime=3;
+    emitterRange=10;
+    emitterSound="jim_wow_1";
+};
+class JimWow2_SoundEmitter: SyberiaSoundEmitter
+{
+    scope=2;
+    emitterLifetime=3;
+    emitterRange=10;
+    emitterSound="jim_wow_2";
+};

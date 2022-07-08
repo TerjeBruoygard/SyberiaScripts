@@ -29,18 +29,18 @@ class CfgWorlds
         airDayTemperatureMax=-5;
         airNightTemperatureMin=-20;
         airNightTemperatureMax=-10;
-        clothingHeatIsolationGlobal=1.8;
+        clothingHeatIsolationGlobal=1.5;
         
-        temperatureHighConsumeItemsMod = 0.04;
-        temperatureLowConsumeItemsMod = -0.2;
-        temperatureDrinkPondPenalty = -0.2;
-        temperatureDrinkWellPenalty = -0.2;
+        temperatureHighConsumeItemsMod = 0.03;
+        temperatureLowConsumeItemsMod = -0.05;
+        temperatureDrinkPondPenalty = -0.05;
+        temperatureDrinkWellPenalty = -0.01;
         temperatureFillWaterBottleTotal = 6;
         temperatureIceDrain = -40;
         temperatureSnowDrain = -20;
         
-        clothingDrenchedHeatDrain = -80;
-        clothingWetHeatDrain = -30;
+        clothingDrenchedHeatDrain = -50;
+        clothingWetHeatDrain = -20;
     };
 };
 
