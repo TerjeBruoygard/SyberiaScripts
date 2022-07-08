@@ -6,6 +6,7 @@ class SkillsMenu extends UIScriptedMenu
 	
 	bool m_active = false;
 	bool m_dirty = false;
+	bool m_refresh = false;
 	
 	int m_currentSelectedSkill = -1;
 	int m_currentSelectedLevel = -1;
@@ -229,6 +230,14 @@ class SkillsMenu extends UIScriptedMenu
 	{
 		super.Update(timeslice);
 		
+		if (m_refresh)
+		{
+			m_refresh = false;
+			UpdateSkillsList();
+			UpdatePerksList();
+			UpdatePerkInfo();
+		}
+		
 		if (m_dirty)
 		{
 			m_dirty = false;
@@ -237,7 +246,7 @@ class SkillsMenu extends UIScriptedMenu
 			m_skillLevelsList.SelectRow(m_storedLevelId);
 			m_skillPerksList.SelectRow(m_storedPerkId);
 		}
-		
+
 		if (!m_active)
 		{
 			m_storedSkillId = m_skillsList.GetSelectedRow();
@@ -251,6 +260,29 @@ class SkillsMenu extends UIScriptedMenu
 	{
 		super.OnClick(w, x, y, button);	
 
+		if (w == m_activatePerkBtn)
+		{
+			int selectedSkill = m_skillsList.GetSelectedRow();
+			int selectedLevel = m_skillLevelsList.GetSelectedRow();
+			int selectedPerk = m_skillPerksList.GetSelectedRow();
+			if (selectedPerk >= 0 && selectedLevel >= 0 && selectedSkill >= 0)
+			{
+				Param1<int> selectedLevelValue;
+				m_skillLevelsList.GetItemData(selectedLevel, 0, selectedLevelValue);
+				
+				ref PerkInfo perk;				
+				m_skillPerksList.GetItemData(selectedPerk, 0, perk);
+				if (perk)
+				{
+					m_storedSkillId = selectedSkill;
+					m_storedLevelId = selectedLevel;
+					m_storedPerkId = selectedPerk;
+					m_activatePerkBack.Show(false);
+					GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_SKILLS_ACTIVATE, new Param2< int, int >( perk.GetId(), selectedLevelValue.param1 ) );
+				}	
+			}
+		}
+		
 		return false;
 	}
 	

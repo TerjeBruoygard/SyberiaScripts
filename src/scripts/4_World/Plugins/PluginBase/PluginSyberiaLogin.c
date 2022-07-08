@@ -125,6 +125,13 @@ class PluginSyberiaLogin extends PluginBase
 			}
 			
 			player.m_skills = clientData.param1;
+			
+			DayZPlayerImplement playerImpl = DayZPlayerImplement.Cast(player);
+			if (playerImpl && playerImpl.m_skillsMenu && playerImpl.m_skillsMenu.m_active)
+			{
+				playerImpl.m_skillsMenu.m_refresh = true;
+				playerImpl.m_skillsMenu.m_dirty = true;
+			}
 		}
 	}
 };
