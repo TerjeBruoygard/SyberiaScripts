@@ -35,7 +35,7 @@ FrameWidgetClass rootFrame {
      style rover_sim_black
      {
       ScrollWidgetClass BuyItemsPanel {
-       ignorepointer 1
+       ignorepointer 0
        position 20 50
        size 680 700
        hexactpos 1
@@ -70,7 +70,7 @@ FrameWidgetClass rootFrame {
      style rover_sim_black
      {
       ScrollWidgetClass SellItemsPanel {
-       ignorepointer 1
+       ignorepointer 0
        position 20 50
        size 680 700
        hexactpos 1

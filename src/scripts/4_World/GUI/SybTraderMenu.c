@@ -190,7 +190,7 @@ class SybTraderMenu extends UIScriptedMenu
 		WidgetSetWidth(itemBuy, "ItemNameWidget", contentWidth - 220);
 		WidgetTrySetText(itemBuy, "ItemNameWidget", item.GetDisplayName());
 		WidgetTrySetText(itemBuy, "ItemPriceWidget", pluginTrader.CalculateBuyPrice(m_traderInfo, classname, quantity).ToString());		
-		WidgetTrySetText(itemBuy, "ItemQuantityWidget", FormatBuyQuantityStr(quantity) + "/" + pluginTrader.CalculateTraiderItemQuantityMax(m_traderInfo, classname));		
+		UpdateItemInfoQuantity(itemBuy, pluginTrader, classname, quantity);			
 		
 		m_buyWidgetsCache.Insert(itemBuy);
 		return index;
@@ -562,12 +562,16 @@ class SybTraderMenu extends UIScriptedMenu
 				quantity_str = quantity_ratio.ToString() + "#inv_inspect_percent";
 				WidgetTrySetText( root_widget, "ItemQuantityWidget", quantity_str );
 			}
-			else if ( item_base.IsInherited( Magazine ) )
+			else if ( item_base.IsInherited( Ammunition_Base ) )
 			{
 				Magazine magazine_item;
 				Class.CastTo(magazine_item, item_base);
 				
 				WidgetTrySetText( root_widget, "ItemQuantityWidget",  magazine_item.GetAmmoCount().ToString() + "/" + magazine_item.GetAmmoMax().ToString() + " " + "#inv_inspect_pieces" );
+			}
+			else if ( item_base.IsInherited( Magazine ) )
+			{
+				WidgetTrySetText( root_widget, "ItemQuantityWidget",  "" );
 			}
 			else
 			{
@@ -577,6 +581,64 @@ class SybTraderMenu extends UIScriptedMenu
 		else
 		{
 			WidgetTrySetText( root_widget, "ItemQuantityWidget", "" );
+		}
+	}
+	
+	private void UpdateItemInfoQuantity(Widget root_widget, PluginTrader pluginTrader, string classname, float quantity)
+	{
+		int maxStackSize = 0;		
+		if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
+		{
+			maxStackSize = GetGame().ConfigGetInt( CFG_VEHICLESPATH + " " + classname + " varQuantityMax" );
+		}
+		else if (GetGame().ConfigIsExisting(CFG_MAGAZINESPATH + " " + classname))
+		{
+			maxStackSize = GetGame().ConfigGetInt( CFG_MAGAZINESPATH + " " + classname + " count" );
+		}
+		else if (GetGame().ConfigIsExisting(CFG_WEAPONSPATH + " " + classname))
+		{
+			maxStackSize = GetGame().ConfigGetInt( CFG_WEAPONSPATH + " " + classname + " varQuantityMax" );
+		}
+		
+		int maxStacksCount = pluginTrader.CalculateTraiderItemQuantityMax(m_traderInfo, classname);
+		if ( maxStackSize > 0 )
+		{
+			string stackedUnits = "";
+			if (GetGame().ConfigIsExisting(CFG_VEHICLESPATH + " " + classname))
+			{
+				stackedUnits = GetGame().ConfigGetTextOut( CFG_VEHICLESPATH + " " + classname + " stackedUnit" );
+			}
+			else if (GetGame().ConfigIsExisting(CFG_MAGAZINESPATH + " " + classname))
+			{
+				stackedUnits = GetGame().ConfigGetTextOut( CFG_MAGAZINESPATH + " " + classname + " stackedUnit" );
+			}
+			else if (GetGame().ConfigIsExisting(CFG_WEAPONSPATH + " " + classname))
+			{
+				stackedUnits = GetGame().ConfigGetTextOut( CFG_WEAPONSPATH + " " + classname + " stackedUnit" );
+			}
+			
+			float item_quantity;
+			int max_quantity;
+			if ( stackedUnits == "pc." )
+			{
+				item_quantity = quantity * maxStackSize;
+				max_quantity = maxStacksCount * maxStackSize;
+				WidgetTrySetText( root_widget, "ItemQuantityWidget", FormatBuyQuantityStr(item_quantity) + "/" + max_quantity.ToString() + " " + "#inv_inspect_pieces" );	
+			}
+			else if ( GetGame().IsKindOf(classname, "Ammunition_Base") )
+			{
+				item_quantity = quantity * maxStackSize;
+				max_quantity = maxStacksCount * maxStackSize;
+				WidgetTrySetText( root_widget, "ItemQuantityWidget", FormatBuyQuantityStr(item_quantity) + "/" + max_quantity.ToString() + " " + "#inv_inspect_pieces" );
+			}
+			else
+			{
+				WidgetTrySetText( root_widget, "ItemQuantityWidget", FormatBuyQuantityStr(quantity) + "/" + maxStacksCount + " " + "#inv_inspect_pieces" );
+			}
+		}
+		else
+		{
+			WidgetTrySetText( root_widget, "ItemQuantityWidget", FormatBuyQuantityStr(quantity) + "/" + maxStacksCount + " " + "#inv_inspect_pieces" );
 		}
 	}
 	
