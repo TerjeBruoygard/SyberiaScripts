@@ -2,6 +2,7 @@ class DZ_LightAI;
 class AnimalBase: DZ_LightAI
 {
     storageCategory=3;
+    knifeDamageModifier=1;
     class Cargo
     {
         itemsCargoSize[]={10,15};
@@ -12,6 +13,7 @@ class AnimalBase: DZ_LightAI
 
 class Animal_GallusGallusDomesticus: AnimalBase
 {
+    knifeDamageModifier=0.25;
     class Cargo
     {
         itemsCargoSize[]={10,4};
@@ -22,6 +24,7 @@ class Animal_GallusGallusDomesticus: AnimalBase
 
 class Animal_GallusGallusDomesticusF: AnimalBase
 {
+    knifeDamageModifier=0.25;
     class Cargo
     {
         itemsCargoSize[]={10,4};
@@ -52,6 +55,7 @@ class Animal_CervusElaphusF: AnimalBase
 
 class Animal_BosTaurus: AnimalBase
 {
+    knifeDamageModifier=1.5;
     class Cargo
     {
         itemsCargoSize[]={10,40};
@@ -62,6 +66,7 @@ class Animal_BosTaurus: AnimalBase
 
 class Animal_BosTaurusF: AnimalBase
 {
+    knifeDamageModifier=1.5;
     class Cargo
     {
         itemsCargoSize[]={10,40};
@@ -72,6 +77,7 @@ class Animal_BosTaurusF: AnimalBase
 
 class Animal_UrsusArctos: AnimalBase
 {
+    knifeDamageModifier=2.0;
     class Cargo
     {
         itemsCargoSize[]={10,40};
@@ -83,6 +89,7 @@ class Animal_UrsusArctos: AnimalBase
 class DeadChicken_ColorBase: Edible_Base
 {
     storageCategory=3;
+    knifeDamageModifier=0.25;
     class Cargo
     {
         itemsCargoSize[]={10,4};
@@ -123,6 +130,7 @@ class DeadChicken_ColorBase: Edible_Base
 class DeadRabbit: Edible_Base
 {
     storageCategory=3;
+    knifeDamageModifier=0.25;
     class Cargo
     {
         itemsCargoSize[]={10,4};

@@ -273,7 +273,7 @@ modded class PlayerBase
 		if (m_sybstats.m_visceraHit > 0) return true;
 		if (GetCurrentPainLevel() > 1) return true;
 		if (m_sybstats.m_sepsis > 1) return true;
-		if (m_sybstats.m_zombieVirus > 1) return true;
+		if (m_sybstats.m_zombieVirus > 2) return true;
 		if (m_sybstats.m_influenzaLevel > 2) return true;
 		if (m_sybstats.m_stomatchpoisonLevel > 1) return true;
 		if (m_sybstats.m_overdosedLevel > 2) return true;
