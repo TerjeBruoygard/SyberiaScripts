@@ -51,12 +51,12 @@ class PluginSyberiaLogin extends PluginBase
     {   
 		SybLog("PluginSyberiaLogin SYBRPC_NEWCHAR_SCREEN_OPEN RPC Received.");
 		
-		Param2<string, int> clientData;
+		Param1<ref RpcNewCharContainer> clientData;
        	if ( !ctx.Read( clientData ) ) return;			
 		
 		if (screenBase) screenBase.Close();
 		
-		screenBase = new ScreenNewchar(clientData.param1, clientData.param2);
+		screenBase = new ScreenNewchar(clientData.param1);
 	}
 	
 	void EquipScreen_Open(ref ParamsReadContext ctx, ref PlayerIdentity sender)
