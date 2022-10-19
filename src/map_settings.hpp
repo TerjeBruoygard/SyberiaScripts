@@ -48,343 +48,6 @@ class CfgWorlds
     };
 };
 
-class RscMapControl
-{
-	scaleMin=4.9999999e-005;
-	scaleMax=0.85000002;
-	scaleDefault=0.85000002;
-	ptsPerSquareSea=8;
-	ptsPerSquareTxt=10;
-	ptsPerSquareCLn=10;
-	ptsPerSquareExp=10;
-	ptsPerSquareCost=10;
-	ptsPerSquareFor=99;
-	ptsPerSquareForEdge=99;
-	ptsPerSquareRoad=4;
-	ptsPerSquareObj=15;
-	maxSatelliteAlpha=1;
-	alphaFadeStartScale=1;
-	alphaFadeEndScale=1;
-	userMapPath="dz\gear\navigation\data\usermap";
-	maxUserMapAlpha=0.2;
-	alphaUserMapFadeStartScale=0.5;
-	alphaUserMapFadeEndScale=0.80000001;
-	showCountourInterval=1;
-	colorLevels[]={0.64999998,0.60000002,0.44999999,0.30000001};
-	colorSea[]={0.2,0.5,0.69999999,1};
-	colorForest[]={0.36000001,0.77999997,0.079999998,0};
-	colorRocks[]={0.5,0.5,0.5,0.2};
-	colorCountlines[]={0.85000002,0.80000001,0.64999998,0.1};
-	colorMainCountlines[]={0.44999999,0.40000001,0.25,0};
-	colorCountlinesWater[]={0.25,0.40000001,0.5,0.30000001};
-	colorMainCountlinesWater[]={0.25,0.40000001,0.5,0.89999998};
-	colorPowerLines[]={0.1,0.1,0.1,1};
-	colorRailWay[]={0.80000001,0.2,0,1};
-	colorForestBorder[]={0.40000001,0.80000001,0,0};
-	colorRocksBorder[]={0.5,0.5,0.5,0};
-	colorOutside[]={1,1,1,1};
-	colorTracks[]={0.77999997,0.66000003,0.34,1};
-	colorRoads[]={0.69,0.43000001,0.23,1};
-	colorMainRoads[]={0.52999997,0.34999999,0,1};
-	colorTracksFill[]={0.95999998,0.91000003,0.60000002,1};
-	colorRoadsFill[]={0.92000002,0.73000002,0.41,1};
-	colorMainRoadsFill[]={0.83999997,0.61000001,0.20999999,1};
-	colorGrid[]={0.89999998,0.89999998,0.89999998,0.80000001};
-	colorGridMap[]={0.89999998,0.89999998,0.89999998,0.2};
-	fontNames="gui/fonts/sdf_MetronBook24";
-	sizeExNames=0.029999999;
-	colorNames[]={1,1,1,1};
-	fontGrid="gui/fonts/sdf_MetronBook24";
-	sizeExGrid=0.02;
-	fontLevel="gui/fonts/sdf_MetronBook24";
-	sizeExLevel=0.0099999998;
-	colorMountPoint[]={0.44999999,0.40000001,0.25,0};
-	mapPointDensity=0.12;
-	text="";
-	fontLabel="gui/fonts/sdf_MetronBook24";
-	fontInfo="gui/fonts/sdf_MetronBook24";
-	class Legend
-	{
-		x=0.050000001;
-		y=0.85000002;
-		w=0.40000001;
-		h=0.1;
-		font="gui/fonts/sdf_MetronBook24";
-		sizeEx=0.02;
-		colorBackground[]={1,1,1,0};
-		color[]={0,0,0,0};
-	};
-	class Bush
-	{
-		icon="\dz\gear\navigation\data\map_bush_ca.paa";
-		color[]={0.40000001,0.80000001,0,0};
-		size=14;
-		importance="0.2 * 14 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class SmallTree
-	{
-		icon="\dz\gear\navigation\data\map_smalltree_ca.paa";
-		color[]={0.40000001,0.80000001,0,0};
-		size=12;
-		importance="0.6 * 12 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Tree
-	{
-		icon="\dz\gear\navigation\data\map_tree_ca.paa";
-		color[]={0.40000001,0.80000001,0,0};
-		size=12;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Rock
-	{
-		icon="\dz\gear\navigation\data\map_rock_ca.paa";
-		color[]={0.1,0.1,0.1,0.80000001};
-		size=12;
-		importance="0.5 * 12 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Fuelstation
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\fuelstation.paa";
-		size=16;
-		color[]={1,1,1,1};
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.75;
-		coefMax=2;
-	};
-	class Lighthouse
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\lighthouse.paa";
-		size=30;
-		color[]={1,1,1,1};
-		importance="0.9 * 16 * 0.05";
-		coefMin=1;
-		coefMax=4;
-	};
-	class Stack
-	{
-		icon="\dz\gear\navigation\data\map_stack_ca.paa";
-		size=16;
-		color[]={1,1,1,0};
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.89999998;
-		coefMax=4;
-	};
-	class Transmitter
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\radiotower.paa";
-		color[]={1,1,1,1};
-		size=30;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.69999999;
-		coefMax=4;
-	};
-	class Watertower
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\watertower.paa";
-		color[]={1,1,1,1};
-		size=30;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.69999999;
-		coefMax=4;
-	};
-	class Shipwreck
-	{
-		icon="\dz\gear\navigation\data\map_shipwreck_ca.paa";
-		color[]={1,1,1,1};
-		size=16;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.89999998;
-		coefMax=4;
-	};
-	class Monument
-	{
-		icon="\dz\gear\navigation\data\map_monument_ca.paa";
-		color[]={1,1,1,0};
-		size=20;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class BusStop
-	{
-		icon="\dz\gear\navigation\data\map_busstop_ca.paa";
-		color[]={1,1,1,0};
-		size=16;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Fountain
-	{
-		icon="\dz\gear\navigation\data\map_fountain_ca.paa";
-		color[]={1,1,1,0};
-		size=20;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Waterpump
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\waterpump.paa";
-		color[]={1,1,1,1};
-		size=20;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=2;
-	};
-	class Hospital
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\hospital.paa";
-		color[]={1,1,1,1};
-		size=25;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=2;
-	};
-	class Store
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\shopping.paa";
-		color[]={1,1,1,1};
-		size=20;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=2;
-	};
-	class Police
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\police.paa";
-		color[]={1,1,1,1};
-		size=25;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=2;
-	};
-	class FireDep
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\firestation.paa";
-		color[]={1,1,1,1};
-		size=25;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=2;
-	};
-	class TouristSign
-	{
-		icon="\dz\gear\navigation\data\map_tsign_ca.paa";
-		color[]={1,1,1,0};
-		size=15;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=4;
-	};
-	class Tourism
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\bar.paa";
-		color[]={1,1,1,1};
-		size=20;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=2;
-	};
-	class Cross
-	{
-		icon="\dz\gear\navigation\data\map_cross_ca.paa";
-		size=20;
-		color[]={1,1,0,0};
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Chapel
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\church.paa";
-		color[]={1,1,1,1};
-		size=25;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=2;
-	};
-	class Church
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\church.paa";
-		color[]={1,1,1,1};
-		size=35;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=2;
-	};
-	class ViewTower
-	{
-		icon="\VanillaPPMap\GUI\Textures\CustomMapIcons\watchtower.paa";
-		color[]={1,1,1,1};
-		size=22;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=2;
-	};
-	class TouristShelter
-	{
-		icon="\dz\gear\navigation\data\map_tshelter_ca.paa";
-		color[]={1,1,1,1};
-		size=18;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=4;
-	};
-	class Quay
-	{
-		icon="\dz\gear\navigation\data\map_quay_ca.paa";
-		size=16;
-		color[]={1,1,1,1};
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.5;
-		coefMax=4;
-	};
-	class Bunker
-	{
-		icon="\dz\gear\navigation\data\map_bunker_ca.paa";
-		color[]={0.60000002,0.60000002,0.60000002,1};
-		size=20;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Fortress
-	{
-		icon="\dz\gear\navigation\data\map_fortress_ca.paa";
-		size=20;
-		color[]={0.60000002,0.60000002,0.60000002,1};
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Rocks
-	{
-		icon="\dz\gear\navigation\data\map_rock_ca.paa";
-		color[]={0.60000002,0.60000002,0.60000002,1};
-		size=12;
-		importance="0.9 * 16 * 0.05";
-		coefMin=0.25;
-		coefMax=4;
-	};
-	class Ruin
-	{
-		icon="\dz\gear\navigation\data\map_ruin_ca.paa";
-		size=16;
-		color[]={0.60000002,0.60000002,0.60000002,1};
-		importance="1.2 * 16 * 0.05";
-		coefMin=1;
-		coefMax=4;
-	};
-};
 class CfgLocationTypes
 {
 	class Name
@@ -455,97 +118,337 @@ class CfgLocationTypes
 		color[]={0.050000001,0.40000001,0.80000001,0.80000001};
 		textSize=0.029999999;
 	};
-	class FeedShack: NameIcon
-	{
-		texture="\VanillaPPMap\GUI\Textures\CustomMapIcons\feedshack.paa";
-		importance=1;
-		size=10;
-	};
-	class Deerstand: NameIcon
-	{
-		texture="\VanillaPPMap\GUI\Textures\CustomMapIcons\deerstand.paa";
-		importance=1;
-		size=10;
-	};
 	class Ruin: NameIcon
 	{
 		texture="\DZ\gear\navigation\data\map_ruin_ca.paa";
-		textSize=0.029999999;
-		importance=2;
-		size=7;
+		textSize=0.035;
+		importance=3;
+		size=8;
 	};
 	class Camp: NameIcon
 	{
-		color[]={0.44,0.38,0.30000001,1};
+		color[]={0.69800001,0.98000002,0.61900002,1};
 		texture="\DZ\gear\navigation\data\map_camp_ca.paa";
-		textSize=0.02;
-		size=5;
+		textSize=0.041999999;
+		importance=3;
+		size=9;
 	};
 	class Hill: NameIcon
 	{
-		color[]={0.69999999,0.69999999,0.69999999,1};
+		color[]={0.69800001,0.98000002,0.61900002,1};
 		texture="\DZ\gear\navigation\data\map_hill_ca.paa";
-		textSize=0.02;
-		size=3;
+		textSize=0.041999999;
+		importance=6;
+		size=8;
 	};
 	class ViewPoint: NameIcon
 	{
-		color[]={0.77999997,0,0.050000001,0};
+		color[]={0.69800001,0.98000002,0.61900002,1};
 		texture="\DZ\gear\navigation\data\map_viewpoint_ca.paa";
-		size=9;
+		textSize=0.041999999;
+		importance=6;
+		size=8;
 	};
 	class RockArea: NameIcon
 	{
-		color[]={0,0,0,1};
+		color[]={0.54100001,0.921,0.98400003,0.89999998};
 		texture="\DZ\gear\navigation\data\map_rock_ca.paa";
-		size=9;
+		size=8;
 	};
 	class RailroadStation: NameIcon
 	{
-		color[]={0,0,0,0};
+		color[]={0.54100001,0.921,0.98400003,0.89999998};
 		texture="\DZ\gear\navigation\data\map_station_ca.paa";
-		size=9;
+		size=7;
 	};
 	class IndustrialSite: NameIcon
 	{
-		color[]={0,0,0,1};
+		color[]={0.54100001,0.921,0.98400003,0.89999998};
 		texture="\DZ\gear\navigation\data\map_factory_ca.paa";
-		size=9;
+		size=7;
 	};
 	class LocalOffice: NameIcon
 	{
-		color[]={0.22,0.20999999,0.50999999,0};
+		color[]={0.54100001,0.921,0.98400003,0.89999998};
 		texture="\DZ\gear\navigation\data\map_govoffice_ca.paa";
-		size=10;
+		size=7;
 	};
 	class BorderCrossing: NameIcon
 	{
-		color[]={0.77999997,0,0.050000001,1};
+		color[]={0.54100001,0.921,0.98400003,0.89999998};
 		texture="\DZ\gear\navigation\data\map_border_cross_ca.paa";
-		size=9;
+		size=7;
 	};
-	class VegetationBroadleaf: NameIcon
+	class MilitaryBase: Name
 	{
-		color[]={0.25,0.40000001,0.2,1};
-		texture="\DZ\gear\navigation\data\map_broadleaf_ca.paa";
-		size=9;
+		color[]={0.97000003,0.23899999,0.31400001,1};
+		textSize=0.054000001;
+		importance=5;
 	};
-	class VegetationFir: NameIcon
+	class MilitaryBaseShadow: MilitaryBase
 	{
-		color[]={0.25,0.40000001,0.2,1};
-		texture="\DZ\gear\navigation\data\map_fir_ca.paa";
-		size=9;
+		color[]={0.87,0.87,0.87,0.69999999};
+		textSize=0.056000002;
+		importance=5;
 	};
-	class VegetationPalm: NameIcon
+	class MilitaryOutpost: Name
 	{
-		color[]={0.25,0.40000001,0.2,1};
-		texture="\DZ\gear\navigation\data\map_palm_ca.paa";
-		size=9;
+		color[]={0.97000003,0.23899999,0.31400001,1};
+		textSize=0.048;
+		importance=4;
 	};
-	class VegetationVineyard: NameIcon
+	class MilitaryOutpostShadow: MilitaryOutpost
 	{
-		color[]={0.25,0.40000001,0.2,1};
-		texture="\DZ\gear\navigation\data\map_vineyard_ca.paa";
-		size=9;
+		color[]={0.87,0.87,0.87,0.69999999};
+		textSize=0.050999999;
+		importance=4;
+	};
+};
+class RscMapControl
+{
+	scaleMin=0.0099999998;
+	scaleMax=0.94999999;
+	ptsPerSquareSea=8;
+	ptsPerSquareTxt=10;
+	ptsPerSquareCLn=10;
+	ptsPerSquareExp=10;
+	ptsPerSquareCost=10;
+	ptsPerSquareFor=9;
+	ptsPerSquareForEdge=12;
+	ptsPerSquareRoad=4;
+	ptsPerSquareObj=12;
+	scaleDefault=0.41999999;
+	maxSatelliteAlpha=1;
+	alphaFadeStartScale=2;
+	alphaFadeEndScale=2;
+	userMapPath="";
+	maxUserMapAlpha=0;
+	alphaUserMapFadeStartScale=1;
+	alphaUserMapFadeEndScale=1;
+	showCountourInterval=1;
+	colorBackground[]={0,0,0,0};
+	colorSea[]={0.46599999,0.53299999,0.77600002,0.33000001};
+	colorForest[]={0.30199999,0.64700001,0.208,0.050000001};
+	colorForestBorder[]={0,0,0,0};
+	colorRocks[]={0.54100001,0.54100001,0.54100001,0.40000001};
+	colorRocksBorder[]={0,0,0,0};
+	colorLevels[]={0.28600001,0.177,0.093999997,0.5};
+	colorMainCountlines[]={0.57200003,0.354,0.18799999,0.5};
+	colorCountlines[]={0.57200003,0.354,0.18799999,0};
+	colorMainCountlinesWater[]={0.491,0.57700002,0.70200002,0.60000002};
+	colorCountlinesWater[]={0.491,0.57700002,0.70200002,0.30000001};
+	colorPowerLines[]={0.050000001,0.050000001,0.050000001,0.80000001};
+	colorRailWay[]={0.60000002,0.15000001,0,0.94999999};
+	colorNames[]={0.1,0.1,0.1,0.89999998};
+	colorInactive[]={1,1,1,0};
+	colorOutside[]={0,0,0,1};
+	colorTracks[]={0.83999997,0.75999999,0.64999998,0.80000001};
+	colorTracksFill[]={0.83999997,0.75999999,0.64999998,0.5};
+	colorRoads[]={0.60000002,0.60000002,0.60000002,0.94999999};
+	colorRoadsFill[]={1,1,1,0.85000002};
+	colorMainRoads[]={0.89999998,0.5,0.30000001,0.94999999};
+	colorMainRoadsFill[]={1,0.60000002,0.40000001,0.89999998};
+	colorGrid[]={0.1,0.1,0.1,0.5};
+	colorGridMap[]={0.1,0.1,0.1,0.5};
+	colorTrails[]={0.83999997,0.75999999,0.64999998,0.2};
+	colorTrailsFill[]={0.83999997,0.75999999,0.64999998,0.60000002};
+	colorMountPoint[]={0.44,0.38,0.23,0.99000001};
+	fontLabel="gui/fonts/sdf_MetronBook24";
+	fontGrid="gui/fonts/sdf_MetronBook24";
+	sizeExGrid=0.029999999;
+	fontUnits="gui/fonts/sdf_MetronBook24";
+	fontNames="gui/fonts/sdf_MetronBook24";
+	sizeExNames=0.052000001;
+	fontInfo="gui/fonts/sdf_MetronBook24";
+	fontLevel="gui/fonts/sdf_MetronBook24";
+	text="#(argb,8,8,3)color(0.95,0.95,0.95,0.95)";
+	class Legend
+	{
+		x=0;
+		y=0;
+		w=0;
+		h=0;
+		font="gui/fonts/sdf_MetronBook24";
+		sizeEx=0.02;
+		colorBackground[]={1,1,1,0};
+		color[]={0.1,0.1,0.1,0};
+	};
+	class Bush
+	{
+		icon="\dz\gear\navigation\data\map_bush_ca.paa";
+		color[]={0.30199999,0.64700001,0.208,0.25};
+		size=14;
+		importance="0.2 * 10 * 0.05";
+		coefMin=0.2;
+		coefMax=2;
+	};
+	class SmallTree
+	{
+		icon="\dz\gear\navigation\data\map_smalltree_ca.paa";
+		color[]={0.30199999,0.64700001,0.208,0.25};
+		size=12;
+		importance="0.6 * 8 * 0.05";
+		coefMin=0.2;
+		coefMax=2;
+	};
+	class Tree
+	{
+		icon="\dz\gear\navigation\data\map_tree_ca.paa";
+		color[]={0.30199999,0.64700001,0.208,0.25};
+		size=12;
+		importance="0.6 * 8 * 0.05";
+		coefMin=0.2;
+		coefMax=2;
+	};
+	class Store
+	{
+		icon="\dz\gear\navigation\data\map_store_ca.paa";
+		color[]={1,1,1,0.60000002};
+		size=18;
+		importance="2 * 20 * 0.05";
+		coefMin=0.1;
+		coefMax=4;
+	};
+	class FireDep
+	{
+		icon="\dz\gear\navigation\data\map_firedep_ca.paa";
+		color[]={0.764,0,0,0.60000002};
+		size=18;
+		importance="2 * 20 * 0.05";
+		coefMin=0.2;
+		coefMax=2;
+	};
+	class Rocks
+	{
+		icon="\dz\gear\navigation\data\map_rock_ca.paa";
+		color[]={0.1,0.1,0.1,0.60000002};
+		size=12;
+		importance="0.5 * 12 * 0.05";
+		coefMin=0.25;
+		coefMax=4;
+	};
+};
+class MapDefaults
+{
+	scaleMin=0.0099999998;
+	scaleMax=0.94999999;
+	ptsPerSquareSea=8;
+	ptsPerSquareTxt=10;
+	ptsPerSquareCLn=10;
+	ptsPerSquareExp=10;
+	ptsPerSquareCost=10;
+	ptsPerSquareFor=9;
+	ptsPerSquareForEdge=12;
+	ptsPerSquareRoad=4;
+	ptsPerSquareObj=12;
+	scaleDefault=0.41999999;
+	maxSatelliteAlpha=1;
+	alphaFadeStartScale=2;
+	alphaFadeEndScale=2;
+	userMapPath="";
+	maxUserMapAlpha=0;
+	alphaUserMapFadeStartScale=1;
+	alphaUserMapFadeEndScale=1;
+	showCountourInterval=1;
+	colorBackground[]={0,0,0,0};
+	colorSea[]={0.46599999,0.53299999,0.77600002,0.33000001};
+	colorForest[]={0.30199999,0.64700001,0.208,0.050000001};
+	colorForestBorder[]={0,0,0,0};
+	colorRocks[]={0.54100001,0.54100001,0.54100001,0.40000001};
+	colorRocksBorder[]={0,0,0,0};
+	colorLevels[]={0.28600001,0.177,0.093999997,0.5};
+	colorMainCountlines[]={0.57200003,0.354,0.18799999,0.5};
+	colorCountlines[]={0.57200003,0.354,0.18799999,0};
+	colorMainCountlinesWater[]={0.491,0.57700002,0.70200002,0.60000002};
+	colorCountlinesWater[]={0.491,0.57700002,0.70200002,0.30000001};
+	colorPowerLines[]={0.050000001,0.050000001,0.050000001,0.80000001};
+	colorRailWay[]={0.60000002,0.15000001,0,0.94999999};
+	colorNames[]={0.1,0.1,0.1,0.89999998};
+	colorInactive[]={1,1,1,0};
+	colorOutside[]={0,0,0,1};
+	colorTracks[]={0.83999997,0.75999999,0.64999998,0.80000001};
+	colorTracksFill[]={0.83999997,0.75999999,0.64999998,0.5};
+	colorRoads[]={0.60000002,0.60000002,0.60000002,0.94999999};
+	colorRoadsFill[]={1,1,1,0.85000002};
+	colorMainRoads[]={0.89999998,0.5,0.30000001,0.94999999};
+	colorMainRoadsFill[]={1,0.60000002,0.40000001,0.89999998};
+	colorGrid[]={0.1,0.1,0.1,0.5};
+	colorGridMap[]={0.1,0.1,0.1,0.5};
+	colorTrails[]={0.83999997,0.75999999,0.64999998,0.2};
+	colorTrailsFill[]={0.83999997,0.75999999,0.64999998,0.60000002};
+	colorMountPoint[]={0.44,0.38,0.23,0.99000001};
+	fontLabel="gui/fonts/sdf_MetronBook24";
+	fontGrid="gui/fonts/sdf_MetronBook24";
+	sizeExGrid=0.029999999;
+	fontUnits="gui/fonts/sdf_MetronBook24";
+	fontNames="gui/fonts/sdf_MetronBook24";
+	sizeExNames=0.052000001;
+	fontInfo="gui/fonts/sdf_MetronBook24";
+	fontLevel="gui/fonts/sdf_MetronBook24";
+	text="#(argb,8,8,3)color(0.95,0.95,0.95,0.95)";
+	class Legend
+	{
+		x=0;
+		y=0;
+		w=0;
+		h=0;
+		font="gui/fonts/sdf_MetronBook24";
+		sizeEx=0.02;
+		colorBackground[]={1,1,1,0};
+		color[]={0.1,0.1,0.1,0};
+	};
+	class Bush
+	{
+		icon="\dz\gear\navigation\data\map_bush_ca.paa";
+		color[]={0.30199999,0.64700001,0.208,0.25};
+		size=14;
+		importance="0.2 * 10 * 0.05";
+		coefMin=0.2;
+		coefMax=2;
+	};
+	class SmallTree
+	{
+		icon="\dz\gear\navigation\data\map_smalltree_ca.paa";
+		color[]={0.30199999,0.64700001,0.208,0.25};
+		size=12;
+		importance="0.6 * 8 * 0.05";
+		coefMin=0.2;
+		coefMax=2;
+	};
+	class Tree
+	{
+		icon="\dz\gear\navigation\data\map_tree_ca.paa";
+		color[]={0.30199999,0.64700001,0.208,0.25};
+		size=12;
+		importance="0.6 * 8 * 0.05";
+		coefMin=0.2;
+		coefMax=2;
+	};
+	class Store
+	{
+		icon="\dz\gear\navigation\data\map_store_ca.paa";
+		color[]={1,1,1,0.60000002};
+		size=18;
+		importance="2 * 20 * 0.05";
+		coefMin=0.1;
+		coefMax=4;
+	};
+	class FireDep
+	{
+		icon="\dz\gear\navigation\data\map_firedep_ca.paa";
+		color[]={0.764,0,0,0.60000002};
+		size=18;
+		importance="2 * 20 * 0.05";
+		coefMin=0.2;
+		coefMax=2;
+	};
+	class Rocks
+	{
+		icon="\dz\gear\navigation\data\map_rock_ca.paa";
+		color[]={0.1,0.1,0.1,0.60000002};
+		size=12;
+		importance="0.5 * 12 * 0.05";
+		coefMin=0.25;
+		coefMax=4;
 	};
 };

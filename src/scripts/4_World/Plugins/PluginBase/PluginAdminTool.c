@@ -448,11 +448,6 @@ class PluginAdminTool_SpawnItemContext
 	int m_spawnType;
 	vector m_cursorPos;
 	ref array<string> m_attachments;
-	
-	void ~PluginAdminTool_SpawnItemContext()
-	{
-		if (m_attachments) delete m_attachments;
-	}
 };
 
 class PluginAdminTool_MapContext
