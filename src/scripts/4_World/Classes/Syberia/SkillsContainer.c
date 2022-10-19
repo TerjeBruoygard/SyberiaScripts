@@ -1,25 +1,12 @@
 class SkillsContainer
 {
-	protected ref map<int, float> m_skills;
-	protected ref map<int, int> m_perks;
+	ref map<int, float> m_skills = new map<int, float>;
+	ref map<int, int> m_perks = new map<int, int>;
 	bool m_dirty = true;
 	
 	void SkillsContainer()
 	{
 
-	}
-	
-	void ~SkillsContainer()
-	{
-		if (m_skills)
-		{
-			delete m_skills;
-		}
-		
-		if (m_perks)
-		{
-			delete m_perks;
-		}
 	}
 	
 	float GetSkillValue(int id)
@@ -207,8 +194,6 @@ class SkillsContainer
 	static ref SkillsContainer Create()
 	{
 		ref SkillsContainer result = new SkillsContainer;
-		result.m_skills = new map<int, float>;
-		result.m_perks = new map<int, int>;		
 		return result;
 	}
 };
