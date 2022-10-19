@@ -23,7 +23,7 @@ class PPERequester_SybPain : PPERequester_GameplayBase
 	override void OnUpdate(float delta)
 	{
 		super.OnUpdate(delta);
-		
+
 		float matChromaOffset = 0;
 		float blurEffect = 0;
 		if (m_PainValue > 0)

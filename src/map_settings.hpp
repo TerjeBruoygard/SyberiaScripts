@@ -58,7 +58,7 @@ class CfgLocationTypes
 		color[]={1,1,1,1};
 		size=0;
 		font="gui/fonts/sdf_MetronBook24";
-		textSize=0.029999999;
+		textSize=0.015;
 		shadow=0.1;
 		importance=1;
 	};
@@ -70,7 +70,7 @@ class CfgLocationTypes
 		color[]={1,1,1,1};
 		size=0;
 		font="gui/fonts/sdf_MetronBook24";
-		textSize=0.029999999;
+		textSize=0.015;
 		shadow=0;
 		importance=1;
 	};
@@ -111,12 +111,12 @@ class CfgLocationTypes
 	class Local: Name
 	{
 		color[]={0.44,0.38,0.30000001,1};
-		textSize=0.029999999;
+		textSize=0.015;
 	};
 	class Marine: Name
 	{
 		color[]={0.050000001,0.40000001,0.80000001,0.80000001};
-		textSize=0.029999999;
+		textSize=0.015;
 	};
 	class Ruin: NameIcon
 	{
@@ -255,10 +255,10 @@ class RscMapControl
 	colorMountPoint[]={0.44,0.38,0.23,0.99000001};
 	fontLabel="gui/fonts/sdf_MetronBook24";
 	fontGrid="gui/fonts/sdf_MetronBook24";
-	sizeExGrid=0.029999999;
+	sizeExGrid=0.015;
 	fontUnits="gui/fonts/sdf_MetronBook24";
 	fontNames="gui/fonts/sdf_MetronBook24";
-	sizeExNames=0.052000001;
+	sizeExNames=0.02;
 	fontInfo="gui/fonts/sdf_MetronBook24";
 	fontLevel="gui/fonts/sdf_MetronBook24";
 	text="#(argb,8,8,3)color(0.95,0.95,0.95,0.95)";
@@ -379,10 +379,10 @@ class MapDefaults
 	colorMountPoint[]={0.44,0.38,0.23,0.99000001};
 	fontLabel="gui/fonts/sdf_MetronBook24";
 	fontGrid="gui/fonts/sdf_MetronBook24";
-	sizeExGrid=0.029999999;
+	sizeExGrid=0.015;
 	fontUnits="gui/fonts/sdf_MetronBook24";
 	fontNames="gui/fonts/sdf_MetronBook24";
-	sizeExNames=0.052000001;
+	sizeExNames=0.02;
 	fontInfo="gui/fonts/sdf_MetronBook24";
 	fontLevel="gui/fonts/sdf_MetronBook24";
 	text="#(argb,8,8,3)color(0.95,0.95,0.95,0.95)";

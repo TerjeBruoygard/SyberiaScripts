@@ -15,7 +15,7 @@ modded class MissionGameplay
 		m_pressedKeys = new array<int>;
 		m_toxicZoneUpdateTimer = 0;
 		m_isPveIntruderLast = false;
-		
+				
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CONCUSSION).Start();
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE).Start();
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PAIN).Start();
@@ -174,6 +174,14 @@ modded class MissionGameplay
 			OnUpdateAdvMedicineGUI(player, timeslice);
 			OnUpdateMindstateGUI(player, timeslice);
 			OnUpdatePveIntruderState(player, timeslice);
+			
+			PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CONCUSSION).SetRequesterUpdating(true);
+			PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_OVERDOSE).SetRequesterUpdating(true);
+			PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PAIN).SetRequesterUpdating(true);
+			PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_PSI).SetRequesterUpdating(true);
+			PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_RADIATION).SetRequesterUpdating(true);
+			PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_SLEEPING).SetRequesterUpdating(true);
+			PPERequesterBank.GetRequester(PPERequesterBank.REQ_SYB_CATEYES).SetRequesterUpdating(true);
 		}
 		
 		if (!player || !player.IsAlive())

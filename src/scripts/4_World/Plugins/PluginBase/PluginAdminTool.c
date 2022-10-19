@@ -13,6 +13,7 @@ class PluginAdminTool extends PluginBase
 	ref array<string> m_lootCacheNames = new array<string>;
 	ref array<int> m_lootCacheColors = new array<int>;
 	ref PluginAdminTool_MapContext m_espSynchContext = null;
+	ref AdminMessageBox m_adminMessageBox = null;
 	
 	override void OnInit()
 	{
@@ -216,8 +217,14 @@ class PluginAdminTool extends PluginBase
 		Param1< string > serverData;
         if ( !ctx.Read( serverData ) ) return;
 		
+		if (!m_adminMessageBox)
+		{
+			m_adminMessageBox = new AdminMessageBox();
+		}
+		
+		m_adminMessageBox.ShowTextMessage(serverData.param1);
 		GetGame().GetUIManager().CloseAll();
-		GetGame().GetUIManager().ShowScriptedMenu(new AdminMessageBox(serverData.param1), NULL);
+		GetGame().GetUIManager().ShowScriptedMenu(m_adminMessageBox, NULL);
 	}
 	
 	bool HasAdminPermissions()

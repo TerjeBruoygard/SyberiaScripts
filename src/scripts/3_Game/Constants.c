@@ -1,9 +1,9 @@
 const string Syberia_ModPreffix = "[SYBERIA] ";
 const bool Syberia_DebugMode = false;
-const string Syberia_Version = "OPEN BETA 0.49L";
+const string Syberia_Version = "OPEN BETA 0.50A";
 
 class SyberiaVersionChecker {
-	void CLIENT_AND_SERVER_MODS_VERSION_MISSMATCH_0_49K() {}
+	void CLIENT_AND_SERVER_MODS_VERSION_MISSMATCH_0_50A() {}
 }
 
 void SybLog(string message)
@@ -19,7 +19,7 @@ bool ConfigIsInstanceOf(string basePath, string classname, string baseClassname)
 	}
 	
 	string baseOutputName;
-	while(GetGame().ConfigGetBaseName(basePath + " " + classname, baseOutputName))
+	while (GetGame().ConfigGetBaseName(basePath + " " + classname, baseOutputName))
 	{
 		if (baseOutputName == baseClassname)
 		{

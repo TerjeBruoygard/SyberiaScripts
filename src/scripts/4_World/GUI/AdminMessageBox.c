@@ -9,10 +9,11 @@ class AdminMessageBox extends UIScriptedMenu
 	ref MultilineTextWidget m_textWidget;
 	EffectSound m_sound;
 	
-	void AdminMessageBox(string text)
+	void ShowTextMessage(string text)
 	{
 		m_text = text;
 		m_dirty = true;
+		m_active = true;
 	}
 
 	override Widget Init()

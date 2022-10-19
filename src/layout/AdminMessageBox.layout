@@ -74,6 +74,7 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      style DayZNormal
+     text "..."
      font "gui/fonts/etelkatextpro22"
      "exact text" 1
      "text halign" center
