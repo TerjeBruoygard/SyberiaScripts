@@ -114,9 +114,17 @@ modded class PlayerBase
 		return super.IsBleeding() || (m_sybstats.m_bulletHits > (m_sybstats.m_bulletBandage1 + m_sybstats.m_bulletBandage2)) || (m_sybstats.m_knifeHits > (m_sybstats.m_knifeBandage1 + m_sybstats.m_knifeBandage2));
 	}
 	
-	override float GetPlayerLoad()
+	override float GetWeightEx(bool forceRecalc = false)
 	{
-		float result = super.GetPlayerLoad();
+		float result = super.GetWeightEx(forceRecalc);
+		result = result * (1.0 - GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0));
+		result = result * (1.0 - (GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, 0, 0) * 0.25));
+		return result;
+	}
+	
+	override protected float GetWeightSpecialized(bool forceRecalc = false)
+	{
+		float result = super.GetWeightSpecialized(forceRecalc);
 		result = result * (1.0 - GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_KG_TO, 0, 0));
 		result = result * (1.0 - (GetPerkFloatValue(SyberiaPerkType.SYBPERK_STRENGTH_STAMINA_MAX, 0, 0) * 0.25));
 		return result;

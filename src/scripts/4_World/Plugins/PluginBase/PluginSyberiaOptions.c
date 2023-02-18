@@ -35,6 +35,7 @@ class PluginSyberiaOptions_Client
 	bool m_operateVisceraHimself = 0;
 	int m_skillLevelSize = 1000;
 	int m_skillLevelModifier = 200;
+	bool m_blockAccessToBackpack = true;
 };
 
 PluginSyberiaOptions GetSyberiaOptions() 
