@@ -1,6 +1,6 @@
 modded class WoodBase
 {
-    void GetMaterialAndQuantityMap(ItemBase item, out map<string,int> output_map)
+    override void GetMaterialAndQuantityMap(ItemBase item, out map<string,int> output_map)
 	{
 		if ( IsTree() && item && item.KindOf("Knife") && m_BarkType != "" )
 		{

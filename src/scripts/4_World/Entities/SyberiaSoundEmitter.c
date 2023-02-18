@@ -6,7 +6,7 @@ class SyberiaSoundEmitter extends House
 	{		
 		if ( GetGame().IsServer() )
 		{
-			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater(Delete, GetLifeTime(), false);
+			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater(AutoDeleteIntenalCall, GetLifeTime(), false);
 		}
 		
 		if ( GetGame().IsClient() )
@@ -27,7 +27,7 @@ class SyberiaSoundEmitter extends House
 		}
 	}
 	
-	private void Delete()
+	private void AutoDeleteIntenalCall()
 	{
 		if ( GetGame().IsServer() )
 		{

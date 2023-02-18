@@ -20,7 +20,7 @@ modded class EmoteManager
 		return GetCurrentEmoteID() == EmoteConstants.ID_EMOTE_LYINGDOWN;
 	}
 	
-	void Update( float deltaT )
+	override void Update( float deltaT )
 	{
 		super.Update(deltaT);
 		

@@ -724,13 +724,13 @@ class AdminToolMenu extends UIScriptedMenu
 		vector cursorPos = "0 0 0";
 		if (spawnType == 2 && !GameHelpers.GetCursorPos(cursorPos)) return;
 		
-		PluginAdminTool_SpawnItemContext m_context = new PluginAdminTool_SpawnItemContext;
-		m_context.m_classname = classname;
-		m_context.m_health = m_spawnerSliderHealth.GetCurrent();
-		m_context.m_quantity = m_spawnerSliderQuantity.GetCurrent();
-		m_context.m_spawnType = spawnType;
-		m_context.m_cursorPos = cursorPos;
-		m_context.m_attachments = new array<string>;
+		PluginAdminTool_SpawnItemContext m_contextSpawn = new PluginAdminTool_SpawnItemContext;
+		m_contextSpawn.m_classname = classname;
+		m_contextSpawn.m_health = m_spawnerSliderHealth.GetCurrent();
+		m_contextSpawn.m_quantity = m_spawnerSliderQuantity.GetCurrent();
+		m_contextSpawn.m_spawnType = spawnType;
+		m_contextSpawn.m_cursorPos = cursorPos;
+		m_contextSpawn.m_attachments = new array<string>;
 		
 		string proxySlotName;
 		for (int sid = 0; sid < m_spawnerProxySlotSelect.GetNumItems(); sid++)
@@ -741,11 +741,11 @@ class AdminToolMenu extends UIScriptedMenu
 			if (attachmentId >= 0 && attachmentId < allAttachments.Count())
 			{
 				string attachmentName = allAttachments.Get(attachmentId);
-				m_context.m_attachments.Insert(attachmentName);
+				m_contextSpawn.m_attachments.Insert(attachmentName);
 			}
 		}
 		
-		GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_SPAWNITEM, new Param1< ref PluginAdminTool_SpawnItemContext >( m_context ));
+		GetSyberiaRPC().SendToServer( SyberiaRPC.SYBRPC_ADMINTOOL_SPAWNITEM, new Param1< ref PluginAdminTool_SpawnItemContext >( m_contextSpawn ));
 	}
 
 	override void Update(float timeslice)

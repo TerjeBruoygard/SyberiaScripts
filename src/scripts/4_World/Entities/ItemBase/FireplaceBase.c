@@ -29,7 +29,7 @@ modded class FireplaceBase
 		}
 	}
 	
-	bool IsTemperatureVisible()
+	override bool IsTemperatureVisible()
 	{
 		return GetTemperature() > PARAM_MIN_FIRE_TEMPERATURE;
 	}

@@ -36,7 +36,7 @@ class AmpouleAlcohol : SyberiaMedicineAmpoule
 		AddAction(ActionWashHandsItem);
 	}
 	
-	float GetDisinfectQuantity(int system = 0, Param param1 = null)
+	override float GetDisinfectQuantity(int system = 0, Param param1 = null)
 	{
 		return 1;
 	}
