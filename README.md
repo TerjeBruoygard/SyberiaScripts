@@ -1,6 +1,5 @@
 # Terms of use
 ##### [LICENSE](LICENSE)
-##### [ADDITIONAL TERMS](NOTICE)
 
 # How to build client PBO:
 1. Create SyberiaScripts folder on your P: drive.
