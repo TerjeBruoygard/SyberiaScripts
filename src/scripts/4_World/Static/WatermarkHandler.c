@@ -2,6 +2,6 @@ class WatermarkHandler : Managed
 {
 	void OnWatermarkClick()
 	{
-		GetGame().OpenURL("https:/" + "/dis" + "cord" + ".gg" + "/Smfj" + "jMGFWh");
+		GetGame().OpenURL("https:/" + "/dis" + "cord" + ".gg" + "/Ec5t3" + "MwnaE");
 	}
 };
