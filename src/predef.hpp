@@ -61,13 +61,3 @@ class SurvivorF_Keiko;
 class SurvivorF_Linda;
 class SurvivorF_Maria;
 class SurvivorF_Naomi;
-
-// Areas
-class ContaminatedArea_Static: EffectArea
-{
-    scope=0;
-};
-class ContaminatedArea_Dynamic: EffectArea
-{
-    scope=0;
-};
