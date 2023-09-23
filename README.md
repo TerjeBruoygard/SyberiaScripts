@@ -11,10 +11,7 @@
 
 For get sources of server-side mod please check SyberiaServer repository.
 
-## If you want to support me:
-```
-BTC: bc1q395yw8as5v9mn4yzls5y78av0q342e2cwdrhdh 
-PayPal: ivankishchenko@protonmail.com
-```
+## You can support the author of the mod via PayPal:
+[https://paypal.me/terjebruoygard](https://paypal.me/terjebruoygard)
 
 **With love - Terje Bruoygard**
