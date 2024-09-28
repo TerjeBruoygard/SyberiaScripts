@@ -3,10 +3,30 @@ modded class AnimalBase
 	private bool m_allowCargoManipulation = false;
 	
 	override void EEInit()
-	{
-		super.EEInit();
-		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
-	}
+    {
+        super.EEInit();
+        
+        bool hideInventory = true;
+        
+        #ifdef Dayz_Dog
+        if (this.IsInherited(Dayz_Doggo))
+        {
+            hideInventory = false;
+        }
+        #endif
+        
+        #ifdef Dayz_Horse
+        if (this.IsInherited(Horse_Base))
+        {
+            hideInventory = false;
+        }
+        #endif
+        
+        if (hideInventory)
+        {
+            GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
+        }
+    }
 	
 	override bool CanBeSkinned()
 	{
@@ -20,8 +40,22 @@ modded class AnimalBase
 	
 	override bool IsInventoryVisible()
 	{
-		return IsSkinned();
-	}
+        #ifdef Dayz_Dog
+        if (this.IsInherited(Dayz_Doggo))
+        {
+            return true;
+        }
+        #endif
+        
+        #ifdef Dayz_Horse
+        if (this.IsInherited(Horse_Base))
+        {
+            return true;
+        }
+        #endif
+        
+        return IsSkinned();
+    }
 	
 	override bool CanPutInCargo( EntityAI parent )
 	{

@@ -27,6 +27,7 @@ class PersonalRadio : Transmitter_Base {
 class Pot: Bottle_Base
 {
     varTemperatureMin=-100;
+    varTemperatureMax=200;
 };
 
 class FryingPan: Inventory_Base
