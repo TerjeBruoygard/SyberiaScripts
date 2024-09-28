@@ -128,6 +128,18 @@ modded class DayZPlayerImplement
 	{
 		super.CommandHandler(pDt,pCurrentCommandID,pCurrentCommandFinished);
 		
+		#ifdef EXPANSIONMODAI
+		if (m_Player.IsAI())
+		{
+			return;
+		}
+		#endif
+		#ifdef PersonBotsib_serv
+		if (m_Player.m_Bot_Editor_name_ai && m_Player.m_Bot_Editor_name_ai != "")
+		{
+			return;
+		}
+		#endif
 		PlayerBase player = PlayerBase.Cast(this);
 		if (!player)
 			return;
