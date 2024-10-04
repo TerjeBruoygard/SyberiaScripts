@@ -127,20 +127,20 @@ modded class DayZPlayerImplement
 	override void CommandHandler(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)
 	{
 		super.CommandHandler(pDt,pCurrentCommandID,pCurrentCommandFinished);
-		
+		PlayerBase player = PlayerBase.Cast(this);
 		#ifdef EXPANSIONMODAI
-		if (m_Player.IsAI())
+		if (player.IsAI())
 		{
 			return;
 		}
 		#endif
 		#ifdef PersonBotsib_serv
-		if (m_Player.m_Bot_Editor_name_ai && m_Player.m_Bot_Editor_name_ai != "")
+		if (player.m_Bot_Editor_name_ai && player.m_Bot_Editor_name_ai != "")
 		{
 			return;
 		}
 		#endif
-		PlayerBase player = PlayerBase.Cast(this);
+		
 		if (!player)
 			return;
 		

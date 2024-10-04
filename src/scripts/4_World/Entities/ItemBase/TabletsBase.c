@@ -35,3 +35,10 @@ class TabletsBase extends Edible_Base
 		return super.GetTooltip() + additionalText;
 	}
 };
+modded class PurificationTablets extends Edible_Base
+{
+	override bool CanHaveTemperature()
+	{
+		return false;
+	}
+};
